@@ -1,28 +1,747 @@
 <!doctype html>
 <html lang="zh-CN">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Secret Language Trade</title>
-<meta name="description" content="Secret Language Trade multilingual mobile language selection page.">
-<style>
-*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#030009;color:#fff;font-family:"Trebuchet MS","Noto Sans SC","Noto Sans Thai",Arial,sans-serif}body{display:grid;place-items:center;overflow-x:hidden}.poster{position:relative;isolation:isolate;width:min(100vw,430px);min-height:max(100svh,640px);overflow:hidden;padding:24px 17px 18px;background:radial-gradient(circle at 50% 5%,rgba(184,73,255,.62),transparent 13%),radial-gradient(ellipse at 50% 18%,rgba(73,26,205,.6),transparent 28%),radial-gradient(ellipse at 50% 55%,rgba(60,10,135,.52),transparent 46%),linear-gradient(#020008,#070014 38%,#060011)}.poster:before{content:"";position:absolute;z-index:-3;inset:0;background:radial-gradient(circle at 20% 10%,rgba(225,160,255,.95) 0 1px,transparent 2px),radial-gradient(circle at 72% 16%,rgba(142,69,255,.85) 0 1px,transparent 2px),linear-gradient(105deg,transparent 0 44%,rgba(111,30,255,.24) 44.2% 44.6%,transparent 45%),linear-gradient(72deg,transparent 0 57%,rgba(195,116,255,.2) 57.4% 57.9%,transparent 58.5%);background-size:34px 34px,42px 42px,100% 100%,100% 100%}.poster:after{content:"";position:absolute;z-index:-2;left:-20%;right:-20%;bottom:-4%;height:31%;background:linear-gradient(90deg,transparent 0 10%,rgba(159,76,255,.65) 10.4% 10.8%,transparent 11.2% 19%,rgba(192,112,255,.55) 19.3% 19.7%,transparent 20% 80%,rgba(118,45,255,.64) 80.2% 80.6%,transparent 81%),repeating-linear-gradient(0deg,transparent 0 14px,rgba(113,42,244,.24) 15px,transparent 17px),repeating-linear-gradient(90deg,transparent 0 32px,rgba(207,124,255,.22) 33px,transparent 35px);transform:perspective(240px) rotateX(58deg);transform-origin:bottom center}.globe{position:absolute;z-index:-1;top:24px;left:28px;right:28px;height:210px;border-radius:50%;border:1px solid rgba(174,91,255,.38);background:radial-gradient(circle at 34% 55%,rgba(157,79,255,.25) 0 8%,transparent 8.5%),radial-gradient(circle at 68% 57%,rgba(156,70,255,.28) 0 10%,transparent 10.5%),repeating-radial-gradient(ellipse at center,transparent 0 13px,rgba(151,85,255,.24) 14px,transparent 16px),repeating-linear-gradient(90deg,transparent 0 17px,rgba(122,65,255,.16) 18px,transparent 19px);box-shadow:inset 0 0 35px rgba(119,43,255,.48),0 0 34px rgba(151,70,255,.46);opacity:.88;mask-image:radial-gradient(ellipse at center,#000 0 68%,transparent 70%)}.city{position:absolute;z-index:-1;bottom:76px;width:94px;height:318px;opacity:.82;filter:drop-shadow(0 0 11px rgba(170,74,255,.95))}.city.left{left:-14px}.city.right{right:-14px;transform:scaleX(-1)}.tower{position:absolute;bottom:0;width:15px;background:repeating-linear-gradient(0deg,rgba(222,175,255,.82) 0 1px,transparent 2px 10px),linear-gradient(rgba(85,35,168,.3),rgba(11,3,30,.94));border-left:1px solid rgba(198,112,255,.52);border-right:1px solid rgba(198,112,255,.36)}.tower:nth-child(1){left:8px;height:176px}.tower:nth-child(2){left:30px;height:244px}.tower:nth-child(3){left:56px;height:202px}.tower:nth-child(4){left:76px;height:132px}.beam{position:absolute;height:2px;background:linear-gradient(90deg,transparent,rgba(214,151,255,.95),transparent);box-shadow:0 0 12px rgba(184,91,255,.95);transform-origin:left center}.beam.one{top:54px;left:13px;width:136px;transform:rotate(18deg)}.beam.two{top:438px;left:10px;width:104px;transform:rotate(-12deg)}.beam.three{top:512px;right:10px;width:122px;transform:rotate(12deg)}.hero{text-align:center;text-shadow:0 0 10px rgba(214,171,255,.95),0 0 22px rgba(144,72,255,.75)}.wings{position:absolute;top:34px;width:86px;height:44px;filter:drop-shadow(0 0 9px rgba(183,87,255,.95))}.wings.left{left:42px;transform:skewX(22deg)}.wings.right{right:42px;transform:scaleX(-1) skewX(22deg)}.wings span{display:block;height:8px;margin:5px 0;border:1px solid rgba(237,207,255,.72);background:linear-gradient(90deg,transparent,rgba(221,161,255,.96),rgba(92,30,220,.35));clip-path:polygon(0 0,86% 0,100% 100%,13% 100%)}h1{margin:28px 0 5px;font-size:16px;font-weight:500;letter-spacing:2px}.hero p{margin:3px 0 0;color:#eadfff;font-size:14px;font-weight:500}.hero .en{margin:0;font-size:15px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 13px;width:min(100%,315px);margin:28px auto 16px}.card{position:relative;min-height:145px;padding:10px 9px 11px;border:0;border-radius:9px;color:#fff;background:linear-gradient(rgba(18,9,36,.96),rgba(2,1,8,.95));box-shadow:inset 0 0 0 1px rgba(207,158,255,.58),inset 0 0 18px rgba(113,49,196,.34),0 0 0 1px rgba(98,31,215,.9),0 0 10px rgba(173,83,255,.95),0 0 30px rgba(105,35,255,.75);cursor:pointer;text-align:center;appearance:none}.card:before{content:"";position:absolute;inset:-7px;border-radius:12px;border:2px solid rgba(166,82,255,.64);clip-path:polygon(9% 0,91% 0,100% 11%,100% 89%,91% 100%,9% 100%,0 89%,0 11%);box-shadow:inset 0 0 10px rgba(207,139,255,.58),0 0 13px rgba(152,59,255,.85)}.card:after{content:"";position:absolute;inset:-2px;border-radius:10px;background:linear-gradient(90deg,transparent 0 10%,rgba(243,220,255,.86) 10.5% 11.5%,transparent 12% 88%,rgba(243,220,255,.74) 88.5% 89.5%,transparent 90%),linear-gradient(0deg,transparent 0 8%,rgba(196,104,255,.78) 8.4% 9.4%,transparent 10% 90%,rgba(196,104,255,.78) 90.4% 91.4%,transparent 92%);opacity:.55;pointer-events:none}.card:hover,.card:focus-visible,.card.active{filter:brightness(1.15);outline:0;box-shadow:inset 0 0 0 1px rgba(242,221,255,.82),inset 0 0 20px rgba(144,60,232,.48),0 0 0 1px rgba(203,118,255,.98),0 0 12px rgba(234,198,255,.95),0 0 35px rgba(148,65,255,.92)}.flag{position:relative;width:112px;height:60px;margin:0 auto 8px;overflow:hidden;border-radius:8px 10px 9px 7px;box-shadow:inset 0 0 12px rgba(255,255,255,.2),inset 0 -12px 18px rgba(0,0,0,.28),0 6px 10px rgba(0,0,0,.38),0 0 11px rgba(255,32,80,.28);transform:perspective(120px) rotateY(-6deg)}.flag:after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 38% 12%,rgba(255,255,255,.55),transparent 25%),linear-gradient(105deg,transparent 0 23%,rgba(255,255,255,.26) 31%,transparent 39% 64%,rgba(0,0,0,.22) 72%,transparent 83%);mix-blend-mode:screen}.wave{position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,255,255,.12),transparent 18%,rgba(0,0,0,.2) 36%,transparent 54%,rgba(255,255,255,.17) 72%,transparent),repeating-linear-gradient(90deg,transparent 0 18px,rgba(0,0,0,.13) 19px 24px,transparent 25px 37px)}.star{position:absolute;width:var(--s,20px);height:var(--s,20px);background:#ffd845;clip-path:polygon(50% 0,61% 35%,98% 35%,68% 56%,79% 91%,50% 70%,21% 91%,32% 56%,2% 35%,39% 35%)}.cres{position:absolute;border-radius:50%;background:#fff}.cres:after{content:"";position:absolute;border-radius:50%}.cn{background:linear-gradient(#f71b18,#be0808)}.cn .big{--s:28px;left:15px;top:14px}.cn .sm:nth-of-type(2){--s:8px;left:50px;top:12px}.cn .sm:nth-of-type(3){--s:8px;left:60px;top:21px}.cn .sm:nth-of-type(4){--s:8px;left:60px;top:35px}.cn .sm:nth-of-type(5){--s:8px;left:49px;top:44px}.sg{background:linear-gradient(#e00025 0 50%,#f4f4f5 50%)}.sg .cres{width:27px;height:27px;left:16px;top:8px}.sg .cres:after{width:25px;height:25px;left:8px;top:1px;background:#e00025}.sg .star{--s:8px}.s1{left:50px;top:8px}.s2{left:60px;top:17px}.s3{left:56px;top:30px}.s4{left:43px;top:30px}.s5{left:39px;top:17px}.th{background:linear-gradient(#d91b29 0 16%,#fff 16% 31%,#1d2f7f 31% 69%,#fff 69% 84%,#d91b29 84%)}.vn{background:linear-gradient(#df0808,#b80000)}.vn .star{--s:36px;left:38px;top:13px}.my{background:linear-gradient(90deg,#071d83 0 45%,transparent 45%),repeating-linear-gradient(180deg,#e51b2b 0 8px,#fff 8px 16px)}.my .cres{width:24px;height:24px;left:15px;top:11px;background:#ffd845}.my .cres:after{width:22px;height:22px;left:8px;top:1px;background:#071d83}.my .star{--s:18px;left:42px;top:14px}.lo{background:linear-gradient(#d41122 0 24%,#12216f 24% 76%,#d41122 76%)}.lo .disc{position:absolute;width:33px;height:33px;left:40px;top:14px;border-radius:50%;background:#f2f0f3}.name{display:block;margin-top:1px;font-size:20px;line-height:1.1;font-weight:500;text-shadow:0 0 9px rgba(235,214,255,.88)}.name.bigtext{font-size:24px}.price{display:flex;align-items:center;justify-content:center;gap:7px;margin-top:8px;color:#d5b9ff;font-size:10px;line-height:1.15}.cur{min-width:26px;color:#c481ff;font-size:22px;line-height:1;text-shadow:0 0 8px #c870ff,0 0 16px rgba(130,59,255,.95)}.cur.rm{font-size:18px;font-weight:700}.features{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;width:min(100%,390px);margin:18px auto 0}.feature{display:grid;grid-template-columns:34px 1fr;align-items:center;gap:5px;min-width:0;text-align:left;color:#f0e7ff;text-shadow:0 0 8px rgba(163,80,255,.84)}.ico{display:grid;place-items:center;width:32px;height:32px;color:#dcb4ff;filter:drop-shadow(0 0 7px rgba(171,82,255,.95))}.ico svg{width:31px;height:31px;stroke:currentColor;fill:rgba(112,37,219,.12)}.ft{display:block;font-size:9px;font-weight:700;white-space:nowrap}.fs{display:block;margin-top:2px;color:#fbf8ff;font-size:6px;letter-spacing:1.1px}@media(max-width:370px){.poster{padding-inline:13px}.grid{gap:11px;width:min(100%,300px)}.card{min-height:138px;padding-inline:7px}.flag{width:104px;height:56px}.features{gap:4px}.feature{grid-template-columns:29px 1fr}}
-</style>
-</head>
-<body>
-<main class="poster" aria-label="Secret Language Trade language selector">
-<div class="globe" aria-hidden="true"></div><div class="city left" aria-hidden="true"><span class="tower"></span><span class="tower"></span><span class="tower"></span><span class="tower"></span></div><div class="city right" aria-hidden="true"><span class="tower"></span><span class="tower"></span><span class="tower"></span><span class="tower"></span></div><span class="beam one" aria-hidden="true"></span><span class="beam two" aria-hidden="true"></span><span class="beam three" aria-hidden="true"></span>
-<header class="hero"><div class="wings left" aria-hidden="true"><span></span><span></span><span></span></div><div class="wings right" aria-hidden="true"><span></span><span></span><span></span></div><h1>私语贸易欢迎您</h1><p class="en">Welcome to Secret Language Trade</p><p>ยินดีต้อนรับสู่การค้าภาษาลับ</p><p>Chào mừng bạn đến với Thương mại Ngôn ngữ Bí mật</p></header>
-<section class="grid" aria-label="Choose language and region pricing">
-<button class="card active" type="button" data-lang="zh" aria-pressed="true"><span class="flag cn"><span class="star big"></span><span class="star sm"></span><span class="star sm"></span><span class="star sm"></span><span class="star sm"></span><span class="wave"></span></span><span class="name bigtext">中文</span><span class="price"><span class="cur">¥</span><span>中国地区价格</span></span></button>
-<button class="card" type="button" data-lang="en" aria-pressed="false"><span class="flag sg"><span class="cres"></span><span class="star s1"></span><span class="star s2"></span><span class="star s3"></span><span class="star s4"></span><span class="star s5"></span><span class="wave"></span></span><span class="name">English</span><span class="price"><span class="cur">S$</span><span>Price for Singapore</span></span></button>
-<button class="card" type="button" data-lang="th" aria-pressed="false"><span class="flag th"><span class="wave"></span></span><span class="name">ภาษาไทย</span><span class="price"><span class="cur">฿</span><span>ราคาในประเทศไทย</span></span></button>
-<button class="card" type="button" data-lang="vi" aria-pressed="false"><span class="flag vn"><span class="star"></span><span class="wave"></span></span><span class="name">Tiếng Việt</span><span class="price"><span class="cur">₫</span><span>Giá tại Việt Nam</span></span></button>
-<button class="card" type="button" data-lang="ms" aria-pressed="false"><span class="flag my"><span class="cres"></span><span class="star"></span><span class="wave"></span></span><span class="name">Bahasa Melayu</span><span class="price"><span class="cur rm">RM</span><span>Harga di Malaysia</span></span></button>
-<button class="card" type="button" data-lang="lo" aria-pressed="false"><span class="flag lo"><span class="disc"></span><span class="wave"></span></span><span class="name">ພາສາລາວ</span><span class="price"><span class="cur">₭</span><span>ລາຄາໃນລາວ</span></span></button>
-</section>
-<footer class="features" aria-label="Service benefits"><div class="feature"><span class="ico"><svg viewBox="0 0 48 48"><path d="M24 4 39 9v12c0 11-6 18-15 23C15 39 9 32 9 21V9l15-5Z" stroke-width="2.8"/><path d="m16 24 5 5 11-13" fill="none" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span><span class="ft">安全可靠</span><span class="fs">SAFE &amp; SECURE</span></span></div><div class="feature"><span class="ico"><svg viewBox="0 0 48 48"><path d="M27 3 10 27h13l-2 18 18-26H25L27 3Z" stroke-width="2.8" stroke-linejoin="round"/></svg></span><span><span class="ft">快速访问</span><span class="fs">FAST ACCESS</span></span></div><div class="feature"><span class="ico"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="17" stroke-width="2.8"/><path d="M7 24h34M24 7c6 7 6 27 0 34M24 7c-6 7-6 27 0 34" fill="none" stroke-width="2.4"/></svg></span><span><span class="ft">多语言支持</span><span class="fs">MULTI-LANGUAGE<br>SUPPORT</span></span></div><div class="feature"><span class="ico"><svg viewBox="0 0 48 48"><path d="M12 9h24l8 12-20 22L4 21 12 9Z" stroke-width="2.8" stroke-linejoin="round"/><path d="M4 21h40M16 9l-5 12 13 22 13-22-5-12" fill="none" stroke-width="2.1"/></svg></span><span><span class="ft">优质服务</span><span class="fs">PREMIUM<br>SERVICE</span></span></div></footer>
-</main>
-<script>const cards=document.querySelectorAll('.card');cards.forEach(card=>card.addEventListener('click',()=>{cards.forEach(i=>{i.classList.remove('active');i.setAttribute('aria-pressed','false')});card.classList.add('active');card.setAttribute('aria-pressed','true');document.documentElement.dataset.language=card.dataset.lang}))</script>
-</body>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Secret Language Trade</title>
+    <meta
+      name="description"
+      content="Secret Language Trade multilingual mobile language selection page."
+    >
+    <style>
+      :root {
+        --bg: #04010b;
+        --ink: #f7edff;
+        --muted: #cdb9ff;
+        --violet: #9a46ff;
+        --violet-hot: #c479ff;
+        --violet-deep: #3b0b75;
+        --blue-violet: #4014c8;
+        --panel: rgba(5, 4, 14, 0.82);
+        --line: rgba(190, 111, 255, 0.86);
+        --edge: rgba(236, 215, 255, 0.92);
+        --glow: 0 0 10px rgba(173, 83, 255, 0.95), 0 0 30px rgba(105, 35, 255, 0.75);
+        color-scheme: dark;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+        background: #05000a;
+        font-family: "Trebuchet MS", "Noto Sans", "Noto Sans SC", "Noto Sans Thai", Arial, sans-serif;
+      }
+
+      body {
+        display: grid;
+        place-items: center;
+        color: var(--ink);
+        overflow-x: hidden;
+      }
+
+      .poster {
+        position: relative;
+        isolation: isolate;
+        width: min(100vw, 430px);
+        min-height: max(100svh, 640px);
+        overflow: hidden;
+        padding: 16px 17px 14px;
+        background:
+          radial-gradient(circle at 50% 6%, rgba(166, 62, 255, 0.58), transparent 12%),
+          radial-gradient(ellipse at 50% 17%, rgba(79, 27, 201, 0.58), transparent 27%),
+          radial-gradient(ellipse at 50% 52%, rgba(56, 8, 127, 0.48), transparent 44%),
+          linear-gradient(180deg, #020008 0%, #070014 38%, #060011 100%);
+      }
+
+      .poster::before {
+        content: "";
+        position: absolute;
+        z-index: -3;
+        inset: 0;
+        background:
+          radial-gradient(circle at 20% 10%, rgba(214, 145, 255, 0.95) 0 1px, transparent 2px),
+          radial-gradient(circle at 72% 16%, rgba(142, 69, 255, 0.85) 0 1px, transparent 2px),
+          linear-gradient(105deg, transparent 0 44%, rgba(111, 30, 255, 0.22) 44.2% 44.6%, transparent 45%),
+          linear-gradient(72deg, transparent 0 57%, rgba(195, 116, 255, 0.18) 57.4% 57.9%, transparent 58.5%);
+        background-size: 34px 34px, 42px 42px, 100% 100%, 100% 100%;
+        filter: saturate(1.2);
+      }
+
+      .poster::after {
+        content: "";
+        position: absolute;
+        z-index: -2;
+        left: -20%;
+        right: -20%;
+        bottom: -4%;
+        height: 31%;
+        background:
+          linear-gradient(90deg, transparent 0 10%, rgba(159, 76, 255, 0.65) 10.4% 10.8%, transparent 11.2% 19%, rgba(192, 112, 255, 0.55) 19.3% 19.7%, transparent 20% 80%, rgba(118, 45, 255, 0.64) 80.2% 80.6%, transparent 81%),
+          repeating-linear-gradient(0deg, transparent 0 14px, rgba(113, 42, 244, 0.22) 15px, transparent 17px),
+          repeating-linear-gradient(90deg, transparent 0 32px, rgba(207, 124, 255, 0.2) 33px, transparent 35px);
+        transform: perspective(240px) rotateX(58deg);
+        transform-origin: bottom center;
+        box-shadow: inset 0 18px 42px rgba(170, 71, 255, 0.25);
+      }
+
+      .globe {
+        position: absolute;
+        z-index: -1;
+        top: 24px;
+        left: 28px;
+        right: 28px;
+        height: 210px;
+        border-radius: 50%;
+        border: 1px solid rgba(174, 91, 255, 0.38);
+        background:
+          radial-gradient(circle at 34% 55%, rgba(157, 79, 255, 0.25) 0 8%, transparent 8.5%),
+          radial-gradient(circle at 68% 57%, rgba(156, 70, 255, 0.28) 0 10%, transparent 10.5%),
+          repeating-radial-gradient(ellipse at center, transparent 0 13px, rgba(151, 85, 255, 0.22) 14px, transparent 16px),
+          repeating-linear-gradient(90deg, transparent 0 17px, rgba(122, 65, 255, 0.16) 18px, transparent 19px);
+        box-shadow: inset 0 0 35px rgba(119, 43, 255, 0.48), 0 0 34px rgba(151, 70, 255, 0.46);
+        opacity: 0.88;
+        mask-image: radial-gradient(ellipse at center, black 0 68%, transparent 70%);
+      }
+
+      .city {
+        position: absolute;
+        z-index: -1;
+        bottom: 76px;
+        width: 94px;
+        height: 318px;
+        opacity: 0.82;
+        filter: drop-shadow(0 0 11px rgba(170, 74, 255, 0.95));
+      }
+
+      .city.left {
+        left: -14px;
+      }
+
+      .city.right {
+        right: -14px;
+        transform: scaleX(-1);
+      }
+
+      .tower {
+        position: absolute;
+        bottom: 0;
+        width: 15px;
+        background:
+          repeating-linear-gradient(0deg, rgba(222, 175, 255, 0.82) 0 1px, transparent 2px 10px),
+          linear-gradient(180deg, rgba(85, 35, 168, 0.3), rgba(11, 3, 30, 0.94));
+        border-left: 1px solid rgba(198, 112, 255, 0.52);
+        border-right: 1px solid rgba(198, 112, 255, 0.36);
+      }
+
+      .tower:nth-child(1) { left: 8px; height: 176px; }
+      .tower:nth-child(2) { left: 30px; height: 244px; }
+      .tower:nth-child(3) { left: 56px; height: 202px; }
+      .tower:nth-child(4) { left: 76px; height: 132px; }
+
+      .beam {
+        position: absolute;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, rgba(214, 151, 255, 0.95), transparent);
+        box-shadow: 0 0 12px rgba(184, 91, 255, 0.95);
+        transform-origin: left center;
+      }
+
+      .beam.one {
+        top: 54px;
+        left: 13px;
+        width: 136px;
+        transform: rotate(18deg);
+      }
+
+      .beam.two {
+        top: 438px;
+        left: 10px;
+        width: 104px;
+        transform: rotate(-12deg);
+      }
+
+      .beam.three {
+        top: 512px;
+        right: 10px;
+        width: 122px;
+        transform: rotate(12deg);
+      }
+
+      .hero {
+        text-align: center;
+        text-shadow: 0 0 10px rgba(214, 171, 255, 0.95), 0 0 22px rgba(144, 72, 255, 0.75);
+      }
+
+      .wings {
+        position: absolute;
+        top: 34px;
+        width: 86px;
+        height: 44px;
+        filter: drop-shadow(0 0 9px rgba(183, 87, 255, 0.95));
+      }
+
+      .wings.left {
+        left: 42px;
+        transform: skewX(22deg);
+      }
+
+      .wings.right {
+        right: 42px;
+        transform: scaleX(-1) skewX(22deg);
+      }
+
+      .wings span {
+        display: block;
+        height: 8px;
+        margin: 5px 0;
+        border: 1px solid rgba(237, 207, 255, 0.72);
+        background: linear-gradient(90deg, transparent, rgba(221, 161, 255, 0.96), rgba(92, 30, 220, 0.35));
+        clip-path: polygon(0 0, 86% 0, 100% 100%, 13% 100%);
+      }
+
+      .title-cn {
+        margin: 12px 0 4px;
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 2px;
+      }
+
+      .title-en {
+        margin: 0;
+        font-size: 12.5px;
+        font-weight: 500;
+      }
+
+      .title-th,
+      .title-vi {
+        margin: 3px 0 0;
+        color: #e6d9ff;
+        font-size: 12px;
+        font-weight: 500;
+      }
+
+      .language-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px 13px;
+        width: min(100%, 282px);
+        margin: 16px auto 12px;
+      }
+
+      .language-card {
+        position: relative;
+        min-height: 145px;
+        padding: 10px 9px 11px;
+        border: 0;
+        border-radius: 9px;
+        color: var(--ink);
+        background:
+          linear-gradient(180deg, rgba(18, 9, 36, 0.96), rgba(2, 1, 8, 0.95)),
+          var(--panel);
+        box-shadow:
+          inset 0 0 0 1px rgba(207, 158, 255, 0.58),
+          inset 0 0 18px rgba(113, 49, 196, 0.34),
+          0 0 0 1px rgba(98, 31, 215, 0.9),
+          var(--glow);
+        cursor: pointer;
+        text-align: center;
+        appearance: none;
+        transition: transform 160ms ease, filter 160ms ease, box-shadow 160ms ease;
+      }
+
+      .language-card::before,
+      .language-card::after {
+        content: "";
+        position: absolute;
+        pointer-events: none;
+      }
+
+      .language-card::before {
+        inset: -7px;
+        border-radius: 12px;
+        border: 2px solid rgba(166, 82, 255, 0.64);
+        clip-path: polygon(9% 0, 91% 0, 100% 11%, 100% 89%, 91% 100%, 9% 100%, 0 89%, 0 11%);
+        box-shadow: inset 0 0 10px rgba(207, 139, 255, 0.58), 0 0 13px rgba(152, 59, 255, 0.85);
+      }
+
+      .language-card::after {
+        inset: -2px;
+        border-radius: 10px;
+        background:
+          linear-gradient(90deg, transparent 0 10%, rgba(243, 220, 255, 0.86) 10.5% 11.5%, transparent 12% 88%, rgba(243, 220, 255, 0.74) 88.5% 89.5%, transparent 90%),
+          linear-gradient(0deg, transparent 0 8%, rgba(196, 104, 255, 0.78) 8.4% 9.4%, transparent 10% 90%, rgba(196, 104, 255, 0.78) 90.4% 91.4%, transparent 92%);
+        opacity: 0.3;
+      }
+
+      .language-card:hover,
+      .language-card:focus-visible,
+      .language-card.is-selected {
+        transform: translateY(-2px);
+        filter: brightness(1.15);
+        outline: none;
+        box-shadow:
+          inset 0 0 0 1px rgba(242, 221, 255, 0.82),
+          inset 0 0 20px rgba(144, 60, 232, 0.48),
+          0 0 0 1px rgba(203, 118, 255, 0.98),
+          0 0 12px rgba(234, 198, 255, 0.95),
+          0 0 35px rgba(148, 65, 255, 0.92);
+      }
+
+      .flag {
+        position: relative;
+        display: block;
+        width: 118px;
+        height: 68px;
+        margin: 0 auto 8px;
+        overflow: visible;
+        background: transparent;
+        border-radius: 9px;
+        box-shadow: none;
+        transform: perspective(120px) rotateY(-4deg);
+      }
+
+      .flag img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        filter:
+          drop-shadow(0 6px 8px rgba(0, 0, 0, 0.5))
+          drop-shadow(0 0 9px rgba(255, 35, 80, 0.28));
+      }
+
+      .flag > :not(img) {
+        display: none;
+      }
+
+      .flag::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(ellipse at 38% 12%, rgba(255, 255, 255, 0.55), transparent 25%),
+          linear-gradient(105deg, transparent 0 23%, rgba(255, 255, 255, 0.26) 31%, transparent 39% 64%, rgba(0, 0, 0, 0.22) 72%, transparent 83%);
+        mix-blend-mode: screen;
+        display: none;
+      }
+
+      .flag-wave {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(90deg, rgba(255, 255, 255, 0.12), transparent 18%, rgba(0, 0, 0, 0.2) 36%, transparent 54%, rgba(255, 255, 255, 0.17) 72%, transparent),
+          repeating-linear-gradient(90deg, transparent 0 18px, rgba(0, 0, 0, 0.13) 19px 24px, transparent 25px 37px);
+        opacity: 0.9;
+      }
+
+      .star {
+        position: absolute;
+        width: var(--s, 20px);
+        height: var(--s, 20px);
+        background: var(--star, #ffd845);
+        clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 56%, 79% 91%, 50% 70%, 21% 91%, 32% 56%, 2% 35%, 39% 35%);
+      }
+
+      .crescent {
+        position: absolute;
+        border-radius: 50%;
+        background: #fff;
+      }
+
+      .crescent::after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+      }
+
+      .flag-china {
+        background: linear-gradient(180deg, #f71b18, #be0808);
+      }
+
+      .flag-china .big-star {
+        --s: 28px;
+        left: 15px;
+        top: 14px;
+      }
+
+      .flag-china .small:nth-of-type(2) { --s: 8px; left: 50px; top: 12px; transform: rotate(22deg); }
+      .flag-china .small:nth-of-type(3) { --s: 8px; left: 60px; top: 21px; transform: rotate(42deg); }
+      .flag-china .small:nth-of-type(4) { --s: 8px; left: 60px; top: 35px; transform: rotate(4deg); }
+      .flag-china .small:nth-of-type(5) { --s: 8px; left: 49px; top: 44px; transform: rotate(28deg); }
+
+      .flag-singapore {
+        background: linear-gradient(#e00025 0 50%, #f4f4f5 50% 100%);
+      }
+
+      .flag-singapore .crescent {
+        width: 27px;
+        height: 27px;
+        left: 16px;
+        top: 8px;
+      }
+
+      .flag-singapore .crescent::after {
+        width: 25px;
+        height: 25px;
+        left: 8px;
+        top: 1px;
+        background: #e00025;
+      }
+
+      .flag-singapore .star { --s: 8px; }
+      .flag-singapore .s1 { left: 50px; top: 8px; }
+      .flag-singapore .s2 { left: 60px; top: 17px; }
+      .flag-singapore .s3 { left: 56px; top: 30px; }
+      .flag-singapore .s4 { left: 43px; top: 30px; }
+      .flag-singapore .s5 { left: 39px; top: 17px; }
+
+      .flag-thai {
+        background: linear-gradient(#d91b29 0 16%, #fff 16% 31%, #1d2f7f 31% 69%, #fff 69% 84%, #d91b29 84% 100%);
+      }
+
+      .flag-vietnam {
+        background: linear-gradient(180deg, #df0808, #b80000);
+      }
+
+      .flag-vietnam .star {
+        --s: 36px;
+        left: 38px;
+        top: 13px;
+      }
+
+      .flag-malaysia {
+        background:
+          linear-gradient(90deg, #071d83 0 45%, transparent 45%),
+          repeating-linear-gradient(180deg, #e51b2b 0 8px, #fff 8px 16px);
+      }
+
+      .flag-malaysia .crescent {
+        width: 24px;
+        height: 24px;
+        left: 15px;
+        top: 11px;
+        background: #ffd845;
+      }
+
+      .flag-malaysia .crescent::after {
+        width: 22px;
+        height: 22px;
+        left: 8px;
+        top: 1px;
+        background: #071d83;
+      }
+
+      .flag-malaysia .star {
+        --s: 18px;
+        left: 42px;
+        top: 14px;
+      }
+
+      .flag-laos {
+        background: linear-gradient(#d41122 0 24%, #12216f 24% 76%, #d41122 76% 100%);
+      }
+
+      .flag-laos .disc {
+        position: absolute;
+        width: 33px;
+        height: 33px;
+        left: 40px;
+        top: 14px;
+        border-radius: 50%;
+        background: #f2f0f3;
+        box-shadow: inset -5px -5px 8px rgba(0, 0, 0, 0.18);
+      }
+
+      .flag.flag-china,
+      .flag.flag-singapore,
+      .flag.flag-thai,
+      .flag.flag-vietnam,
+      .flag.flag-malaysia,
+      .flag.flag-laos {
+        background: transparent;
+      }
+
+      .lang-name {
+        display: block;
+        margin-top: 1px;
+        font-size: 20px;
+        line-height: 1.1;
+        font-weight: 500;
+        text-shadow: 0 0 9px rgba(235, 214, 255, 0.88);
+      }
+
+      .lang-name.big {
+        font-size: 24px;
+      }
+
+      .language-card[data-lang="ms"] .lang-name {
+        font-size: 17px;
+        white-space: nowrap;
+      }
+
+      .price-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        margin-top: 8px;
+        color: #d5b9ff;
+        font-size: 8.8px;
+        line-height: 1.15;
+        white-space: nowrap;
+      }
+
+      .currency {
+        min-width: 22px;
+        color: #c481ff;
+        font-size: 20px;
+        line-height: 1;
+        text-shadow: 0 0 8px rgba(200, 112, 255, 1), 0 0 16px rgba(130, 59, 255, 0.95);
+      }
+
+      .currency.rm {
+        font-size: 18px;
+        font-weight: 700;
+      }
+
+      .features {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 7px;
+        width: min(100%, 390px);
+        margin: 7px auto 0;
+      }
+
+      .feature {
+        display: grid;
+        grid-template-columns: 31px 1fr;
+        align-items: center;
+        gap: 5px;
+        min-width: 0;
+        text-align: left;
+        color: #f0e7ff;
+        text-shadow: 0 0 8px rgba(163, 80, 255, 0.84);
+      }
+
+      .feature-icon {
+        display: grid;
+        place-items: center;
+        width: 29px;
+        height: 29px;
+        color: #dcb4ff;
+        filter: drop-shadow(0 0 7px rgba(171, 82, 255, 0.95));
+      }
+
+      .feature-icon svg {
+        width: 28px;
+        height: 28px;
+        stroke: currentColor;
+        fill: rgba(112, 37, 219, 0.12);
+      }
+
+      .feature-title {
+        display: block;
+        font-size: 8.5px;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+
+      .feature-sub {
+        display: block;
+        margin-top: 2px;
+        color: #fbf8ff;
+        font-size: 5.8px;
+        letter-spacing: 1.1px;
+      }
+
+      .feature:nth-child(3) .feature-sub,
+      .feature:nth-child(4) .feature-sub {
+        line-height: 1.15;
+      }
+
+      @media (max-width: 370px) {
+        .poster {
+          padding-inline: 13px;
+        }
+
+        .language-grid {
+          gap: 11px;
+          width: min(100%, 300px);
+        }
+
+        .language-card {
+          min-height: 138px;
+          padding-inline: 7px;
+        }
+
+        .flag {
+          width: 110px;
+          height: 63px;
+        }
+
+        .features {
+          gap: 4px;
+        }
+
+        .feature {
+          grid-template-columns: 29px 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="poster" aria-label="Secret Language Trade language selector">
+      <div class="globe" aria-hidden="true"></div>
+      <div class="city left" aria-hidden="true">
+        <span class="tower"></span>
+        <span class="tower"></span>
+        <span class="tower"></span>
+        <span class="tower"></span>
+      </div>
+      <div class="city right" aria-hidden="true">
+        <span class="tower"></span>
+        <span class="tower"></span>
+        <span class="tower"></span>
+        <span class="tower"></span>
+      </div>
+      <span class="beam one" aria-hidden="true"></span>
+      <span class="beam two" aria-hidden="true"></span>
+      <span class="beam three" aria-hidden="true"></span>
+
+      <header class="hero">
+        <div class="wings left" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="wings right" aria-hidden="true"><span></span><span></span><span></span></div>
+        <h1 class="title-cn">私语贸易欢迎您</h1>
+        <p class="title-en">Welcome to Secret Language Trade</p>
+        <p class="title-th">ยินดีต้อนรับสู่การค้าภาษาลับ</p>
+        <p class="title-vi">Chào mừng bạn đến với Thương mại Ngôn ngữ Bí mật</p>
+      </header>
+
+      <section class="language-grid" aria-label="Choose language and region pricing">
+        <button class="language-card is-selected" type="button" data-lang="zh" aria-pressed="true">
+          <span class="flag flag-china" aria-hidden="true">
+            <img src="assets/flag-china.png" alt="">
+            <span class="star big-star"></span>
+            <span class="star small"></span>
+            <span class="star small"></span>
+            <span class="star small"></span>
+            <span class="star small"></span>
+            <span class="flag-wave"></span>
+          </span>
+          <span class="lang-name big">中文</span>
+          <span class="price-row"><span class="currency">¥</span><span>中国地区价格</span></span>
+        </button>
+
+        <button class="language-card" type="button" data-lang="en" aria-pressed="false">
+          <span class="flag flag-singapore" aria-hidden="true">
+            <img src="assets/flag-singapore.png" alt="">
+            <span class="crescent"></span>
+            <span class="star s1"></span>
+            <span class="star s2"></span>
+            <span class="star s3"></span>
+            <span class="star s4"></span>
+            <span class="star s5"></span>
+            <span class="flag-wave"></span>
+          </span>
+          <span class="lang-name">English</span>
+          <span class="price-row"><span class="currency">S$</span><span>Price for Singapore</span></span>
+        </button>
+
+        <button class="language-card" type="button" data-lang="th" aria-pressed="false">
+          <span class="flag flag-thai" aria-hidden="true"><img src="assets/flag-thailand.png" alt=""><span class="flag-wave"></span></span>
+          <span class="lang-name">ภาษาไทย</span>
+          <span class="price-row"><span class="currency">฿</span><span>ราคาในประเทศไทย</span></span>
+        </button>
+
+        <button class="language-card" type="button" data-lang="vi" aria-pressed="false">
+          <span class="flag flag-vietnam" aria-hidden="true">
+            <img src="assets/flag-vietnam.png" alt="">
+            <span class="star"></span>
+            <span class="flag-wave"></span>
+          </span>
+          <span class="lang-name">Tiếng Việt</span>
+          <span class="price-row"><span class="currency">₫</span><span>Giá tại Việt Nam</span></span>
+        </button>
+
+        <button class="language-card" type="button" data-lang="ms" aria-pressed="false">
+          <span class="flag flag-malaysia" aria-hidden="true">
+            <img src="assets/flag-malaysia.png" alt="">
+            <span class="crescent"></span>
+            <span class="star"></span>
+            <span class="flag-wave"></span>
+          </span>
+          <span class="lang-name">Bahasa Melayu</span>
+          <span class="price-row"><span class="currency rm">RM</span><span>Harga di Malaysia</span></span>
+        </button>
+
+        <button class="language-card" type="button" data-lang="lo" aria-pressed="false">
+          <span class="flag flag-laos" aria-hidden="true">
+            <img src="assets/flag-laos.png" alt="">
+            <span class="disc"></span>
+            <span class="flag-wave"></span>
+          </span>
+          <span class="lang-name">ພາສາລາວ</span>
+          <span class="price-row"><span class="currency">₭</span><span>ລາຄາໃນລາວ</span></span>
+        </button>
+      </section>
+
+      <footer class="features" aria-label="Service benefits">
+        <div class="feature">
+          <span class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" role="img">
+              <path d="M24 4 39 9v12c0 11-6 18-15 23C15 39 9 32 9 21V9l15-5Z" stroke-width="2.8"/>
+              <path d="m16 24 5 5 11-13" fill="none" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span><span class="feature-title">安全可靠</span><span class="feature-sub">SAFE &amp; SECURE</span></span>
+        </div>
+        <div class="feature">
+          <span class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" role="img">
+              <path d="M27 3 10 27h13l-2 18 18-26H25L27 3Z" stroke-width="2.8" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span><span class="feature-title">快速访问</span><span class="feature-sub">FAST ACCESS</span></span>
+        </div>
+        <div class="feature">
+          <span class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" role="img">
+              <circle cx="24" cy="24" r="17" stroke-width="2.8"/>
+              <path d="M7 24h34M24 7c6 7 6 27 0 34M24 7c-6 7-6 27 0 34" fill="none" stroke-width="2.4"/>
+            </svg>
+          </span>
+          <span><span class="feature-title">多语言支持</span><span class="feature-sub">MULTI-LANGUAGE<br>SUPPORT</span></span>
+        </div>
+        <div class="feature">
+          <span class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" role="img">
+              <path d="M12 9h24l8 12-20 22L4 21 12 9Z" stroke-width="2.8" stroke-linejoin="round"/>
+              <path d="M4 21h40M16 9l-5 12 13 22 13-22-5-12" fill="none" stroke-width="2.1"/>
+            </svg>
+          </span>
+          <span><span class="feature-title">优质服务</span><span class="feature-sub">PREMIUM<br>SERVICE</span></span>
+        </div>
+      </footer>
+    </main>
+
+    <script>
+      const languageCards = document.querySelectorAll(".language-card");
+
+      languageCards.forEach((card) => {
+        card.addEventListener("click", () => {
+          languageCards.forEach((item) => {
+            item.classList.remove("is-selected");
+            item.setAttribute("aria-pressed", "false");
+          });
+          card.classList.add("is-selected");
+          card.setAttribute("aria-pressed", "true");
+          document.documentElement.dataset.language = card.dataset.lang;
+        });
+      });
+    </script>
+  </body>
 </html>

@@ -1,17 +1,15 @@
-# Independent Blank Site
+# Secret Language Trade Static Site
 
-This repository is prepared as an independent blank static website. It has no runtime dependency on any main website.
+This repository is prepared as an independent static website for `love.q-c.hk`. It has no runtime dependency on any main website.
 
 ## Current State
 
 - The public website root is `public/`.
-- `public/index.html` intentionally renders a blank page.
+- `public/index.html` renders the mobile Secret Language Trade language selector.
 - GitHub Pages deployment is prepared in `.github/workflows/deploy.yml`.
-- Search engines are blocked for now in `public/robots.txt`.
+- Search engines are allowed in `public/robots.txt`.
 
-## Needed Before Live Deployment
+## Deployment
 
-1. GitHub Pages enabled for this repository with GitHub Actions as the source.
-2. DNS access for `love.q-c.hk` so the required records can point to the deployment platform.
-
-The custom domain is already set in `public/CNAME`.
+The custom domain is set in `public/CNAME`.
+Pushes to `main` deploy through GitHub Actions.
