@@ -6,9 +6,9 @@
 
 **Implementation Evidence**
 - Local URL: `http://127.0.0.1:8091/`
-- Implementation screenshot: `/private/tmp/love-local-mobile-v8.png`
-- Full-view comparison: `/private/tmp/love-comparison-v8.png`
-- Focused card comparison: `/private/tmp/love-focus-cards-v8.png`
+- Implementation screenshot: `/private/tmp/love-local-mobile-v12.png`
+- Full-view comparison: `/private/tmp/love-comparison-v12.png`
+- Focused card comparison: `/private/tmp/love-focus-cards-v12.png`
 - Viewport: `427x640`, `deviceScaleFactor: 2`, mobile viewport.
 - State: default page load, Chinese card selected.
 
@@ -20,15 +20,15 @@
 - Copy and content: all visible language labels, pricing labels, and service benefit text match the reference.
 
 **Patches Made Since Previous QA Pass**
-- Replaced CSS-drawn flags with six independent PNG flag assets.
-- Hid old CSS flag drawing elements behind the image assets.
-- Removed leftover CSS flag backgrounds that were showing red side bands.
-- Re-cropped flag assets to preserve soft shadow context and avoid hard bottom cuts.
-- Increased flag display size slightly while keeping card text stable.
-- Updated README to describe the current static site instead of the original blank state.
+- Rebalanced the top header: smaller title text, higher text block, and restored spacing before the language grid.
+- Reworked the language grid proportions: slightly narrower than the first build, shorter than the deployed v8 build, and better aligned to the reference's bottom feature strip.
+- Enlarged the flag display while preserving the separate PNG flag assets.
+- Reduced background dot brightness and side-city intensity so the cards dominate like the reference.
+- Replaced the softer card outline with a thicker octagonal neon frame and added subtle segmented corner rails.
+- Kept all visible language/card text as editable HTML text instead of baking it into the image.
 
 **Follow-up Polish**
-- P3: the background city/globe and mechanical card frame are still code-built approximations, not the same photo-level detail as the source image. They can be refined further with generated background pieces or more detailed CSS layers while still avoiding use of the full screenshot as a background.
+- P3: the background city/globe is still a code-built approximation, not the same photo-level detail as the source image. This is the largest remaining visual difference because the full original image is intentionally not used as the page background.
 
 **Implementation Checklist**
 - Use the current `public/index.html`.

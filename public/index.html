@@ -63,8 +63,8 @@
         z-index: -3;
         inset: 0;
         background:
-          radial-gradient(circle at 20% 10%, rgba(214, 145, 255, 0.95) 0 1px, transparent 2px),
-          radial-gradient(circle at 72% 16%, rgba(142, 69, 255, 0.85) 0 1px, transparent 2px),
+          radial-gradient(circle at 20% 10%, rgba(214, 145, 255, 0.38) 0 1px, transparent 2px),
+          radial-gradient(circle at 72% 16%, rgba(142, 69, 255, 0.38) 0 1px, transparent 2px),
           linear-gradient(105deg, transparent 0 44%, rgba(111, 30, 255, 0.22) 44.2% 44.6%, transparent 45%),
           linear-gradient(72deg, transparent 0 57%, rgba(195, 116, 255, 0.18) 57.4% 57.9%, transparent 58.5%);
         background-size: 34px 34px, 42px 42px, 100% 100%, 100% 100%;
@@ -112,8 +112,8 @@
         z-index: -1;
         bottom: 76px;
         width: 94px;
-        height: 318px;
-        opacity: 0.82;
+        height: 392px;
+        opacity: 0.48;
         filter: drop-shadow(0 0 11px rgba(170, 74, 255, 0.95));
       }
 
@@ -204,15 +204,15 @@
       }
 
       .title-cn {
-        margin: 12px 0 4px;
-        font-size: 14px;
+        margin: 18px 0 4px;
+        font-size: 12.5px;
         font-weight: 500;
-        letter-spacing: 2px;
+        letter-spacing: 1.8px;
       }
 
       .title-en {
         margin: 0;
-        font-size: 12.5px;
+        font-size: 11.8px;
         font-weight: 500;
       }
 
@@ -220,26 +220,32 @@
       .title-vi {
         margin: 3px 0 0;
         color: #e6d9ff;
-        font-size: 12px;
+        font-size: 11.2px;
         font-weight: 500;
       }
 
       .language-grid {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 12px 13px;
-        width: min(100%, 282px);
-        margin: 16px auto 12px;
+        gap: 10px 12px;
+        width: min(100%, 286px);
+        margin: 13px auto 8px;
       }
 
       .language-card {
         position: relative;
-        min-height: 145px;
-        padding: 10px 9px 11px;
+        min-height: 140px;
+        padding: 9px 8px 9px;
         border: 0;
-        border-radius: 9px;
+        border-radius: 5px;
         color: var(--ink);
         background:
+          linear-gradient(135deg, rgba(238, 216, 255, 0.4) 0 2px, transparent 3px 100%) 8px 8px / 28px 28px no-repeat,
+          linear-gradient(225deg, rgba(238, 216, 255, 0.38) 0 2px, transparent 3px 100%) right 8px top 8px / 28px 28px no-repeat,
+          linear-gradient(45deg, rgba(238, 216, 255, 0.36) 0 2px, transparent 3px 100%) left 8px bottom 8px / 28px 28px no-repeat,
+          linear-gradient(315deg, rgba(238, 216, 255, 0.34) 0 2px, transparent 3px 100%) right 8px bottom 8px / 28px 28px no-repeat,
+          linear-gradient(90deg, transparent 0 8%, rgba(150, 74, 255, 0.34) 8% 25%, transparent 25% 75%, rgba(150, 74, 255, 0.3) 75% 92%, transparent 92%) top / 100% 3px no-repeat,
+          linear-gradient(90deg, transparent 0 8%, rgba(150, 74, 255, 0.3) 8% 25%, transparent 25% 75%, rgba(150, 74, 255, 0.34) 75% 92%, transparent 92%) bottom / 100% 3px no-repeat,
           linear-gradient(180deg, rgba(18, 9, 36, 0.96), rgba(2, 1, 8, 0.95)),
           var(--panel);
         box-shadow:
@@ -262,19 +268,31 @@
 
       .language-card::before {
         inset: -7px;
-        border-radius: 12px;
-        border: 2px solid rgba(166, 82, 255, 0.64);
-        clip-path: polygon(9% 0, 91% 0, 100% 11%, 100% 89%, 91% 100%, 9% 100%, 0 89%, 0 11%);
-        box-shadow: inset 0 0 10px rgba(207, 139, 255, 0.58), 0 0 13px rgba(152, 59, 255, 0.85);
+        padding: 3px;
+        border-radius: 0;
+        border: 0;
+        background:
+          linear-gradient(135deg, rgba(250, 235, 255, 0.92), rgba(154, 63, 255, 0.78) 18%, rgba(43, 16, 95, 0.78) 34%, rgba(226, 165, 255, 0.92) 50%, rgba(61, 20, 130, 0.82) 68%, rgba(214, 142, 255, 0.9) 84%, rgba(91, 32, 204, 0.88));
+        clip-path: polygon(8% 0, 92% 0, 100% 9%, 100% 91%, 92% 100%, 8% 100%, 0 91%, 0 9%);
+        -webkit-mask:
+          linear-gradient(#000 0 0) content-box,
+          linear-gradient(#000 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        box-shadow:
+          inset 0 0 13px rgba(238, 197, 255, 0.72),
+          0 0 10px rgba(217, 148, 255, 0.95),
+          0 0 22px rgba(111, 42, 238, 0.86);
       }
 
       .language-card::after {
         inset: -2px;
-        border-radius: 10px;
+        border-radius: 6px;
         background:
-          linear-gradient(90deg, transparent 0 10%, rgba(243, 220, 255, 0.86) 10.5% 11.5%, transparent 12% 88%, rgba(243, 220, 255, 0.74) 88.5% 89.5%, transparent 90%),
-          linear-gradient(0deg, transparent 0 8%, rgba(196, 104, 255, 0.78) 8.4% 9.4%, transparent 10% 90%, rgba(196, 104, 255, 0.78) 90.4% 91.4%, transparent 92%);
-        opacity: 0.3;
+          linear-gradient(45deg, transparent 0 8%, rgba(184, 84, 255, 0.42) 8.5% 9.3%, transparent 10% 90%, rgba(184, 84, 255, 0.42) 90.6% 91.4%, transparent 92%),
+          linear-gradient(90deg, transparent 0 9%, rgba(243, 220, 255, 0.56) 9.5% 10.4%, transparent 11% 89%, rgba(243, 220, 255, 0.48) 89.5% 90.4%, transparent 91%),
+          linear-gradient(0deg, transparent 0 7%, rgba(196, 104, 255, 0.56) 7.5% 8.5%, transparent 9% 91%, rgba(196, 104, 255, 0.56) 91.5% 92.5%, transparent 93%);
+        opacity: 0.36;
       }
 
       .language-card:hover,
@@ -294,9 +312,9 @@
       .flag {
         position: relative;
         display: block;
-        width: 118px;
-        height: 68px;
-        margin: 0 auto 8px;
+        width: 124px;
+        height: 72px;
+        margin: 0 auto 3px;
         overflow: visible;
         background: transparent;
         border-radius: 9px;
@@ -468,18 +486,18 @@
       .lang-name {
         display: block;
         margin-top: 1px;
-        font-size: 20px;
+        font-size: 19px;
         line-height: 1.1;
         font-weight: 500;
         text-shadow: 0 0 9px rgba(235, 214, 255, 0.88);
       }
 
       .lang-name.big {
-        font-size: 24px;
+        font-size: 22.5px;
       }
 
       .language-card[data-lang="ms"] .lang-name {
-        font-size: 17px;
+        font-size: 16px;
         white-space: nowrap;
       }
 
@@ -488,7 +506,7 @@
         align-items: center;
         justify-content: center;
         gap: 7px;
-        margin-top: 8px;
+        margin-top: 6px;
         color: #d5b9ff;
         font-size: 8.8px;
         line-height: 1.15;
@@ -513,7 +531,7 @@
         grid-template-columns: repeat(4, 1fr);
         gap: 7px;
         width: min(100%, 390px);
-        margin: 7px auto 0;
+        margin: 2px auto 0;
       }
 
       .feature {
