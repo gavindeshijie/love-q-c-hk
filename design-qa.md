@@ -6,9 +6,11 @@
 
 **Implementation Evidence**
 - Local URL: `http://127.0.0.1:8091/`
-- Implementation screenshot: `/private/tmp/love-local-mobile-v12.png`
-- Full-view comparison: `/private/tmp/love-comparison-v12.png`
-- Focused card comparison: `/private/tmp/love-focus-cards-v12.png`
+- Implementation screenshot: `/private/tmp/love-local-mobile-v17.png`
+- Full-view comparison: `/private/tmp/love-comparison-v17.png`
+- Focused top comparison: `/private/tmp/love-focus-top-v17.png`
+- Focused card comparison: `/private/tmp/love-focus-cards-v17.png`
+- Focused bottom comparison: `/private/tmp/love-focus-bottom-v17.png`
 - Viewport: `427x640`, `deviceScaleFactor: 2`, mobile viewport.
 - State: default page load, Chinese card selected.
 
@@ -26,6 +28,11 @@
 - Reduced background dot brightness and side-city intensity so the cards dominate like the reference.
 - Replaced the softer card outline with a thicker octagonal neon frame and added subtle segmented corner rails.
 - Kept all visible language/card text as editable HTML text instead of baking it into the image.
+- Added a darker world-map/globe layer behind the header so the top reads closer to the reference without using the original full screenshot as a background.
+- Added editable side signage (`SSL TRADE` and `SECRET LANGUAGE TRADE`) to match the reference's left/right container details.
+- Reworked the side city treatment to be darker and less ladder-like.
+- Compressed the language card heights and adjusted grid spacing after comparison against the reference and local screenshots.
+- Reduced the top wing size/brightness so it sits behind the title instead of dominating it.
 
 **Follow-up Polish**
 - P3: the background city/globe is still a code-built approximation, not the same photo-level detail as the source image. This is the largest remaining visual difference because the full original image is intentionally not used as the page background.
