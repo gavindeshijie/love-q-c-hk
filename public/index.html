@@ -319,8 +319,8 @@
       .language-grid {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 8px 12px;
-        width: min(100%, 286px);
+        gap: 13px 18px;
+        width: min(100%, 292px);
         margin: 22px auto 8px;
       }
 
@@ -360,12 +360,12 @@
       }
 
       .language-card::before {
-        inset: -7px;
-        padding: 3px;
+        inset: -5px;
+        padding: 2px;
         border-radius: 0;
         border: 0;
         background:
-          linear-gradient(135deg, rgba(238, 219, 255, 0.82), rgba(118, 46, 214, 0.72) 16%, rgba(24, 11, 58, 0.9) 33%, rgba(176, 99, 255, 0.82) 50%, rgba(24, 9, 62, 0.92) 67%, rgba(185, 107, 255, 0.76) 84%, rgba(48, 17, 129, 0.9));
+          linear-gradient(135deg, rgba(238, 219, 255, 0.5), rgba(118, 46, 214, 0.42) 16%, rgba(24, 11, 58, 0.72) 33%, rgba(176, 99, 255, 0.46) 50%, rgba(24, 9, 62, 0.76) 67%, rgba(185, 107, 255, 0.42) 84%, rgba(48, 17, 129, 0.74));
         clip-path: polygon(8% 0, 92% 0, 100% 9%, 100% 91%, 92% 100%, 8% 100%, 0 91%, 0 9%);
         -webkit-mask:
           linear-gradient(#000 0 0) content-box,
@@ -374,8 +374,8 @@
         mask-composite: exclude;
         box-shadow:
           inset 0 0 13px rgba(238, 197, 255, 0.72),
-          0 0 8px rgba(178, 88, 255, 0.78),
-          0 0 18px rgba(82, 31, 203, 0.74);
+          0 0 6px rgba(178, 88, 255, 0.48),
+          0 0 12px rgba(82, 31, 203, 0.52);
       }
 
       .language-card::after {
@@ -385,7 +385,54 @@
           linear-gradient(45deg, transparent 0 8%, rgba(184, 84, 255, 0.42) 8.5% 9.3%, transparent 10% 90%, rgba(184, 84, 255, 0.42) 90.6% 91.4%, transparent 92%),
           linear-gradient(90deg, transparent 0 9%, rgba(243, 220, 255, 0.56) 9.5% 10.4%, transparent 11% 89%, rgba(243, 220, 255, 0.48) 89.5% 90.4%, transparent 91%),
           linear-gradient(0deg, transparent 0 7%, rgba(196, 104, 255, 0.56) 7.5% 8.5%, transparent 9% 91%, rgba(196, 104, 255, 0.56) 91.5% 92.5%, transparent 93%);
-        opacity: 0.36;
+        opacity: 0.22;
+      }
+
+      .language-card > :not(.frame-armor) {
+        position: relative;
+        z-index: 2;
+      }
+
+      .frame-armor {
+        position: absolute;
+        z-index: 3;
+        inset: -6px;
+        pointer-events: none;
+        clip-path: polygon(9% 0, 91% 0, 100% 10%, 100% 90%, 91% 100%, 9% 100%, 0 90%, 0 10%);
+        filter:
+          drop-shadow(0 0 3px rgba(230, 194, 255, 0.58))
+          drop-shadow(0 0 9px rgba(106, 39, 220, 0.72));
+      }
+
+      .frame-armor::before,
+      .frame-armor::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+      }
+
+      .frame-armor::before {
+        background:
+          linear-gradient(135deg, transparent 0 7px, rgba(239, 220, 255, 0.82) 8px 10px, rgba(75, 26, 166, 0.82) 11px 17px, transparent 18px) left top / 34px 34px no-repeat,
+          linear-gradient(225deg, transparent 0 7px, rgba(239, 220, 255, 0.76) 8px 10px, rgba(75, 26, 166, 0.8) 11px 17px, transparent 18px) right top / 34px 34px no-repeat,
+          linear-gradient(45deg, transparent 0 7px, rgba(220, 158, 255, 0.76) 8px 10px, rgba(62, 22, 143, 0.84) 11px 17px, transparent 18px) left bottom / 34px 34px no-repeat,
+          linear-gradient(315deg, transparent 0 7px, rgba(220, 158, 255, 0.76) 8px 10px, rgba(62, 22, 143, 0.84) 11px 17px, transparent 18px) right bottom / 34px 34px no-repeat,
+          linear-gradient(90deg, transparent 0 10%, rgba(238, 218, 255, 0.74) 10.5% 13%, rgba(87, 31, 180, 0.78) 13.5% 32%, transparent 32.5% 67%, rgba(119, 44, 219, 0.76) 67.5% 86.5%, rgba(235, 210, 255, 0.68) 87% 90%, transparent 90.5%) top / 100% 6px no-repeat,
+          linear-gradient(90deg, transparent 0 10%, rgba(222, 157, 255, 0.68) 10.5% 13%, rgba(67, 24, 154, 0.78) 13.5% 32%, transparent 32.5% 67%, rgba(96, 36, 190, 0.76) 67.5% 86.5%, rgba(224, 172, 255, 0.66) 87% 90%, transparent 90.5%) bottom / 100% 6px no-repeat,
+          linear-gradient(180deg, transparent 0 10%, rgba(232, 210, 255, 0.66) 10.5% 13%, rgba(82, 29, 170, 0.78) 13.5% 32%, transparent 32.5% 67%, rgba(89, 30, 187, 0.76) 67.5% 86.5%, rgba(224, 178, 255, 0.62) 87% 90%, transparent 90.5%) left / 6px 100% no-repeat,
+          linear-gradient(180deg, transparent 0 10%, rgba(232, 210, 255, 0.66) 10.5% 13%, rgba(82, 29, 170, 0.78) 13.5% 32%, transparent 32.5% 67%, rgba(89, 30, 187, 0.76) 67.5% 86.5%, rgba(224, 178, 255, 0.62) 87% 90%, transparent 90.5%) right / 6px 100% no-repeat;
+        opacity: 0.84;
+      }
+
+      .frame-armor::after {
+        inset: 7px;
+        background:
+          linear-gradient(90deg, transparent 0 12%, rgba(246, 228, 255, 0.6) 12.5% 30%, transparent 30.5% 70%, rgba(246, 228, 255, 0.5) 70.5% 88%, transparent 88.5%) top / 100% 2px no-repeat,
+          linear-gradient(90deg, transparent 0 12%, rgba(191, 100, 255, 0.52) 12.5% 30%, transparent 30.5% 70%, rgba(191, 100, 255, 0.46) 70.5% 88%, transparent 88.5%) bottom / 100% 2px no-repeat,
+          linear-gradient(180deg, transparent 0 12%, rgba(246, 228, 255, 0.54) 12.5% 30%, transparent 30.5% 70%, rgba(191, 100, 255, 0.5) 70.5% 88%, transparent 88.5%) left / 2px 100% no-repeat,
+          linear-gradient(180deg, transparent 0 12%, rgba(246, 228, 255, 0.54) 12.5% 30%, transparent 30.5% 70%, rgba(191, 100, 255, 0.5) 70.5% 88%, transparent 88.5%) right / 2px 100% no-repeat;
+        clip-path: polygon(8% 0, 92% 0, 100% 9%, 100% 91%, 92% 100%, 8% 100%, 0 91%, 0 9%);
+        opacity: 0.68;
       }
 
       .language-card:hover,
@@ -747,6 +794,7 @@
           </span>
           <span class="lang-name big">中文</span>
           <span class="price-row"><span class="currency">¥</span><span>中国地区价格</span></span>
+          <span class="frame-armor" aria-hidden="true"></span>
         </button>
 
         <button class="language-card" type="button" data-lang="en" aria-pressed="false">
@@ -762,12 +810,14 @@
           </span>
           <span class="lang-name">English</span>
           <span class="price-row"><span class="currency">S$</span><span>Price for Singapore</span></span>
+          <span class="frame-armor" aria-hidden="true"></span>
         </button>
 
         <button class="language-card" type="button" data-lang="th" aria-pressed="false">
           <span class="flag flag-thai" aria-hidden="true"><img src="assets/flag-thailand.png" alt=""><span class="flag-wave"></span></span>
           <span class="lang-name">ภาษาไทย</span>
           <span class="price-row"><span class="currency">฿</span><span>ราคาในประเทศไทย</span></span>
+          <span class="frame-armor" aria-hidden="true"></span>
         </button>
 
         <button class="language-card" type="button" data-lang="vi" aria-pressed="false">
@@ -778,6 +828,7 @@
           </span>
           <span class="lang-name">Tiếng Việt</span>
           <span class="price-row"><span class="currency">₫</span><span>Giá tại Việt Nam</span></span>
+          <span class="frame-armor" aria-hidden="true"></span>
         </button>
 
         <button class="language-card" type="button" data-lang="ms" aria-pressed="false">
@@ -789,6 +840,7 @@
           </span>
           <span class="lang-name">Bahasa Melayu</span>
           <span class="price-row"><span class="currency rm">RM</span><span>Harga di Malaysia</span></span>
+          <span class="frame-armor" aria-hidden="true"></span>
         </button>
 
         <button class="language-card" type="button" data-lang="lo" aria-pressed="false">
@@ -799,6 +851,7 @@
           </span>
           <span class="lang-name">ພາສາລາວ</span>
           <span class="price-row"><span class="currency">₭</span><span>ລາຄາໃນລາວ</span></span>
+          <span class="frame-armor" aria-hidden="true"></span>
         </button>
       </section>
 
