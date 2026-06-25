@@ -6,8 +6,8 @@
 
 **Implementation Evidence**
 - Local URL: `http://127.0.0.1:8091/`
-- Implementation screenshot: `/private/tmp/love-border-v19.png`
-- Full-view comparison: `/private/tmp/love-comparison-v19.png`
+- Implementation screenshot: `/private/tmp/love-border-v28.png`
+- Card-zone comparison: `/private/tmp/card-zone-compare-v28.png`
 - Focused top comparison: `/private/tmp/love-focus-top-v17.png`
 - Focused card comparison: `/private/tmp/love-focus-cards-v17.png`
 - Focused bottom comparison: `/private/tmp/love-focus-bottom-v17.png`
@@ -18,7 +18,7 @@
 - Fonts and typography: heading, language labels, currencies, and price lines match the visual hierarchy and wrapping of the reference. The implementation uses browser-safe multilingual font fallbacks, so exact antialiasing can vary by device.
 - Spacing and layout rhythm: six language cards, header block, and bottom feature strip align to the reference mobile composition. No visible text overflow or card overlap remains.
 - Colors and visual tokens: dark violet/black neon palette, purple glows, white text, red flags, and floor lighting are consistent with the reference.
-- Image quality and asset fidelity: the six flags are individual image assets cropped from the supplied visual instead of CSS approximations. The whole reference image is not used as a page background.
+- Image quality and asset fidelity: the six flags are individual image assets cropped from the supplied visual instead of CSS approximations. The card border now uses a separate transparent single-card frame asset, not the full reference image as a page background.
 - Copy and content: all visible language labels, pricing labels, and service benefit text match the reference.
 
 **Patches Made Since Previous QA Pass**
@@ -33,9 +33,10 @@
 - Reworked the side city treatment to be darker and less ladder-like.
 - Compressed the language card heights and adjusted grid spacing after comparison against the reference and local screenshots.
 - Reduced the top wing size/brightness so it sits behind the title instead of dominating it.
-- Rebuilt the card border as a separate editable `.frame-armor` layer with segmented top/bottom rails, side rails, and angled corner pieces, replacing the previous continuous rectangular neon outline.
-- Reduced the old card outline intensity so the new segmented frame carries the border visual.
-- Increased card grid gaps after adding the armor frame so cards remain separate instead of merging into one block.
+- Replaced the hand-built segmented border with `public/assets/card-frame-reference.png`, a transparent card-frame asset extracted from the supplied reference so the metallic corner pattern and neon rail texture are closer to the source.
+- Rebalanced the card grid after adding the transparent frame asset: narrower card columns, taller card boxes, reduced excess purple fill, and darker inner panels.
+- Increased the flag size and spacing below each flag so the editable text sits lower inside the frame like the reference.
+- Kept all card labels, currency labels, pricing text, side signage, and footer benefit text editable in HTML; only decorative flags and the standalone frame are image assets.
 
 **Follow-up Polish**
 - P3: the background city/globe is still a code-built approximation, not the same photo-level detail as the source image. This is the largest remaining visual difference because the full original image is intentionally not used as the page background.
