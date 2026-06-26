@@ -671,6 +671,19 @@
       }
 
       @media (min-height: 700px) {
+        .language-grid {
+          gap: clamp(18px, calc(16px + (100svh - 700px) * 0.14), 34px) 13px;
+          margin-top: clamp(12px, calc(10px + (100svh - 700px) * 0.04), 18px);
+        }
+
+        .language-card {
+          min-height: clamp(155px, calc(149px + (100svh - 700px) * 0.19), 183px);
+        }
+
+        .features {
+          margin-top: clamp(12px, calc(10px + (100svh - 700px) * 0.08), 24px);
+        }
+
         .features::after {
           content: "";
           position: absolute;
