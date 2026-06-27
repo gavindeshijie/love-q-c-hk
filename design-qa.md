@@ -3,6 +3,7 @@
 
 **Source Visual Truth**
 - `/tmp/codex-remote-attachments/019efd71-fb8e-7d91-8a28-6cbb372caad1/2906C960-B99D-4737-9CD0-D0C3672CFED9/1-照片-1.jpg`
+- China category source: `/tmp/codex-remote-attachments/019efd71-fb8e-7d91-8a28-6cbb372caad1/C8D94A69-D98F-4455-A019-A9EEB20CF270/1-照片-1.jpg`
 
 **Implementation Evidence**
 - Local URL: `http://127.0.0.1:8091/`
@@ -12,7 +13,8 @@
 - Reference-height regression screenshot: `/private/tmp/love-ratio-final-427x640.png`
 - Cleaned flag artifact screenshot: `/private/tmp/love-flags-final-local.png`
 - Entry homepage screenshot: `/private/tmp/love-entry-home.png`
-- Blank entry screenshot: `/private/tmp/love-blank-entry-china.png`
+- China category screenshot: `/private/tmp/china-ui-v5-393x852.png`
+- China source comparison: `/private/tmp/china-ui-v5-compare.png`
 - Card-zone comparison: `/private/tmp/card-zone-compare-v28.png`
 - Focused top comparison: `/private/tmp/love-focus-top-v17.png`
 - Focused card comparison: `/private/tmp/love-focus-cards-v17.png`
@@ -28,7 +30,7 @@
 - Image quality and asset fidelity: the six flags are individual image assets cropped from the supplied visual instead of CSS approximations. The card border now uses a separate transparent single-card frame asset, not the full reference image as a page background.
 - Flag artifact cleanup: the Malaysia and Laos flag assets no longer include the white text remnants that were visible below the flags.
 - Copy and content: all visible language labels, pricing labels, and service benefit text match the reference.
-- Entry behavior: all six homepage cards are real links to language/region pages. All six destination pages currently render as blank dark pages with empty `<body>` content for future editing.
+- Entry behavior: all six homepage cards are real links to language/region pages. The China destination renders the Chinese product-category UI with 12 clickable category buttons; Singapore, Thailand, Vietnam, Malaysia, and Laos remain blank dark pages for future editing.
 
 **Patches Made Since Previous QA Pass**
 - Rebalanced the top header: smaller title text, higher text block, and restored spacing before the language grid.
@@ -49,14 +51,16 @@
 - Added high-viewport card and grid spacing adjustments, plus the floor-grid extension, so tall phone browsers do not show a large blank lower section.
 - Cleaned the bottom text remnants from `flag-malaysia.png` and `flag-laos.png`.
 - Converted the six homepage language cards from local selection buttons into region entry links.
-- Added blank entry pages for China, Singapore, Thailand, Vietnam, Malaysia, and Laos.
+- Added blank entry pages for Singapore, Thailand, Vietnam, Malaysia, and Laos.
+- Rebuilt `china/` as a code-authored neon product-category page matching the supplied Chinese reference image without using that image as the page background.
+- Added 12 clickable China category buttons: 内裤, 胸罩, 上衣, 裙子 / 短裤, 连衣裙, 丝袜, 贴身连体衣, 角色扮演, 长裤, 帽子, 女士凉鞋, and 女士包包.
 
 **Follow-up Polish**
-- P3: the background city/globe is still a code-built approximation, not the same photo-level detail as the source image. This is the largest remaining visual difference because the full original image is intentionally not used as the page background.
+- P3: the homepage background city/globe and China page product illustrations are still code-built approximations, not the same photo-level detail as the source images. This is the largest remaining visual difference because the original full screenshots are intentionally not used as page backgrounds.
 
 **Implementation Checklist**
 - Use the current `public/index.html`.
-- Include the six blank region directories: `china/`, `singapore/`, `thailand/`, `vietnam/`, `malaysia/`, and `laos/`.
+- Include the China category page at `china/` and the five blank region directories: `singapore/`, `thailand/`, `vietnam/`, `malaysia/`, and `laos/`.
 - Include `public/assets/flag-china.png`, `flag-singapore.png`, `flag-thailand.png`, `flag-vietnam.png`, `flag-malaysia.png`, and `flag-laos.png`.
 - Keep `public/CNAME` as `love.q-c.hk`.
 - Deploy through the existing GitHub Pages workflow.
