@@ -10,6 +10,7 @@
 - Tall mobile height screenshot: `/private/tmp/love-ratio-final-393x852.png`
 - Common mobile height screenshot: `/private/tmp/love-ratio-final-390x740.png`
 - Reference-height regression screenshot: `/private/tmp/love-ratio-final-427x640.png`
+- Cleaned flag artifact screenshot: `/private/tmp/love-flags-final-local.png`
 - Card-zone comparison: `/private/tmp/card-zone-compare-v28.png`
 - Focused top comparison: `/private/tmp/love-focus-top-v17.png`
 - Focused card comparison: `/private/tmp/love-focus-cards-v17.png`
@@ -23,6 +24,7 @@
 - Tall mobile height behavior: high browser viewports expand the card stack and floor treatment so the feature strip sits near the mobile browser toolbar instead of leaving a large lower blank section.
 - Colors and visual tokens: dark violet/black neon palette, purple glows, white text, red flags, and floor lighting are consistent with the reference.
 - Image quality and asset fidelity: the six flags are individual image assets cropped from the supplied visual instead of CSS approximations. The card border now uses a separate transparent single-card frame asset, not the full reference image as a page background.
+- Flag artifact cleanup: the Malaysia and Laos flag assets no longer include the white text remnants that were visible below the flags.
 - Copy and content: all visible language labels, pricing labels, and service benefit text match the reference.
 
 **Patches Made Since Previous QA Pass**
@@ -42,6 +44,7 @@
 - Increased the flag size and spacing below each flag so the editable text sits lower inside the frame like the reference.
 - Kept all card labels, currency labels, pricing text, side signage, and footer benefit text editable in HTML; only decorative flags and the standalone frame are image assets.
 - Added high-viewport card and grid spacing adjustments, plus the floor-grid extension, so tall phone browsers do not show a large blank lower section.
+- Cleaned the bottom text remnants from `flag-malaysia.png` and `flag-laos.png`.
 
 **Follow-up Polish**
 - P3: the background city/globe is still a code-built approximation, not the same photo-level detail as the source image. This is the largest remaining visual difference because the full original image is intentionally not used as the page background.
