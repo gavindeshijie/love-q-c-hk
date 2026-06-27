@@ -11,6 +11,8 @@
 - Common mobile height screenshot: `/private/tmp/love-ratio-final-390x740.png`
 - Reference-height regression screenshot: `/private/tmp/love-ratio-final-427x640.png`
 - Cleaned flag artifact screenshot: `/private/tmp/love-flags-final-local.png`
+- Entry homepage screenshot: `/private/tmp/love-entry-home.png`
+- Blank entry screenshot: `/private/tmp/love-blank-entry-china.png`
 - Card-zone comparison: `/private/tmp/card-zone-compare-v28.png`
 - Focused top comparison: `/private/tmp/love-focus-top-v17.png`
 - Focused card comparison: `/private/tmp/love-focus-cards-v17.png`
@@ -26,6 +28,7 @@
 - Image quality and asset fidelity: the six flags are individual image assets cropped from the supplied visual instead of CSS approximations. The card border now uses a separate transparent single-card frame asset, not the full reference image as a page background.
 - Flag artifact cleanup: the Malaysia and Laos flag assets no longer include the white text remnants that were visible below the flags.
 - Copy and content: all visible language labels, pricing labels, and service benefit text match the reference.
+- Entry behavior: all six homepage cards are real links to language/region pages. All six destination pages currently render as blank dark pages with empty `<body>` content for future editing.
 
 **Patches Made Since Previous QA Pass**
 - Rebalanced the top header: smaller title text, higher text block, and restored spacing before the language grid.
@@ -45,12 +48,15 @@
 - Kept all card labels, currency labels, pricing text, side signage, and footer benefit text editable in HTML; only decorative flags and the standalone frame are image assets.
 - Added high-viewport card and grid spacing adjustments, plus the floor-grid extension, so tall phone browsers do not show a large blank lower section.
 - Cleaned the bottom text remnants from `flag-malaysia.png` and `flag-laos.png`.
+- Converted the six homepage language cards from local selection buttons into region entry links.
+- Added blank entry pages for China, Singapore, Thailand, Vietnam, Malaysia, and Laos.
 
 **Follow-up Polish**
 - P3: the background city/globe is still a code-built approximation, not the same photo-level detail as the source image. This is the largest remaining visual difference because the full original image is intentionally not used as the page background.
 
 **Implementation Checklist**
 - Use the current `public/index.html`.
+- Include the six blank region directories: `china/`, `singapore/`, `thailand/`, `vietnam/`, `malaysia/`, and `laos/`.
 - Include `public/assets/flag-china.png`, `flag-singapore.png`, `flag-thailand.png`, `flag-vietnam.png`, `flag-malaysia.png`, and `flag-laos.png`.
 - Keep `public/CNAME` as `love.q-c.hk`.
 - Deploy through the existing GitHub Pages workflow.

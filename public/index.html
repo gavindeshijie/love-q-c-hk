@@ -325,6 +325,7 @@
       }
 
       .language-card {
+        display: block;
         position: relative;
         min-height: 149px;
         padding: 2px 8px 10px;
@@ -335,6 +336,7 @@
         box-shadow: none;
         cursor: pointer;
         text-align: center;
+        text-decoration: none;
         appearance: none;
         transition: transform 160ms ease, filter 160ms ease, box-shadow 160ms ease;
       }
@@ -764,8 +766,8 @@
         <p class="title-vi">Chào mừng bạn đến với Thương mại Ngôn ngữ Bí mật</p>
       </header>
 
-      <section class="language-grid" aria-label="Choose language and region pricing">
-        <button class="language-card is-selected" type="button" data-lang="zh" aria-pressed="true">
+      <section class="language-grid" aria-label="Choose language and region entry">
+        <a class="language-card is-selected" href="china/" data-lang="zh" aria-label="进入中国地区入口">
           <span class="flag flag-china" aria-hidden="true">
             <img src="assets/flag-china.png" alt="">
             <span class="star big-star"></span>
@@ -778,9 +780,9 @@
           <span class="lang-name big">中文</span>
           <span class="price-row"><span class="currency">¥</span><span>中国地区价格</span></span>
           <span class="frame-armor" aria-hidden="true"></span>
-        </button>
+        </a>
 
-        <button class="language-card" type="button" data-lang="en" aria-pressed="false">
+        <a class="language-card" href="singapore/" data-lang="en" aria-label="Enter Singapore entry">
           <span class="flag flag-singapore" aria-hidden="true">
             <img src="assets/flag-singapore.png" alt="">
             <span class="crescent"></span>
@@ -794,16 +796,16 @@
           <span class="lang-name">English</span>
           <span class="price-row"><span class="currency">S$</span><span>Price for Singapore</span></span>
           <span class="frame-armor" aria-hidden="true"></span>
-        </button>
+        </a>
 
-        <button class="language-card" type="button" data-lang="th" aria-pressed="false">
+        <a class="language-card" href="thailand/" data-lang="th" aria-label="เข้าสู่หน้าประเทศไทย">
           <span class="flag flag-thai" aria-hidden="true"><img src="assets/flag-thailand.png" alt=""><span class="flag-wave"></span></span>
           <span class="lang-name">ภาษาไทย</span>
           <span class="price-row"><span class="currency">฿</span><span>ราคาในประเทศไทย</span></span>
           <span class="frame-armor" aria-hidden="true"></span>
-        </button>
+        </a>
 
-        <button class="language-card" type="button" data-lang="vi" aria-pressed="false">
+        <a class="language-card" href="vietnam/" data-lang="vi" aria-label="Vào trang Việt Nam">
           <span class="flag flag-vietnam" aria-hidden="true">
             <img src="assets/flag-vietnam.png" alt="">
             <span class="star"></span>
@@ -812,9 +814,9 @@
           <span class="lang-name">Tiếng Việt</span>
           <span class="price-row"><span class="currency">₫</span><span>Giá tại Việt Nam</span></span>
           <span class="frame-armor" aria-hidden="true"></span>
-        </button>
+        </a>
 
-        <button class="language-card" type="button" data-lang="ms" aria-pressed="false">
+        <a class="language-card" href="malaysia/" data-lang="ms" aria-label="Masuk halaman Malaysia">
           <span class="flag flag-malaysia" aria-hidden="true">
             <img src="assets/flag-malaysia.png" alt="">
             <span class="crescent"></span>
@@ -824,9 +826,9 @@
           <span class="lang-name">Bahasa Melayu</span>
           <span class="price-row"><span class="currency rm">RM</span><span>Harga di Malaysia</span></span>
           <span class="frame-armor" aria-hidden="true"></span>
-        </button>
+        </a>
 
-        <button class="language-card" type="button" data-lang="lo" aria-pressed="false">
+        <a class="language-card" href="laos/" data-lang="lo" aria-label="ເຂົ້າໜ້າລາວ">
           <span class="flag flag-laos" aria-hidden="true">
             <img src="assets/flag-laos.png" alt="">
             <span class="disc"></span>
@@ -835,7 +837,7 @@
           <span class="lang-name">ພາສາລາວ</span>
           <span class="price-row"><span class="currency">₭</span><span>ລາຄາໃນລາວ</span></span>
           <span class="frame-armor" aria-hidden="true"></span>
-        </button>
+        </a>
       </section>
 
       <footer class="features" aria-label="Service benefits">
@@ -877,20 +879,5 @@
       </footer>
     </main>
 
-    <script>
-      const languageCards = document.querySelectorAll(".language-card");
-
-      languageCards.forEach((card) => {
-        card.addEventListener("click", () => {
-          languageCards.forEach((item) => {
-            item.classList.remove("is-selected");
-            item.setAttribute("aria-pressed", "false");
-          });
-          card.classList.add("is-selected");
-          card.setAttribute("aria-pressed", "true");
-          document.documentElement.dataset.language = card.dataset.lang;
-        });
-      });
-    </script>
   </body>
 </html>
