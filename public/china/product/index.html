@@ -115,6 +115,31 @@
         -webkit-tap-highlight-color: transparent;
       }
 
+      .cart-icon {
+        width: 1em;
+        height: 1em;
+        display: block;
+        overflow: visible;
+        fill: none;
+        color: currentColor;
+        stroke: currentColor;
+        stroke-width: 3.35;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .cart-icon .cart-basket-fill {
+        fill: rgba(255, 255, 255, 0.04);
+        stroke: none;
+      }
+
+      .icon-button .cart-icon {
+        width: 0.82em;
+        height: 0.82em;
+        transform: translateY(-0.04em);
+        filter: drop-shadow(0 0 0.46cqw rgba(255, 255, 255, 0.38));
+      }
+
       .right-actions {
         display: flex;
         gap: 2.05cqw;
@@ -288,6 +313,16 @@
         font-size: clamp(28px, 5.7cqw, 42px);
       }
 
+      .cart-orb .cart-icon {
+        width: 0.78em;
+        height: 0.78em;
+        color: rgba(255, 255, 255, 0.96);
+        stroke-width: 3.15;
+        filter:
+          drop-shadow(0 0 0.35cqw rgba(255, 255, 255, 0.45))
+          drop-shadow(0 0 0.8cqw rgba(255, 60, 255, 0.84));
+      }
+
       .cart-label {
         font-size: clamp(13px, 2.65cqw, 20px);
       }
@@ -447,6 +482,15 @@
         line-height: 0.92;
       }
 
+      .side-icon .cart-icon {
+        width: 0.92em;
+        height: 0.92em;
+        stroke-width: 3.05;
+        filter:
+          drop-shadow(0 0 0.4cqw rgba(255, 255, 255, 0.42))
+          drop-shadow(0 0 0.65cqw rgba(180, 72, 255, 0.35));
+      }
+
       .scroll-tip {
         min-height: 10.3cqw;
         display: grid;
@@ -487,12 +531,26 @@
     </style>
   </head>
   <body>
+    <svg aria-hidden="true" focusable="false" width="0" height="0" style="position:absolute;overflow:hidden">
+      <symbol id="cart-outline-icon" viewBox="0 0 64 64">
+        <path class="cart-basket-fill" d="M22.9 23.1h29.2l-4.6 18.1H26.9L22.9 23.1Z"></path>
+        <path d="M10.8 13.6h6.9c2 0 3.7 1.37 4.17 3.32l1.45 6.18"></path>
+        <path d="M22.9 23.1h29.2l-4.6 18.1H26.9L22.9 23.1Z"></path>
+        <path d="M25.2 29.7h23.9"></path>
+        <path d="M26.9 35.4h19.8"></path>
+        <path d="M28.1 41.2h18.7"></path>
+        <circle cx="30.2" cy="49.8" r="3.15"></circle>
+        <circle cx="45.7" cy="49.8" r="3.15"></circle>
+      </symbol>
+    </svg>
     <main class="page">
       <section class="summary-card" aria-label="商品摘要">
         <div class="top-actions">
           <a class="icon-button" id="backLink" href="../catalog/">‹</a>
           <div class="right-actions">
-            <a class="icon-button" href="#cart">⌑</a>
+            <a class="icon-button" href="#cart" aria-label="购物车">
+              <svg class="cart-icon" aria-hidden="true"><use href="#cart-outline-icon"></use></svg>
+            </a>
             <button class="icon-button" id="menuButton" type="button" aria-label="更多">⋮</button>
           </div>
         </div>
@@ -511,7 +569,9 @@
                 <div class="code-line">商品编号：<span class="code-pill" id="productCode">N-LS-001</span></div>
               </div>
               <button class="cart-button" id="addCart" type="button">
-                <span class="cart-orb">⌑</span>
+                <span class="cart-orb">
+                  <svg class="cart-icon" aria-hidden="true"><use href="#cart-outline-icon"></use></svg>
+                </span>
                 <span class="cart-label">加入购物车</span>
               </button>
             </div>
@@ -530,7 +590,7 @@
           <a class="side-link" id="returnLink" href="../catalog/"><span class="side-icon">←</span><span>返回上一页</span></a>
           <a class="side-link" href="#member"><span class="side-icon">♙</span><span>会员登录</span></a>
           <a class="side-link" href="#service"><span class="side-icon">♧</span><span>客服</span></a>
-          <a class="side-link" href="#cart"><span class="side-icon">⌑</span><span>购物车</span></a>
+          <a class="side-link" href="#cart"><span class="side-icon"><svg class="cart-icon" aria-hidden="true"><use href="#cart-outline-icon"></use></svg></span><span>购物车</span></a>
         </nav>
       </section>
 
