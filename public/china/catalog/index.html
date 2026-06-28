@@ -51,6 +51,63 @@
         -webkit-user-drag: none;
       }
 
+      .filter-layer {
+        position: absolute;
+        z-index: 2;
+        left: 2.05vw;
+        right: 2.05vw;
+        top: 6.75svh;
+        display: grid;
+        gap: 1.05svh 2.05vw;
+        padding: 0;
+        background: #000;
+      }
+
+      .filter-layer.cols-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .filter-layer.cols-4 {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .filter-layer.cols-5 {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+      }
+
+      .filter-button {
+        min-width: 0;
+        height: 4.35svh;
+        min-height: 32px;
+        max-height: 58px;
+        border: 1px solid rgba(230, 244, 255, 0.78);
+        border-radius: 7px;
+        background:
+          linear-gradient(90deg, rgba(161, 77, 255, 0.2), transparent 22%, transparent 78%, rgba(72, 223, 255, 0.18)),
+          #030303;
+        color: rgba(255, 255, 255, 0.9);
+        font: 600 clamp(14px, 4.8vw, 25px) / 1 "Arial", "PingFang SC", "Microsoft YaHei", sans-serif;
+        letter-spacing: 0;
+        text-align: center;
+        box-shadow:
+          inset 0 0 0 1px rgba(255, 255, 255, 0.13),
+          0 0 8px rgba(170, 130, 255, 0.32);
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .filter-button.is-active {
+        border-color: rgba(255, 141, 255, 0.98);
+        color: #fff;
+        background:
+          linear-gradient(90deg, rgba(255, 48, 244, 0.32), rgba(91, 0, 122, 0.28)),
+          #080008;
+        box-shadow:
+          inset 0 0 0 1px rgba(255, 255, 255, 0.3),
+          0 0 6px #fff,
+          0 0 16px rgba(255, 39, 255, 0.92),
+          0 0 27px rgba(145, 0, 255, 0.78);
+      }
+
       .hotspot {
         position: fixed;
         bottom: 0;
@@ -85,6 +142,7 @@
   <body>
     <main class="screen" aria-label="商品列表">
       <img class="shot" id="catalogImage" src="../../assets/china-product-pages/panty.jpg?v=product-pages-2596e92" alt="商品列表">
+      <nav class="filter-layer" id="filterLayer" aria-label="商品小分类"></nav>
       <a class="hotspot back-hotspot" href="../" aria-label="返回上一页">返回上一页</a>
       <a class="hotspot member-hotspot" href="#member" aria-label="会员登录">会员登录</a>
       <a class="hotspot service-hotspot" href="#service" aria-label="客服">客服</a>
@@ -93,28 +151,128 @@
 
     <script>
       const pages = {
-        panty: { title: "内裤", image: "panty.jpg" },
-        bra: { title: "胸罩", image: "bra.jpg" },
-        top: { title: "上衣", image: "top.jpg" },
-        skirt: { title: "裙子 / 短裤", image: "skirt.jpg" },
-        dress: { title: "连衣裙", image: "dress.jpg" },
-        stockings: { title: "袜子", image: "stockings.jpg" },
-        bodysuit: { title: "贴身连体衣", image: "bodysuit.jpg" },
-        roleplay: { title: "角色扮演制服", image: "roleplay.jpg" },
-        pants: { title: "长裤", image: "pants.jpg" },
-        hat: { title: "帽子", image: "hat.jpg" },
-        heels: { title: "女士凉鞋", image: "heels.jpg" },
-        bag: { title: "女士包包", image: "bag.jpg" }
+        panty: {
+          title: "内裤",
+          image: "panty.jpg",
+          columns: 5,
+          active: "蕾丝裤",
+          filters: ["三角裤", "平角裤", "丁字裤", "开档裤", "蕾丝裤", "网纱裤", "珍珠裤", "比基尼裤", "高腰裤", "无痕裤", "绑带裤", "隐形裤", "安全裤", "运动裤", "生理裤"]
+        },
+        bra: {
+          title: "胸罩",
+          image: "bra.jpg",
+          columns: 5,
+          active: "法式",
+          filters: ["背心", "聚拢", "蕾丝", "绑带", "法式", "美背", "前扣", "无肩带", "隐形", "抹胸", "透明网纱", "哺乳文胸", "运动文胸", "文胸", "其它文胸"]
+        },
+        top: {
+          title: "上衣",
+          image: "top.jpg",
+          columns: 5,
+          active: "吊带",
+          filters: ["吊带", "蕾丝", "网纱", "绑带", "主题类"]
+        },
+        skirt: {
+          title: "裙子 / 短裤",
+          image: "skirt.jpg",
+          columns: 4,
+          active: "蕾丝裙",
+          filters: ["包臀裙", "百褶裙", "皮裙", "网纱裙", "蕾丝裙", "透明裙", "短裤", "其它裙"]
+        },
+        dress: {
+          title: "连衣裙",
+          image: "dress.jpg",
+          columns: 3,
+          active: "蕾丝",
+          filters: ["吊带", "蕾丝", "网纱", "绑带", "主题类", "其它类"]
+        },
+        stockings: {
+          title: "袜子",
+          image: "stockings.jpg",
+          columns: 5,
+          active: "蕾丝袜",
+          filters: ["船袜", "短袜", "中筒袜", "长筒袜", "蕾丝袜", "连体丝袜", "渔网袜", "吊带袜", "开档丝袜", "绑带长袜", "瑜伽袜", "少女风", "黑丝袜", "白丝袜", "其它丝袜"]
+        },
+        bodysuit: {
+          title: "贴身连体衣",
+          image: "bodysuit.jpg",
+          columns: 5,
+          active: "长袖",
+          filters: ["高领", "长袖", "蕾丝", "网纱", "镂空", "深V", "绑带", "Teddy", "透明薄纱", "塑形", "运动", "挂脖", "开叉", "主题", "其它类"]
+        },
+        roleplay: {
+          title: "角色扮演制服",
+          image: "roleplay.jpg",
+          columns: 5,
+          active: "JK",
+          filters: ["女仆", "护士", "警察", "空姐", "JK", "水手", "兔女郎", "猫女", "狐狸", "和风", "洛丽塔", "学院风", "旗袍风", "宫廷风", "其它制服"]
+        },
+        pants: {
+          title: "长裤",
+          image: "pants.jpg",
+          columns: 4,
+          active: "紧身裤",
+          filters: ["直筒裤", "阔腿裤", "紧身裤", "喇叭裤", "微喇裤", "锥形裤", "工装裤", "其它裤"]
+        },
+        hat: {
+          title: "帽子",
+          image: "hat.jpg",
+          columns: 5,
+          active: "渔夫帽",
+          filters: ["棒球帽", "渔夫帽", "贝雷帽", "草帽", "遮阳帽", "毛线帽", "八角帽", "礼帽", "钟形帽", "宽檐帽", "韩系", "甜美风", "辣妹风", "朋克", "其它帽子"]
+        },
+        heels: {
+          title: "女士凉鞋",
+          image: "heels.jpg",
+          columns: 4,
+          active: "平底凉鞋",
+          filters: ["一字凉鞋", "罗马凉鞋", "粗跟凉鞋", "细跟凉鞋", "平底凉鞋", "厚底凉鞋", "松糕凉鞋", "包头凉鞋", "坡跟凉鞋", "拖鞋", "复古凉鞋", "其它凉鞋"]
+        },
+        bag: {
+          title: "女士包包",
+          image: "bag.jpg",
+          columns: 5,
+          active: "斜挎包",
+          filters: ["手提包", "斜挎包", "单肩包", "水桶包", "腋下包", "马鞍包", "链条包", "法棍包", "晚宴包", "小方包", "手机包", "卡包", "旅行包", "双肩包", "其它包"]
+        }
       };
 
       const params = new URLSearchParams(window.location.search);
       const category = params.get("category") || "panty";
       const page = pages[category] || pages.panty;
       const image = document.getElementById("catalogImage");
+      const filterLayer = document.getElementById("filterLayer");
+      let activeFilter = params.get("filter") || page.active;
 
       document.title = `${page.title} | Secret Language Trade`;
       image.src = `../../assets/china-product-pages/${page.image}?v=product-pages-2596e92`;
       image.alt = page.title;
+
+      filterLayer.className = `filter-layer cols-${page.columns}`;
+      page.filters.forEach((filter) => {
+        const button = document.createElement("button");
+        button.className = "filter-button";
+        button.type = "button";
+        button.textContent = filter;
+        button.dataset.filter = filter;
+        button.setAttribute("aria-pressed", filter === activeFilter ? "true" : "false");
+        if (filter === activeFilter) {
+          button.classList.add("is-active");
+        }
+        button.addEventListener("click", () => {
+          activeFilter = filter;
+          filterLayer.querySelectorAll(".filter-button").forEach((item) => {
+            const selected = item.dataset.filter === activeFilter;
+            item.classList.toggle("is-active", selected);
+            item.setAttribute("aria-pressed", selected ? "true" : "false");
+          });
+          const nextUrl = new URL(window.location.href);
+          nextUrl.searchParams.set("category", category);
+          nextUrl.searchParams.set("filter", activeFilter);
+          history.replaceState(null, "", nextUrl);
+        });
+        filterLayer.append(button);
+      });
     </script>
   </body>
 </html>

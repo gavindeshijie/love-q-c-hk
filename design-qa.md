@@ -87,6 +87,7 @@
 - Rebuilt all 12 China card assets with a wider horizontal source crop compressed back to `154x184`, so the right-side neon frame sits safely inside the bitmap instead of being flush against the image edge. This addresses client-side scaling that made the right border look cut off, including the bottom row cards.
 - Added `china/catalog/` as the shared product-list destination and mapped all 12 China category entries to the supplied product-list screenshots: 内裤, 胸罩, 上衣, 裙子 / 短裤, 连衣裙, 袜子, 贴身连体衣, 角色扮演制服, 长裤, 帽子, 女士凉鞋, and 女士包包.
 - Replaced the old hash-only China category click behavior with real links like `catalog/?category=panty`; the previous `preventDefault` hash-selection script was removed so tapping a category opens the new screen.
+- Added real HTML subcategory buttons on every China product-list screen. Tapping a subcategory moves the active neon highlight, updates the `filter` query parameter, and keeps the current product-list screen open for future filtered product data.
 - Removed the obsolete `public/assets/china-categories/` reconstruction assets so the China page only uses `public/assets/china-slices/` full-card source crops.
 - Added 12 clickable China category links: 内裤, 胸罩, 上衣, 裙子 / 短裤, 连衣裙, 丝袜, 贴身连体衣, 角色扮演, 长裤, 帽子, 女士凉鞋, and 女士包包.
 
