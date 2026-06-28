@@ -13,8 +13,8 @@
 - Reference-height regression screenshot: `/private/tmp/love-ratio-final-427x640.png`
 - Cleaned flag artifact screenshot: `/private/tmp/love-flags-final-local.png`
 - Entry homepage screenshot: `/private/tmp/love-entry-home.png`
-- China category screenshot: `/private/tmp/china-ui-v5-393x852.png`
-- China source comparison: `/private/tmp/china-ui-v5-compare.png`
+- China extracted-asset screenshot: `/private/tmp/china-extracted-v3-393x852.png`
+- China extracted-asset source comparison: `/private/tmp/china-extracted-v3-compare.png`
 - Card-zone comparison: `/private/tmp/card-zone-compare-v28.png`
 - Focused top comparison: `/private/tmp/love-focus-top-v17.png`
 - Focused card comparison: `/private/tmp/love-focus-cards-v17.png`
@@ -30,7 +30,7 @@
 - Image quality and asset fidelity: the six flags are individual image assets cropped from the supplied visual instead of CSS approximations. The card border now uses a separate transparent single-card frame asset, not the full reference image as a page background.
 - Flag artifact cleanup: the Malaysia and Laos flag assets no longer include the white text remnants that were visible below the flags.
 - Copy and content: all visible language labels, pricing labels, and service benefit text match the reference.
-- Entry behavior: all six homepage cards are real links to language/region pages. The China destination renders the Chinese product-category UI with 12 clickable category buttons; Singapore, Thailand, Vietnam, Malaysia, and Laos remain blank dark pages for future editing.
+- Entry behavior: all six homepage cards are real links to language/region pages. The China destination renders the Chinese product-category UI with 12 clickable category links; Singapore, Thailand, Vietnam, Malaysia, and Laos remain blank dark pages for future editing.
 
 **Patches Made Since Previous QA Pass**
 - Rebalanced the top header: smaller title text, higher text block, and restored spacing before the language grid.
@@ -52,15 +52,17 @@
 - Cleaned the bottom text remnants from `flag-malaysia.png` and `flag-laos.png`.
 - Converted the six homepage language cards from local selection buttons into region entry links.
 - Added blank entry pages for Singapore, Thailand, Vietnam, Malaysia, and Laos.
-- Rebuilt `china/` as a code-authored neon product-category page matching the supplied Chinese reference image without using that image as the page background.
-- Added 12 clickable China category buttons: 内裤, 胸罩, 上衣, 裙子 / 短裤, 连衣裙, 丝袜, 贴身连体衣, 角色扮演, 长裤, 帽子, 女士凉鞋, and 女士包包.
+- Rebuilt `china/` as a code-authored neon product-category page matching the supplied Chinese reference image without using that full image as the page background.
+- Extracted separate responsive PNG assets from the reference for each China category product image and card frame, then placed them inside clickable links.
+- Added 12 clickable China category links: 内裤, 胸罩, 上衣, 裙子 / 短裤, 连衣裙, 丝袜, 贴身连体衣, 角色扮演, 长裤, 帽子, 女士凉鞋, and 女士包包.
 
 **Follow-up Polish**
-- P3: the homepage background city/globe and China page product illustrations are still code-built approximations, not the same photo-level detail as the source images. This is the largest remaining visual difference because the original full screenshots are intentionally not used as page backgrounds.
+- P3: the homepage background city/globe and China page hero lightning remain code-built approximations. The China category cards now use extracted product and frame assets from the supplied reference while preserving clickable/editable page structure.
 
 **Implementation Checklist**
 - Use the current `public/index.html`.
 - Include the China category page at `china/` and the five blank region directories: `singapore/`, `thailand/`, `vietnam/`, `malaysia/`, and `laos/`.
+- Include `public/assets/china-categories/` with the extracted frame and item PNG assets.
 - Include `public/assets/flag-china.png`, `flag-singapore.png`, `flag-thailand.png`, `flag-vietnam.png`, `flag-malaysia.png`, and `flag-laos.png`.
 - Keep `public/CNAME` as `love.q-c.hk`.
 - Deploy through the existing GitHub Pages workflow.
