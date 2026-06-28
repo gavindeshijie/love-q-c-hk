@@ -844,7 +844,8 @@
       const grid = document.getElementById("productGrid");
       const searchForm = document.getElementById("searchForm");
       const searchInput = document.getElementById("searchInput");
-      let activeFilter = params.get("filter") || page.active;
+      const requestedFilter = params.get("filter");
+      let activeFilter = page.filters.includes(requestedFilter) ? requestedFilter : page.active;
 
       document.title = `${page.title} | Secret Language Trade`;
       title.textContent = page.title;
