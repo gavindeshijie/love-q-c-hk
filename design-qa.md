@@ -22,6 +22,8 @@
 - China scrollable bottom screenshot: `/private/tmp/china-scrollable-bottom-393x852.png`
 - China compressed-top same-size screenshot: `/private/tmp/china-balanced-top-589x1280.png`
 - China real-phone comparison: `/private/tmp/china-real-vs-balanced-589x1280.png`
+- China no-rules same-size screenshot: `/private/tmp/china-no-rules-clean-589x1280.png`
+- China no-rules real-phone comparison: `/private/tmp/china-real-vs-no-rules-clean-589x1280.png`
 - Card-zone comparison: `/private/tmp/card-zone-compare-v28.png`
 - Focused top comparison: `/private/tmp/love-focus-top-v17.png`
 - Focused card comparison: `/private/tmp/love-focus-cards-v17.png`
@@ -61,11 +63,11 @@
 - Converted the six homepage language cards from local selection buttons into region entry links.
 - Added blank entry pages for Singapore, Thailand, Vietnam, Malaysia, and Laos.
 - Rebuilt `china/` as a code-authored neon product-category page matching the supplied Chinese reference image without using that full image as the page background.
-- Replaced the semi-transparent item/frame reconstruction with exact source slices: top rules, hero/title block, side rails, and 12 full card crops are placed at the original 590x1280 coordinates.
+- Replaced the semi-transparent item/frame reconstruction with exact source slices: clean hero/title block, side rails, and 12 full card crops are placed in the original 590x1280 coordinate system.
 - The China page now preserves the original `590x1280` coordinate ratio by sizing the poster from `100vw`, so the width touches both viewport edges while every category card keeps the reference proportions.
-- Compressed only the top three-line rules band and tightened the vertical gaps between the 12 China category cards so the final row sits next to the mobile browser URL bar without requiring a deliberate vertical drag.
-- Same-size phone check at `589x1280`: the top rules band is about `110px` high, the final card row bottoms at `1170px`, all 12 category cards load, no failed images, no detected horizontal card side clipping, and the right rail reaches the viewport edge within sub-pixel rounding.
-- Verified `360x780`, `393x852`, and `430x932` mobile viewports: normal page load has only sub-pixel scroll (`maxScrollY` about `1px`) while each category card keeps its source ratio and click behavior.
+- Removed the top three-line rules band entirely and moved the clean hero/title plus all 12 China category cards upward, without changing the source card ratio.
+- Same-size phone check at `589x1280`: the top rules band is absent, the final card row bottoms at `1075.17px`, all 12 category cards load, no failed images, no detected horizontal card side clipping, and the right rail reaches the viewport edge within sub-pixel rounding.
+- Verified `360x780`, `393x852`, `430x932`, and `589x1280` mobile viewports: normal page load has no meaningful scroll (`maxScrollY` 0-1px), every category card keeps its source ratio, and click behavior updates the active card/hash.
 - Removed the obsolete `public/assets/china-categories/` reconstruction assets so the China page only uses `public/assets/china-slices/` full-card source crops.
 - Added 12 clickable China category links: 内裤, 胸罩, 上衣, 裙子 / 短裤, 连衣裙, 丝袜, 贴身连体衣, 角色扮演, 长裤, 帽子, 女士凉鞋, and 女士包包.
 
