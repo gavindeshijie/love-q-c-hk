@@ -498,15 +498,18 @@
         top: 47.05cqw;
         z-index: 3;
         display: grid;
-        gap: 2.08cqw;
+        gap: 1.72cqw;
       }
 
       .side-link {
-        width: max(12.2cqw, 68px);
+        width: max(12.6cqw, 70px);
+        height: max(10.85cqw, 54px);
         min-width: 0;
         display: grid;
+        grid-template-rows: max(6.9cqw, 32px) max(2.8cqw, 15px);
         justify-items: center;
-        gap: 0.46cqw;
+        align-items: start;
+        row-gap: max(0.54cqw, 3px);
         color: rgba(255, 255, 255, 0.92);
         text-decoration: none;
         font-size: clamp(11px, 2.25cqw, 16.2px);
@@ -516,7 +519,11 @@
       }
 
       .side-link > span:last-child {
+        display: block;
+        width: 100%;
         white-space: nowrap;
+        text-align: center;
+        align-self: start;
       }
 
       .side-icon {
@@ -524,6 +531,7 @@
         height: max(6.65cqw, 28px);
         display: grid;
         place-items: center;
+        align-self: end;
       }
 
       .side-icon .ui-icon,
@@ -747,10 +755,10 @@
       </section>
     </main>
 
-    <script src="../../assets/china-catalog-data.js?v=detail-controls-v3-20260628"></script>
+    <script src="../../assets/china-catalog-data.js?v=detail-controls-v4-20260628"></script>
     <script>
       const pages = window.CHINA_CATALOG_DATA;
-      const currentVersion = "detail-controls-v3-20260628";
+      const currentVersion = "detail-controls-v4-20260628";
       const params = new URLSearchParams(window.location.search);
       if (params.get("v") !== currentVersion) {
         params.set("v", currentVersion);
