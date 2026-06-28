@@ -5,6 +5,7 @@
 - `/tmp/codex-remote-attachments/019efd71-fb8e-7d91-8a28-6cbb372caad1/2906C960-B99D-4737-9CD0-D0C3672CFED9/1-照片-1.jpg`
 - China category source: `/tmp/codex-remote-attachments/019efd71-fb8e-7d91-8a28-6cbb372caad1/C8D94A69-D98F-4455-A019-A9EEB20CF270/1-照片-1.jpg`
 - Real phone China display reference: `/tmp/codex-remote-attachments/019efd71-fb8e-7d91-8a28-6cbb372caad1/3E3FDEE8-E75E-43AB-BD37-B7FFA21934A5/1-照片-1.jpg`
+- Product detail source: `/tmp/codex-remote-attachments/019efd71-fb8e-7d91-8a28-6cbb372caad1/0850B31A-CABD-4C53-9042-3F7EB259D34D/1-照片-1.jpg`
 
 **Implementation Evidence**
 - Local URL: `http://127.0.0.1:8091/`
@@ -116,6 +117,7 @@
 - Corrected the add-to-cart orb/icon ratio from the reference crop: the purple circular frame is now larger and the cart icon inside is sized as 52% of the circle diameter, matching the supplied screenshot's approximate 78px circle / 40px cart relationship instead of scaling from font `em` size.
 - Rebuilt the product-detail template as a `722px` reference-coordinate layout after the client requested full-page coordinate matching. The top summary card, thumbnail frame, title/intro/divider/price/code block, add-to-cart orb, feature row, media section, play control, right-side quick nav, and bottom scroll prompt now use fixed `cqw` coordinates derived from the supplied `722x1280` detail screenshot. Back/menu/play/member/service/feature icons were converted from text glyphs to editable SVG symbols, and the play control now toggles SVG state without replacing its markup.
 - Restored product-detail icon rendering compatibility after the client reported missing logos/icons: the hidden SVG symbol sprite now declares SVG and XLink namespaces, every static icon use now includes both `href` and `xlink:href`, and the runtime-generated feature icons also include the same dual reference so older/in-app mobile browsers can resolve the symbols at their existing coordinates.
+- Rechecked focused crops from the supplied product-detail source (`/tmp/detail-top-left-crop.jpg`, `/tmp/detail-top-icons-crop.jpg`, `/tmp/detail-orb-cart-crop.jpg`, `/tmp/detail-side-nav-crop.jpg`, and `/tmp/detail-feature-row-crop.jpg`) and retuned the editable SVG icons: the return icon now uses the source-style long arrow, the member icon is a person plus star, the service icon is a simple headset outline, the cart icon uses the flatter basket and lower wheel proportions, and the feature-row line weight/stretched-fabric icon were reduced toward the reference.
 
 **Follow-up Polish**
 - P3: the China page uses modular source slices rather than one full-page background. The slice boundaries are intentionally separate so each category card remains an independent clickable link.
