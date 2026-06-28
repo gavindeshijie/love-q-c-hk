@@ -15,19 +15,22 @@
 - Entry homepage screenshot: `/private/tmp/love-entry-home.png`
 - China sliced-fit screenshot: `/private/tmp/china-sliced-page-v2-393x852.png`
 - China sliced-fit source comparison: `/private/tmp/china-sliced-page-v2-compare.png`
+- China original-ratio screenshot: `/private/tmp/china-one-ratio-393x852-css.png`
+- China original-ratio source comparison: `/private/tmp/china-one-ratio-compare-css.png`
 - Card-zone comparison: `/private/tmp/card-zone-compare-v28.png`
 - Focused top comparison: `/private/tmp/love-focus-top-v17.png`
 - Focused card comparison: `/private/tmp/love-focus-cards-v17.png`
 - Focused bottom comparison: `/private/tmp/love-focus-bottom-v17.png`
 - Viewport: `427x640`, `deviceScaleFactor: 2`, mobile viewport.
-- State: default page load, Chinese card selected.
+- Original-ratio verification viewport: `393x852`, CSS-pixel screenshot.
+- State: default page load, China category page; click test selects `#stockings`.
 
 **Required Fidelity Surfaces**
 - Fonts and typography: heading, language labels, currencies, and price lines match the visual hierarchy and wrapping of the reference. The implementation uses browser-safe multilingual font fallbacks, so exact antialiasing can vary by device.
-- Spacing and layout rhythm: six language cards, header block, and bottom feature strip align to the reference mobile composition. No visible text overflow or card overlap remains.
+- Spacing and layout rhythm: six language cards, header block, and bottom feature strip align to the reference mobile composition. No visible text overflow or card overlap remains. The China page preserves the supplied source aspect ratio (`590x1280`, `0.4609375`) instead of stretching the layout to a different phone shape.
 - Tall mobile height behavior: high browser viewports expand the card stack and floor treatment so the feature strip sits near the mobile browser toolbar instead of leaving a large lower blank section.
 - Colors and visual tokens: dark violet/black neon palette, purple glows, white text, red flags, and floor lighting are consistent with the reference.
-- Image quality and asset fidelity: the six flags are individual image assets cropped from the supplied visual instead of CSS approximations. The card border now uses a separate transparent single-card frame asset, not the full reference image as a page background.
+- Image quality and asset fidelity: the six flags are individual image assets cropped from the supplied visual instead of CSS approximations. The card border now uses a separate transparent single-card frame asset, not the full reference image as a page background. The China page uses exact source slices from the supplied Chinese reference, including full card crops sized at `146x184` so each card keeps the source ratio (`0.793478261`) and complete frame sides.
 - Flag artifact cleanup: the Malaysia and Laos flag assets no longer include the white text remnants that were visible below the flags.
 - Copy and content: all visible language labels, pricing labels, and service benefit text match the reference.
 - Entry behavior: all six homepage cards are real links to language/region pages. The China destination renders the Chinese product-category UI with 12 clickable category links; Singapore, Thailand, Vietnam, Malaysia, and Laos remain blank dark pages for future editing.
@@ -54,7 +57,9 @@
 - Added blank entry pages for Singapore, Thailand, Vietnam, Malaysia, and Laos.
 - Rebuilt `china/` as a code-authored neon product-category page matching the supplied Chinese reference image without using that full image as the page background.
 - Replaced the semi-transparent item/frame reconstruction with exact source slices: top rules, hero/title block, side rails, and 12 full card crops are placed at the original 590x1280 coordinates.
-- The China page now stretches the original coordinate system to the current visual viewport with no page scroll, so the left/right rails touch the browser edges while the bottom row remains visible on 360, 393, and 430px mobile widths.
+- The China page now preserves the original `590x1280` coordinate ratio with cover sizing. It fills the viewport edges without black bars while keeping the reference proportions for the poster and every category card.
+- Verified `393x852`, `360x780`, and `430x932` mobile viewports: no page scroll, 12 category cards loaded, no failed images, no detected card side clipping, and the right rail reaches the viewport edge within sub-pixel rounding.
+- Removed the obsolete `public/assets/china-categories/` reconstruction assets so the China page only uses `public/assets/china-slices/` full-card source crops.
 - Added 12 clickable China category links: 内裤, 胸罩, 上衣, 裙子 / 短裤, 连衣裙, 丝袜, 贴身连体衣, 角色扮演, 长裤, 帽子, 女士凉鞋, and 女士包包.
 
 **Follow-up Polish**

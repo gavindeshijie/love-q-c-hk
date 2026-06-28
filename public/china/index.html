@@ -25,19 +25,19 @@
       body {
         min-height: 100svh;
         height: 100svh;
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
+        position: relative;
       }
 
       .poster {
-        position: relative;
-        width: min(100vw, 590px);
-        height: 100svh;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: max(100vw, calc(100svh * 590 / 1280));
+        height: max(100svh, calc(100vw * 1280 / 590));
         overflow: hidden;
         background: #000;
-        flex: 0 0 auto;
         isolation: isolate;
+        transform: translate(-50%, -50%);
       }
 
       @supports (height: 100dvh) {
@@ -47,7 +47,8 @@
         }
 
         .poster {
-          height: 100dvh;
+          width: max(100vw, calc(100dvh * 590 / 1280));
+          height: max(100dvh, calc(100vw * 1280 / 590));
         }
       }
 
