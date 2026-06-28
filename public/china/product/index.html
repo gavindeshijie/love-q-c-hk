@@ -691,7 +691,7 @@
             <svg class="ui-icon" aria-hidden="true"><use href="#icon-back" xlink:href="#icon-back"></use></svg>
           </a>
           <div class="right-actions">
-            <a class="icon-button" href="#cart" aria-label="购物车">
+            <a class="icon-button" href="../cart/?v=cart-page-v1-20260628" aria-label="购物车">
               <svg class="cart-icon" aria-hidden="true"><use href="#cart-outline-icon" xlink:href="#cart-outline-icon"></use></svg>
             </a>
             <button class="icon-button" id="menuButton" type="button" aria-label="更多">
@@ -778,7 +778,7 @@
             </span>
             <span>客服</span>
           </a>
-          <a class="side-link" href="#cart">
+          <a class="side-link" href="../cart/?v=cart-page-v1-20260628">
             <span class="side-icon">
               <svg class="cart-icon" aria-hidden="true" viewBox="0 0 64 64">
                 <path class="cart-basket-fill" d="M24.5 24.3h27l-3.6 15.4H27.8L24.5 24.3Z"></path>
@@ -803,10 +803,10 @@
       </section>
     </main>
 
-    <script src="../../assets/china-catalog-data.js?v=detail-controls-v6-20260628"></script>
+    <script src="../../assets/china-catalog-data.js?v=cart-page-v1-20260628"></script>
     <script>
       const pages = window.CHINA_CATALOG_DATA;
-      const currentVersion = "detail-controls-v6-20260628";
+      const currentVersion = "cart-page-v1-20260628";
       const params = new URLSearchParams(window.location.search);
       if (params.get("v") !== currentVersion) {
         params.set("v", currentVersion);

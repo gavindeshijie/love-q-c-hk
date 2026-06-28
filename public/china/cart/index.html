@@ -1,0 +1,811 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>购物车 | Secret Language Trade</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #030007;
+        --panel: rgba(7, 8, 20, 0.92);
+        --panel-soft: rgba(10, 11, 27, 0.82);
+        --line: rgba(228, 208, 255, 0.66);
+        --line-dim: rgba(194, 172, 225, 0.34);
+        --pink: #ff70ff;
+        --purple: #8d32ff;
+        --blue: #182eff;
+        --text: rgba(255, 255, 255, 0.9);
+        --muted: rgba(255, 255, 255, 0.62);
+        font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans SC", system-ui, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        min-height: 100%;
+        margin: 0;
+        background: #000;
+      }
+
+      body {
+        color: var(--text);
+      }
+
+      button,
+      a {
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      button {
+        font: inherit;
+      }
+
+      .cart-page {
+        container-type: inline-size;
+        position: relative;
+        width: min(100vw, 592px);
+        min-height: max(100svh, min(1280px, 216.22vw));
+        margin: 0 auto;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 50% 9%, rgba(40, 73, 255, 0.55) 0 8.6cqw, transparent 8.8cqw),
+          radial-gradient(circle at 50% 12%, rgba(161, 55, 255, 0.42) 0 12cqw, transparent 25cqw),
+          radial-gradient(circle at 50% 31%, rgba(117, 20, 204, 0.22), transparent 32cqw),
+          linear-gradient(180deg, #010005 0%, #05000d 39%, #010005 100%);
+        isolation: isolate;
+      }
+
+      .cart-page::before,
+      .cart-page::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 6.1cqw;
+        z-index: -1;
+        background:
+          repeating-linear-gradient(180deg, rgba(21, 41, 255, 0.95) 0 0.72cqw, rgba(175, 38, 255, 0.65) 0.72cqw 1.15cqw, transparent 1.15cqw 2.4cqw),
+          linear-gradient(90deg, transparent, rgba(64, 34, 255, 0.8), transparent);
+        filter: drop-shadow(0 0 1.2cqw rgba(51, 61, 255, 0.95));
+        opacity: 0.88;
+      }
+
+      .cart-page::before {
+        left: 0;
+        clip-path: polygon(0 0, 74% 0, 100% 8%, 65% 50%, 100% 92%, 74% 100%, 0 100%);
+      }
+
+      .cart-page::after {
+        right: 0;
+        clip-path: polygon(26% 0, 100% 0, 100% 100%, 26% 100%, 0 92%, 35% 50%, 0 8%);
+      }
+
+      .ambient-grid {
+        position: absolute;
+        left: 8cqw;
+        right: 8cqw;
+        bottom: 10cqw;
+        height: 41cqw;
+        z-index: -1;
+        background:
+          linear-gradient(rgba(82, 56, 255, 0.28) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(82, 56, 255, 0.2) 1px, transparent 1px);
+        background-size: 8.2cqw 5.4cqw, 8.2cqw 5.4cqw;
+        transform: perspective(58cqw) rotateX(62deg);
+        transform-origin: bottom center;
+        box-shadow: 0 -2cqw 7cqw rgba(102, 47, 255, 0.18);
+        opacity: 0.54;
+      }
+
+      .hero {
+        position: relative;
+        height: 29.2cqw;
+        padding-top: 5cqw;
+        text-align: center;
+      }
+
+      .moon {
+        position: absolute;
+        left: 35.3cqw;
+        top: 2.7cqw;
+        width: 29.8cqw;
+        height: 17.6cqw;
+        border-radius: 50% 50% 44% 44%;
+        background:
+          radial-gradient(circle at 50% 34%, rgba(255, 255, 255, 0.86), transparent 1.4cqw),
+          radial-gradient(circle at 37% 29%, rgba(122, 188, 255, 0.9), rgba(34, 55, 255, 0.82) 28%, rgba(7, 10, 72, 0.18) 66%, transparent 70%);
+        box-shadow: 0 0 2.4cqw rgba(63, 83, 255, 0.95), 0 0 8.5cqw rgba(119, 32, 255, 0.7);
+        opacity: 0.88;
+      }
+
+      .bolt {
+        position: absolute;
+        top: 8.7cqw;
+        width: 26cqw;
+        height: 7.8cqw;
+        opacity: 0.9;
+        filter: drop-shadow(0 0 0.8cqw rgba(81, 48, 255, 0.9));
+      }
+
+      .bolt.left {
+        left: 6.5cqw;
+      }
+
+      .bolt.right {
+        right: 6.5cqw;
+        transform: scaleX(-1);
+      }
+
+      .bolt path {
+        fill: none;
+        stroke: url("#boltGradient");
+        stroke-width: 2.2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .title {
+        position: relative;
+        z-index: 1;
+        margin: 0;
+        color: #fff;
+        font-size: clamp(58px, 15.6cqw, 96px);
+        line-height: 0.95;
+        font-weight: 900;
+        letter-spacing: 0;
+        -webkit-text-stroke: 0.55cqw rgba(105, 37, 169, 0.86);
+        paint-order: stroke fill;
+        text-shadow:
+          0 0 0.8cqw rgba(255, 122, 255, 1),
+          0 0 2.6cqw rgba(111, 52, 255, 0.95),
+          0.55cqw 0.75cqw 0 rgba(43, 16, 112, 0.86);
+      }
+
+      .address-card {
+        position: relative;
+        display: grid;
+        grid-template-columns: 9.5cqw 1fr 4.5cqw;
+        align-items: center;
+        width: 86.5cqw;
+        min-height: 20.7cqw;
+        margin: 0 auto;
+        padding: 3.2cqw 4.2cqw;
+        border: 1px solid rgba(255, 168, 255, 0.76);
+        border-radius: 4.2cqw;
+        background: rgba(0, 0, 9, 0.86);
+        box-shadow:
+          inset 0 0 2.4cqw rgba(137, 40, 255, 0.22),
+          0 0 2.6cqw rgba(255, 66, 248, 0.28);
+      }
+
+      .address-card::before,
+      .address-card::after {
+        content: "";
+        position: absolute;
+        width: 7.1cqw;
+        height: 7.1cqw;
+        border: 0.55cqw solid rgba(255, 171, 255, 0.95);
+        filter: drop-shadow(0 0 0.95cqw rgba(255, 79, 255, 0.95));
+      }
+
+      .address-card::before {
+        left: -0.8cqw;
+        top: -0.7cqw;
+        border-right: 0;
+        border-bottom: 0;
+        border-radius: 3.2cqw 0 0 0;
+      }
+
+      .address-card::after {
+        right: -0.8cqw;
+        bottom: -0.7cqw;
+        border-left: 0;
+        border-top: 0;
+        border-radius: 0 0 3.2cqw 0;
+      }
+
+      .pin-icon {
+        width: 7cqw;
+        height: 7cqw;
+        color: #d6c5ff;
+        filter: drop-shadow(0 0 1.1cqw rgba(126, 71, 255, 0.98));
+      }
+
+      .address-copy {
+        min-width: 0;
+      }
+
+      .address-title {
+        margin: 0 0 1.4cqw;
+        font-size: clamp(13px, 3cqw, 20px);
+        font-weight: 700;
+      }
+
+      .address-name {
+        margin: 0 0 1.6cqw;
+        font-size: clamp(12px, 2.72cqw, 18px);
+        color: rgba(255, 255, 255, 0.78);
+      }
+
+      .address-line {
+        margin: 0;
+        color: rgba(255, 255, 255, 0.75);
+        font-size: clamp(9px, 2.08cqw, 15px);
+        line-height: 1.42;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .chevron {
+        justify-self: end;
+        width: 3.7cqw;
+        height: 3.7cqw;
+        color: rgba(255, 255, 255, 0.74);
+      }
+
+      .cart-list {
+        width: 85.8cqw;
+        margin: 4.6cqw auto 0;
+        display: grid;
+        gap: 2.05cqw;
+      }
+
+      .cart-item {
+        position: relative;
+        display: grid;
+        grid-template-columns: 7.8cqw 20.2cqw 1fr 5.8cqw;
+        align-items: center;
+        min-height: 23.8cqw;
+        padding: 2.7cqw 2.5cqw;
+        border: 1px solid rgba(149, 118, 203, 0.48);
+        border-radius: 1.05cqw;
+        background:
+          linear-gradient(90deg, rgba(10, 14, 34, 0.95), rgba(9, 10, 25, 0.88)),
+          radial-gradient(circle at 35% 50%, rgba(122, 27, 226, 0.2), transparent 40%);
+        box-shadow: inset 0 0 2.4cqw rgba(44, 35, 143, 0.16), 0 0 1.1cqw rgba(136, 41, 255, 0.12);
+      }
+
+      .select-dot {
+        width: 4.5cqw;
+        height: 4.5cqw;
+        border: 0;
+        border-radius: 50%;
+        padding: 0;
+        background: linear-gradient(135deg, #2e35ff, #a328ff);
+        box-shadow: 0 0 1.2cqw rgba(96, 52, 255, 0.8);
+        justify-self: center;
+      }
+
+      .cart-item:not(.is-selected) .select-dot {
+        background: rgba(6, 8, 22, 0.94);
+        border: 1px solid rgba(154, 123, 210, 0.7);
+        box-shadow: inset 0 0 1cqw rgba(120, 49, 255, 0.35);
+      }
+
+      .item-thumb {
+        width: 18.4cqw;
+        height: 18.4cqw;
+        border: 1px solid rgba(139, 101, 215, 0.5);
+        border-radius: 1.6cqw;
+        overflow: hidden;
+        background: #030006;
+      }
+
+      .item-thumb img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+      }
+
+      .item-main {
+        min-width: 0;
+        align-self: stretch;
+        display: grid;
+        grid-template-rows: auto auto 1fr;
+        padding: 0.6cqw 0 0.2cqw 1.9cqw;
+      }
+
+      .item-title {
+        margin: 0;
+        font-size: clamp(13px, 3.1cqw, 20px);
+        line-height: 1.1;
+        font-weight: 800;
+      }
+
+      .item-code-row {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 1.5cqw;
+        margin-top: 2.7cqw;
+      }
+
+      .item-code,
+      .unit-price {
+        color: var(--muted);
+        font-size: clamp(10px, 2.2cqw, 15px);
+        white-space: nowrap;
+      }
+
+      .item-control-row {
+        align-self: end;
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 2cqw;
+      }
+
+      .qty {
+        display: grid;
+        grid-template-columns: 4.5cqw 6.6cqw 4.5cqw;
+        height: 4cqw;
+        border: 1px solid rgba(121, 102, 160, 0.55);
+        border-radius: 0.7cqw;
+        overflow: hidden;
+        background: rgba(0, 0, 0, 0.28);
+      }
+
+      .qty button {
+        border: 0;
+        border-right: 1px solid rgba(121, 102, 160, 0.38);
+        background: rgba(5, 7, 17, 0.86);
+        color: #fff;
+        font-size: clamp(10px, 2.3cqw, 15px);
+        line-height: 1;
+      }
+
+      .qty button:last-child {
+        border-right: 0;
+        border-left: 1px solid rgba(121, 102, 160, 0.38);
+      }
+
+      .qty span {
+        display: grid;
+        place-items: center;
+        color: rgba(255, 255, 255, 0.72);
+        font-size: clamp(9px, 2cqw, 14px);
+      }
+
+      .subtotal {
+        color: #c93cff;
+        font-size: clamp(13px, 3.1cqw, 21px);
+        font-weight: 700;
+        white-space: nowrap;
+        text-shadow: 0 0 0.8cqw rgba(178, 39, 255, 0.48);
+      }
+
+      .trash {
+        align-self: start;
+        justify-self: center;
+        width: 4.2cqw;
+        height: 4.2cqw;
+        margin-top: 1.4cqw;
+        border: 0;
+        padding: 0;
+        background: transparent;
+        color: rgba(255, 255, 255, 0.86);
+      }
+
+      .cart-spacer {
+        height: 48cqw;
+      }
+
+      .checkout {
+        position: relative;
+        width: 85.8cqw;
+        min-height: 14.4cqw;
+        margin: 0 auto 8cqw;
+        display: grid;
+        grid-template-columns: 5.5cqw 11.5cqw 1fr 22.2cqw;
+        align-items: center;
+        padding: 2.1cqw 2.6cqw;
+        border: 1px solid rgba(128, 110, 172, 0.5);
+        border-radius: 0.9cqw;
+        background: rgba(9, 12, 27, 0.94);
+        box-shadow: inset 0 0 2.4cqw rgba(34, 45, 124, 0.22);
+      }
+
+      .all-check {
+        display: flex;
+        align-items: center;
+        color: rgba(255, 255, 255, 0.88);
+        font-size: clamp(12px, 2.8cqw, 18px);
+      }
+
+      .checkout .select-dot[aria-pressed="false"] {
+        background: rgba(6, 8, 22, 0.94);
+        border: 1px solid rgba(154, 123, 210, 0.7);
+        box-shadow: inset 0 0 1cqw rgba(120, 49, 255, 0.35);
+      }
+
+      .total {
+        display: flex;
+        align-items: baseline;
+        justify-content: center;
+        gap: 1.6cqw;
+        white-space: nowrap;
+      }
+
+      .total strong {
+        color: #ffd2ff;
+        font-size: clamp(26px, 7.1cqw, 46px);
+        line-height: 1;
+        text-shadow: 0 0 1.25cqw rgba(255, 86, 255, 0.9);
+      }
+
+      .total span {
+        color: #c55cff;
+        font-size: clamp(14px, 3.6cqw, 24px);
+      }
+
+      .checkout-button {
+        justify-self: end;
+        width: 20.3cqw;
+        min-height: 8.9cqw;
+        border: 1px solid rgba(255, 178, 255, 0.72);
+        border-radius: 1.7cqw;
+        background: linear-gradient(135deg, #262cff, #7a26ff 48%, #c245ff);
+        color: #fff;
+        box-shadow: 0 0 1.9cqw rgba(127, 58, 255, 0.85), inset 0 0 1.8cqw rgba(255, 255, 255, 0.16);
+        font-size: clamp(13px, 3cqw, 20px);
+        font-weight: 700;
+      }
+
+      .footer-actions {
+        position: absolute;
+        right: 8.6cqw;
+        bottom: 0.9cqw;
+        display: grid;
+        grid-template-columns: repeat(2, 12cqw);
+        gap: 4.2cqw;
+        text-align: center;
+      }
+
+      .footer-action {
+        display: grid;
+        gap: 1cqw;
+        justify-items: center;
+        color: rgba(255, 255, 255, 0.82);
+        text-decoration: none;
+        font-size: clamp(10px, 2.35cqw, 16px);
+      }
+
+      .footer-icon {
+        display: grid;
+        place-items: center;
+        width: 9.2cqw;
+        height: 7.2cqw;
+        border: 1px solid rgba(220, 187, 255, 0.64);
+        border-radius: 1.4cqw;
+        color: rgba(255, 232, 255, 0.94);
+        background: rgba(0, 0, 0, 0.62);
+        box-shadow: 0 0 1cqw rgba(255, 58, 245, 0.38), inset 0 0 1.2cqw rgba(40, 56, 255, 0.22);
+      }
+
+      .footer-icon svg,
+      .trash svg,
+      .pin-icon svg,
+      .chevron svg {
+        width: 100%;
+        height: 100%;
+      }
+
+      svg {
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 4.2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .cart-basket-fill {
+        fill: rgba(255, 255, 255, 0.12);
+        stroke: currentColor;
+      }
+
+      .empty-state {
+        width: 85.8cqw;
+        margin: 6cqw auto;
+        padding: 7cqw;
+        border: 1px solid rgba(145, 111, 202, 0.42);
+        border-radius: 2cqw;
+        background: rgba(6, 8, 22, 0.82);
+        text-align: center;
+        color: rgba(255, 255, 255, 0.72);
+      }
+
+      @media (max-width: 420px) {
+        .address-line {
+          white-space: normal;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+        }
+
+        .cart-item {
+          grid-template-columns: 7.2cqw 19.5cqw 1fr 5.5cqw;
+        }
+
+        .subtotal {
+          font-size: clamp(12px, 3cqw, 18px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="cart-page" aria-label="购物车">
+      <svg aria-hidden="true" focusable="false" width="0" height="0" style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="boltGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#2441ff"></stop>
+            <stop offset="48%" stop-color="#d644ff"></stop>
+            <stop offset="100%" stop-color="#ffffff"></stop>
+          </linearGradient>
+        </defs>
+      </svg>
+      <div class="ambient-grid" aria-hidden="true"></div>
+
+      <section class="hero" aria-label="购物车标题">
+        <div class="moon" aria-hidden="true"></div>
+        <svg class="bolt left" viewBox="0 0 160 50" aria-hidden="true">
+          <path d="M5 31 45 19 64 26 89 8 82 25 125 17 101 31 153 27"></path>
+          <path d="M23 38 62 30 82 36 117 24 106 38 151 35"></path>
+        </svg>
+        <svg class="bolt right" viewBox="0 0 160 50" aria-hidden="true">
+          <path d="M5 31 45 19 64 26 89 8 82 25 125 17 101 31 153 27"></path>
+          <path d="M23 38 62 30 82 36 117 24 106 38 151 35"></path>
+        </svg>
+        <h1 class="title">购物车</h1>
+      </section>
+
+      <section class="address-card" aria-label="当前收货地址">
+        <span class="pin-icon" aria-hidden="true">
+          <svg viewBox="0 0 64 64">
+            <path d="M32 57S13.5 39.4 13.5 25.8C13.5 15.4 21.7 8 32 8s18.5 7.4 18.5 17.8C50.5 39.4 32 57 32 57Z"></path>
+            <circle cx="32" cy="25.5" r="6.2"></circle>
+          </svg>
+        </span>
+        <div class="address-copy">
+          <p class="address-title">当前收货地址</p>
+          <p class="address-name">张三&nbsp;&nbsp;138****8888</p>
+          <p class="address-line">广东省广州市天河区珠江新城华夏路30号富力盈通大厦B座1201室</p>
+        </div>
+        <span class="chevron" aria-hidden="true">
+          <svg viewBox="0 0 64 64"><path d="m24 14 18 18-18 18"></path></svg>
+        </span>
+      </section>
+
+      <section class="cart-list" id="cartList" aria-label="购物车商品"></section>
+      <div class="cart-spacer" aria-hidden="true"></div>
+
+      <section class="checkout" aria-label="结算">
+        <button class="select-dot" id="selectAll" type="button" aria-label="全选" aria-pressed="true"></button>
+        <div class="all-check">全选</div>
+        <div class="total" aria-live="polite"><strong>合计:</strong><span id="totalPrice">¥597.00</span></div>
+        <button class="checkout-button" type="button">去结算</button>
+      </section>
+
+      <nav class="footer-actions" aria-label="购物车底部操作">
+        <a class="footer-action" href="../catalog/?category=panty&v=cart-page-v1-20260628">
+          <span class="footer-icon" aria-hidden="true">
+            <svg viewBox="0 0 64 64">
+              <path d="M42 14H20c-3 0-5.5 2.5-5.5 5.5v25c0 3 2.5 5.5 5.5 5.5h22"></path>
+              <path d="M33 23h15l-4.6-4.6M48 23 43.4 27.6"></path>
+              <path d="M33 41h15l-4.6-4.6M48 41l-4.6 4.6"></path>
+            </svg>
+          </span>
+          <span>退出购物车</span>
+        </a>
+        <a class="footer-action" href="#service">
+          <span class="footer-icon" aria-hidden="true">
+            <svg viewBox="0 0 64 64">
+              <path d="M14.5 38v-5.2C14.5 20.5 21.8 13 32 13s17.5 7.5 17.5 19.8V38"></path>
+              <path d="M19 38c-4 0-6.7 2.8-6.7 6.8s2.7 6.8 6.7 6.8"></path>
+              <path d="M45 38c4 0 6.7 2.8 6.7 6.8s-2.7 6.8-6.7 6.8"></path>
+              <path d="M19 38v13.6M45 38v13.6"></path>
+              <path d="M44.6 51.3c-2.4 4.4-6.6 6.3-12.6 6.3h-3"></path>
+            </svg>
+          </span>
+          <span>客服</span>
+        </a>
+      </nav>
+    </main>
+
+    <script src="../../assets/china-catalog-data.js?v=cart-page-v1-20260628"></script>
+    <script>
+      const VERSION = "cart-page-v1-20260628";
+      const catalog = window.CHINA_CATALOG_DATA || {};
+      const fallbackItems = [
+        {
+          category: "bra",
+          item: 1,
+          title: "蕾丝文胸套装",
+          code: "N-LS-036",
+          price: "¥199.00",
+          qty: 1,
+          selected: true,
+          image: `../../assets/china-product-items/bra-1.jpg?v=${VERSION}`
+        },
+        {
+          category: "dress",
+          item: 1,
+          title: "丝滑吊带睡裙",
+          code: "N-QD-089",
+          price: "¥169.00",
+          qty: 1,
+          selected: true,
+          image: `../../assets/china-product-items/dress-1.jpg?v=${VERSION}`
+        },
+        {
+          category: "dress",
+          item: 2,
+          title: "修身包臀连衣裙",
+          code: "N-LY-152",
+          price: "¥229.00",
+          qty: 1,
+          selected: true,
+          image: `../../assets/china-product-items/dress-2.jpg?v=${VERSION}`
+        }
+      ];
+
+      const parsePrice = (value) => {
+        const parsed = Number.parseFloat(String(value).replace(/[^\d.]/g, ""));
+        return Number.isFinite(parsed) ? parsed : 0;
+      };
+
+      const formatPrice = (value) => `¥${value.toFixed(2)}`;
+
+      const productTitle = (description, fallback) => {
+        const first = String(description || "").split("|")[0].trim();
+        return first || fallback || "精选商品";
+      };
+
+      const enrichCartItem = (entry, index) => {
+        const category = entry.category || "panty";
+        const item = Number.parseInt(entry.item || "1", 10);
+        const safeItem = Number.isFinite(item) && item > 0 ? item : 1;
+        const source = catalog[category];
+        const product = source && source.products ? source.products[safeItem - 1] : null;
+        const desc = product ? product[0] : entry.title;
+        const price = entry.price || (product ? product[1] : "¥7.80");
+        return {
+          category,
+          item: safeItem,
+          title: entry.title || productTitle(desc, source && source.title),
+          code: entry.code || (product ? product[2] : `N-CART-${String(index + 1).padStart(3, "0")}`),
+          price,
+          qty: Math.max(1, Number.parseInt(entry.qty || "1", 10) || 1),
+          selected: entry.selected !== false,
+          image: `../../assets/china-product-items/${category}-${safeItem}.jpg?v=${VERSION}`
+        };
+      };
+
+      const readCart = () => {
+        try {
+          const stored = JSON.parse(localStorage.getItem("loveCart") || "[]");
+          if (Array.isArray(stored) && stored.length) {
+            return stored.map(enrichCartItem);
+          }
+        } catch (error) {
+          localStorage.removeItem("loveCart");
+        }
+        return fallbackItems.map((item) => ({ ...item }));
+      };
+
+      const persistCart = () => {
+        const stored = state.items.map((item) => ({
+          category: item.category,
+          item: item.item,
+          code: item.code,
+          price: item.price,
+          qty: item.qty,
+          selected: item.selected,
+          title: item.title
+        }));
+        localStorage.setItem("loveCart", JSON.stringify(stored));
+      };
+
+      const state = {
+        items: readCart()
+      };
+
+      const cartList = document.getElementById("cartList");
+      const totalPrice = document.getElementById("totalPrice");
+      const selectAll = document.getElementById("selectAll");
+
+      const iconTrash = `
+        <svg viewBox="0 0 64 64" aria-hidden="true">
+          <path d="M21 20h22"></path>
+          <path d="M27 20v-5h10v5"></path>
+          <path d="M24 25.5 26 50h12l2-24.5"></path>
+          <path d="M30 31v13M36 31v13"></path>
+        </svg>
+      `;
+
+      const render = () => {
+        cartList.innerHTML = "";
+        if (!state.items.length) {
+          cartList.innerHTML = `<div class="empty-state">购物车为空，返回上一页继续选择商品。</div>`;
+        }
+
+        state.items.forEach((item, index) => {
+          const subtotal = parsePrice(item.price) * item.qty;
+          const card = document.createElement("article");
+          card.className = `cart-item${item.selected ? " is-selected" : ""}`;
+          card.innerHTML = `
+            <button class="select-dot" type="button" data-action="toggle" data-index="${index}" aria-label="选择 ${item.title}" aria-pressed="${item.selected ? "true" : "false"}"></button>
+            <div class="item-thumb"><img src="${item.image}" alt="${item.title}"></div>
+            <div class="item-main">
+              <h2 class="item-title">${item.title}</h2>
+              <div class="item-code-row">
+                <span class="item-code">${item.code}</span>
+                <span class="unit-price">单价：${formatPrice(parsePrice(item.price))}</span>
+              </div>
+              <div class="item-control-row">
+                <div class="qty" aria-label="数量">
+                  <button type="button" data-action="minus" data-index="${index}" aria-label="减少数量">-</button>
+                  <span>${item.qty}</span>
+                  <button type="button" data-action="plus" data-index="${index}" aria-label="增加数量">+</button>
+                </div>
+                <div class="subtotal">合计：${formatPrice(subtotal)}</div>
+              </div>
+            </div>
+            <button class="trash" type="button" data-action="delete" data-index="${index}" aria-label="删除 ${item.title}">${iconTrash}</button>
+          `;
+          cartList.append(card);
+        });
+
+        const allSelected = state.items.length > 0 && state.items.every((item) => item.selected);
+        selectAll.classList.toggle("is-selected", allSelected);
+        selectAll.setAttribute("aria-pressed", allSelected ? "true" : "false");
+
+        const total = state.items.reduce((sum, item) => {
+          return item.selected ? sum + parsePrice(item.price) * item.qty : sum;
+        }, 0);
+        totalPrice.textContent = formatPrice(total);
+        persistCart();
+      };
+
+      cartList.addEventListener("click", (event) => {
+        const target = event.target.closest("[data-action]");
+        if (!target) return;
+        const index = Number.parseInt(target.dataset.index, 10);
+        const item = state.items[index];
+        if (!item) return;
+
+        if (target.dataset.action === "toggle") {
+          item.selected = !item.selected;
+        }
+        if (target.dataset.action === "minus") {
+          item.qty = Math.max(1, item.qty - 1);
+        }
+        if (target.dataset.action === "plus") {
+          item.qty += 1;
+        }
+        if (target.dataset.action === "delete") {
+          state.items.splice(index, 1);
+        }
+        render();
+      });
+
+      selectAll.addEventListener("click", () => {
+        const shouldSelect = !(state.items.length > 0 && state.items.every((item) => item.selected));
+        state.items.forEach((item) => {
+          item.selected = shouldSelect;
+        });
+        render();
+      });
+
+      render();
+    </script>
+  </body>
+</html>
