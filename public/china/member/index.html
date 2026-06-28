@@ -307,18 +307,83 @@
       .vip-badge {
         position: absolute;
         z-index: 3;
-        left: 1.8cqw;
-        bottom: 4.7cqw;
-        width: 13.4cqw;
-        height: 18.5cqw;
+        left: 1.35cqw;
+        bottom: 3.6cqw;
+        width: 14.5cqw;
+        height: 22.6cqw;
         color: #ffe1ff;
         text-align: center;
-        filter: drop-shadow(0 0 1.1cqw rgba(225, 55, 255, 0.85));
+        display: grid;
+        place-items: end center;
+        filter:
+          drop-shadow(0 0 1.1cqw rgba(225, 55, 255, 0.86))
+          drop-shadow(0 0 1.5cqw rgba(57, 92, 255, 0.7));
       }
 
-      .vip-badge svg {
-        width: 100%;
-        height: 100%;
+      .vip-emblem {
+        position: relative;
+        width: 13.7cqw;
+        height: 19.8cqw;
+        display: grid;
+        place-items: end center;
+      }
+
+      .vip-emblem::before,
+      .vip-emblem::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        clip-path: polygon(50% 0, 68% 24%, 92% 18%, 79% 56%, 96% 70%, 66% 77%, 57% 100%, 43% 100%, 34% 77%, 4% 70%, 21% 56%, 8% 18%, 32% 24%);
+      }
+
+      .vip-emblem::before {
+        background:
+          radial-gradient(circle at 50% 16%, rgba(255, 255, 255, 0.88), transparent 5%),
+          linear-gradient(145deg, rgba(43, 77, 255, 0.9), rgba(170, 37, 255, 0.95) 48%, rgba(255, 67, 246, 0.92));
+        box-shadow:
+          inset 0 0 1.8cqw rgba(255, 255, 255, 0.18),
+          inset 0 -1cqw 2.6cqw rgba(0, 0, 0, 0.55);
+      }
+
+      .vip-emblem::after {
+        inset: 0.42cqw;
+        background:
+          linear-gradient(75deg, transparent 0 28%, rgba(255, 255, 255, 0.75) 29% 31%, transparent 32% 100%),
+          linear-gradient(180deg, transparent 0 48%, rgba(2, 4, 17, 0.86) 49% 100%);
+        border: 0.12cqw solid rgba(230, 221, 255, 0.7);
+      }
+
+      .vip-gem {
+        position: absolute;
+        left: 2.2cqw;
+        right: 2.2cqw;
+        bottom: 6.2cqw;
+        height: 6.2cqw;
+        border: 0.12cqw solid rgba(227, 216, 255, 0.76);
+        clip-path: var(--small-cut);
+        background:
+          linear-gradient(90deg, rgba(34, 62, 255, 0.45), rgba(255, 61, 245, 0.34)),
+          rgba(4, 5, 17, 0.88);
+        box-shadow: inset 0 0 1.3cqw rgba(229, 60, 255, 0.35), 0 0 1.2cqw rgba(111, 69, 255, 0.8);
+        z-index: 1;
+      }
+
+      .vip-text {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 6.7cqw;
+        z-index: 2;
+        color: #ffd7ff;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(19px, 5.4cqw, 43px);
+        font-weight: 900;
+        letter-spacing: 0;
+        line-height: 1;
+        text-shadow:
+          0 0 0.9cqw rgba(255, 67, 246, 0.98),
+          0 0 1.4cqw rgba(66, 83, 255, 0.95),
+          0.2cqw 0.25cqw 0 rgba(44, 6, 97, 0.9);
       }
 
       .main-shell {
@@ -1058,6 +1123,267 @@
           inset 0 0 1.8cqw rgba(155, 69, 255, 0.2);
       }
 
+      .panel-head {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: end;
+        gap: 2cqw;
+        margin: 0 0 2.4cqw;
+      }
+
+      .panel-head h2 {
+        margin: 0;
+        color: #fff;
+        font-size: clamp(18px, 3.2cqw, 28px);
+        line-height: 1.05;
+        text-shadow: 0 0 1.1cqw rgba(224, 83, 255, 0.82);
+      }
+
+      .panel-head p {
+        margin: 0.85cqw 0 0;
+        color: rgba(255, 255, 255, 0.58);
+        font-size: clamp(10px, 1.72cqw, 15px);
+      }
+
+      .frame-button {
+        min-height: 4.8cqw;
+        display: inline-grid;
+        grid-auto-flow: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.8cqw;
+        padding: 0 1.8cqw;
+        border: 0.12cqw solid rgba(218, 204, 255, 0.72);
+        clip-path: var(--small-cut);
+        background:
+          linear-gradient(90deg, rgba(33, 52, 255, 0.24), rgba(255, 68, 255, 0.14)),
+          rgba(7, 8, 20, 0.86);
+        color: rgba(255, 255, 255, 0.88);
+        text-decoration: none;
+        font-size: clamp(10px, 1.75cqw, 15px);
+        box-shadow: 0 0 1cqw rgba(99, 69, 255, 0.58), inset 0 0 1cqw rgba(129, 64, 255, 0.18);
+      }
+
+      .frame-button svg {
+        width: 2.5cqw;
+        height: 2.5cqw;
+      }
+
+      .frame-button.primary {
+        border-color: rgba(224, 132, 255, 0.86);
+        background: linear-gradient(135deg, #2633ff, #8a2eff 58%, #df4aff);
+        box-shadow: 0 0 1.35cqw rgba(151, 66, 255, 0.84), inset 0 0 1.1cqw rgba(255, 255, 255, 0.18);
+      }
+
+      .frame-button.danger {
+        border-color: rgba(255, 77, 121, 0.78);
+        color: #ffd8e0;
+        background: linear-gradient(135deg, rgba(84, 10, 35, 0.95), rgba(166, 26, 74, 0.82));
+        box-shadow: 0 0 1.25cqw rgba(255, 48, 107, 0.54);
+      }
+
+      .record-list {
+        display: grid;
+        gap: 1.85cqw;
+      }
+
+      .record-card {
+        min-height: 13.6cqw;
+        grid-template-columns: 11.2cqw 1fr 18.5cqw;
+        padding: 1.8cqw 2cqw;
+      }
+
+      .record-card .product-icon {
+        width: 8.8cqw;
+        height: 8.8cqw;
+      }
+
+      .record-title-row {
+        display: flex;
+        gap: 1.4cqw;
+        align-items: baseline;
+        min-width: 0;
+      }
+
+      .record-title-row strong {
+        color: #fff;
+        font-size: clamp(13px, 2.25cqw, 20px);
+        white-space: nowrap;
+      }
+
+      .record-title-row span,
+      .record-date {
+        color: rgba(255, 255, 255, 0.48);
+        font-size: clamp(10px, 1.62cqw, 14px);
+      }
+
+      .record-copy {
+        margin: 1.1cqw 0 0;
+        color: rgba(255, 255, 255, 0.68);
+        font-size: clamp(10px, 1.75cqw, 15px);
+        line-height: 1.35;
+      }
+
+      .record-right {
+        display: grid;
+        justify-items: end;
+        align-content: center;
+        gap: 1.1cqw;
+      }
+
+      .record-badge {
+        min-width: 2.9cqw;
+        height: 2.9cqw;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: #f30018;
+        color: #fff;
+        font-weight: 800;
+        font-size: clamp(9px, 1.45cqw, 13px);
+      }
+
+      .detail-panel {
+        position: relative;
+        min-height: 100%;
+        display: grid;
+        align-content: start;
+        gap: 2cqw;
+      }
+
+      .detail-card,
+      .settings-subcard,
+      .timeline-row {
+        position: relative;
+        border: 0.12cqw solid rgba(123, 83, 169, 0.42);
+        clip-path: var(--small-cut);
+        background:
+          linear-gradient(90deg, rgba(38, 54, 255, 0.11), transparent 48%, rgba(255, 70, 255, 0.08)),
+          rgba(11, 14, 30, 0.82);
+        box-shadow:
+          inset 0 0 1.15cqw rgba(52, 51, 157, 0.14),
+          0 0 0.8cqw rgba(92, 57, 255, 0.14);
+      }
+
+      .detail-card {
+        display: grid;
+        grid-template-columns: 11cqw 1fr;
+        gap: 2cqw;
+        align-items: center;
+        padding: 2cqw;
+      }
+
+      .detail-copy h3 {
+        margin: 0 0 0.9cqw;
+        color: #fff;
+        font-size: clamp(15px, 2.55cqw, 22px);
+      }
+
+      .detail-copy p {
+        margin: 0.55cqw 0;
+        color: rgba(255, 255, 255, 0.66);
+        font-size: clamp(10px, 1.76cqw, 15px);
+        line-height: 1.35;
+      }
+
+      .timeline {
+        display: grid;
+        gap: 1.45cqw;
+      }
+
+      .timeline-row {
+        display: grid;
+        grid-template-columns: 8.2cqw 1fr;
+        gap: 1.7cqw;
+        padding: 1.55cqw 1.8cqw;
+        min-height: 8.4cqw;
+      }
+
+      .timeline-time {
+        color: #b77bff;
+        font-size: clamp(10px, 1.58cqw, 14px);
+      }
+
+      .reply-box {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 1.5cqw;
+        align-items: center;
+      }
+
+      .reply-box input,
+      .feedback-box textarea {
+        width: 100%;
+        border: 0;
+        outline: 0;
+        color: #fff;
+        background: transparent;
+      }
+
+      .settings-grid {
+        display: grid;
+        gap: 1.6cqw;
+      }
+
+      .settings-subcard {
+        display: grid;
+        grid-template-columns: 7.8cqw 1fr auto;
+        align-items: center;
+        gap: 1.7cqw;
+        min-height: 9.6cqw;
+        padding: 1.6cqw 1.8cqw;
+      }
+
+      .settings-subcard .product-icon {
+        width: 6.6cqw;
+        height: 6.6cqw;
+      }
+
+      .settings-subcard strong {
+        display: block;
+        color: #fff;
+        font-size: clamp(12px, 2.05cqw, 18px);
+        margin-bottom: 0.6cqw;
+      }
+
+      .settings-subcard span {
+        color: rgba(255, 255, 255, 0.62);
+        font-size: clamp(10px, 1.65cqw, 14px);
+        line-height: 1.3;
+      }
+
+      .feedback-box {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5cqw;
+        padding: 1.8cqw;
+      }
+
+      .feedback-box textarea {
+        min-height: 10cqw;
+        resize: none;
+      }
+
+      .logout-confirm {
+        display: grid;
+        gap: 2cqw;
+        justify-items: center;
+        text-align: center;
+        padding: 5.2cqw 3cqw;
+      }
+
+      .logout-confirm .product-icon {
+        width: 13.5cqw;
+        height: 13.5cqw;
+      }
+
+      .logout-actions {
+        display: flex;
+        gap: 2cqw;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
       .message-title,
       .setting-title {
         margin: 0 0 1.3cqw;
@@ -1142,7 +1468,7 @@
   </head>
   <body>
     <main class="member-page" aria-label="会员中心">
-      <a class="back-button" href="../catalog/?category=panty&v=member-actions-v1-20260628" aria-label="返回上一页">
+      <a class="back-button" href="../catalog/?category=panty&v=member-settings-v1-20260628" aria-label="返回上一页">
         <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M38 15 20 32l18 17"></path><path d="M21 32h31"></path></svg>
       </a>
 
@@ -1158,12 +1484,10 @@
       <aside class="side-shell" aria-label="会员中心菜单">
         <nav class="side-nav" id="sideNav"></nav>
         <div class="vip-badge" aria-hidden="true">
-          <svg viewBox="0 0 140 190">
-            <path d="M70 5 83 43l35-19-14 47 27 19-31 18-8 51H48l-8-51L9 90l27-19-14-47 35 19Z"></path>
-            <path d="M35 108h70M38 129h64"></path>
-            <path d="M45 119 56 150l14-31 14 31 11-31"></path>
-            <path d="M33 160h74"></path>
-          </svg>
+          <div class="vip-emblem">
+            <div class="vip-gem"></div>
+            <strong class="vip-text">VIP</strong>
+          </div>
         </div>
       </aside>
 
@@ -1176,7 +1500,7 @@
     </main>
 
     <script>
-      const VERSION = "member-actions-v1-20260628";
+      const VERSION = "member-settings-v1-20260628";
       const params = new URLSearchParams(window.location.search);
       const initialView = params.get("view") || "profile";
       const initialStatus = params.get("status") || "all";
@@ -1256,12 +1580,20 @@
       };
 
       const messages = [
-        { type: "在线客服", id: "2024051811223344", date: "2024-05-18 11:25:33", copy: "您好，请问有什么可以帮您？", icon: "headset", unread: 2 },
-        { type: "订单咨询", id: "2024051509087654", date: "2024-05-15 09:15:07", copy: "请问我的订单什么时候发货？", icon: "box", unread: 1 },
-        { type: "在线客服", id: "2024051207112233", date: "2024-05-12 07:20:18", copy: "您的订单已为您加急处理，请耐心等待~", icon: "headset" },
-        { type: "发货咨询", id: "2024050505567788", date: "2024-05-05 06:02:45", copy: "好的，谢谢您的回复！", icon: "box" },
-        { type: "在线客服", id: "202405210456789", date: "2024-05-02 10:50:32", copy: "您好，有什么可以帮您？", icon: "headset" },
-        { type: "售后咨询", id: "2024050109102234", date: "2024-05-01 09:30:12", copy: "已收到商品，感谢您的帮助！", icon: "box" }
+        { type: "在线客服", id: "2024051811223344", date: "2024-05-18 11:25:33", copy: "您好，请问有什么可以帮您？", icon: "headset", unread: 2, tag: "客服已回复" },
+        { type: "订单咨询", id: "2024051509087654", date: "2024-05-15 09:15:07", copy: "请问我的订单什么时候发货？", icon: "box", unread: 1, tag: "订单跟进" },
+        { type: "在线客服", id: "2024051207112233", date: "2024-05-12 07:20:18", copy: "您的订单已为您加急处理，请耐心等待~", icon: "headset", tag: "处理中" },
+        { type: "发货咨询", id: "2024050505567788", date: "2024-05-05 06:02:45", copy: "好的，谢谢您的回复！", icon: "box", tag: "已回复" },
+        { type: "在线客服", id: "202405210456789", date: "2024-05-02 10:50:32", copy: "您好，有什么可以帮您？", icon: "headset", tag: "欢迎咨询" },
+        { type: "售后咨询", id: "2024050109102234", date: "2024-05-01 09:30:12", copy: "已收到商品，感谢您的帮助！", icon: "box", tag: "已完成" }
+      ];
+
+      const settingsItems = [
+        { id: "account", icon: "user", title: "账户与安全", copy: "修改密码、绑定手机、账户安全管理", type: "link" },
+        { id: "notice", icon: "bell", title: "消息通知", copy: "接收订单、活动、系统通知等消息", type: "toggle" },
+        { id: "help", icon: "question", title: "帮助与反馈", copy: "常见问题解答与意见反馈", type: "link" },
+        { id: "about", icon: "info", title: "关于我们", copy: "了解更多关于我们的信息", type: "link" },
+        { id: "logout", icon: "logout", title: "退出登录", copy: "退出当前账号", type: "link" }
       ];
 
       let state = {
@@ -1269,13 +1601,13 @@
         status: orderTabs.some(([id]) => id === initialStatus) ? initialStatus : "all",
         reminder: params.get("remind") === "1",
         query: "",
-        notice: true
+        notice: true,
+        messageId: params.get("message") || "",
+        settingPanel: params.get("panel") || ""
       };
 
       const profileStoreKey = "slt-member-profile";
       let profileDraft = readProfileDraft();
-      let activeMessageId = "";
-      let activeSetting = "";
       let flashTimer = null;
 
       function readProfileDraft() {
@@ -1314,6 +1646,8 @@
         state.view = nextView;
         state.status = nextStatus;
         state.reminder = Boolean(options.reminder);
+        state.messageId = "";
+        state.settingPanel = "";
         const next = new URL(window.location.href);
         next.searchParams.set("view", state.view);
         next.searchParams.set("v", VERSION);
@@ -1327,6 +1661,40 @@
         } else {
           next.searchParams.delete("remind");
         }
+        next.searchParams.delete("message");
+        next.searchParams.delete("panel");
+        history.pushState(null, "", next);
+        render();
+      }
+
+      function setMessageRoute(messageId) {
+        state.view = "messages";
+        state.messageId = messageId;
+        state.settingPanel = "";
+        state.query = "";
+        const next = new URL(window.location.href);
+        next.searchParams.set("view", "messages");
+        next.searchParams.set("message", messageId);
+        next.searchParams.set("v", VERSION);
+        next.searchParams.delete("status");
+        next.searchParams.delete("panel");
+        next.searchParams.delete("remind");
+        history.pushState(null, "", next);
+        render();
+      }
+
+      function setSettingRoute(panelId) {
+        state.view = "settings";
+        state.settingPanel = panelId;
+        state.messageId = "";
+        state.query = "";
+        const next = new URL(window.location.href);
+        next.searchParams.set("view", "settings");
+        next.searchParams.set("panel", panelId);
+        next.searchParams.set("v", VERSION);
+        next.searchParams.delete("status");
+        next.searchParams.delete("message");
+        next.searchParams.delete("remind");
         history.pushState(null, "", next);
         render();
       }
@@ -1458,21 +1826,35 @@
       }
 
       function renderMessages() {
+        if (state.messageId) {
+          renderMessageDetail();
+          return;
+        }
         const visible = messages.filter((message) => {
           const text = `${message.type} ${message.id} ${message.copy}`;
           return !state.query || text.includes(state.query);
         });
         content.innerHTML = `
+          <div class="panel-head">
+            <div>
+              <h2>沟通记录</h2>
+              <p>客服咨询、订单咨询、发货记录与售后消息集中在这里。</p>
+            </div>
+          </div>
           ${searchRow("请输入订单号/商品名称/聊天关键词")}
-          <div class="message-list">
+          <div class="record-list">
             ${visible.map((message) => `
-              <article class="message-card clickable ${activeMessageId === message.id ? "is-open" : ""}" data-message-id="${message.id}">
+              <article class="message-card record-card clickable ${state.messageId === message.id ? "is-open" : ""}" data-message-id="${message.id}">
                 <div class="product-icon">${icons[message.icon]}</div>
                 <div>
-                  <div class="message-meta"><strong class="message-title">${message.type}</strong><span>订单号：${message.id}</span></div>
-                  <p class="message-copy">${message.copy}</p>
+                  <div class="record-title-row"><strong>${message.type}</strong><span>订单号：${message.id}</span></div>
+                  <p class="record-copy">${message.copy}</p>
                 </div>
-                <div class="message-meta"><span>${message.date}</span>${message.unread ? `<span class="badge">${message.unread}</span>` : ""}</div>
+                <div class="record-right">
+                  <span class="record-date">${message.date}</span>
+                  <span class="status receive">${message.tag}</span>
+                  ${message.unread ? `<span class="record-badge">${message.unread}</span>` : ""}
+                </div>
               </article>
             `).join("")}
           </div>
@@ -1480,22 +1862,170 @@
       }
 
       function renderSettings() {
-        const settings = [
-          ["user", "账户与安全", "修改密码、绑定手机、账户安全管理", "link"],
-          ["bell", "消息通知", "接收订单、活动、系统通知等消息", "toggle"],
-          ["question", "帮助与反馈", "常见问题解答与意见反馈", "link"],
-          ["info", "关于我们", "了解更多关于我们的信息", "link"],
-          ["logout", "退出登录", "退出当前账号", "link"]
-        ];
+        if (state.settingPanel) {
+          renderSettingDetail();
+          return;
+        }
         content.innerHTML = `
+          <div class="panel-head">
+            <div>
+              <h2>系统设置</h2>
+              <p>账号安全、通知偏好、帮助反馈与退出登录。</p>
+            </div>
+          </div>
           <div class="settings-list">
-            ${settings.map(([icon, title, copy, type]) => `
-              <article class="setting-card clickable ${activeSetting === title ? "is-open" : ""}" data-setting="${title}">
-                <div class="product-icon">${icons[icon]}</div>
-                <div><p class="setting-title">${title}</p><p class="setting-copy">${copy}</p></div>
-                ${type === "toggle" ? `<button class="toggle" type="button" aria-pressed="${state.notice ? "true" : "false"}"><span></span></button>` : `<svg class="chevron" viewBox="0 0 64 64"><path d="m24 14 18 18-18 18"></path></svg>`}
+            ${settingsItems.map((item) => `
+              <article class="setting-card clickable ${state.settingPanel === item.id ? "is-open" : ""}" data-setting="${item.id}">
+                <div class="product-icon">${icons[item.icon]}</div>
+                <div><p class="setting-title">${item.title}</p><p class="setting-copy">${item.copy}</p></div>
+                ${item.type === "toggle" ? `<button class="toggle" type="button" aria-pressed="${state.notice ? "true" : "false"}"><span></span></button>` : `<svg class="chevron" viewBox="0 0 64 64"><path d="m24 14 18 18-18 18"></path></svg>`}
               </article>
             `).join("")}
+          </div>
+        `;
+      }
+
+      function renderMessageDetail() {
+        const message = messages.find((item) => item.id === state.messageId) || messages[0];
+        const rows = [
+          ["09:30", "客服小柔", "您好，很高兴为您服务，请问需要查询订单、发货还是售后？"],
+          ["09:31", "会员", message.copy],
+          ["09:32", "客服小柔", "我们已经记录您的问题，会按照订单编号继续跟进，并通过邮箱或站内消息通知您。"],
+          ["09:33", "系统", `关联订单：${message.id}，当前类型：${message.type}`]
+        ];
+        content.innerHTML = `
+          <section class="detail-panel">
+            <div class="panel-head">
+              <div>
+                <h2>${escapeHtml(message.type)}</h2>
+                <p>订单号：${escapeHtml(message.id)}　${escapeHtml(message.date)}</p>
+              </div>
+              <button class="frame-button" type="button" data-action="back-message-list">${icons.chat}<span>返回记录</span></button>
+            </div>
+            <div class="detail-card">
+              <div class="product-icon">${icons[message.icon]}</div>
+              <div class="detail-copy">
+                <h3>${escapeHtml(message.tag)}</h3>
+                <p>${escapeHtml(message.copy)}</p>
+                <p>记录状态：客服持续跟进，新的消息会在此处同步显示。</p>
+              </div>
+            </div>
+            <div class="timeline">
+              ${rows.map(([time, role, copy]) => `
+                <div class="timeline-row">
+                  <div class="timeline-time">${time}</div>
+                  <div class="detail-copy"><h3>${role}</h3><p>${copy}</p></div>
+                </div>
+              `).join("")}
+            </div>
+            <div class="reply-box">
+              <label class="input">${icons.chat}<input name="messageReply" placeholder="输入回复内容..." autocomplete="off"></label>
+              <button class="frame-button primary" type="button" data-action="send-message-reply">发送</button>
+            </div>
+          </section>
+        `;
+      }
+
+      function renderSettingDetail() {
+        const item = settingsItems.find((entry) => entry.id === state.settingPanel) || settingsItems[0];
+        if (item.id === "account") {
+          content.innerHTML = `
+            <section class="detail-panel">
+              ${settingHead("账户与安全", "管理登录方式、密码、设备与隐私安全。")}
+              <div class="settings-grid">
+                ${settingSubcard("user", "会员编号", profileValue("memberNo", "未填写"), "系统自动绑定会员身份")}
+                ${settingSubcard("phone", "绑定手机", profileValue("phone", "请输入联系方式"), "用于接收订单与安全验证")}
+                ${settingSubcard("mail", "安全邮箱", profileValue("email", "请输入电子邮箱"), "用于找回账号和接收订单邮件")}
+                ${settingSubcard("gear", "登录密码", "建议定期更新", "点击可扩展密码修改流程", "修改")}
+                ${settingSubcard("bell", "登录提醒", state.notice ? "已开启" : "已关闭", "异地登录和重要操作会提醒")}
+                ${settingSubcard("logout", "设备管理", "当前设备 1 台", "可扩展查看登录设备与移除设备", "查看")}
+              </div>
+              <div class="logout-actions">
+                <button class="frame-button primary" type="button" data-action="save-security">保存安全设置</button>
+                <button class="frame-button" type="button" data-action="back-settings-list">返回设置</button>
+              </div>
+            </section>
+          `;
+          return;
+        }
+        if (item.id === "help") {
+          content.innerHTML = `
+            <section class="detail-panel">
+              ${settingHead("帮助与反馈", "常见问题、订单协助、功能建议和客服反馈。")}
+              <div class="settings-grid">
+                ${settingSubcard("question", "订单什么时候发货？", "待发货订单可点击提醒发货", "工作人员收到后会通过邮箱跟进")}
+                ${settingSubcard("cart", "如何提交购物车？", "购物车点击去结算后提交后台", "订单会进入结算中心并等待邮箱联系")}
+                ${settingSubcard("headset", "需要人工客服", "可进入客服中心在线咨询", "也可在沟通记录内继续回复")}
+              </div>
+              <div class="settings-subcard feedback-box">
+                <div class="detail-copy">
+                  <h3>意见反馈</h3>
+                  <p>请填写你遇到的问题、希望修改的页面或订单号。</p>
+                </div>
+                <label class="textarea"><textarea maxlength="500" placeholder="请输入反馈内容，例如：会员中心某个按钮不正确、订单状态需要调整..."></textarea><span class="counter">0/500</span></label>
+                <button class="frame-button primary" type="button" data-action="submit-feedback">提交反馈</button>
+              </div>
+              <div class="logout-actions">
+                <button class="frame-button" type="button" data-action="back-settings-list">返回设置</button>
+              </div>
+            </section>
+          `;
+          return;
+        }
+        if (item.id === "about") {
+          content.innerHTML = `
+            <section class="detail-panel">
+              ${settingHead("关于我们", "Secret Language Trade 会员服务信息。")}
+              <div class="settings-grid">
+                ${settingSubcard("vip", "会员体系", "七折会员 / 三折会员 / VIP会员", "后续可扩展会员价格、权益与续费")}
+                ${settingSubcard("pass", "服务承诺", "安全可靠、快速访问、多语言支持", "订单与沟通记录保留在会员中心")}
+                ${settingSubcard("info", "当前版本", VERSION, "用于刷新手机缓存，确保加载最新页面")}
+                ${settingSubcard("mail", "官方联系", "gavindeshijie@163.com", "结算与订单确认请以官方邮箱为准")}
+              </div>
+              <div class="logout-actions">
+                <button class="frame-button primary" type="button" data-action="open-support">联系客服</button>
+                <button class="frame-button" type="button" data-action="back-settings-list">返回设置</button>
+              </div>
+            </section>
+          `;
+          return;
+        }
+        if (item.id === "logout") {
+          content.innerHTML = `
+            <section class="detail-panel logout-confirm">
+              <div class="product-icon">${icons.logout}</div>
+              <div class="detail-copy">
+                <h3>确认退出当前账号？</h3>
+                <p>退出后，本机浏览器保存的会员表单草稿会保留；重新进入会员中心仍可继续编辑。</p>
+                <p>如果需要清除本机资料，请先返回会员信息并点击重置信息。</p>
+              </div>
+              <div class="logout-actions">
+                <a class="frame-button danger" href="../catalog/?category=panty&v=${VERSION}">${icons.logout}<span>确认退出</span></a>
+                <button class="frame-button" type="button" data-action="back-settings-list">取消返回</button>
+              </div>
+            </section>
+          `;
+        }
+      }
+
+      function settingHead(title, copy) {
+        return `
+          <div class="panel-head">
+            <div>
+              <h2>${title}</h2>
+              <p>${copy}</p>
+            </div>
+            <button class="frame-button" type="button" data-action="back-settings-list">${icons.gear}<span>返回设置</span></button>
+          </div>
+        `;
+      }
+
+      function settingSubcard(icon, title, value, copy, actionLabel = "") {
+        return `
+          <div class="settings-subcard">
+            <div class="product-icon">${icons[icon]}</div>
+            <div><strong>${escapeHtml(title)}</strong><span>${escapeHtml(value)}｜${escapeHtml(copy)}</span></div>
+            ${actionLabel ? `<button class="small-button" type="button" data-action="setting-inline">${escapeHtml(actionLabel)}</button>` : `<svg class="chevron" viewBox="0 0 64 64"><path d="m24 14 18 18-18 18"></path></svg>`}
           </div>
         `;
       }
@@ -1673,33 +2203,23 @@
       function showMessagePanel(messageId) {
         const message = messages.find((item) => item.id === messageId);
         if (!message) return;
-        activeMessageId = messageId;
-        renderMessages();
-        showActionPanel(message.type, `
-          <p><strong>订单号：</strong>${escapeHtml(message.id)}</p>
-          <p>${escapeHtml(message.copy)}</p>
-          <p>客服记录已打开，后续可以继续扩展为完整聊天窗口。</p>
-        `);
+        setMessageRoute(messageId);
       }
 
-      function showSettingPanel(title) {
-        activeSetting = title;
-        renderSettings();
-        const copy = {
-          "账户与安全": "这里可以扩展修改密码、绑定手机、账号安全验证。",
-          "帮助与反馈": "这里可以扩展常见问题、意见反馈和客服工单。",
-          "关于我们": "这里可以扩展平台介绍、服务条款和联系方式。",
-          "退出登录": "当前演示状态已退出，可返回首页或继续浏览。"
-        }[title] || "该设置已打开。";
-        showActionPanel(title, `<p>${copy}</p>`);
+      function showSettingPanel(panelId) {
+        if (panelId === "notice") {
+          state.notice = !state.notice;
+          renderSettings();
+          showFlash(state.notice ? "消息通知已开启" : "消息通知已关闭", icons.bell);
+          return;
+        }
+        setSettingRoute(panelId);
       }
 
       document.addEventListener("click", (event) => {
         const viewButton = event.target.closest("[data-view]");
         if (viewButton) {
           state.query = "";
-          activeMessageId = "";
-          activeSetting = "";
           setRoute(viewButton.dataset.view, viewButton.dataset.view === "orders" ? "all" : state.status);
           return;
         }
@@ -1771,6 +2291,36 @@
           }
           if (actionName === "filter") {
             showActionPanel("筛选", `<p>当前列表已支持顶部分类和搜索框筛选。后续可以在这里接入更多筛选条件。</p>`);
+            return;
+          }
+          if (actionName === "back-message-list") {
+            state.messageId = "";
+            setRoute("messages", state.status);
+            return;
+          }
+          if (actionName === "back-settings-list") {
+            state.settingPanel = "";
+            setRoute("settings", state.status);
+            return;
+          }
+          if (actionName === "send-message-reply") {
+            showFlash("回复已写入沟通记录", icons.chat);
+            return;
+          }
+          if (actionName === "save-security") {
+            showFlash("账户安全设置已保存", icons.check);
+            return;
+          }
+          if (actionName === "submit-feedback") {
+            showFlash("反馈已提交，客服会在沟通记录中回复", icons.check);
+            return;
+          }
+          if (actionName === "setting-inline") {
+            showFlash("该设置入口已打开，可继续接入真实流程", icons.gear);
+            return;
+          }
+          if (actionName === "open-support") {
+            window.location.href = `../support/?v=${VERSION}`;
           }
         }
       });
@@ -1792,6 +2342,8 @@
         state.view = next.get("view") || "profile";
         state.status = next.get("status") || "all";
         state.reminder = next.get("remind") === "1";
+        state.messageId = next.get("message") || "";
+        state.settingPanel = next.get("panel") || "";
         state.query = "";
         render();
       });
@@ -1801,6 +2353,8 @@
         params.set("view", state.view);
         if (state.view === "orders") params.set("status", state.status);
         if (state.reminder && state.view === "orders" && state.status === "ship") params.set("remind", "1");
+        if (state.view === "messages" && state.messageId) params.set("message", state.messageId);
+        if (state.view === "settings" && state.settingPanel) params.set("panel", state.settingPanel);
         window.history.replaceState(null, "", `${window.location.pathname}?${params.toString()}`);
       }
 
