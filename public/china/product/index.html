@@ -294,7 +294,7 @@
       .cart-button {
         position: absolute;
         left: 35.04cqw;
-        top: 17.45cqw;
+        top: 19.7cqw;
         width: 16.6cqw;
         display: grid;
         justify-items: center;
@@ -321,10 +321,10 @@
       }
 
       .cart-orb .cart-icon {
-        width: 52%;
-        height: 52%;
+        width: 72%;
+        height: 72%;
         color: rgba(255, 255, 255, 0.96);
-        stroke-width: 3.25;
+        stroke-width: 2.75;
         filter:
           drop-shadow(0 0 0.35cqw rgba(255, 255, 255, 0.45))
           drop-shadow(0 0 0.8cqw rgba(255, 60, 255, 0.84));
@@ -377,9 +377,9 @@
       }
 
       .feature-icon .ui-icon {
-        width: 72%;
-        height: 72%;
-        stroke-width: 2.55;
+        width: 76%;
+        height: 76%;
+        stroke-width: 2.8;
       }
 
       .feature-copy {
@@ -461,8 +461,8 @@
       }
 
       .play-button .ui-icon {
-        width: 48%;
-        height: 48%;
+        width: 54%;
+        height: 54%;
         margin-left: 0.55cqw;
         fill: currentColor;
         stroke: none;
@@ -486,30 +486,34 @@
 
       .side-nav {
         position: absolute;
-        right: 2.9cqw;
-        top: 47.4cqw;
+        right: 1.55cqw;
+        top: 47.05cqw;
         z-index: 3;
         display: grid;
-        gap: 2.45cqw;
+        gap: 2.08cqw;
       }
 
       .side-link {
-        width: 10.9cqw;
+        width: 13.8cqw;
         min-width: 0;
         display: grid;
         justify-items: center;
-        gap: 0.75cqw;
+        gap: 0.46cqw;
         color: rgba(255, 255, 255, 0.92);
         text-decoration: none;
-        font-size: clamp(12px, 2.56cqw, 18.5px);
-        line-height: 1.08;
+        font-size: clamp(12px, 2.34cqw, 16.9px);
+        line-height: 1;
         text-align: center;
         text-shadow: 0 0 0.7cqw rgba(0, 0, 0, 0.85);
       }
 
+      .side-link > span:last-child {
+        white-space: nowrap;
+      }
+
       .side-icon {
-        width: 6.2cqw;
-        height: 6.2cqw;
+        width: 6.65cqw;
+        height: 6.65cqw;
         display: grid;
         place-items: center;
       }
@@ -525,8 +529,8 @@
       }
 
       .side-icon .cart-icon {
-        width: 90%;
-        height: 90%;
+        width: 100%;
+        height: 100%;
       }
 
       .scroll-tip {
@@ -553,6 +557,53 @@
         margin: 0 0 1.8cqw;
         color: #fff;
         font-size: clamp(20px, 4.4cqw, 32px);
+      }
+
+      .detail-gallery {
+        display: grid;
+        gap: 2.8cqw;
+        margin-top: 3.2cqw;
+      }
+
+      .detail-shot {
+        position: relative;
+        height: 54cqw;
+        margin: 0;
+        border: 0.12cqw solid rgba(219, 175, 255, 0.34);
+        border-radius: 1.35cqw;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 50% 40%, rgba(111, 0, 180, 0.26), transparent 58%),
+          #050008;
+        box-shadow:
+          inset 0 0 1cqw rgba(255, 255, 255, 0.05),
+          0 0 1.15cqw rgba(160, 44, 255, 0.18);
+      }
+
+      .detail-shot::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: linear-gradient(180deg, transparent 58%, rgba(0, 0, 0, 0.42));
+      }
+
+      .detail-shot img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+      }
+
+      .detail-shot span {
+        position: absolute;
+        left: 3.2cqw;
+        bottom: 2.4cqw;
+        z-index: 1;
+        color: rgba(255, 255, 255, 0.82);
+        font-size: clamp(13px, 2.9cqw, 21px);
+        letter-spacing: 0;
+        text-shadow: 0 0 0.9cqw rgba(0, 0, 0, 0.9);
       }
     </style>
   </head>
@@ -595,8 +646,9 @@
         <path d="M45.4 51.2C43 55.7 38.6 57.6 32 57.6h-3.2"></path>
       </symbol>
       <symbol id="feature-leaf" viewBox="0 0 64 64">
-        <path d="M13 46c23-1 35-15 40-35-20 4-34 16-40 35Z"></path>
-        <path d="M13 46c8-10 18-18 31-25"></path>
+        <path d="M13.5 48.5c7.2-18.5 20.1-30.2 38.2-35.2-2.8 17.3-15.1 29.4-36.8 36.3"></path>
+        <path d="M15 49c8.2-10.4 18-19.2 29.6-26.5"></path>
+        <path d="m25 39-7.1.9M31.4 33.4l-7.1.9M38.2 27.8l-6.7.8"></path>
       </symbol>
       <symbol id="feature-wave" viewBox="0 0 64 64">
         <path d="M13 22c7-7 12 7 19 0s12 7 19 0"></path>
@@ -675,6 +727,7 @@
       <section class="detail-copy" id="detailCopy">
         <h2>产品细节</h2>
         <p id="detailText">柔软亲肤，轻盈透气，适合日常搭配。</p>
+        <div class="detail-gallery" id="detailGallery" aria-label="产品细节图片"></div>
       </section>
     </main>
 
@@ -691,10 +744,17 @@
       const imageSrc = `../../assets/china-product-items/${category}-${itemIndex}.jpg?v=product-detail-20260628`;
       const cleanPrice = priceText.replace(/[^\d.]/g, "");
       const featureParts = description.split("|").map((part) => part.trim()).filter(Boolean);
-      const featureIcons = ["feature-leaf", "feature-wave", "feature-heart", "feature-stretch"];
+      const featureIconSvg = [
+        `<svg class="ui-icon" aria-hidden="true" viewBox="0 0 64 64"><path d="M13.5 48.5c7.2-18.5 20.1-30.2 38.2-35.2-2.8 17.3-15.1 29.4-36.8 36.3"></path><path d="M15 49c8.2-10.4 18-19.2 29.6-26.5"></path><path d="m25 39-7.1.9M31.4 33.4l-7.1.9M38.2 27.8l-6.7.8"></path></svg>`,
+        `<svg class="ui-icon" aria-hidden="true" viewBox="0 0 64 64"><path d="M13 22c7-7 12 7 19 0s12 7 19 0"></path><path d="M13 33c7-7 12 7 19 0s12 7 19 0"></path><path d="M13 44c7-7 12 7 19 0s12 7 19 0"></path></svg>`,
+        `<svg class="ui-icon" aria-hidden="true" viewBox="0 0 64 64"><path d="M32 51S14 39 14 25.5C14 18 19 14 25 14c4.1 0 6.1 2.2 7 4.1C32.9 16.2 35 14 39 14c6 0 11 4 11 11.5C50 39 32 51 32 51Z"></path></svg>`,
+        `<svg class="ui-icon" aria-hidden="true" viewBox="0 0 64 64"><path d="M32 13.5v37"></path><path d="M20 24h24M20 40h24"></path><path d="m24 17-7 7 7 7M40 17l7 7-7 7"></path><path d="m24 33-7 7 7 7M40 33l7 7-7 7"></path></svg>`
+      ];
       const featureSub = ["细腻面料", "轻盈不闷热", "精致设计", "日常不束缚"];
       const intro = `精选${featureParts.join("、")}设计，细腻纹理若隐若现，柔软面料贴合肌肤，带来轻盈透气的穿着体验。`;
       const backUrl = `../catalog/?category=${category}&v=product-detail-20260628`;
+      const heroIndexes = [itemIndex, (itemIndex % page.products.length) + 1, ((itemIndex + 1) % page.products.length) + 1];
+      const heroImages = heroIndexes.map((index) => `../../assets/china-product-items/${category}-${index}.jpg?v=product-detail-20260628`);
 
       document.body.dataset.category = category;
       document.title = `${code} | ${page.title} | Secret Language Trade`;
@@ -717,13 +777,22 @@
         const item = document.createElement("div");
         item.className = "feature";
         item.innerHTML = `
-          <span class="feature-icon"><svg class="ui-icon" aria-hidden="true"><use href="#${featureIcons[index]}" xlink:href="#${featureIcons[index]}"></use></svg></span>
+          <span class="feature-icon">${featureIconSvg[index]}</span>
           <span class="feature-copy">
             <span class="feature-title">${label}</span>
             <span class="feature-sub">${featureSub[index]}</span>
           </span>
         `;
         featureRow.append(item);
+      });
+
+      const detailGallery = document.getElementById("detailGallery");
+      const galleryLabels = ["面料细节", "穿搭效果", "版型展示"];
+      heroImages.forEach((src, index) => {
+        const shot = document.createElement("figure");
+        shot.className = "detail-shot";
+        shot.innerHTML = `<img src="${src}" alt="${description} ${galleryLabels[index]}"><span>${galleryLabels[index]}</span>`;
+        detailGallery.append(shot);
       });
 
       document.getElementById("addCart").addEventListener("click", (event) => {
@@ -737,8 +806,26 @@
 
       document.getElementById("playButton").addEventListener("click", (event) => {
         const button = event.currentTarget;
+        document.querySelector(".media-section").classList.toggle("is-playing");
         button.classList.toggle("is-playing");
         button.setAttribute("aria-pressed", button.classList.contains("is-playing") ? "true" : "false");
+      });
+
+      let activeHero = 0;
+      let startX = 0;
+      const heroStage = document.querySelector(".hero-stage");
+      const heroImage = document.getElementById("heroImage");
+      const setHero = (direction) => {
+        activeHero = (activeHero + direction + heroImages.length) % heroImages.length;
+        heroImage.src = heroImages[activeHero];
+      };
+      heroStage.addEventListener("touchstart", (event) => {
+        startX = event.touches[0].clientX;
+      }, { passive: true });
+      heroStage.addEventListener("touchend", (event) => {
+        const endX = event.changedTouches[0].clientX;
+        const delta = endX - startX;
+        if (Math.abs(delta) > 42) setHero(delta < 0 ? 1 : -1);
       });
 
       document.getElementById("menuButton").addEventListener("click", () => {
