@@ -4,6 +4,7 @@
 **Source Visual Truth**
 - `/tmp/codex-remote-attachments/019efd71-fb8e-7d91-8a28-6cbb372caad1/2906C960-B99D-4737-9CD0-D0C3672CFED9/1-照片-1.jpg`
 - China category source: `/tmp/codex-remote-attachments/019efd71-fb8e-7d91-8a28-6cbb372caad1/C8D94A69-D98F-4455-A019-A9EEB20CF270/1-照片-1.jpg`
+- Real phone China display reference: `/tmp/codex-remote-attachments/019efd71-fb8e-7d91-8a28-6cbb372caad1/3E3FDEE8-E75E-43AB-BD37-B7FFA21934A5/1-照片-1.jpg`
 
 **Implementation Evidence**
 - Local URL: `http://127.0.0.1:8091/`
@@ -19,13 +20,15 @@
 - China original-ratio source comparison: `/private/tmp/china-one-ratio-compare-css.png`
 - China scrollable first-screen comparison: `/private/tmp/china-scrollable-compare-393x852.png`
 - China scrollable bottom screenshot: `/private/tmp/china-scrollable-bottom-393x852.png`
+- China compressed-top same-size screenshot: `/private/tmp/china-balanced-top-589x1280.png`
+- China real-phone comparison: `/private/tmp/china-real-vs-balanced-589x1280.png`
 - Card-zone comparison: `/private/tmp/card-zone-compare-v28.png`
 - Focused top comparison: `/private/tmp/love-focus-top-v17.png`
 - Focused card comparison: `/private/tmp/love-focus-cards-v17.png`
 - Focused bottom comparison: `/private/tmp/love-focus-bottom-v17.png`
 - Viewport: `427x640`, `deviceScaleFactor: 2`, mobile viewport.
 - Original-ratio verification viewport: `393x852`, CSS-pixel screenshot.
-- State: default page load and scrolled-bottom state, China category page; click test selects `#stockings`.
+- State: default page load, China category page; click test selects `#stockings`.
 
 **Required Fidelity Surfaces**
 - Fonts and typography: heading, language labels, currencies, and price lines match the visual hierarchy and wrapping of the reference. The implementation uses browser-safe multilingual font fallbacks, so exact antialiasing can vary by device.
@@ -60,8 +63,9 @@
 - Rebuilt `china/` as a code-authored neon product-category page matching the supplied Chinese reference image without using that full image as the page background.
 - Replaced the semi-transparent item/frame reconstruction with exact source slices: top rules, hero/title block, side rails, and 12 full card crops are placed at the original 590x1280 coordinates.
 - The China page now preserves the original `590x1280` coordinate ratio by sizing the poster from `100vw`, so the width touches both viewport edges while every category card keeps the reference proportions.
-- Re-enabled vertical scrolling and added a bottom scroll buffer for mobile browser toolbars. On `393x852`, the page now has `scrollHeight 949` and can scroll about `97px`; after scrolling, the last row moves above the bottom browser-toolbar area instead of being locked behind it.
-- Verified `360x780`, `393x852`, and `430x932` mobile viewports: each keeps about `97px` of vertical drag room, all 12 category cards load, no failed images, no detected horizontal card side clipping, and the right rail reaches the viewport edge within sub-pixel rounding.
+- Compressed only the top three-line rules band and tightened the vertical gaps between the 12 China category cards so the final row sits next to the mobile browser URL bar without requiring a deliberate vertical drag.
+- Same-size phone check at `589x1280`: the top rules band is about `110px` high, the final card row bottoms at `1170px`, all 12 category cards load, no failed images, no detected horizontal card side clipping, and the right rail reaches the viewport edge within sub-pixel rounding.
+- Verified `360x780`, `393x852`, and `430x932` mobile viewports: normal page load has only sub-pixel scroll (`maxScrollY` about `1px`) while each category card keeps its source ratio and click behavior.
 - Removed the obsolete `public/assets/china-categories/` reconstruction assets so the China page only uses `public/assets/china-slices/` full-card source crops.
 - Added 12 clickable China category links: 内裤, 胸罩, 上衣, 裙子 / 短裤, 连衣裙, 丝袜, 贴身连体衣, 角色扮演, 长裤, 帽子, 女士凉鞋, and 女士包包.
 
