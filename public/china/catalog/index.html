@@ -409,16 +409,16 @@
       }
 
       .panty-reference .filter-button {
+        position: relative;
+        display: grid;
+        place-items: center;
+        overflow: visible;
         height: 8.4cqw;
         min-height: 0;
         padding: 0 1.1cqw;
         border: 0;
         border-radius: 0;
-        background-color: #010101;
-        background-image: url("../../assets/china-catalog-ui/filter-frame.png?v=frame-clean-20260628");
-        background-position: center;
-        background-size: 100% 100%;
-        background-repeat: no-repeat;
+        background: transparent;
         color: rgba(255, 255, 255, 0.92);
         font-size: clamp(15px, 3.42cqw, 25.3px);
         font-weight: 700;
@@ -426,13 +426,43 @@
         box-shadow: none;
       }
 
+      .panty-reference .filter-button::before,
+      .panty-reference .filter-button::after {
+        content: "";
+        position: absolute;
+        pointer-events: none;
+      }
+
+      .panty-reference .filter-button::before {
+        inset: 1.6cqw 1.85cqw;
+        z-index: 0;
+        background: rgba(0, 0, 0, 0.68);
+      }
+
+      .panty-reference .filter-button::after {
+        inset: 0;
+        z-index: 1;
+        background: url("../../assets/china-catalog-ui/filter-frame.png?v=frame-clean-20260628") center / 100% 100% no-repeat;
+      }
+
       .panty-reference .filter-button.is-active {
-        background-color: #030003;
-        background-image: url("../../assets/china-catalog-ui/filter-frame-active.png?v=frame-clean-20260628");
         color: #fff;
         text-shadow:
           0 0 0.5cqw #fff,
           0 0 1.2cqw rgba(255, 73, 255, 0.95);
+      }
+
+      .panty-reference .filter-button.is-active::before {
+        background: rgba(4, 0, 8, 0.7);
+      }
+
+      .panty-reference .filter-button.is-active::after {
+        background-image: url("../../assets/china-catalog-ui/filter-frame-active.png?v=frame-clean-20260628");
+      }
+
+      .panty-reference .filter-label {
+        position: relative;
+        z-index: 2;
       }
 
       .panty-reference .search {
@@ -838,8 +868,11 @@
         const button = document.createElement("button");
         button.type = "button";
         button.className = "filter-button";
-        button.textContent = filter;
         button.dataset.filter = filter;
+        const label = document.createElement("span");
+        label.className = "filter-label";
+        label.textContent = filter;
+        button.append(label);
         button.setAttribute("aria-pressed", filter === activeFilter ? "true" : "false");
         if (filter === activeFilter) {
           button.classList.add("is-active");
