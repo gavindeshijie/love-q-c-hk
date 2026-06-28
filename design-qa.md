@@ -54,7 +54,7 @@
 - Added blank entry pages for Singapore, Thailand, Vietnam, Malaysia, and Laos.
 - Rebuilt `china/` as a code-authored neon product-category page matching the supplied Chinese reference image without using that full image as the page background.
 - Replaced the semi-transparent item/frame reconstruction with exact source slices: top rules, hero/title block, side rails, and 12 full card crops are placed at the original 590x1280 coordinates.
-- The China page now scales the original coordinate system to the current visual viewport with no page scroll, keeping the bottom row above the browser edge on 360, 393, and 430px mobile widths.
+- The China page now stretches the original coordinate system to the current visual viewport with no page scroll, so the left/right rails touch the browser edges while the bottom row remains visible on 360, 393, and 430px mobile widths.
 - Added 12 clickable China category links: 内裤, 胸罩, 上衣, 裙子 / 短裤, 连衣裙, 丝袜, 贴身连体衣, 角色扮演, 长裤, 帽子, 女士凉鞋, and 女士包包.
 
 **Follow-up Polish**

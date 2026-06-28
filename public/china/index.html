@@ -6,7 +6,6 @@
     <title>华语专区 | Secret Language Trade</title>
     <style>
       :root {
-        --clearance: max(4px, env(safe-area-inset-bottom));
         color-scheme: dark;
       }
 
@@ -33,8 +32,8 @@
 
       .poster {
         position: relative;
-        width: min(100vw, 590px, calc((100svh - var(--clearance)) * 590 / 1280));
-        aspect-ratio: 590 / 1280;
+        width: min(100vw, 590px);
+        height: 100svh;
         overflow: hidden;
         background: #000;
         flex: 0 0 auto;
@@ -48,7 +47,7 @@
         }
 
         .poster {
-          width: min(100vw, 590px, calc((100dvh - var(--clearance)) * 590 / 1280));
+          height: 100dvh;
         }
       }
 
