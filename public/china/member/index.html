@@ -882,7 +882,7 @@
   </head>
   <body>
     <main class="member-page" aria-label="会员中心">
-      <a class="back-button" href="../catalog/?category=panty&v=ship-reminder-v1-20260628" aria-label="返回上一页">
+      <a class="back-button" href="../catalog/?category=panty&v=support-center-v1-20260628" aria-label="返回上一页">
         <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M38 15 20 32l18 17"></path><path d="M21 32h31"></path></svg>
       </a>
 
@@ -916,7 +916,7 @@
     </main>
 
     <script>
-      const VERSION = "ship-reminder-v1-20260628";
+      const VERSION = "support-center-v1-20260628";
       const params = new URLSearchParams(window.location.search);
       const initialView = params.get("view") || "profile";
       const initialStatus = params.get("status") || "all";
@@ -1053,7 +1053,7 @@
         }
         footerActions.className = "footer-actions";
         footerActions.innerHTML = `
-          <button class="neon-button icon-only" type="button" data-view="messages" aria-label="客服">${icons.headset}</button>
+          <a class="neon-button icon-only" href="../support/?v=${VERSION}" aria-label="客服">${icons.headset}</a>
           <a class="neon-button icon-only" href="../cart/?v=${VERSION}" aria-label="购物车">${icons.cart}</a>
           <a class="neon-button" href="../catalog/?category=panty&v=${VERSION}">${icons.home}<span>退出会员中心</span></a>
         `;
