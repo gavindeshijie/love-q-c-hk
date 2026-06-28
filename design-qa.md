@@ -97,6 +97,7 @@
 - Browser-rendered screenshot capture for this specific update is blocked in the current environment because the Browser plugin reports no available in-app browser sessions and Playwright/Chromium are not installed. Static and HTTP checks passed.
 - Started a panty-only coordinate pass against the `738x1280` panty reference image supplied on 2026-06-28. The `category=panty` catalog page now receives a dedicated `panty-reference` layout with width-based coordinate sizing for the title band, three-row filter grid, search field, two-column product cards, product text, and bottom nav. Other catalog categories are intentionally not synchronized yet.
 - Tried opening the local panty page in Safari for visual inspection, but Computer Use could not read a Safari window (`cgWindowNotFound`) and Google Chrome is not installed on this machine. The first coordinate pass was validated through static checks and local HTTP checks only.
+- Replaced the panty page subcategory button CSS-drawn frames with two extracted frame assets from the supplied panty reference: `public/assets/china-catalog-ui/filter-frame.png` and `filter-frame-active.png`. The baked source text was erased from the frame interiors; the labels remain editable HTML text, and all subcategory buttons now share one normal frame style plus one active frame style.
 
 **Follow-up Polish**
 - P3: the China page uses modular source slices rather than one full-page background. The slice boundaries are intentionally separate so each category card remains an independent clickable link.

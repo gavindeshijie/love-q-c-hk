@@ -404,38 +404,30 @@
 
       .panty-reference .filters {
         grid-template-columns: repeat(5, minmax(0, 1fr));
-        gap: 1.25cqw 1.55cqw;
-        margin: 0 0 2.05cqw;
+        gap: 1.48cqw 1.45cqw;
+        margin: 0 0 1.45cqw;
       }
 
       .panty-reference .filter-button {
-        height: 7.15cqw;
+        height: 8.4cqw;
         min-height: 0;
-        padding: 0 0.7cqw;
-        border: 0.14cqw solid rgba(221, 237, 255, 0.82);
-        border-radius: 1.15cqw;
-        clip-path: polygon(0 1.25cqw, 1.25cqw 0, calc(100% - 1.25cqw) 0, 100% 1.25cqw, 100% calc(100% - 1.25cqw), calc(100% - 1.25cqw) 100%, 1.25cqw 100%, 0 calc(100% - 1.25cqw));
-        background:
-          linear-gradient(92deg, rgba(255, 42, 255, 0.13), rgba(14, 0, 22, 0.86) 18%, #020202 50%, rgba(36, 0, 52, 0.8) 82%, rgba(56, 239, 255, 0.14)),
-          #010101;
-        font-size: clamp(14px, 3.25cqw, 24px);
+        padding: 0 1.1cqw;
+        border: 0;
+        border-radius: 0;
+        background: url("../../assets/china-catalog-ui/filter-frame.png?v=frame-20260628") center / 100% 100% no-repeat;
+        color: rgba(255, 255, 255, 0.92);
+        font-size: clamp(15px, 3.42cqw, 25.3px);
         font-weight: 700;
-        box-shadow:
-          inset 0 0 0 0.17cqw rgba(255, 255, 255, 0.1),
-          0 0 0.85cqw rgba(156, 226, 255, 0.28);
+        text-shadow: 0 0 0.7cqw rgba(255, 255, 255, 0.45);
+        box-shadow: none;
       }
 
       .panty-reference .filter-button.is-active {
-        border-color: rgba(255, 111, 255, 0.98);
-        background:
-          radial-gradient(circle at 50% 50%, rgba(255, 72, 255, 0.34), transparent 62%),
-          linear-gradient(90deg, rgba(255, 35, 255, 0.32), rgba(38, 0, 60, 0.86)),
-          #030003;
-        box-shadow:
-          inset 0 0 0 0.18cqw rgba(255, 255, 255, 0.2),
-          0 0 0.8cqw #fff,
-          0 0 2cqw rgba(255, 35, 255, 0.98),
-          0 0 3.35cqw rgba(128, 0, 255, 0.8);
+        background-image: url("../../assets/china-catalog-ui/filter-frame-active.png?v=frame-20260628");
+        color: #fff;
+        text-shadow:
+          0 0 0.5cqw #fff,
+          0 0 1.2cqw rgba(255, 73, 255, 0.95);
       }
 
       .panty-reference .search {
