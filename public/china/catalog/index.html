@@ -7,6 +7,11 @@
     <style>
       :root {
         color-scheme: dark;
+        --bg: #030006;
+        --line: rgba(220, 236, 255, 0.78);
+        --muted: rgba(255, 255, 255, 0.72);
+        --purple: #ff38ff;
+        --blue: #3214ff;
       }
 
       * {
@@ -22,256 +27,634 @@
       }
 
       body {
-        overflow: hidden;
+        overflow-x: hidden;
+        overflow-y: auto;
+        color: #fff;
+        font-family: Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+        letter-spacing: 0;
         -webkit-text-size-adjust: 100%;
       }
 
-      .screen {
+      button,
+      input {
+        font: inherit;
+      }
+
+      .catalog {
         position: relative;
-        width: 100vw;
-        height: 100svh;
-        min-height: 100vh;
-        overflow: hidden;
-        background: #000;
-      }
-
-      @supports (height: 100dvh) {
-        .screen {
-          height: 100dvh;
-        }
-      }
-
-      .shot {
-        display: block;
         width: 100%;
-        height: 100%;
-        object-fit: fill;
-        object-position: top center;
-        user-select: none;
-        -webkit-user-drag: none;
+        max-width: 760px;
+        min-height: 100svh;
+        margin: 0 auto;
+        padding: max(10px, env(safe-area-inset-top)) 14px max(92px, env(safe-area-inset-bottom));
+        background:
+          radial-gradient(circle at 50% 9%, rgba(255, 42, 255, 0.16), transparent 17%),
+          radial-gradient(circle at 18% 47%, rgba(80, 0, 180, 0.18), transparent 25%),
+          radial-gradient(circle at 82% 58%, rgba(80, 0, 180, 0.2), transparent 27%),
+          #020003;
+        overflow: hidden;
       }
 
-      .filter-layer {
+      .catalog::before,
+      .catalog::after {
+        content: "";
         position: absolute;
-        z-index: 2;
-        left: 2.05vw;
-        right: 2.05vw;
-        top: 6.75svh;
-        display: grid;
-        gap: 1.05svh 2.05vw;
-        padding: 0;
-        background: #000;
+        top: 2.7rem;
+        width: 29%;
+        height: 54px;
+        opacity: 0.78;
+        background:
+          linear-gradient(15deg, transparent 18%, rgba(255, 62, 255, 0.72) 19%, transparent 22%),
+          linear-gradient(-10deg, transparent 35%, rgba(255, 89, 255, 0.58) 36%, transparent 39%),
+          linear-gradient(8deg, transparent 57%, rgba(147, 58, 255, 0.58) 58%, transparent 62%);
+        filter: drop-shadow(0 0 8px rgba(255, 42, 255, 0.85));
+        pointer-events: none;
       }
 
-      .filter-layer.cols-3 {
+      .catalog::before {
+        left: 9%;
+      }
+
+      .catalog::after {
+        right: 9%;
+        transform: scaleX(-1);
+      }
+
+      .title {
+        position: relative;
+        z-index: 1;
+        margin: 0 auto 0.55rem;
+        min-height: 54px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: clamp(38px, 10.5vw, 72px);
+        font-weight: 800;
+        line-height: 1;
+        text-align: center;
+        text-shadow:
+          0 0 3px #fff,
+          0 0 9px #ff5cff,
+          0 0 17px #9e22ff,
+          0 0 30px rgba(255, 0, 255, 0.74);
+      }
+
+      .filters {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        gap: 9px 10px;
+        margin-bottom: 12px;
+      }
+
+      .filters.cols-3 {
         grid-template-columns: repeat(3, minmax(0, 1fr));
       }
 
-      .filter-layer.cols-4 {
+      .filters.cols-4 {
         grid-template-columns: repeat(4, minmax(0, 1fr));
       }
 
-      .filter-layer.cols-5 {
+      .filters.cols-5 {
         grid-template-columns: repeat(5, minmax(0, 1fr));
       }
 
       .filter-button {
         min-width: 0;
-        height: 4.35svh;
-        min-height: 32px;
-        max-height: 58px;
-        border: 1px solid rgba(230, 244, 255, 0.78);
+        height: clamp(36px, 6.1vw, 48px);
+        border: 1px solid var(--line);
         border-radius: 7px;
         background:
-          linear-gradient(90deg, rgba(161, 77, 255, 0.2), transparent 22%, transparent 78%, rgba(72, 223, 255, 0.18)),
+          linear-gradient(90deg, rgba(166, 61, 255, 0.16), transparent 26%, transparent 74%, rgba(61, 232, 255, 0.14)),
           #030303;
-        color: rgba(255, 255, 255, 0.9);
-        font: 600 clamp(14px, 4.8vw, 25px) / 1 "Arial", "PingFang SC", "Microsoft YaHei", sans-serif;
-        letter-spacing: 0;
+        color: rgba(255, 255, 255, 0.92);
+        font-size: clamp(15px, 4.3vw, 24px);
+        font-weight: 650;
+        line-height: 1;
         text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
         box-shadow:
           inset 0 0 0 1px rgba(255, 255, 255, 0.13),
-          0 0 8px rgba(170, 130, 255, 0.32);
+          0 0 6px rgba(190, 164, 255, 0.22);
         -webkit-tap-highlight-color: transparent;
       }
 
       .filter-button.is-active {
-        border-color: rgba(255, 141, 255, 0.98);
+        border-color: rgba(255, 125, 255, 1);
         color: #fff;
         background:
-          linear-gradient(90deg, rgba(255, 48, 244, 0.32), rgba(91, 0, 122, 0.28)),
+          linear-gradient(90deg, rgba(255, 51, 247, 0.34), rgba(76, 0, 118, 0.35)),
           #080008;
         box-shadow:
-          inset 0 0 0 1px rgba(255, 255, 255, 0.3),
-          0 0 6px #fff,
-          0 0 16px rgba(255, 39, 255, 0.92),
-          0 0 27px rgba(145, 0, 255, 0.78);
+          inset 0 0 0 1px rgba(255, 255, 255, 0.28),
+          0 0 5px #fff,
+          0 0 14px rgba(255, 36, 255, 0.95),
+          0 0 26px rgba(137, 0, 255, 0.78);
       }
 
-      .hotspot {
-        position: fixed;
+      .search {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        gap: 8px;
+        height: 58px;
+        margin-bottom: 12px;
+        padding: 0 12px 0 18px;
+        border: 1px solid rgba(222, 232, 255, 0.84);
+        border-radius: 999px;
+        background: #030303;
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+      }
+
+      .search-field {
+        min-width: 0;
+        display: grid;
+        grid-template-columns: 33px 1fr;
+        align-items: center;
+      }
+
+      .search-icon {
+        position: relative;
+        width: 25px;
+        height: 25px;
+        border: 2px solid rgba(241, 248, 255, 0.9);
+        border-radius: 50%;
+      }
+
+      .search-icon::after {
+        content: "";
+        position: absolute;
+        width: 11px;
+        height: 2px;
+        right: -8px;
         bottom: 0;
-        height: max(72px, 9.5svh);
+        border-radius: 999px;
+        background: rgba(241, 248, 255, 0.9);
+        transform: rotate(45deg);
+        transform-origin: left center;
+      }
+
+      .search input {
+        min-width: 0;
         border: 0;
+        outline: 0;
         background: transparent;
-        color: transparent;
+        color: #fff;
+        font-size: clamp(17px, 4.5vw, 24px);
+      }
+
+      .search input::placeholder {
+        color: rgba(255, 255, 255, 0.46);
+      }
+
+      .search button {
+        min-width: 88px;
+        height: 40px;
+        border: 0;
+        border-radius: 13px;
+        background: linear-gradient(135deg, #501dff, #7d08ff 58%, #3d00ce);
+        color: #fff;
+        font-size: clamp(16px, 4.3vw, 23px);
+        box-shadow: 0 0 12px rgba(95, 20, 255, 0.75);
+      }
+
+      .products {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .product {
+        position: relative;
+        min-width: 0;
+        aspect-ratio: 1 / 0.94;
+        display: grid;
+        grid-template-rows: 59% auto;
+        padding: 1px;
+        border: 1px solid rgba(231, 237, 255, 0.76);
+        clip-path: polygon(0 8px, 8px 0, calc(100% - 8px) 0, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0 calc(100% - 8px));
+        background:
+          radial-gradient(circle at 50% 40%, rgba(96, 0, 180, 0.22), transparent 55%),
+          #020203;
+        color: #fff;
+        text-decoration: none;
+        overflow: hidden;
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
         -webkit-tap-highlight-color: transparent;
       }
 
-      .back-hotspot {
-        left: 0;
-        width: 26%;
+      .product.is-active {
+        border-color: rgba(255, 104, 255, 0.96);
+        box-shadow:
+          inset 0 0 0 1px rgba(255, 255, 255, 0.2),
+          0 0 14px rgba(255, 51, 255, 0.62);
       }
 
-      .member-hotspot {
-        left: 26%;
-        width: 24%;
+      .product-media {
+        position: relative;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 50% 50%, rgba(91, 0, 170, 0.26), transparent 60%),
+          #040206;
       }
 
-      .service-hotspot {
+      .product-media::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        opacity: 0.36;
+        background:
+          linear-gradient(28deg, transparent 42%, rgba(139, 35, 255, 0.45) 43%, transparent 46%),
+          linear-gradient(-28deg, transparent 52%, rgba(50, 0, 150, 0.45) 53%, transparent 57%);
+      }
+
+      .product-media img {
+        position: relative;
+        z-index: 1;
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center;
+      }
+
+      .product-info {
+        display: grid;
+        align-content: end;
+        gap: 5px;
+        padding: 6px 10px 8px;
+        background: rgba(0, 0, 0, 0.82);
+      }
+
+      .product-desc {
+        min-width: 0;
+        color: rgba(255, 255, 255, 0.78);
+        font-size: clamp(13px, 3.7vw, 19px);
+        line-height: 1.18;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .product-meta {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 8px;
+        color: rgba(255, 255, 255, 0.74);
+      }
+
+      .price {
+        font-size: clamp(18px, 5vw, 26px);
+        font-weight: 500;
+      }
+
+      .code {
+        font-size: clamp(15px, 4.1vw, 22px);
+        letter-spacing: 1px;
+        white-space: nowrap;
+      }
+
+      .bottom-nav {
+        position: fixed;
         left: 50%;
-        width: 24%;
+        bottom: 0;
+        z-index: 5;
+        width: min(100%, 760px);
+        transform: translateX(-50%);
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2px;
+        padding: 8px 13px max(8px, env(safe-area-inset-bottom));
+        background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.92) 24%, #000);
       }
 
-      .cart-hotspot {
-        left: 74%;
-        width: 26%;
+      .nav-link {
+        min-width: 0;
+        color: rgba(255, 255, 255, 0.78);
+        text-decoration: none;
+        text-align: center;
+        font-size: 12px;
+      }
+
+      .nav-icon {
+        width: 40px;
+        height: 40px;
+        margin: 0 auto 4px;
+        display: grid;
+        place-items: center;
+        border: 1px solid rgba(255, 255, 255, 0.72);
+        border-radius: 50%;
+        font-size: 26px;
+        line-height: 1;
+      }
+
+      @media (max-width: 380px) {
+        .catalog {
+          padding-left: 10px;
+          padding-right: 10px;
+        }
+
+        .filters {
+          gap: 7px 7px;
+        }
+
+        .filter-button {
+          font-size: 13px;
+        }
+
+        .product-info {
+          padding-left: 7px;
+          padding-right: 7px;
+        }
       }
     </style>
   </head>
   <body>
-    <main class="screen" aria-label="商品列表">
-      <img class="shot" id="catalogImage" src="../../assets/china-product-pages/panty.jpg?v=product-pages-2596e92" alt="商品列表">
-      <nav class="filter-layer" id="filterLayer" aria-label="商品小分类"></nav>
-      <a class="hotspot back-hotspot" href="../" aria-label="返回上一页">返回上一页</a>
-      <a class="hotspot member-hotspot" href="#member" aria-label="会员登录">会员登录</a>
-      <a class="hotspot service-hotspot" href="#service" aria-label="客服">客服</a>
-      <a class="hotspot cart-hotspot" href="#cart" aria-label="购物车">购物车</a>
+    <main class="catalog" aria-label="商品列表">
+      <h1 class="title" id="pageTitle">内裤</h1>
+      <nav class="filters" id="filterLayer" aria-label="商品小分类"></nav>
+
+      <form class="search" id="searchForm">
+        <label class="search-field">
+          <span class="search-icon" aria-hidden="true"></span>
+          <input id="searchInput" type="search" placeholder="搜索你想要的商品" autocomplete="off">
+        </label>
+        <button type="submit">搜索</button>
+      </form>
+
+      <section class="products" id="productGrid" aria-label="商品"></section>
     </main>
+
+    <nav class="bottom-nav" aria-label="底部操作">
+      <a class="nav-link" href="../">
+        <span class="nav-icon">‹</span>
+        返回上一页
+      </a>
+      <a class="nav-link" href="#member">
+        <span class="nav-icon">♙</span>
+        会员登录
+      </a>
+      <a class="nav-link" href="#service">
+        <span class="nav-icon">◌</span>
+        客服
+      </a>
+      <a class="nav-link" href="#cart">
+        <span class="nav-icon">⌑</span>
+        购物车
+      </a>
+    </nav>
 
     <script>
       const pages = {
         panty: {
           title: "内裤",
-          image: "panty.jpg",
           columns: 5,
           active: "蕾丝裤",
-          filters: ["三角裤", "平角裤", "丁字裤", "开档裤", "蕾丝裤", "网纱裤", "珍珠裤", "比基尼裤", "高腰裤", "无痕裤", "绑带裤", "隐形裤", "安全裤", "运动裤", "生理裤"]
+          filters: ["三角裤", "平角裤", "丁字裤", "开档裤", "蕾丝裤", "网纱裤", "珍珠裤", "比基尼裤", "高腰裤", "无痕裤", "绑带裤", "隐形裤", "安全裤", "运动裤", "生理裤"],
+          products: [
+            ["蕾丝镂空 | 柔软亲肤 | 透气舒适", "¥ 7.80", "N-LS-001"],
+            ["蕾丝花边 | 性感诱惑 | 弹力贴身", "¥ 7.80", "N-LS-002"],
+            ["蕾丝镂空 | 柔软亲肤 | 透气舒适", "¥ 7.80", "N-LS-003"],
+            ["蕾丝镂空 | 性感迷人 | 轻薄透气", "¥ 7.80", "N-LS-004"],
+            ["精致蕾丝 | 轻盈亲肤 | 甜美风格", "¥ 7.80", "N-LS-005"],
+            ["玫红蕾丝 | 弹力包裹 | 醒目迷人", "¥ 7.80", "N-LS-006"]
+          ]
         },
         bra: {
           title: "胸罩",
-          image: "bra.jpg",
           columns: 5,
           active: "法式",
-          filters: ["背心", "聚拢", "蕾丝", "绑带", "法式", "美背", "前扣", "无肩带", "隐形", "抹胸", "透明网纱", "哺乳文胸", "运动文胸", "文胸", "其它文胸"]
+          filters: ["背心", "聚拢", "蕾丝", "绑带", "法式", "美背", "前扣", "无肩带", "隐形", "抹胸", "透明网纱", "哺乳文胸", "运动文胸", "文胸", "其它文胸"],
+          products: [
+            ["法式浪漫 | 轻薄透气 | 舒适聚拢", "¥ 29.80", "N-BR-001"],
+            ["蕾丝绑带 | 性感迷人 | 聚拢托胸", "¥ 29.80", "N-BR-002"],
+            ["聚拢上托 | 侧收副乳 | 半满显形", "¥ 29.80", "N-BR-003"],
+            ["前扣设计 | 方便穿脱 | 稳定支撑", "¥ 29.80", "N-BR-004"],
+            ["无痕隐形 | 柔软亲肤 | 自然贴合", "¥ 29.80", "N-BR-005"],
+            ["透气网纱 | 舒适承托 | 轻盈无束", "¥ 29.80", "N-BR-006"]
+          ]
         },
         top: {
           title: "上衣",
-          image: "top.jpg",
           columns: 5,
           active: "吊带",
-          filters: ["吊带", "蕾丝", "网纱", "绑带", "主题类"]
+          filters: ["吊带", "蕾丝", "网纱", "绑带", "主题类"],
+          products: [
+            ["深V蕾丝吊带 | 丝滑性感 | 修身显瘦", "¥ 39.90", "T-TH-001"],
+            ["缎面吊带上衣 | 优雅气质 | 百搭内搭", "¥ 39.90", "T-TH-002"],
+            ["纯色针织吊带 | 软糯亲肤 | 弹力修身", "¥ 39.90", "T-TH-003"],
+            ["网纱透视吊带 | 轻薄诱惑 | 甜辣风格", "¥ 39.90", "T-TH-004"],
+            ["蕾丝花边吊带 | 浪漫甜美 | 小女人风", "¥ 39.90", "T-TH-005"],
+            ["豹纹吊带背心 | 个性魅力 | 潮流百搭", "¥ 39.90", "T-TH-006"]
+          ]
         },
         skirt: {
-          title: "裙子 / 短裤",
-          image: "skirt.jpg",
+          title: "裙子/短裤",
           columns: 4,
           active: "蕾丝裙",
-          filters: ["包臀裙", "百褶裙", "皮裙", "网纱裙", "蕾丝裙", "透明裙", "短裤", "其它裙"]
+          filters: ["包臀裙", "百褶裙", "皮裙", "网纱裙", "蕾丝裙", "透明裙", "短裤", "其它裙"],
+          products: [
+            ["蕾丝镂空 | 柔软亲肤 | 透气舒适", "¥ 39.90", "N-SK-001"],
+            ["蕾丝花边 | 性感诱惑 | 弹力贴身", "¥ 39.90", "N-SK-002"],
+            ["百褶设计 | 侧拉链 | 活动自如", "¥ 39.90", "N-SK-003"],
+            ["高腰显瘦 | 皮质柔软 | 时尚百搭", "¥ 39.90", "N-SK-004"],
+            ["网纱透视 | 轻薄透气 | 朦胧美感", "¥ 39.90", "N-SK-005"],
+            ["蕾丝花边 | 舒适透气 | 甜美可爱", "¥ 39.90", "N-SK-006"]
+          ]
         },
         dress: {
           title: "连衣裙",
-          image: "dress.jpg",
           columns: 3,
           active: "蕾丝",
-          filters: ["吊带", "蕾丝", "网纱", "绑带", "主题类", "其它类"]
+          filters: ["吊带", "蕾丝", "网纱", "绑带", "主题类", "其它类"],
+          products: [
+            ["蕾丝镂空 | 柔软亲肤 | 透气舒适", "¥ 39.90", "N-LQ-001"],
+            ["蕾丝花边 | 性感诱惑 | 弹力贴身", "¥ 39.90", "N-LQ-002"],
+            ["网纱透视 | 轻薄透气 | 朦胧美感", "¥ 39.90", "N-LQ-003"],
+            ["多重绑带 | 个性帅气 | 可调节", "¥ 39.90", "N-LQ-004"],
+            ["女仆主题 | 角色扮演 | 趣味十足", "¥ 39.90", "N-LQ-005"],
+            ["简约清新 | 舒适百搭 | 温柔风格", "¥ 39.90", "N-LQ-006"]
+          ]
         },
         stockings: {
           title: "袜子",
-          image: "stockings.jpg",
           columns: 5,
           active: "蕾丝袜",
-          filters: ["船袜", "短袜", "中筒袜", "长筒袜", "蕾丝袜", "连体丝袜", "渔网袜", "吊带袜", "开档丝袜", "绑带长袜", "瑜伽袜", "少女风", "黑丝袜", "白丝袜", "其它丝袜"]
+          filters: ["船袜", "短袜", "中筒袜", "长筒袜", "蕾丝袜", "连体丝袜", "渔网袜", "吊带袜", "开档丝袜", "绑带长袜", "瑜伽袜", "少女风", "黑丝袜", "白丝袜", "其它丝袜"],
+          products: [
+            ["蕾丝镂空 | 柔软亲肤 | 透气舒适", "¥ 7.80", "N-SK-001"],
+            ["蕾丝花边 | 性感诱惑 | 弹力贴身", "¥ 7.80", "N-SK-002"],
+            ["蕾丝镂空 | 柔软亲肤 | 透气舒适", "¥ 7.80", "N-SK-003"],
+            ["蕾丝镂空 | 性感迷人 | 轻薄透气", "¥ 7.80", "N-SK-004"],
+            ["长筒蕾丝 | 修饰腿型 | 甜美百搭", "¥ 7.80", "N-SK-005"],
+            ["蕾丝长袜 | 舒适贴合 | 轻盈透气", "¥ 7.80", "N-SK-006"]
+          ]
         },
         bodysuit: {
           title: "贴身连体衣",
-          image: "bodysuit.jpg",
           columns: 5,
           active: "长袖",
-          filters: ["高领", "长袖", "蕾丝", "网纱", "镂空", "深V", "绑带", "Teddy", "透明薄纱", "塑形", "运动", "挂脖", "开叉", "主题", "其它类"]
+          filters: ["高领", "长袖", "蕾丝", "网纱", "镂空", "深V", "绑带", "Teddy", "透明薄纱", "塑形", "运动", "挂脖", "开叉", "主题", "其它类"],
+          products: [
+            ["高弹面料 | 修身显瘦 | 亲肤透气", "¥ 29.80", "N-BY-001"],
+            ["性感蕾丝 | 若隐若现 | 弹力贴身", "¥ 29.80", "N-BY-002"],
+            ["镂空设计 | 个性绑带 | 透气舒适", "¥ 29.80", "N-BY-003"],
+            ["网纱透视 | 轻薄透气 | 贴身修饰", "¥ 29.80", "N-BY-004"],
+            ["简约纯色 | 紧致包裹 | 柔软亲肤", "¥ 29.80", "N-BY-005"],
+            ["运动风格 | 弹力面料 | 自由舒适", "¥ 29.80", "N-BY-006"]
+          ]
         },
         roleplay: {
           title: "角色扮演制服",
-          image: "roleplay.jpg",
           columns: 5,
           active: "JK",
-          filters: ["女仆", "护士", "警察", "空姐", "JK", "水手", "兔女郎", "猫女", "狐狸", "和风", "洛丽塔", "学院风", "旗袍风", "宫廷风", "其它制服"]
+          filters: ["女仆", "护士", "警察", "空姐", "JK", "水手", "兔女郎", "猫女", "狐狸", "和风", "洛丽塔", "学院风", "旗袍风", "宫廷风", "其它制服"],
+          products: [
+            ["蕾丝镂空 | 柔软亲肤 | 透气舒适", "¥ 39.90", "N-JK-001"],
+            ["蕾丝花边 | 性感诱惑 | 弹力贴身", "¥ 39.90", "N-JK-002"],
+            ["镂空设计 | 绑带点缀 | 透气舒适", "¥ 39.90", "N-JK-003"],
+            ["网纱透视 | 轻薄透气 | 贴身修饰", "¥ 39.90", "N-JK-004"],
+            ["学院风格 | 活力百搭 | 甜美减龄", "¥ 39.90", "N-JK-005"],
+            ["兔女郎风 | 趣味主题 | 醒目迷人", "¥ 39.90", "N-JK-006"]
+          ]
         },
         pants: {
           title: "长裤",
-          image: "pants.jpg",
           columns: 4,
           active: "紧身裤",
-          filters: ["直筒裤", "阔腿裤", "紧身裤", "喇叭裤", "微喇裤", "锥形裤", "工装裤", "其它裤"]
+          filters: ["直筒裤", "阔腿裤", "紧身裤", "喇叭裤", "微喇裤", "锥形裤", "工装裤", "其它裤"],
+          products: [
+            ["高腰皮裤 | 弹力显瘦 | 时尚百搭", "¥ 39.90", "N-AZ-001"],
+            ["运动紧身裤 | 健身瑜伽 | 透气速干", "¥ 39.90", "N-AZ-002"],
+            ["牛仔紧身裤 | 修身显瘦 | 弹力舒适", "¥ 39.90", "N-AZ-003"],
+            ["拼接网纱裤 | 性感魅力 | 显瘦提臀", "¥ 39.90", "N-AZ-004"],
+            ["侧边镂空裤 | 个性时尚 | 弹力贴身", "¥ 39.90", "N-AZ-005"],
+            ["高腰收腹裤 | 提臀塑形 | 显瘦百搭", "¥ 39.90", "N-AZ-006"]
+          ]
         },
         hat: {
           title: "帽子",
-          image: "hat.jpg",
           columns: 5,
           active: "渔夫帽",
-          filters: ["棒球帽", "渔夫帽", "贝雷帽", "草帽", "遮阳帽", "毛线帽", "八角帽", "礼帽", "钟形帽", "宽檐帽", "韩系", "甜美风", "辣妹风", "朋克", "其它帽子"]
+          filters: ["棒球帽", "渔夫帽", "贝雷帽", "草帽", "遮阳帽", "毛线帽", "八角帽", "礼帽", "钟形帽", "宽檐帽", "韩系", "甜美风", "辣妹风", "朋克", "其它帽子"],
+          products: [
+            ["简约纯色 | 休闲百搭 | 透气舒适", "¥ 39.90", "N-HZ-001"],
+            ["日系文艺 | 软顶设计 | 轻便出行", "¥ 39.90", "N-HZ-002"],
+            ["字母刺绣 | 潮流时尚 | 百搭耐看", "¥ 39.90", "N-HZ-003"],
+            ["潮牌涂鸦 | 个性潮酷 | 街头风格", "¥ 39.90", "N-HZ-004"],
+            ["复古水洗 | 柔软亲肤 | 甜美风格", "¥ 39.90", "N-HZ-005"],
+            ["朋克设计 | 摇滚不羁 | 出街吸睛", "¥ 39.90", "N-HZ-006"]
+          ]
         },
         heels: {
           title: "女士凉鞋",
-          image: "heels.jpg",
           columns: 4,
           active: "平底凉鞋",
-          filters: ["一字凉鞋", "罗马凉鞋", "粗跟凉鞋", "细跟凉鞋", "平底凉鞋", "厚底凉鞋", "松糕凉鞋", "包头凉鞋", "坡跟凉鞋", "拖鞋", "复古凉鞋", "其它凉鞋"]
+          filters: ["一字凉鞋", "罗马凉鞋", "粗跟凉鞋", "细跟凉鞋", "平底凉鞋", "厚底凉鞋", "松糕凉鞋", "包头凉鞋", "坡跟凉鞋", "拖鞋", "复古凉鞋", "其它凉鞋"],
+          products: [
+            ["简约一字 | 柔软舒适 | 时尚百搭", "¥ 39.90", "N-SX-001"],
+            ["精致水钻 | 轻盈自在 | 平底防滑", "¥ 39.90", "N-SX-002"],
+            ["优雅花朵 | 柔软贴合 | 舒适耐穿", "¥ 39.90", "N-SX-003"],
+            ["珍珠点缀 | 清新甜美 | 舒适平跟", "¥ 39.90", "N-SX-004"],
+            ["闪耀细带 | 柔软鞋垫 | 百搭日常", "¥ 39.90", "N-SX-005"],
+            ["编织细带 | 轻便舒适 | 清凉透气", "¥ 39.90", "N-SX-006"]
+          ]
         },
         bag: {
           title: "女士包包",
-          image: "bag.jpg",
           columns: 5,
           active: "斜挎包",
-          filters: ["手提包", "斜挎包", "单肩包", "水桶包", "腋下包", "马鞍包", "链条包", "法棍包", "晚宴包", "小方包", "手机包", "卡包", "旅行包", "双肩包", "其它包"]
+          filters: ["手提包", "斜挎包", "单肩包", "水桶包", "腋下包", "马鞍包", "链条包", "法棍包", "晚宴包", "小方包", "手机包", "卡包", "旅行包", "双肩包", "其它包"],
+          products: [
+            ["时尚优雅 | 大容量设计 | 轻奢百搭", "¥ 199.90", "N-BG-001"],
+            ["轻便出行 | 精致耐用 | 经典时尚", "¥ 179.90", "N-BG-002"],
+            ["气质链条 | 百搭时尚 | 精致小巧", "¥ 159.90", "N-BG-003"],
+            ["复古法式 | 优雅气质 | 质感出众", "¥ 169.90", "N-BG-004"],
+            ["小巧精致 | 轻便百搭 | 出行必备", "¥ 129.90", "N-BG-005"],
+            ["轻盈背负 | 大容量 | 休闲时尚", "¥ 199.90", "N-BG-006"]
+          ]
         }
       };
 
       const params = new URLSearchParams(window.location.search);
       const category = params.get("category") || "panty";
       const page = pages[category] || pages.panty;
-      const image = document.getElementById("catalogImage");
-      const filterLayer = document.getElementById("filterLayer");
+      const title = document.getElementById("pageTitle");
+      const filters = document.getElementById("filterLayer");
+      const grid = document.getElementById("productGrid");
+      const searchForm = document.getElementById("searchForm");
+      const searchInput = document.getElementById("searchInput");
       let activeFilter = params.get("filter") || page.active;
 
       document.title = `${page.title} | Secret Language Trade`;
-      image.src = `../../assets/china-product-pages/${page.image}?v=product-pages-2596e92`;
-      image.alt = page.title;
+      title.textContent = page.title;
+      filters.className = `filters cols-${page.columns}`;
 
-      filterLayer.className = `filter-layer cols-${page.columns}`;
+      function updateFilter(filter) {
+        activeFilter = filter;
+        filters.querySelectorAll(".filter-button").forEach((button) => {
+          const selected = button.dataset.filter === activeFilter;
+          button.classList.toggle("is-active", selected);
+          button.setAttribute("aria-pressed", selected ? "true" : "false");
+        });
+        const nextUrl = new URL(window.location.href);
+        nextUrl.searchParams.set("category", category);
+        nextUrl.searchParams.set("filter", activeFilter);
+        history.replaceState(null, "", nextUrl);
+      }
+
       page.filters.forEach((filter) => {
         const button = document.createElement("button");
-        button.className = "filter-button";
         button.type = "button";
+        button.className = "filter-button";
         button.textContent = filter;
         button.dataset.filter = filter;
         button.setAttribute("aria-pressed", filter === activeFilter ? "true" : "false");
         if (filter === activeFilter) {
           button.classList.add("is-active");
         }
-        button.addEventListener("click", () => {
-          activeFilter = filter;
-          filterLayer.querySelectorAll(".filter-button").forEach((item) => {
-            const selected = item.dataset.filter === activeFilter;
-            item.classList.toggle("is-active", selected);
-            item.setAttribute("aria-pressed", selected ? "true" : "false");
-          });
-          const nextUrl = new URL(window.location.href);
-          nextUrl.searchParams.set("category", category);
-          nextUrl.searchParams.set("filter", activeFilter);
-          history.replaceState(null, "", nextUrl);
+        button.addEventListener("click", () => updateFilter(filter));
+        filters.append(button);
+      });
+
+      page.products.forEach((product, index) => {
+        const [desc, price, code] = product;
+        const item = document.createElement("a");
+        item.className = "product";
+        item.href = `#${code}`;
+        item.innerHTML = `
+          <div class="product-media">
+            <img src="../../assets/china-product-items/${category}-${index + 1}.jpg?v=editable-catalog-20260628" alt="${desc}">
+          </div>
+          <div class="product-info">
+            <div class="product-desc">${desc}</div>
+            <div class="product-meta">
+              <span class="price">${price}</span>
+              <span class="code">${code}</span>
+            </div>
+          </div>
+        `;
+        item.addEventListener("click", () => {
+          grid.querySelectorAll(".product").forEach((card) => card.classList.remove("is-active"));
+          item.classList.add("is-active");
         });
-        filterLayer.append(button);
+        grid.append(item);
+      });
+
+      searchForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const nextUrl = new URL(window.location.href);
+        nextUrl.searchParams.set("category", category);
+        if (searchInput.value.trim()) {
+          nextUrl.searchParams.set("q", searchInput.value.trim());
+        } else {
+          nextUrl.searchParams.delete("q");
+        }
+        history.replaceState(null, "", nextUrl);
       });
     </script>
   </body>

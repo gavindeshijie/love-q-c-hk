@@ -34,7 +34,7 @@
 - China full-frame scrolled screenshot: `/private/tmp/china-fullframe-bottom-393x852.png`
 - China panty/bra frame focused comparison: `/private/tmp/panty-bra-frame-final-compare.png`
 - China all-card right-edge focused comparison after safe crop: `/private/tmp/china-card-right-edge-contact-safe-v2.png`
-- China catalog page reference assets: `public/assets/china-product-pages/{panty,bra,top,skirt,dress,stockings,bodysuit,roleplay,pants,hat,heels,bag}.jpg`
+- China catalog product assets: `public/assets/china-product-items/{panty,bra,top,skirt,dress,stockings,bodysuit,roleplay,pants,hat,heels,bag}-{1..6}.jpg`
 - China full-frame pixel crop verification: all 12 current card assets are `154x184` crops from the Chinese source image at x columns `44/218/393` and y rows `504/704/899/1094`; average pixel deltas are `0.25071-0.43659`, consistent with JPEG/PNG decode differences.
 - Card-zone comparison: `/private/tmp/card-zone-compare-v28.png`
 - Focused top comparison: `/private/tmp/love-focus-top-v17.png`
@@ -90,6 +90,11 @@
 - Added real HTML subcategory buttons on every China product-list screen. Tapping a subcategory moves the active neon highlight, updates the `filter` query parameter, and keeps the current product-list screen open for future filtered product data.
 - Removed the obsolete `public/assets/china-categories/` reconstruction assets so the China page only uses `public/assets/china-slices/` full-card source crops.
 - Added 12 clickable China category links: 内裤, 胸罩, 上衣, 裙子 / 短裤, 连衣裙, 丝袜, 贴身连体衣, 角色扮演, 长裤, 帽子, 女士凉鞋, and 女士包包.
+- Rebuilt `china/catalog/` as a code-authored editable product-list framework instead of displaying the supplied full-page product-list screenshots. The title, subcategory buttons, search bar, product cards, prices, product codes, product-card click state, subcategory click state, search query state, and bottom nav are now real HTML/CSS/JS UI.
+- Kept the product visuals as individual product image assets under `public/assets/china-product-items/`; the catalog page no longer references `public/assets/china-product-pages/` or any `.shot` full-page screenshot element.
+- Removed the old `public/assets/china-product-pages/` full-page screenshot files from the deploy bundle so the product-list pages cannot fall back to full-page screenshot rendering.
+- Verified locally that all 12 catalog category URLs return 200, all 72 product image assets return 200 as JPEGs, the homepage still contains all 12 `catalog/?category=...` links, and the old hash-only/preventDefault behavior is absent.
+- Browser-rendered screenshot capture for this specific update is blocked in the current environment because the Browser plugin reports no available in-app browser sessions and Playwright/Chromium are not installed. Static and HTTP checks passed.
 
 **Follow-up Polish**
 - P3: the China page uses modular source slices rather than one full-page background. The slice boundaries are intentionally separate so each category card remains an independent clickable link.
@@ -97,7 +102,7 @@
 **Implementation Checklist**
 - Use the current `public/index.html`.
 - Include the China category page at `china/` and the five blank region directories: `singapore/`, `thailand/`, `vietnam/`, `malaysia/`, and `laos/`.
-- Include `public/china/catalog/index.html` and `public/assets/china-product-pages/` for the 12 linked China product-list screens.
+- Include `public/china/catalog/index.html` and `public/assets/china-product-items/` for the 12 linked China product-list screens.
 - Include `public/assets/china-slices/` with the exact source-slice PNG assets for the China page.
 - Include `public/assets/flag-china.png`, `flag-singapore.png`, `flag-thailand.png`, `flag-vietnam.png`, `flag-malaysia.png`, and `flag-laos.png`.
 - Keep `public/CNAME` as `love.q-c.hk`.
