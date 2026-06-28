@@ -13,8 +13,8 @@
 - Reference-height regression screenshot: `/private/tmp/love-ratio-final-427x640.png`
 - Cleaned flag artifact screenshot: `/private/tmp/love-flags-final-local.png`
 - Entry homepage screenshot: `/private/tmp/love-entry-home.png`
-- China extracted-asset screenshot: `/private/tmp/china-extracted-v3-393x852.png`
-- China extracted-asset source comparison: `/private/tmp/china-extracted-v3-compare.png`
+- China sliced-fit screenshot: `/private/tmp/china-sliced-page-v2-393x852.png`
+- China sliced-fit source comparison: `/private/tmp/china-sliced-page-v2-compare.png`
 - Card-zone comparison: `/private/tmp/card-zone-compare-v28.png`
 - Focused top comparison: `/private/tmp/love-focus-top-v17.png`
 - Focused card comparison: `/private/tmp/love-focus-cards-v17.png`
@@ -53,16 +53,17 @@
 - Converted the six homepage language cards from local selection buttons into region entry links.
 - Added blank entry pages for Singapore, Thailand, Vietnam, Malaysia, and Laos.
 - Rebuilt `china/` as a code-authored neon product-category page matching the supplied Chinese reference image without using that full image as the page background.
-- Extracted separate responsive PNG assets from the reference for each China category product image and card frame, then placed them inside clickable links.
+- Replaced the semi-transparent item/frame reconstruction with exact source slices: top rules, hero/title block, side rails, and 12 full card crops are placed at the original 590x1280 coordinates.
+- The China page now scales the original coordinate system to the current visual viewport with no page scroll, keeping the bottom row above the browser edge on 360, 393, and 430px mobile widths.
 - Added 12 clickable China category links: 内裤, 胸罩, 上衣, 裙子 / 短裤, 连衣裙, 丝袜, 贴身连体衣, 角色扮演, 长裤, 帽子, 女士凉鞋, and 女士包包.
 
 **Follow-up Polish**
-- P3: the homepage background city/globe and China page hero lightning remain code-built approximations. The China category cards now use extracted product and frame assets from the supplied reference while preserving clickable/editable page structure.
+- P3: the China page uses modular source slices rather than one full-page background. The slice boundaries are intentionally separate so each category card remains an independent clickable link.
 
 **Implementation Checklist**
 - Use the current `public/index.html`.
 - Include the China category page at `china/` and the five blank region directories: `singapore/`, `thailand/`, `vietnam/`, `malaysia/`, and `laos/`.
-- Include `public/assets/china-categories/` with the extracted frame and item PNG assets.
+- Include `public/assets/china-slices/` with the exact source-slice PNG assets for the China page.
 - Include `public/assets/flag-china.png`, `flag-singapore.png`, `flag-thailand.png`, `flag-vietnam.png`, `flag-malaysia.png`, and `flag-laos.png`.
 - Keep `public/CNAME` as `love.q-c.hk`.
 - Deploy through the existing GitHub Pages workflow.

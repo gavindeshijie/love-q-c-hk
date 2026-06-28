@@ -6,15 +6,7 @@
     <title>华语专区 | Secret Language Trade</title>
     <style>
       :root {
-        --bg: #020006;
-        --ink: #f6edff;
-        --muted: #cfc6d5;
-        --pink: #ff56df;
-        --hot-pink: #ff91ea;
-        --blue: #0bb6ff;
-        --violet: #9c55ff;
-        --gold: #ffbd42;
-        --glass: rgba(7, 4, 13, 0.84);
+        --clearance: max(4px, env(safe-area-inset-bottom));
         color-scheme: dark;
       }
 
@@ -25,585 +17,188 @@
       html,
       body {
         margin: 0;
-        min-height: 100%;
-        background: var(--bg);
-        font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", Arial, sans-serif;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        overflow: hidden;
       }
 
       body {
-        display: grid;
-        place-items: center;
-        color: var(--ink);
-        overflow-x: hidden;
+        min-height: 100svh;
+        height: 100svh;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
       }
 
       .poster {
         position: relative;
-        isolation: isolate;
-        width: min(100vw, 430px);
-        min-height: 100svh;
+        width: min(100vw, 590px, calc((100svh - var(--clearance)) * 590 / 1280));
         aspect-ratio: 590 / 1280;
         overflow: hidden;
-        background:
-          radial-gradient(circle at 50% 25%, rgba(41, 53, 255, 0.4), transparent 12%),
-          radial-gradient(ellipse at 50% 42%, rgba(146, 15, 255, 0.26), transparent 35%),
-          linear-gradient(180deg, #010003 0%, #030008 48%, #010003 100%);
+        background: #000;
+        flex: 0 0 auto;
+        isolation: isolate;
       }
 
-      .poster::before,
-      .poster::after {
-        content: "";
+      @supports (height: 100dvh) {
+        body {
+          min-height: 100dvh;
+          height: 100dvh;
+        }
+
+        .poster {
+          width: min(100vw, 590px, calc((100dvh - var(--clearance)) * 590 / 1280));
+        }
+      }
+
+      .slice,
+      .card-link,
+      .card-link img {
         position: absolute;
-        top: 0;
-        bottom: 0;
-        width: 12px;
-        z-index: -1;
-        opacity: 0.74;
-      }
-
-      .poster::before {
-        left: 0;
-        background:
-          radial-gradient(circle at 7px 7px, rgba(57, 91, 255, 0.96) 0 1.6px, transparent 2.8px),
-          radial-gradient(circle at 4px 19px, rgba(0, 210, 255, 0.78) 0 1.3px, transparent 2.6px),
-          repeating-linear-gradient(180deg, transparent 0 12px, rgba(18, 67, 255, 0.64) 13px 16px, transparent 17px 31px),
-          linear-gradient(90deg, rgba(3, 3, 10, 0.1), rgba(33, 78, 255, 0.48), rgba(4, 1, 15, 0.02));
-        background-size: 12px 32px, 12px 32px, 100% 32px, 100% 100%;
-        filter: drop-shadow(0 0 7px #1d5cff);
-      }
-
-      .poster::after {
-        right: 0;
-        background:
-          radial-gradient(circle at 5px 7px, rgba(57, 91, 255, 0.96) 0 1.6px, transparent 2.8px),
-          radial-gradient(circle at 8px 19px, rgba(0, 210, 255, 0.78) 0 1.3px, transparent 2.6px),
-          repeating-linear-gradient(180deg, transparent 0 12px, rgba(18, 67, 255, 0.64) 13px 16px, transparent 17px 31px),
-          linear-gradient(270deg, rgba(3, 3, 10, 0.1), rgba(33, 78, 255, 0.48), rgba(4, 1, 15, 0.02));
-        background-size: 12px 32px, 12px 32px, 100% 32px, 100% 100%;
-        filter: drop-shadow(0 0 7px #1d5cff);
-      }
-
-      .starfield,
-      .energy,
-      .lightning,
-      .world,
-      .slogan,
-      .offers,
-      .catalog {
-        position: relative;
-        z-index: 1;
-      }
-
-      .starfield {
-        position: absolute;
-        inset: 0;
-        z-index: -2;
-        opacity: 0.2;
-        -webkit-mask-image: linear-gradient(180deg, #000 0 53%, rgba(0, 0, 0, 0.45) 68%, rgba(0, 0, 0, 0.22) 100%);
-        mask-image: linear-gradient(180deg, #000 0 53%, rgba(0, 0, 0, 0.45) 68%, rgba(0, 0, 0, 0.22) 100%);
-        background:
-          radial-gradient(circle at 18% 8%, rgba(255, 142, 245, 0.7) 0 1px, transparent 2px),
-          radial-gradient(circle at 80% 12%, rgba(30, 143, 255, 0.65) 0 1px, transparent 2px),
-          radial-gradient(circle at 58% 19%, rgba(255, 255, 255, 0.7) 0 1px, transparent 2px),
-          radial-gradient(circle at 33% 38%, rgba(24, 94, 255, 0.75) 0 1px, transparent 2px),
-          radial-gradient(circle at 69% 62%, rgba(255, 90, 226, 0.55) 0 1px, transparent 2px),
-          radial-gradient(circle at 49% 79%, rgba(255, 255, 255, 0.55) 0 1px, transparent 2px);
-        background-size: 96px 116px, 72px 88px, 130px 160px, 110px 140px, 88px 120px, 150px 190px;
-      }
-
-      .energy {
-        position: absolute;
-        inset: 0;
-        z-index: -1;
-        pointer-events: none;
-        opacity: 0.62;
-      }
-
-      .energy span {
-        position: absolute;
-        left: 6%;
-        right: 6%;
-        top: var(--top);
-        height: 2px;
-        transform: rotate(var(--angle));
-        background: linear-gradient(90deg, transparent, var(--color), rgba(255, 255, 255, 0.9), transparent);
-        box-shadow: 0 0 12px var(--color), 0 0 24px var(--color);
-        opacity: var(--alpha);
-      }
-
-      .offers {
-        width: 80%;
-        margin: 30px auto 0;
-      }
-
-      .offer {
-        position: relative;
-        display: grid;
-        grid-template-columns: 36px 1fr;
-        align-items: center;
-        min-height: 39px;
-        color: rgba(245, 239, 255, 0.86);
-        font-size: clamp(14px, 4.25vw, 18px);
-        letter-spacing: 1px;
-        text-shadow: 0 0 8px rgba(255, 255, 255, 0.42);
-        white-space: nowrap;
-      }
-
-      .offer::after {
-        content: "";
-        position: absolute;
-        left: 38px;
-        right: 0;
-        bottom: 0;
-        height: 1px;
-        background: linear-gradient(90deg, rgba(255, 66, 225, 0.8), rgba(255, 255, 255, 0.65), rgba(33, 52, 255, 0.58), transparent);
-        box-shadow: 0 0 8px rgba(255, 61, 227, 0.55);
-      }
-
-      .number {
-        display: grid;
-        place-items: center;
-        width: 29px;
-        height: 29px;
-        border-radius: 50%;
-        color: #fff;
-        font-weight: 700;
-        font-size: clamp(14px, 4vw, 18px);
-        border: 2px solid currentColor;
-        background:
-          radial-gradient(circle, rgba(255, 255, 255, 0.16), transparent 45%),
-          #06030a;
-        box-shadow:
-          0 0 0 3px rgba(255, 255, 255, 0.05),
-          0 0 10px currentColor,
-          inset 0 0 10px currentColor;
-      }
-
-      .offer:nth-child(1) .number,
-      .hot {
-        color: var(--pink);
-      }
-
-      .offer:nth-child(2) .number,
-      .cyan {
-        color: var(--blue);
-      }
-
-      .offer:nth-child(3) .number,
-      .purple {
-        color: var(--violet);
-      }
-
-      .world {
-        width: 70%;
-        height: 140px;
-        margin: 8px auto 0;
-        display: grid;
-        place-items: center;
-      }
-
-      .world::before {
-        content: "";
-        position: absolute;
-        top: 3px;
-        left: 50%;
-        width: 126px;
-        height: 126px;
-        transform: translateX(-50%);
-        border-radius: 50%;
-        background:
-          linear-gradient(20deg, transparent 47%, rgba(255, 255, 255, 0.3) 48% 49%, transparent 50%),
-          linear-gradient(95deg, transparent 43%, rgba(255, 255, 255, 0.2) 44% 45%, transparent 46%),
-          repeating-linear-gradient(0deg, transparent 0 14px, rgba(114, 159, 255, 0.2) 15px 16px),
-          repeating-linear-gradient(90deg, transparent 0 18px, rgba(114, 159, 255, 0.18) 19px 20px),
-          radial-gradient(circle at 50% 36%, #3e77ff 0, #071a7c 44%, #040015 71%);
-        box-shadow:
-          inset 0 -18px 22px rgba(0, 0, 0, 0.82),
-          inset 0 10px 16px rgba(109, 180, 255, 0.4),
-          0 0 28px rgba(34, 93, 255, 0.76);
-        opacity: 0.92;
-      }
-
-      .map-line {
-        position: absolute;
-        top: 46px;
-        left: -7%;
-        width: 114%;
-        height: 72px;
-        opacity: 0.42;
-        background:
-          linear-gradient(18deg, transparent 12%, rgba(65, 97, 255, 0.42) 13% 14%, transparent 15% 27%, rgba(144, 81, 255, 0.34) 28% 29%, transparent 30%),
-          linear-gradient(-13deg, transparent 18%, rgba(255, 68, 226, 0.3) 19% 20%, transparent 21% 55%, rgba(61, 107, 255, 0.4) 56% 57%, transparent 58%);
-      }
-
-      .slogan {
-        position: absolute;
-        top: 184px;
-        left: 45px;
-        right: 45px;
-        text-align: center;
-        pointer-events: none;
-      }
-
-      .main-title {
-        margin: 0;
-        font-family: Impact, "Arial Black", "PingFang SC", sans-serif;
-        font-size: clamp(34px, 11.2vw, 52px);
-        line-height: 0.9;
-        letter-spacing: 2px;
-        color: transparent;
-        -webkit-text-stroke: 1px rgba(255, 255, 255, 0.92);
-        background: linear-gradient(180deg, #fff 0%, #a792ff 35%, #f553ff 62%, #4a1768 100%);
-        -webkit-background-clip: text;
-        background-clip: text;
-        filter: drop-shadow(0 4px 0 #321357) drop-shadow(0 0 12px rgba(255, 77, 235, 0.9));
-      }
-
-      .sub-title {
-        margin: 6px 0 0;
-        font-family: Impact, "Arial Black", "PingFang SC", sans-serif;
-        font-size: clamp(21px, 6.9vw, 32px);
-        line-height: 0.95;
-        color: #f1e9ff;
-        letter-spacing: 2px;
-        text-shadow:
-          0 2px 0 #4a1a7d,
-          0 0 10px rgba(75, 106, 255, 0.9),
-          0 0 18px rgba(255, 59, 225, 0.7);
-      }
-
-      .weapon {
-        margin: 2px 0 0;
         display: block;
-        font-family: Impact, "Arial Black", "PingFang SC", sans-serif;
-        font-size: clamp(48px, 15.4vw, 72px);
-        line-height: 0.8;
-        letter-spacing: 4px;
-        color: #fff;
-        transform: skew(-8deg) rotate(-2deg);
-        -webkit-text-stroke: 1px rgba(85, 22, 117, 0.95);
-        text-shadow:
-          4px 5px 0 #32124d,
-          -2px -2px 0 #ff91ec,
-          0 0 9px #fff,
-          0 0 24px rgba(255, 42, 226, 0.85),
-          0 0 38px rgba(28, 94, 255, 0.75);
       }
 
-      .slogan::before,
-      .slogan::after {
-        content: "";
-        position: absolute;
-        top: 48px;
-        width: 46%;
-        height: 54px;
-        background:
-          linear-gradient(24deg, transparent 0 48%, #5327ff 49% 51%, transparent 52%),
-          linear-gradient(-18deg, transparent 0 45%, #ff3de5 46% 48%, transparent 49%);
-        filter: drop-shadow(0 0 8px #8537ff);
-        opacity: 0.9;
-      }
-
-      .lightning {
-        position: absolute;
-        left: 26px;
-        right: 26px;
-        top: 220px;
-        height: 126px;
-        z-index: 0;
-        overflow: visible;
+      .slice,
+      .card-link img {
+        width: 100%;
+        height: 100%;
+        object-fit: fill;
         pointer-events: none;
-        filter:
-          drop-shadow(0 0 4px rgba(255, 255, 255, 0.88))
-          drop-shadow(0 0 10px rgba(103, 70, 255, 0.95))
-          drop-shadow(0 0 18px rgba(255, 44, 231, 0.75));
+        user-select: none;
+        -webkit-user-drag: none;
       }
 
-      .lightning path {
-        fill: none;
-        stroke-linecap: round;
-        stroke-linejoin: round;
+      .rail-left {
+        left: 0%;
+        top: 0%;
+        width: 6.1017%;
+        height: 100%;
       }
 
-      .bolt-pink {
-        stroke: #ff4ee7;
-        stroke-width: 2.4;
+      .rail-right {
+        left: 93.8983%;
+        top: 0%;
+        width: 6.1017%;
+        height: 100%;
       }
 
-      .bolt-blue {
-        stroke: #356dff;
-        stroke-width: 2.2;
+      .rules {
+        left: 6.6102%;
+        top: 2.8906%;
+        width: 87.1186%;
+        height: 14.8438%;
       }
 
-      .bolt-white {
-        stroke: rgba(255, 255, 255, 0.9);
-        stroke-width: 1.2;
-        opacity: 0.74;
+      .hero {
+        left: 3.3898%;
+        top: 16.5625%;
+        width: 93.2203%;
+        height: 22.8125%;
       }
 
-      .slogan::before {
-        left: -26px;
-      }
-
-      .slogan::after {
-        right: -26px;
-        transform: scaleX(-1);
-      }
-
-      .catalog {
-        position: absolute;
-        left: 32px;
-        right: 32px;
-        top: 336px;
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 13px 15px;
-      }
-
-      .product-card {
-        position: relative;
-        display: block;
-        min-width: 0;
-        aspect-ratio: 146 / 168;
-        border: 0;
-        color: #f6f1ff;
-        background: radial-gradient(ellipse at 50% 38%, rgba(65, 24, 88, 0.42), transparent 58%), #020105;
-        border-radius: 8px;
-        cursor: pointer;
+      .card-link {
+        width: 24.7458%;
+        height: 14.375%;
+        border-radius: 4px;
         overflow: hidden;
         text-decoration: none;
-        box-shadow: inset 0 0 22px rgba(0, 0, 0, 0.96), 0 0 10px rgba(112, 72, 188, 0.34);
-        transition: transform 160ms ease, filter 160ms ease;
+        -webkit-tap-highlight-color: transparent;
       }
 
-      .product-card:focus-visible {
+      .card-link:focus-visible {
         outline: 2px solid #fff;
         outline-offset: 3px;
       }
 
-      .product-card.is-active {
-        transform: translateY(-2px);
-        filter: brightness(1.18) saturate(1.18);
+      .card-link.is-active {
+        filter: brightness(1.12) saturate(1.08);
       }
 
-      .card-frame {
-        position: absolute;
-        inset: 0;
-        z-index: 3;
-        width: 100%;
-        height: 100%;
-        object-fit: fill;
-        filter:
-          drop-shadow(0 0 4px rgba(255, 255, 255, 0.44))
-          drop-shadow(0 0 8px rgba(103, 93, 255, 0.5));
-        pointer-events: none;
+      .col-1 {
+        left: 8.1356%;
       }
 
-      .item-art {
-        position: absolute;
-        z-index: 2;
-        left: 50%;
-        top: var(--item-top, 14%);
-        width: var(--item-w, 76%);
-        height: var(--item-h, 56%);
-        object-fit: contain;
-        transform: translateX(-50%);
-        filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.36));
-        pointer-events: none;
-        user-select: none;
+      .col-2 {
+        left: 37.6271%;
       }
 
-      .label {
-        position: absolute;
-        z-index: 4;
-        left: 5%;
-        right: 5%;
-        bottom: 18px;
-        display: block;
-        color: rgba(238, 233, 244, 0.92);
-        font-size: clamp(13px, 3.6vw, 16px);
-        line-height: 1.15;
-        letter-spacing: 0;
-        text-align: center;
-        text-shadow: 0 0 5px rgba(255, 255, 255, 0.56), 0 0 10px rgba(162, 87, 255, 0.74);
-        white-space: nowrap;
+      .col-3 {
+        left: 67.2881%;
       }
 
-      .product-card[data-item="bodysuit"] .label,
-      .product-card[data-item="roleplay"] .label,
-      .product-card[data-item="heels"] .label {
-        font-size: clamp(11px, 3.2vw, 15px);
+      .row-1 {
+        top: 39.375%;
       }
 
-      @media (max-width: 360px) {
-        .offers {
-          width: 81%;
-          margin-top: 28px;
-        }
-
-        .offer {
-          grid-template-columns: 36px 1fr;
-          min-height: 45px;
-        }
-
-        .number {
-          width: 30px;
-          height: 30px;
-        }
-
-        .slogan {
-          top: 212px;
-          left: 38px;
-          right: 38px;
-        }
-
-        .catalog {
-          top: 306px;
-          left: 28px;
-          right: 28px;
-          gap: 10px 12px;
-        }
-
-        .label {
-          bottom: 16px;
-        }
+      .row-2 {
+        top: 55%;
       }
 
-      @media (min-height: 900px) and (max-width: 430px) {
-        .catalog {
-          top: 340px;
-          gap: 14px 11px;
-        }
+      .row-3 {
+        top: 70.2344%;
+      }
+
+      .row-4 {
+        top: 85.4688%;
       }
     </style>
   </head>
   <body>
     <main class="poster" aria-label="华语商品分类">
-      <div class="starfield" aria-hidden="true"></div>
-      <div class="energy" aria-hidden="true">
-        <span style="--top: 26%; --angle: -17deg; --color: #244bff; --alpha: .72"></span>
-        <span style="--top: 31%; --angle: 20deg; --color: #ff43df; --alpha: .65"></span>
-        <span style="--top: 36%; --angle: -28deg; --color: #4a86ff; --alpha: .56"></span>
-        <span style="--top: 40%; --angle: 13deg; --color: #b33dff; --alpha: .6"></span>
-      </div>
+      <img class="slice rail-left" src="../assets/china-slices/rail-left.png" alt="">
+      <img class="slice rail-right" src="../assets/china-slices/rail-right.png" alt="">
+      <img class="slice rules" src="../assets/china-slices/rules.png" alt="私域客户满99包邮，电商八折一件代发，代理商合作7折进货">
+      <img class="slice hero" src="../assets/china-slices/hero.png" alt="品质与价格是我们公开的武器">
 
-      <section class="offers" aria-label="华语价格政策">
-        <div class="offer">
-          <span class="number">1</span>
-          <span>私域客户满<span class="hot">99</span>包邮</span>
-        </div>
-        <div class="offer">
-          <span class="number">2</span>
-          <span>电商<span class="cyan">八折</span>一件代发，邮费自理</span>
-        </div>
-        <div class="offer">
-          <span class="number">3</span>
-          <span>代理商合作，<span class="purple">7折</span>进货，邮费自理</span>
-        </div>
-      </section>
+      <a class="card-link col-1 row-1" href="#panty" data-item="panty" aria-label="进入内裤分类">
+        <img src="../assets/china-slices/card-panty.png" alt="">
+      </a>
+      <a class="card-link col-2 row-1" href="#bra" data-item="bra" aria-label="进入胸罩分类">
+        <img src="../assets/china-slices/card-bra.png" alt="">
+      </a>
+      <a class="card-link col-3 row-1" href="#top" data-item="top" aria-label="进入上衣分类">
+        <img src="../assets/china-slices/card-top.png" alt="">
+      </a>
 
-      <div class="world" aria-hidden="true">
-        <span class="map-line"></span>
-      </div>
+      <a class="card-link col-1 row-2" href="#skirt" data-item="skirt" aria-label="进入裙子短裤分类">
+        <img src="../assets/china-slices/card-skirt.png" alt="">
+      </a>
+      <a class="card-link col-2 row-2" href="#dress" data-item="dress" aria-label="进入连衣裙分类">
+        <img src="../assets/china-slices/card-dress.png" alt="">
+      </a>
+      <a class="card-link col-3 row-2" href="#stockings" data-item="stockings" aria-label="进入丝袜分类">
+        <img src="../assets/china-slices/card-stockings.png" alt="">
+      </a>
 
-      <svg class="lightning" viewBox="0 0 360 140" aria-hidden="true">
-        <path class="bolt-blue" d="M5 92 L62 64 L49 86 L116 52 L101 81 L169 43 L151 75 L218 46 L203 71 L289 31 L260 66 L355 22"/>
-        <path class="bolt-pink" d="M0 118 L70 86 L58 111 L139 70 L121 99 L185 68 L172 94 L247 56 L229 85 L359 40"/>
-        <path class="bolt-white" d="M23 72 L91 50 L82 67 L147 38 L137 58 L205 31 L193 52 L274 21"/>
-        <path class="bolt-blue" d="M354 104 L292 78 L305 100 L230 61 L247 91 L179 55 L196 81 L112 42 L130 73 L9 35"/>
-        <path class="bolt-pink" d="M338 121 L274 91 L286 115 L219 80 L232 108 L167 72 L178 101 L96 65 L114 91 L8 52"/>
-        <path class="bolt-white" d="M332 70 L268 48 L280 66 L212 39 L224 57 L154 31 L168 50 L83 22"/>
-      </svg>
+      <a class="card-link col-1 row-3" href="#bodysuit" data-item="bodysuit" aria-label="进入贴身连体衣分类">
+        <img src="../assets/china-slices/card-bodysuit.png" alt="">
+      </a>
+      <a class="card-link col-2 row-3" href="#roleplay" data-item="roleplay" aria-label="进入角色扮演分类">
+        <img src="../assets/china-slices/card-roleplay.png" alt="">
+      </a>
+      <a class="card-link col-3 row-3" href="#pants" data-item="pants" aria-label="进入长裤分类">
+        <img src="../assets/china-slices/card-pants.png" alt="">
+      </a>
 
-      <section class="slogan" aria-label="品质与价格">
-        <h1 class="main-title">品质与价格</h1>
-        <p class="sub-title">是我们公开的</p>
-        <strong class="weapon">武器</strong>
-      </section>
-
-      <section class="catalog" aria-label="华语商品入口">
-        <a class="product-card" href="#panty" data-item="panty" aria-label="进入内裤分类" style="--item-w: 92%; --item-h: 58%; --item-top: 12%;">
-          <img class="card-frame" src="../assets/china-categories/frame-panty.png" alt="">
-          <img class="item-art" src="../assets/china-categories/item-panty.png" alt="">
-          <span class="label">内裤</span>
-        </a>
-
-        <a class="product-card" href="#bra" data-item="bra" aria-label="进入胸罩分类" style="--item-w: 98%; --item-h: 66%; --item-top: 6%;">
-          <img class="card-frame" src="../assets/china-categories/frame-bra.png" alt="">
-          <img class="item-art" src="../assets/china-categories/item-bra.png" alt="">
-          <span class="label">胸罩</span>
-        </a>
-
-        <a class="product-card" href="#top" data-item="top" aria-label="进入上衣分类" style="--item-w: 88%; --item-h: 66%; --item-top: 7%;">
-          <img class="card-frame" src="../assets/china-categories/frame-top.png" alt="">
-          <img class="item-art" src="../assets/china-categories/item-top.png" alt="">
-          <span class="label">上衣</span>
-        </a>
-
-        <a class="product-card" href="#skirt" data-item="skirt" aria-label="进入裙子短裤分类" style="--item-w: 102%; --item-h: 66%; --item-top: 10%;">
-          <img class="card-frame" src="../assets/china-categories/frame-skirt.png" alt="">
-          <img class="item-art" src="../assets/china-categories/item-skirt.png" alt="">
-          <span class="label">裙子 / 短裤</span>
-        </a>
-
-        <a class="product-card" href="#dress" data-item="dress" aria-label="进入连衣裙分类" style="--item-w: 90%; --item-h: 72%; --item-top: 5%;">
-          <img class="card-frame" src="../assets/china-categories/frame-dress.png" alt="">
-          <img class="item-art" src="../assets/china-categories/item-dress.png" alt="">
-          <span class="label">连衣裙</span>
-        </a>
-
-        <a class="product-card" href="#stockings" data-item="stockings" aria-label="进入丝袜分类" style="--item-w: 78%; --item-h: 74%; --item-top: 3%;">
-          <img class="card-frame" src="../assets/china-categories/frame-stockings.png" alt="">
-          <img class="item-art" src="../assets/china-categories/item-stockings.png" alt="">
-          <span class="label">丝袜</span>
-        </a>
-
-        <a class="product-card" href="#bodysuit" data-item="bodysuit" aria-label="进入贴身连体衣分类" style="--item-w: 86%; --item-h: 72%; --item-top: 5%;">
-          <img class="card-frame" src="../assets/china-categories/frame-bodysuit.png" alt="">
-          <img class="item-art" src="../assets/china-categories/item-bodysuit.png" alt="">
-          <span class="label">贴身连体衣</span>
-        </a>
-
-        <a class="product-card" href="#roleplay" data-item="roleplay" aria-label="进入角色扮演分类" style="--item-w: 92%; --item-h: 72%; --item-top: 5%;">
-          <img class="card-frame" src="../assets/china-categories/frame-roleplay.png" alt="">
-          <img class="item-art" src="../assets/china-categories/item-roleplay.png" alt="">
-          <span class="label">角色扮演</span>
-        </a>
-
-        <a class="product-card" href="#pants" data-item="pants" aria-label="进入长裤分类" style="--item-w: 78%; --item-h: 74%; --item-top: 4%;">
-          <img class="card-frame" src="../assets/china-categories/frame-pants.png" alt="">
-          <img class="item-art" src="../assets/china-categories/item-pants.png" alt="">
-          <span class="label">长裤</span>
-        </a>
-
-        <a class="product-card" href="#hat" data-item="hat" aria-label="进入帽子分类" style="--item-w: 100%; --item-h: 62%; --item-top: 10%;">
-          <img class="card-frame" src="../assets/china-categories/frame-hat.png" alt="">
-          <img class="item-art" src="../assets/china-categories/item-hat.png" alt="">
-          <span class="label">帽子</span>
-        </a>
-
-        <a class="product-card" href="#heels" data-item="heels" aria-label="进入女士凉鞋分类" style="--item-w: 100%; --item-h: 64%; --item-top: 10%;">
-          <img class="card-frame" src="../assets/china-categories/frame-heels.png" alt="">
-          <img class="item-art" src="../assets/china-categories/item-heels.png" alt="">
-          <span class="label">女士凉鞋</span>
-        </a>
-
-        <a class="product-card" href="#bag" data-item="bag" aria-label="进入女士包包分类" style="--item-w: 100%; --item-h: 66%; --item-top: 9%;">
-          <img class="card-frame" src="../assets/china-categories/frame-bag.png" alt="">
-          <img class="item-art" src="../assets/china-categories/item-bag.png" alt="">
-          <span class="label">女士包包</span>
-        </a>
-      </section>
+      <a class="card-link col-1 row-4" href="#hat" data-item="hat" aria-label="进入帽子分类">
+        <img src="../assets/china-slices/card-hat.png" alt="">
+      </a>
+      <a class="card-link col-2 row-4" href="#heels" data-item="heels" aria-label="进入女士凉鞋分类">
+        <img src="../assets/china-slices/card-heels.png" alt="">
+      </a>
+      <a class="card-link col-3 row-4" href="#bag" data-item="bag" aria-label="进入女士包包分类">
+        <img src="../assets/china-slices/card-bag.png" alt="">
+      </a>
     </main>
 
     <script>
-      const cards = document.querySelectorAll(".product-card");
+      const cards = document.querySelectorAll(".card-link");
+
       cards.forEach((card) => {
         card.addEventListener("click", (event) => {
           event.preventDefault();
-          cards.forEach((item) => {
-            item.classList.remove("is-active");
-          });
+          cards.forEach((item) => item.classList.remove("is-active"));
           card.classList.add("is-active");
           history.replaceState(null, "", card.getAttribute("href"));
         });
