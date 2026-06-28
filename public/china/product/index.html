@@ -557,7 +557,7 @@
     </style>
   </head>
   <body>
-    <svg aria-hidden="true" focusable="false" width="0" height="0" style="position:absolute;overflow:hidden">
+    <svg aria-hidden="true" focusable="false" width="0" height="0" style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
       <symbol id="icon-back" viewBox="0 0 64 64">
         <path d="M39.5 14.5 22 32l17.5 17.5"></path>
       </symbol>
@@ -615,14 +615,14 @@
       <section class="summary-card" aria-label="商品摘要">
         <div class="top-actions">
           <a class="icon-button" id="backLink" href="../catalog/" aria-label="返回上一页">
-            <svg class="ui-icon" aria-hidden="true"><use href="#icon-back"></use></svg>
+            <svg class="ui-icon" aria-hidden="true"><use href="#icon-back" xlink:href="#icon-back"></use></svg>
           </a>
           <div class="right-actions">
             <a class="icon-button" href="#cart" aria-label="购物车">
-              <svg class="cart-icon" aria-hidden="true"><use href="#cart-outline-icon"></use></svg>
+              <svg class="cart-icon" aria-hidden="true"><use href="#cart-outline-icon" xlink:href="#cart-outline-icon"></use></svg>
             </a>
             <button class="icon-button" id="menuButton" type="button" aria-label="更多">
-              <svg class="ui-icon" aria-hidden="true"><use href="#icon-menu"></use></svg>
+              <svg class="ui-icon" aria-hidden="true"><use href="#icon-menu" xlink:href="#icon-menu"></use></svg>
             </button>
           </div>
         </div>
@@ -642,7 +642,7 @@
               </div>
               <button class="cart-button" id="addCart" type="button">
                 <span class="cart-orb">
-                  <svg class="cart-icon" aria-hidden="true"><use href="#cart-outline-icon"></use></svg>
+                  <svg class="cart-icon" aria-hidden="true"><use href="#cart-outline-icon" xlink:href="#cart-outline-icon"></use></svg>
                 </span>
                 <span class="cart-label">加入购物车</span>
               </button>
@@ -658,14 +658,14 @@
           <img id="heroImage" src="../../assets/china-product-items/panty-1.jpg" alt="">
         </div>
         <button class="play-button" id="playButton" type="button" aria-label="播放商品展示" aria-pressed="false">
-          <svg class="ui-icon play-icon" aria-hidden="true"><use href="#icon-play"></use></svg>
-          <svg class="ui-icon pause-icon" aria-hidden="true"><use href="#icon-pause"></use></svg>
+          <svg class="ui-icon play-icon" aria-hidden="true"><use href="#icon-play" xlink:href="#icon-play"></use></svg>
+          <svg class="ui-icon pause-icon" aria-hidden="true"><use href="#icon-pause" xlink:href="#icon-pause"></use></svg>
         </button>
         <nav class="side-nav" aria-label="快捷操作">
-          <a class="side-link" id="returnLink" href="../catalog/"><span class="side-icon"><svg class="ui-icon" aria-hidden="true"><use href="#icon-back"></use></svg></span><span>返回上一页</span></a>
-          <a class="side-link" href="#member"><span class="side-icon"><svg class="ui-icon" aria-hidden="true"><use href="#icon-member"></use></svg></span><span>会员登录</span></a>
-          <a class="side-link" href="#service"><span class="side-icon"><svg class="ui-icon" aria-hidden="true"><use href="#icon-service"></use></svg></span><span>客服</span></a>
-          <a class="side-link" href="#cart"><span class="side-icon"><svg class="cart-icon" aria-hidden="true"><use href="#cart-outline-icon"></use></svg></span><span>购物车</span></a>
+          <a class="side-link" id="returnLink" href="../catalog/"><span class="side-icon"><svg class="ui-icon" aria-hidden="true"><use href="#icon-back" xlink:href="#icon-back"></use></svg></span><span>返回上一页</span></a>
+          <a class="side-link" href="#member"><span class="side-icon"><svg class="ui-icon" aria-hidden="true"><use href="#icon-member" xlink:href="#icon-member"></use></svg></span><span>会员登录</span></a>
+          <a class="side-link" href="#service"><span class="side-icon"><svg class="ui-icon" aria-hidden="true"><use href="#icon-service" xlink:href="#icon-service"></use></svg></span><span>客服</span></a>
+          <a class="side-link" href="#cart"><span class="side-icon"><svg class="cart-icon" aria-hidden="true"><use href="#cart-outline-icon" xlink:href="#cart-outline-icon"></use></svg></span><span>购物车</span></a>
         </nav>
       </section>
 
@@ -715,7 +715,7 @@
         const item = document.createElement("div");
         item.className = "feature";
         item.innerHTML = `
-          <span class="feature-icon"><svg class="ui-icon" aria-hidden="true"><use href="#${featureIcons[index]}"></use></svg></span>
+          <span class="feature-icon"><svg class="ui-icon" aria-hidden="true"><use href="#${featureIcons[index]}" xlink:href="#${featureIcons[index]}"></use></svg></span>
           <span class="feature-copy">
             <span class="feature-title">${label}</span>
             <span class="feature-sub">${featureSub[index]}</span>
