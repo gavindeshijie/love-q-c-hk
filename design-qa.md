@@ -107,6 +107,8 @@
 - Replaced the heavier product-card overlay with `public/assets/china-catalog-ui/product-card-frame-slim.png`, a lighter transparent frame with thinner rails and reduced glow so the product cards no longer compete visually with the brighter subcategory buttons.
 - Promoted the tuned panty catalog rhythm into a shared `catalog-reference` layout used by all 12 China product categories. The title band, subcategory button frame treatment, search bar, two-column product cards, slim product-card overlay, and bottom nav now share the same framework across 内裤, 胸罩, 上衣, 裙子 / 短裤, 连衣裙, 丝袜, 贴身连体衣, 角色扮演, 长裤, 帽子, 女士凉鞋, and 女士包包 while keeping each category's own title, subcategories, product images, prices, and codes.
 - Rechecked the 12 China category entry links and added a shared cache-busting `v=all-catalog-sync-20260628` parameter to every homepage category link so mobile browsers do not reuse an older catalog page when entering categories from the China landing page. Invalid or stale `filter` query values now fall back to each category's own default filter, guaranteeing one active subcategory highlight on every category page.
+- Added `public/assets/china-catalog-data.js` as the shared product data source for the catalog and product-detail pages. The catalog product cards now link to real detail URLs under `china/product/?category=...&item=...`, and `public/china/product/index.html` renders a code-authored product-detail UI matching the supplied reference structure without using the supplied screenshot as a full-page background. The detail page uses editable HTML/CSS/JS for the top summary card, product title, description, price, product code, feature chips, add-to-cart button, play button, right-side quick nav, and detail text while reusing the corresponding product image asset.
+- Verified locally that all 72 product detail URLs return 200 and every corresponding `public/assets/china-product-items/{category}-{1..6}.jpg` product image returns 200 as a JPEG. The detail page reads the same shared product data as the catalog, so product title, price, code, and image stay aligned with the tapped product card.
 
 **Follow-up Polish**
 - P3: the China page uses modular source slices rather than one full-page background. The slice boundaries are intentionally separate so each category card remains an independent clickable link.
@@ -114,7 +116,7 @@
 **Implementation Checklist**
 - Use the current `public/index.html`.
 - Include the China category page at `china/` and the five blank region directories: `singapore/`, `thailand/`, `vietnam/`, `malaysia/`, and `laos/`.
-- Include `public/china/catalog/index.html` and `public/assets/china-product-items/` for the 12 linked China product-list screens.
+- Include `public/china/catalog/index.html`, `public/china/product/index.html`, `public/assets/china-catalog-data.js`, and `public/assets/china-product-items/` for the 12 linked China product-list screens and 72 product-detail screens.
 - Include `public/assets/china-slices/` with the exact source-slice PNG assets for the China page.
 - Include `public/assets/flag-china.png`, `flag-singapore.png`, `flag-thailand.png`, `flag-vietnam.png`, `flag-malaysia.png`, and `flag-laos.png`.
 - Keep `public/CNAME` as `love.q-c.hk`.

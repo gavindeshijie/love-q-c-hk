@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>商品详情 | Secret Language Trade</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --violet: #ff45ff;
+        --line: rgba(224, 210, 255, 0.54);
+        --soft: rgba(255, 255, 255, 0.72);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+        background: #000;
+      }
+
+      body {
+        color: #fff;
+        font-family: Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+        letter-spacing: 0;
+        overflow-x: hidden;
+        -webkit-text-size-adjust: 100%;
+      }
+
+      button,
+      a {
+        font: inherit;
+      }
+
+      .page {
+        container-type: inline-size;
+        width: 100%;
+        max-width: 738px;
+        min-height: 100svh;
+        margin: 0 auto;
+        background:
+          radial-gradient(circle at 50% 44%, rgba(91, 0, 165, 0.24), transparent 29%),
+          radial-gradient(circle at 50% 77%, rgba(118, 0, 156, 0.2), transparent 31%),
+          #000;
+      }
+
+      .summary-card {
+        position: relative;
+        margin: 1.95cqw 1.6cqw 2.15cqw;
+        padding: 5.5cqw 1.8cqw 2.45cqw;
+        border: 0.16cqw solid rgba(234, 197, 255, 0.5);
+        border-radius: 1.35cqw;
+        background:
+          linear-gradient(145deg, rgba(16, 2, 23, 0.9), rgba(0, 0, 0, 0.96)),
+          #020004;
+        box-shadow:
+          inset 0 0 0 0.12cqw rgba(255, 255, 255, 0.07),
+          0 0 1.8cqw rgba(173, 36, 255, 0.23);
+      }
+
+      .top-actions {
+        position: absolute;
+        inset: 1.45cqw 1.5cqw auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        pointer-events: none;
+      }
+
+      .icon-button {
+        width: 5.35cqw;
+        height: 5.35cqw;
+        min-width: 34px;
+        min-height: 34px;
+        display: grid;
+        place-items: center;
+        border: 0;
+        border-radius: 999px;
+        background: transparent;
+        color: #fff;
+        text-decoration: none;
+        font-size: clamp(24px, 5.4cqw, 41px);
+        line-height: 1;
+        text-shadow: 0 0 0.8cqw rgba(255, 255, 255, 0.4);
+        pointer-events: auto;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .right-actions {
+        display: flex;
+        gap: 2.05cqw;
+        align-items: center;
+      }
+
+      .product-head {
+        display: grid;
+        grid-template-columns: 39% 1fr;
+        gap: 3.2cqw;
+        align-items: start;
+      }
+
+      .thumb-frame {
+        position: relative;
+        min-height: 26.2cqw;
+        display: grid;
+        place-items: center;
+        padding: 0.9cqw;
+        border: 0.13cqw solid rgba(229, 232, 255, 0.72);
+        clip-path: polygon(0 7%, 7% 0, 93% 0, 100% 7%, 100% 93%, 93% 100%, 7% 100%, 0 93%);
+        background:
+          radial-gradient(circle at 50% 52%, rgba(111, 0, 180, 0.36), transparent 59%),
+          #020003;
+      }
+
+      .thumb-frame img,
+      .hero-stage img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        user-select: none;
+        -webkit-user-drag: none;
+      }
+
+      .product-copy {
+        min-width: 0;
+        padding-top: 0.8cqw;
+      }
+
+      .product-title {
+        margin: 0 0 1.15cqw;
+        font-size: clamp(21px, 4.4cqw, 34px);
+        font-weight: 760;
+        line-height: 1.16;
+        color: rgba(255, 255, 255, 0.95);
+        text-shadow: 0 0 0.75cqw rgba(255, 255, 255, 0.25);
+      }
+
+      .product-intro {
+        margin: 0 0 2.4cqw;
+        color: rgba(255, 255, 255, 0.68);
+        font-size: clamp(12px, 2.72cqw, 20px);
+        line-height: 1.58;
+      }
+
+      .divider {
+        height: 0.12cqw;
+        margin: 0 0 2.1cqw;
+        background: linear-gradient(90deg, transparent, rgba(255, 58, 255, 0.62), transparent);
+        box-shadow: 0 0 0.8cqw rgba(255, 64, 255, 0.42);
+      }
+
+      .buy-row {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 2cqw;
+        align-items: center;
+      }
+
+      .price {
+        display: flex;
+        align-items: baseline;
+        gap: 0.9cqw;
+        color: #e67bff;
+        text-shadow: 0 0 1.3cqw rgba(255, 65, 255, 0.68);
+      }
+
+      .currency {
+        font-size: clamp(18px, 4.25cqw, 31px);
+      }
+
+      .amount {
+        font-size: clamp(42px, 9.8cqw, 72px);
+        font-weight: 320;
+        line-height: 0.94;
+      }
+
+      .code-line {
+        margin-top: 1.45cqw;
+        color: rgba(255, 255, 255, 0.76);
+        font-size: clamp(13px, 2.85cqw, 21px);
+      }
+
+      .code-pill {
+        display: inline-flex;
+        align-items: center;
+        min-height: 3.7cqw;
+        margin-left: 0.5cqw;
+        padding: 0 1.15cqw;
+        border: 0.13cqw solid rgba(255, 255, 255, 0.48);
+        border-radius: 0.95cqw;
+        color: rgba(255, 255, 255, 0.82);
+        background: rgba(0, 0, 0, 0.62);
+      }
+
+      .cart-button {
+        width: 11.6cqw;
+        min-width: 70px;
+        border: 0;
+        background: transparent;
+        color: rgba(255, 255, 255, 0.9);
+        display: grid;
+        justify-items: center;
+        gap: 0.85cqw;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .cart-orb {
+        width: 9.2cqw;
+        height: 9.2cqw;
+        min-width: 58px;
+        min-height: 58px;
+        display: grid;
+        place-items: center;
+        border: 0.16cqw solid rgba(255, 84, 255, 0.88);
+        border-radius: 50%;
+        background:
+          radial-gradient(circle at 50% 50%, rgba(255, 50, 255, 0.26), transparent 62%),
+          rgba(36, 0, 45, 0.82);
+        box-shadow:
+          inset 0 0 1cqw rgba(255, 255, 255, 0.26),
+          0 0 1.7cqw rgba(255, 55, 255, 0.8);
+        font-size: clamp(28px, 5.7cqw, 42px);
+      }
+
+      .cart-label {
+        font-size: clamp(13px, 2.65cqw, 20px);
+      }
+
+      .feature-row {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1.35cqw;
+        margin-top: 2.25cqw;
+      }
+
+      .feature {
+        min-width: 0;
+        display: grid;
+        grid-template-columns: 5cqw 1fr;
+        gap: 0.7cqw;
+        align-items: center;
+      }
+
+      .feature-icon {
+        width: 4.8cqw;
+        height: 4.8cqw;
+        min-width: 32px;
+        min-height: 32px;
+        display: grid;
+        place-items: center;
+        border: 0.13cqw solid rgba(255, 255, 255, 0.62);
+        border-radius: 50%;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: clamp(18px, 3.3cqw, 26px);
+      }
+
+      .feature-title {
+        font-size: clamp(12px, 2.55cqw, 19px);
+        line-height: 1.05;
+        color: rgba(255, 255, 255, 0.86);
+        white-space: nowrap;
+      }
+
+      .feature-sub {
+        margin-top: 0.45cqw;
+        font-size: clamp(10px, 1.9cqw, 14px);
+        line-height: 1.1;
+        color: rgba(255, 255, 255, 0.38);
+        white-space: nowrap;
+      }
+
+      .media-section {
+        position: relative;
+        min-height: 104cqw;
+        border-top: 0.13cqw solid rgba(255, 255, 255, 0.18);
+        border-bottom: 0.13cqw solid rgba(255, 255, 255, 0.22);
+        background:
+          radial-gradient(circle at 50% 44%, rgba(119, 0, 181, 0.28), transparent 42%),
+          #020003;
+        overflow: hidden;
+      }
+
+      .hero-stage {
+        position: absolute;
+        inset: 2.4cqw 0 0;
+      }
+
+      .hero-stage img {
+        object-fit: cover;
+      }
+
+      .hero-stage::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(180deg, transparent 0 72%, rgba(0, 0, 0, 0.42)),
+          radial-gradient(circle at 50% 50%, transparent 45%, rgba(0, 0, 0, 0.34));
+        pointer-events: none;
+      }
+
+      .play-button {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        z-index: 2;
+        width: 16.4cqw;
+        height: 16.4cqw;
+        min-width: 96px;
+        min-height: 96px;
+        transform: translate(-50%, -50%);
+        display: grid;
+        place-items: center;
+        border: 0.14cqw solid rgba(255, 255, 255, 0.68);
+        border-radius: 50%;
+        background: rgba(0, 0, 0, 0.28);
+        color: #fff;
+        font-size: clamp(44px, 8.5cqw, 64px);
+        line-height: 1;
+        box-shadow:
+          inset 0 0 1.7cqw rgba(255, 255, 255, 0.16),
+          0 0 2.6cqw rgba(255, 82, 255, 0.24);
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .play-button.is-playing {
+        background: rgba(98, 0, 122, 0.45);
+        box-shadow:
+          inset 0 0 1.7cqw rgba(255, 255, 255, 0.2),
+          0 0 3cqw rgba(255, 70, 255, 0.52);
+      }
+
+      .side-nav {
+        position: absolute;
+        right: 3.7cqw;
+        top: 45%;
+        z-index: 3;
+        display: grid;
+        gap: 3.15cqw;
+        transform: translateY(-20%);
+      }
+
+      .side-link {
+        display: grid;
+        justify-items: center;
+        gap: 0.6cqw;
+        color: rgba(255, 255, 255, 0.92);
+        text-decoration: none;
+        font-size: clamp(13px, 2.7cqw, 20px);
+        text-shadow: 0 0 0.7cqw rgba(0, 0, 0, 0.85);
+      }
+
+      .side-icon {
+        font-size: clamp(35px, 7.2cqw, 54px);
+        line-height: 0.92;
+      }
+
+      .scroll-tip {
+        min-height: 10.3cqw;
+        display: grid;
+        place-items: center;
+        color: #e588ff;
+        font-size: clamp(17px, 3.7cqw, 27px);
+        font-weight: 760;
+        text-shadow:
+          0 0 0.7cqw rgba(255, 255, 255, 0.24),
+          0 0 1.5cqw rgba(255, 72, 255, 0.55);
+        border-bottom: 0.13cqw solid rgba(255, 255, 255, 0.12);
+      }
+
+      .detail-copy {
+        padding: 4.2cqw 4.1cqw 8cqw;
+        color: rgba(255, 255, 255, 0.72);
+        font-size: clamp(14px, 3.05cqw, 22px);
+        line-height: 1.62;
+      }
+
+      .detail-copy h2 {
+        margin: 0 0 1.8cqw;
+        color: #fff;
+        font-size: clamp(20px, 4.4cqw, 32px);
+      }
+
+      @media (max-width: 420px) {
+        .summary-card {
+          margin-left: 1.35cqw;
+          margin-right: 1.35cqw;
+        }
+
+        .feature-title,
+        .feature-sub {
+          white-space: normal;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <section class="summary-card" aria-label="商品摘要">
+        <div class="top-actions">
+          <a class="icon-button" id="backLink" href="../catalog/">‹</a>
+          <div class="right-actions">
+            <a class="icon-button" href="#cart">⌑</a>
+            <button class="icon-button" id="menuButton" type="button" aria-label="更多">⋮</button>
+          </div>
+        </div>
+
+        <div class="product-head">
+          <div class="thumb-frame">
+            <img id="thumbImage" src="../../assets/china-product-items/panty-1.jpg" alt="">
+          </div>
+          <div class="product-copy">
+            <h1 class="product-title" id="productTitle">蕾丝镂空 | 柔软亲肤 | 透气舒适</h1>
+            <p class="product-intro" id="productIntro">精选柔软面料，贴合肌肤，带来轻盈透气的穿着体验。</p>
+            <div class="divider"></div>
+            <div class="buy-row">
+              <div>
+                <div class="price"><span class="currency">¥</span><span class="amount" id="productAmount">7.80</span></div>
+                <div class="code-line">商品编号：<span class="code-pill" id="productCode">N-LS-001</span></div>
+              </div>
+              <button class="cart-button" id="addCart" type="button">
+                <span class="cart-orb">⌑</span>
+                <span class="cart-label">加入购物车</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="feature-row" id="featureRow" aria-label="商品特点"></div>
+      </section>
+
+      <section class="media-section" aria-label="商品展示">
+        <div class="hero-stage">
+          <img id="heroImage" src="../../assets/china-product-items/panty-1.jpg" alt="">
+        </div>
+        <button class="play-button" id="playButton" type="button" aria-label="播放商品展示">▶</button>
+        <nav class="side-nav" aria-label="快捷操作">
+          <a class="side-link" id="returnLink" href="../catalog/"><span class="side-icon">←</span><span>返回上一页</span></a>
+          <a class="side-link" href="#member"><span class="side-icon">♙</span><span>会员登录</span></a>
+          <a class="side-link" href="#service"><span class="side-icon">♧</span><span>客服</span></a>
+          <a class="side-link" href="#cart"><span class="side-icon">⌑</span><span>购物车</span></a>
+        </nav>
+      </section>
+
+      <div class="scroll-tip">向下滑动查看产品细节</div>
+      <section class="detail-copy" id="detailCopy">
+        <h2>产品细节</h2>
+        <p id="detailText">柔软亲肤，轻盈透气，适合日常搭配。</p>
+      </section>
+    </main>
+
+    <script src="../../assets/china-catalog-data.js?v=product-detail-20260628"></script>
+    <script>
+      const pages = window.CHINA_CATALOG_DATA;
+      const params = new URLSearchParams(window.location.search);
+      const requestedCategory = params.get("category") || "panty";
+      const category = pages[requestedCategory] ? requestedCategory : "panty";
+      const page = pages[category];
+      const requestedItem = Number.parseInt(params.get("item") || "1", 10);
+      const itemIndex = Number.isFinite(requestedItem) ? Math.min(Math.max(requestedItem, 1), page.products.length) : 1;
+      const [description, priceText, code] = page.products[itemIndex - 1];
+      const imageSrc = `../../assets/china-product-items/${category}-${itemIndex}.jpg?v=product-detail-20260628`;
+      const cleanPrice = priceText.replace(/[^\d.]/g, "");
+      const featureParts = description.split("|").map((part) => part.trim()).filter(Boolean);
+      const featureIcons = ["♧", "≋", "♡", "‡"];
+      const featureSub = ["细腻面料", "轻盈不闷热", "精致设计", "日常不束缚"];
+      const intro = `精选${featureParts.join("、")}设计，细腻纹理若隐若现，柔软面料贴合肌肤，带来轻盈透气的穿着体验。`;
+      const backUrl = `../catalog/?category=${category}&v=product-detail-20260628`;
+
+      document.body.dataset.category = category;
+      document.title = `${code} | ${page.title} | Secret Language Trade`;
+      document.getElementById("backLink").href = backUrl;
+      document.getElementById("returnLink").href = backUrl;
+      document.getElementById("productTitle").textContent = description;
+      document.getElementById("productIntro").textContent = intro;
+      document.getElementById("productAmount").textContent = cleanPrice;
+      document.getElementById("productCode").textContent = code;
+      document.getElementById("thumbImage").src = imageSrc;
+      document.getElementById("thumbImage").alt = description;
+      document.getElementById("heroImage").src = imageSrc;
+      document.getElementById("heroImage").alt = description;
+      document.getElementById("detailText").textContent = `${description}。商品编号 ${code}，当前价格 ${priceText}。可根据搭配需求选择数量并加入购物车。`;
+
+      const featureRow = document.getElementById("featureRow");
+      const paddedFeatures = [...featureParts];
+      while (paddedFeatures.length < 4) paddedFeatures.push(page.title);
+      paddedFeatures.slice(0, 4).forEach((label, index) => {
+        const item = document.createElement("div");
+        item.className = "feature";
+        item.innerHTML = `
+          <span class="feature-icon">${featureIcons[index]}</span>
+          <span>
+            <span class="feature-title">${label}</span>
+            <span class="feature-sub">${featureSub[index]}</span>
+          </span>
+        `;
+        featureRow.append(item);
+      });
+
+      document.getElementById("addCart").addEventListener("click", (event) => {
+        const button = event.currentTarget;
+        const cart = JSON.parse(localStorage.getItem("loveCart") || "[]");
+        cart.push({ category, item: itemIndex, code, price: priceText });
+        localStorage.setItem("loveCart", JSON.stringify(cart));
+        button.querySelector(".cart-label").textContent = "已加入购物车";
+        button.classList.add("is-added");
+      });
+
+      document.getElementById("playButton").addEventListener("click", (event) => {
+        event.currentTarget.classList.toggle("is-playing");
+        event.currentTarget.textContent = event.currentTarget.classList.contains("is-playing") ? "Ⅱ" : "▶";
+      });
+
+      document.getElementById("menuButton").addEventListener("click", () => {
+        window.location.hash = "detail";
+      });
+    </script>
+  </body>
+</html>
