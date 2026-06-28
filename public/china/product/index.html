@@ -39,30 +39,33 @@
 
       .page {
         container-type: inline-size;
+        position: relative;
         width: 100%;
-        max-width: 738px;
-        min-height: 100svh;
+        max-width: 722px;
+        min-height: 177.29cqw;
         margin: 0 auto;
+        overflow: hidden;
         background:
-          radial-gradient(circle at 50% 44%, rgba(91, 0, 165, 0.24), transparent 29%),
-          radial-gradient(circle at 50% 77%, rgba(118, 0, 156, 0.2), transparent 31%),
+          radial-gradient(circle at 50% 8%, rgba(100, 0, 190, 0.2), transparent 24%),
+          radial-gradient(circle at 50% 64%, rgba(119, 0, 181, 0.22), transparent 43%),
           #000;
       }
 
       .summary-card {
         position: relative;
-        margin: 1.95cqw 1.55cqw 2.15cqw;
-        padding: 6.05cqw 1.85cqw 2.35cqw;
+        height: 57.34cqw;
+        margin: 2.22cqw 1.52cqw 2.07cqw;
+        padding: 0;
         border: 0;
-        border-radius: 1.55cqw;
+        border-radius: 1.45cqw;
         background:
-          radial-gradient(circle at 46% 64%, rgba(108, 0, 152, 0.11), transparent 34%),
-          linear-gradient(145deg, rgba(9, 1, 15, 0.94), rgba(0, 0, 0, 0.98)),
+          radial-gradient(circle at 50% 58%, rgba(108, 0, 152, 0.1), transparent 36%),
+          linear-gradient(145deg, rgba(7, 1, 12, 0.95), rgba(0, 0, 0, 0.99)),
           #020004;
         overflow: hidden;
         box-shadow:
-          inset 0 0 0 0.09cqw rgba(255, 255, 255, 0.06),
-          0 0 1.1cqw rgba(171, 44, 255, 0.22);
+          inset 0 0 0 0.05cqw rgba(255, 255, 255, 0.09),
+          0 0 0.74cqw rgba(171, 44, 255, 0.22);
       }
 
       .summary-card::before,
@@ -77,30 +80,37 @@
         border: 0.1cqw solid rgba(210, 137, 255, 0.42);
         border-radius: inherit;
         box-shadow:
-          inset 0 0 0 0.055cqw rgba(255, 255, 255, 0.08),
-          0 0 0.68cqw rgba(177, 48, 255, 0.2);
+          inset 0 0 0 0.05cqw rgba(255, 255, 255, 0.07),
+          0 0 0.62cqw rgba(177, 48, 255, 0.22);
       }
 
       .summary-card::after {
-        inset: 0.55cqw;
-        border-radius: 1.1cqw;
-        border: 0.055cqw solid rgba(255, 255, 255, 0.055);
+        inset: 0.58cqw;
+        border: 0.05cqw solid rgba(255, 255, 255, 0.055);
+        border-radius: 1.04cqw;
       }
 
       .top-actions {
         position: absolute;
-        inset: 1.45cqw 1.5cqw auto;
+        z-index: 5;
+        left: 3.05cqw;
+        right: 2.35cqw;
+        top: 2.22cqw;
         display: flex;
         align-items: center;
         justify-content: space-between;
         pointer-events: none;
       }
 
+      .right-actions {
+        display: flex;
+        gap: 2.78cqw;
+        align-items: center;
+      }
+
       .icon-button {
-        width: 5.35cqw;
-        height: 5.35cqw;
-        min-width: 34px;
-        min-height: 34px;
+        width: 5.25cqw;
+        height: 5.25cqw;
         display: grid;
         place-items: center;
         border: 0;
@@ -108,22 +118,20 @@
         background: transparent;
         color: #fff;
         text-decoration: none;
-        font-size: clamp(24px, 5.4cqw, 41px);
-        line-height: 1;
-        text-shadow: 0 0 0.8cqw rgba(255, 255, 255, 0.4);
         pointer-events: auto;
         -webkit-tap-highlight-color: transparent;
       }
 
+      .ui-icon,
       .cart-icon {
-        width: 1em;
-        height: 1em;
+        width: 100%;
+        height: 100%;
         display: block;
         overflow: visible;
         fill: none;
         color: currentColor;
         stroke: currentColor;
-        stroke-width: 3.5;
+        stroke-width: 3.4;
         stroke-linecap: round;
         stroke-linejoin: round;
       }
@@ -134,32 +142,25 @@
       }
 
       .icon-button .cart-icon {
-        width: 0.82em;
-        height: 0.82em;
-        transform: translateY(-0.04em);
+        width: 3.95cqw;
+        height: 3.95cqw;
         filter: drop-shadow(0 0 0.46cqw rgba(255, 255, 255, 0.38));
       }
 
-      .right-actions {
-        display: flex;
-        gap: 2.05cqw;
-        align-items: center;
-      }
-
       .product-head {
-        display: grid;
-        grid-template-columns: 39% 1fr;
-        gap: 3.2cqw;
-        align-items: start;
+        position: absolute;
+        inset: 0;
       }
 
       .thumb-frame {
-        position: relative;
-        aspect-ratio: 1 / 0.98;
-        min-height: 0;
+        position: absolute;
+        left: 2.35cqw;
+        top: 8.59cqw;
+        width: 35.73cqw;
+        height: 34.9cqw;
         display: grid;
         place-items: center;
-        padding: 0.92cqw;
+        padding: 0.78cqw;
         border: 0;
         background:
           radial-gradient(circle at 50% 52%, rgba(111, 0, 180, 0.36), transparent 59%),
@@ -187,7 +188,7 @@
       .thumb-frame::after {
         inset: 0.98cqw;
         z-index: 3;
-        opacity: 0.2;
+        opacity: 0.19;
         background: var(--octagon-frame) center / 100% 100% no-repeat;
       }
 
@@ -204,113 +205,119 @@
       }
 
       .thumb-frame img {
-        object-fit: contain;
+        object-fit: cover;
         clip-path: polygon(0 5.6%, 5.6% 0, 94.4% 0, 100% 5.6%, 100% 94.4%, 94.4% 100%, 5.6% 100%, 0 94.4%);
       }
 
-      .hero-stage img {
-        object-fit: cover;
-      }
-
       .product-copy {
+        position: absolute;
+        left: 40.86cqw;
+        top: 9.97cqw;
+        width: 52.9cqw;
         min-width: 0;
-        padding-top: 0.8cqw;
       }
 
       .product-title {
-        margin: 0 0 1.15cqw;
-        font-size: clamp(21px, 4.4cqw, 34px);
-        font-weight: 760;
-        line-height: 1.16;
+        margin: 0;
+        max-width: 52.8cqw;
         color: rgba(255, 255, 255, 0.95);
-        text-shadow: 0 0 0.75cqw rgba(255, 255, 255, 0.25);
+        font-size: clamp(17px, 3.75cqw, 27px);
+        font-weight: 760;
+        line-height: 1.18;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-shadow: 0 0 0.6cqw rgba(255, 255, 255, 0.25);
       }
 
       .product-intro {
-        margin: 0 0 2.4cqw;
-        color: rgba(255, 255, 255, 0.68);
-        font-size: clamp(12px, 2.72cqw, 20px);
-        line-height: 1.58;
+        margin: 2.18cqw 0 0;
+        max-width: 51.2cqw;
+        color: rgba(255, 255, 255, 0.66);
+        font-size: clamp(11px, 2.26cqw, 16.3px);
+        line-height: 1.45;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
       }
 
       .divider {
-        height: 0.12cqw;
-        margin: 0 0 2.1cqw;
-        background: linear-gradient(90deg, transparent, rgba(255, 58, 255, 0.62), transparent);
-        box-shadow: 0 0 0.8cqw rgba(255, 64, 255, 0.42);
+        width: 52.9cqw;
+        height: 0.11cqw;
+        margin: 2.9cqw 0 0;
+        background: linear-gradient(90deg, rgba(255, 58, 255, 0.1), rgba(255, 58, 255, 0.72), rgba(255, 58, 255, 0.08));
+        box-shadow: 0 0 0.68cqw rgba(255, 64, 255, 0.46);
       }
 
       .buy-row {
-        display: grid;
-        grid-template-columns: 1fr auto;
-        gap: 2cqw;
-        align-items: center;
+        display: block;
       }
 
       .price {
         display: flex;
         align-items: baseline;
         gap: 0.9cqw;
-        color: #e67bff;
-        text-shadow: 0 0 1.3cqw rgba(255, 65, 255, 0.68);
+        margin-top: 3.18cqw;
+        color: #e77cff;
+        text-shadow: 0 0 1.25cqw rgba(255, 65, 255, 0.68);
       }
 
       .currency {
-        font-size: clamp(18px, 4.25cqw, 31px);
+        font-size: clamp(17px, 3.65cqw, 26px);
       }
 
       .amount {
-        font-size: clamp(42px, 9.8cqw, 72px);
+        font-size: clamp(40px, 8.58cqw, 62px);
         font-weight: 320;
         line-height: 0.94;
       }
 
       .code-line {
-        margin-top: 1.45cqw;
-        color: rgba(255, 255, 255, 0.76);
-        font-size: clamp(13px, 2.85cqw, 21px);
+        margin-top: 2.36cqw;
+        color: rgba(255, 255, 255, 0.74);
+        font-size: clamp(11px, 2.35cqw, 17px);
       }
 
       .code-pill {
         display: inline-flex;
         align-items: center;
-        min-height: 3.7cqw;
-        margin-left: 0.5cqw;
+        min-height: 3.25cqw;
+        margin-left: 0.45cqw;
         padding: 0 1.15cqw;
-        border: 0.13cqw solid rgba(255, 255, 255, 0.48);
-        border-radius: 0.95cqw;
+        border: 0.12cqw solid rgba(255, 255, 255, 0.48);
+        border-radius: 0.82cqw;
         color: rgba(255, 255, 255, 0.82);
         background: rgba(0, 0, 0, 0.62);
       }
 
       .cart-button {
-        width: 11.6cqw;
-        min-width: 70px;
+        position: absolute;
+        left: 35.04cqw;
+        top: 17.45cqw;
+        width: 16.6cqw;
+        display: grid;
+        justify-items: center;
+        gap: 1.02cqw;
         border: 0;
         background: transparent;
         color: rgba(255, 255, 255, 0.9);
-        display: grid;
-        justify-items: center;
-        gap: 0.85cqw;
         -webkit-tap-highlight-color: transparent;
       }
 
       .cart-orb {
-        width: 10.75cqw;
-        height: 10.75cqw;
-        min-width: 66px;
-        min-height: 66px;
+        width: 10.85cqw;
+        height: 10.85cqw;
         display: grid;
         place-items: center;
-        border: 0.16cqw solid rgba(255, 92, 255, 0.92);
+        border: 0.17cqw solid rgba(255, 92, 255, 0.94);
         border-radius: 50%;
         background:
           radial-gradient(circle at 50% 50%, rgba(255, 58, 255, 0.16), transparent 62%),
           rgba(36, 0, 45, 0.82);
         box-shadow:
-          inset 0 0 0.75cqw rgba(255, 255, 255, 0.2),
-          0 0 1.45cqw rgba(255, 55, 255, 0.72);
-        font-size: clamp(28px, 5.7cqw, 42px);
+          inset 0 0 0.78cqw rgba(255, 255, 255, 0.2),
+          0 0 1.55cqw rgba(255, 55, 255, 0.8);
       }
 
       .cart-orb .cart-icon {
@@ -324,48 +331,55 @@
       }
 
       .cart-label {
-        font-size: clamp(13px, 2.65cqw, 20px);
+        font-size: clamp(12px, 2.54cqw, 18.4px);
+        white-space: nowrap;
       }
 
       .feature-row {
+        position: absolute;
+        left: 4.99cqw;
+        right: 3.9cqw;
+        top: 47.65cqw;
+        height: 7.3cqw;
         display: grid;
         grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 1.05cqw;
-        margin-top: 2.25cqw;
+        gap: 1.0cqw;
       }
 
       .feature {
-        --feature-icon-size: clamp(23px, 4.05cqw, 30px);
+        --feature-icon-size: 5.55cqw;
         position: relative;
         min-width: 0;
         display: grid;
         grid-template-columns: var(--feature-icon-size) minmax(0, 1fr);
-        gap: clamp(5px, 0.85cqw, 7px);
+        gap: 1.18cqw;
         align-items: center;
       }
 
       .feature:not(:last-child)::after {
         content: "";
         position: absolute;
-        right: -0.72cqw;
-        top: 9%;
-        width: 0.11cqw;
-        height: 82%;
-        background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.38), transparent);
+        right: -0.52cqw;
+        top: 8%;
+        width: 0.09cqw;
+        height: 84%;
+        background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.34), transparent);
       }
 
       .feature-icon {
         width: var(--feature-icon-size);
         height: var(--feature-icon-size);
-        min-width: 0;
-        min-height: 0;
         display: grid;
         place-items: center;
-        border: max(0.8px, 0.095cqw) solid rgba(255, 255, 255, 0.62);
+        border: 0.13cqw solid rgba(255, 255, 255, 0.62);
         border-radius: 50%;
         color: rgba(255, 255, 255, 0.9);
-        font-size: clamp(15px, 2.85cqw, 21px);
-        box-shadow: inset 0 0 0.42cqw rgba(255, 255, 255, 0.06);
+      }
+
+      .feature-icon .ui-icon {
+        width: 72%;
+        height: 72%;
+        stroke-width: 3;
       }
 
       .feature-copy {
@@ -378,29 +392,29 @@
         min-width: 0;
         overflow: hidden;
         text-overflow: ellipsis;
-        font-size: clamp(11px, 2.32cqw, 17px);
-        line-height: 1.05;
         color: rgba(255, 255, 255, 0.86);
+        font-size: clamp(10px, 2.2cqw, 15.9px);
+        line-height: 1.05;
         white-space: nowrap;
       }
 
       .feature-sub {
         display: block;
         min-width: 0;
-        margin-top: 0.45cqw;
+        margin-top: 0.5cqw;
         overflow: hidden;
         text-overflow: ellipsis;
-        font-size: clamp(8.5px, 1.62cqw, 12px);
-        line-height: 1.1;
         color: rgba(255, 255, 255, 0.38);
+        font-size: clamp(8px, 1.62cqw, 11.7px);
+        line-height: 1.1;
         white-space: nowrap;
       }
 
       .media-section {
         position: relative;
-        min-height: 104cqw;
-        border-top: 0.13cqw solid rgba(255, 255, 255, 0.28);
-        border-bottom: 0.13cqw solid rgba(255, 255, 255, 0.25);
+        height: 104.43cqw;
+        border-top: 0.13cqw solid rgba(255, 255, 255, 0.24);
+        border-bottom: 0.13cqw solid rgba(255, 255, 255, 0.2);
         background:
           radial-gradient(circle at 50% 44%, rgba(119, 0, 181, 0.28), transparent 42%),
           #020003;
@@ -409,7 +423,7 @@
 
       .hero-stage {
         position: absolute;
-        inset: 2.4cqw 0 0;
+        inset: 0;
       }
 
       .hero-stage img {
@@ -421,82 +435,106 @@
         position: absolute;
         inset: 0;
         background:
-          linear-gradient(180deg, transparent 0 72%, rgba(0, 0, 0, 0.42)),
-          radial-gradient(circle at 50% 50%, transparent 45%, rgba(0, 0, 0, 0.34));
+          linear-gradient(180deg, rgba(0, 0, 0, 0.02) 0 72%, rgba(0, 0, 0, 0.42)),
+          radial-gradient(circle at 50% 53%, transparent 45%, rgba(0, 0, 0, 0.33));
         pointer-events: none;
       }
 
       .play-button {
         position: absolute;
         left: 50%;
-        top: 50%;
+        top: 53.72%;
         z-index: 2;
-        width: 16.4cqw;
-        height: 16.4cqw;
-        min-width: 96px;
-        min-height: 96px;
-        transform: translate(-50%, -50%);
+        width: 14.4cqw;
+        height: 14.4cqw;
         display: grid;
         place-items: center;
         border: 0.12cqw solid rgba(255, 255, 255, 0.74);
         border-radius: 50%;
-        background: rgba(0, 0, 0, 0.28);
+        background: rgba(0, 0, 0, 0.3);
         color: #fff;
-        font-size: clamp(44px, 8.5cqw, 64px);
-        line-height: 1;
+        transform: translate(-50%, -50%);
         box-shadow:
-          inset 0 0 1.2cqw rgba(255, 255, 255, 0.14),
-          0 0 1.6cqw rgba(255, 82, 255, 0.22);
+          inset 0 0 1.15cqw rgba(255, 255, 255, 0.14),
+          0 0 1.6cqw rgba(255, 82, 255, 0.24);
         -webkit-tap-highlight-color: transparent;
       }
 
-      .play-button.is-playing {
-        background: rgba(98, 0, 122, 0.45);
-        box-shadow:
-          inset 0 0 1.7cqw rgba(255, 255, 255, 0.2),
-          0 0 3cqw rgba(255, 70, 255, 0.52);
+      .play-button .ui-icon {
+        width: 48%;
+        height: 48%;
+        margin-left: 0.55cqw;
+        fill: currentColor;
+        stroke: none;
+      }
+
+      .play-button .pause-icon {
+        display: none;
+        margin-left: 0;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 7;
+      }
+
+      .play-button.is-playing .play-icon {
+        display: none;
+      }
+
+      .play-button.is-playing .pause-icon {
+        display: block;
       }
 
       .side-nav {
         position: absolute;
-        right: 3.7cqw;
-        top: 45%;
+        right: 2.9cqw;
+        top: 47.4cqw;
         z-index: 3;
         display: grid;
-        gap: 3.15cqw;
-        transform: translateY(-20%);
+        gap: 2.45cqw;
       }
 
       .side-link {
+        width: 10.9cqw;
+        min-width: 0;
         display: grid;
         justify-items: center;
-        gap: 0.6cqw;
+        gap: 0.75cqw;
         color: rgba(255, 255, 255, 0.92);
         text-decoration: none;
-        font-size: clamp(13px, 2.7cqw, 20px);
+        font-size: clamp(12px, 2.56cqw, 18.5px);
+        line-height: 1.08;
+        text-align: center;
         text-shadow: 0 0 0.7cqw rgba(0, 0, 0, 0.85);
       }
 
       .side-icon {
-        font-size: clamp(35px, 7.2cqw, 54px);
-        line-height: 0.92;
+        width: 6.2cqw;
+        height: 6.2cqw;
+        display: grid;
+        place-items: center;
       }
 
+      .side-icon .ui-icon,
       .side-icon .cart-icon {
-        width: 0.88em;
-        height: 0.88em;
-        stroke-width: 3.2;
+        width: 100%;
+        height: 100%;
+        stroke-width: 3.25;
         filter:
           drop-shadow(0 0 0.4cqw rgba(255, 255, 255, 0.42))
           drop-shadow(0 0 0.65cqw rgba(180, 72, 255, 0.35));
       }
 
+      .side-icon .cart-icon {
+        width: 90%;
+        height: 90%;
+      }
+
       .scroll-tip {
-        min-height: 10.3cqw;
+        height: 11.08cqw;
         display: grid;
         place-items: center;
         color: #e588ff;
-        font-size: clamp(17px, 3.7cqw, 27px);
+        font-size: clamp(17px, 3.72cqw, 26.9px);
         font-weight: 760;
         text-shadow:
           0 0 0.7cqw rgba(255, 255, 255, 0.24),
@@ -516,22 +554,18 @@
         color: #fff;
         font-size: clamp(20px, 4.4cqw, 32px);
       }
-
-      @media (max-width: 420px) {
-        .summary-card {
-          margin-left: 1.35cqw;
-          margin-right: 1.35cqw;
-        }
-
-        .feature-title,
-        .feature-sub {
-          white-space: normal;
-        }
-      }
     </style>
   </head>
   <body>
     <svg aria-hidden="true" focusable="false" width="0" height="0" style="position:absolute;overflow:hidden">
+      <symbol id="icon-back" viewBox="0 0 64 64">
+        <path d="M39.5 14.5 22 32l17.5 17.5"></path>
+      </symbol>
+      <symbol id="icon-menu" viewBox="0 0 64 64">
+        <circle cx="32" cy="16" r="3.8" fill="currentColor" stroke="none"></circle>
+        <circle cx="32" cy="32" r="3.8" fill="currentColor" stroke="none"></circle>
+        <circle cx="32" cy="48" r="3.8" fill="currentColor" stroke="none"></circle>
+      </symbol>
       <symbol id="cart-outline-icon" viewBox="0 0 64 64">
         <path class="cart-basket-fill" d="M24.2 23.2H50L46.4 38H28.2L24.2 23.2Z"></path>
         <path d="M15.2 17.1h5.9l7.2 24.6h18.9"></path>
@@ -541,16 +575,55 @@
         <circle cx="30.6" cy="46.9" r="2.45"></circle>
         <circle cx="43.8" cy="46.9" r="2.45"></circle>
       </symbol>
+      <symbol id="icon-play" viewBox="0 0 64 64">
+        <path d="M24 18 48 32 24 46Z"></path>
+      </symbol>
+      <symbol id="icon-pause" viewBox="0 0 64 64">
+        <path d="M24 18v28M40 18v28"></path>
+      </symbol>
+      <symbol id="icon-member" viewBox="0 0 64 64">
+        <circle cx="27" cy="22" r="9"></circle>
+        <path d="M12 52c2.7-10 10-15 21.5-15"></path>
+        <path d="M47 35v17M38.5 43.5h17"></path>
+        <path d="M49.5 31.5 53 35l-3.5 3.5"></path>
+      </symbol>
+      <symbol id="icon-service" viewBox="0 0 64 64">
+        <path d="M15 34v-4c0-10.2 7.1-18 17-18s17 7.8 17 18v4"></path>
+        <path d="M15 33h7v14h-7a5 5 0 0 1-5-5v-4a5 5 0 0 1 5-5Z"></path>
+        <path d="M49 33h-7v14h7a5 5 0 0 0 5-5v-4a5 5 0 0 0-5-5Z"></path>
+        <path d="M42 47c-2.2 4-5.7 6-10.5 6h-5"></path>
+      </symbol>
+      <symbol id="feature-leaf" viewBox="0 0 64 64">
+        <path d="M13 46c23-1 35-15 40-35-20 4-34 16-40 35Z"></path>
+        <path d="M13 46c8-10 18-18 31-25"></path>
+      </symbol>
+      <symbol id="feature-wave" viewBox="0 0 64 64">
+        <path d="M13 22c7-7 12 7 19 0s12 7 19 0"></path>
+        <path d="M13 33c7-7 12 7 19 0s12 7 19 0"></path>
+        <path d="M13 44c7-7 12 7 19 0s12 7 19 0"></path>
+      </symbol>
+      <symbol id="feature-heart" viewBox="0 0 64 64">
+        <path d="M32 51S14 39 14 25.5C14 18 19 14 25 14c4.1 0 6.1 2.2 7 4.1C32.9 16.2 35 14 39 14c6 0 11 4 11 11.5C50 39 32 51 32 51Z"></path>
+      </symbol>
+      <symbol id="feature-stretch" viewBox="0 0 64 64">
+        <path d="M18 17v30M46 17v30M26 24h12M26 40h12"></path>
+        <path d="m18 17-6 6M18 17l6 6M18 47l-6-6M18 47l6-6"></path>
+        <path d="m46 17-6 6M46 17l6 6M46 47l-6-6M46 47l6-6"></path>
+      </symbol>
     </svg>
     <main class="page">
       <section class="summary-card" aria-label="商品摘要">
         <div class="top-actions">
-          <a class="icon-button" id="backLink" href="../catalog/">‹</a>
+          <a class="icon-button" id="backLink" href="../catalog/" aria-label="返回上一页">
+            <svg class="ui-icon" aria-hidden="true"><use href="#icon-back"></use></svg>
+          </a>
           <div class="right-actions">
             <a class="icon-button" href="#cart" aria-label="购物车">
               <svg class="cart-icon" aria-hidden="true"><use href="#cart-outline-icon"></use></svg>
             </a>
-            <button class="icon-button" id="menuButton" type="button" aria-label="更多">⋮</button>
+            <button class="icon-button" id="menuButton" type="button" aria-label="更多">
+              <svg class="ui-icon" aria-hidden="true"><use href="#icon-menu"></use></svg>
+            </button>
           </div>
         </div>
 
@@ -584,11 +657,14 @@
         <div class="hero-stage">
           <img id="heroImage" src="../../assets/china-product-items/panty-1.jpg" alt="">
         </div>
-        <button class="play-button" id="playButton" type="button" aria-label="播放商品展示">▶</button>
+        <button class="play-button" id="playButton" type="button" aria-label="播放商品展示" aria-pressed="false">
+          <svg class="ui-icon play-icon" aria-hidden="true"><use href="#icon-play"></use></svg>
+          <svg class="ui-icon pause-icon" aria-hidden="true"><use href="#icon-pause"></use></svg>
+        </button>
         <nav class="side-nav" aria-label="快捷操作">
-          <a class="side-link" id="returnLink" href="../catalog/"><span class="side-icon">←</span><span>返回上一页</span></a>
-          <a class="side-link" href="#member"><span class="side-icon">♙</span><span>会员登录</span></a>
-          <a class="side-link" href="#service"><span class="side-icon">♧</span><span>客服</span></a>
+          <a class="side-link" id="returnLink" href="../catalog/"><span class="side-icon"><svg class="ui-icon" aria-hidden="true"><use href="#icon-back"></use></svg></span><span>返回上一页</span></a>
+          <a class="side-link" href="#member"><span class="side-icon"><svg class="ui-icon" aria-hidden="true"><use href="#icon-member"></use></svg></span><span>会员登录</span></a>
+          <a class="side-link" href="#service"><span class="side-icon"><svg class="ui-icon" aria-hidden="true"><use href="#icon-service"></use></svg></span><span>客服</span></a>
           <a class="side-link" href="#cart"><span class="side-icon"><svg class="cart-icon" aria-hidden="true"><use href="#cart-outline-icon"></use></svg></span><span>购物车</span></a>
         </nav>
       </section>
@@ -613,7 +689,7 @@
       const imageSrc = `../../assets/china-product-items/${category}-${itemIndex}.jpg?v=product-detail-20260628`;
       const cleanPrice = priceText.replace(/[^\d.]/g, "");
       const featureParts = description.split("|").map((part) => part.trim()).filter(Boolean);
-      const featureIcons = ["♧", "≋", "♡", "‡"];
+      const featureIcons = ["feature-leaf", "feature-wave", "feature-heart", "feature-stretch"];
       const featureSub = ["细腻面料", "轻盈不闷热", "精致设计", "日常不束缚"];
       const intro = `精选${featureParts.join("、")}设计，细腻纹理若隐若现，柔软面料贴合肌肤，带来轻盈透气的穿着体验。`;
       const backUrl = `../catalog/?category=${category}&v=product-detail-20260628`;
@@ -639,7 +715,7 @@
         const item = document.createElement("div");
         item.className = "feature";
         item.innerHTML = `
-          <span class="feature-icon">${featureIcons[index]}</span>
+          <span class="feature-icon"><svg class="ui-icon" aria-hidden="true"><use href="#${featureIcons[index]}"></use></svg></span>
           <span class="feature-copy">
             <span class="feature-title">${label}</span>
             <span class="feature-sub">${featureSub[index]}</span>
@@ -658,8 +734,9 @@
       });
 
       document.getElementById("playButton").addEventListener("click", (event) => {
-        event.currentTarget.classList.toggle("is-playing");
-        event.currentTarget.textContent = event.currentTarget.classList.contains("is-playing") ? "Ⅱ" : "▶";
+        const button = event.currentTarget;
+        button.classList.toggle("is-playing");
+        button.setAttribute("aria-pressed", button.classList.contains("is-playing") ? "true" : "false");
       });
 
       document.getElementById("menuButton").addEventListener("click", () => {
