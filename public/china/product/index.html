@@ -486,7 +486,7 @@
 
       .side-nav {
         position: absolute;
-        right: 1.55cqw;
+        right: max(0.4cqw, 2px);
         top: 47.05cqw;
         z-index: 3;
         display: grid;
@@ -494,14 +494,14 @@
       }
 
       .side-link {
-        width: 13.8cqw;
+        width: max(12.2cqw, 68px);
         min-width: 0;
         display: grid;
         justify-items: center;
         gap: 0.46cqw;
         color: rgba(255, 255, 255, 0.92);
         text-decoration: none;
-        font-size: clamp(12px, 2.34cqw, 16.9px);
+        font-size: clamp(11px, 2.25cqw, 16.2px);
         line-height: 1;
         text-align: center;
         text-shadow: 0 0 0.7cqw rgba(0, 0, 0, 0.85);
@@ -512,8 +512,8 @@
       }
 
       .side-icon {
-        width: 6.65cqw;
-        height: 6.65cqw;
+        width: max(6.65cqw, 28px);
+        height: max(6.65cqw, 28px);
         display: grid;
         place-items: center;
       }
@@ -731,7 +731,7 @@
       </section>
     </main>
 
-    <script src="../../assets/china-catalog-data.js?v=product-detail-20260628"></script>
+    <script src="../../assets/china-catalog-data.js?v=detail-controls-v2-20260628"></script>
     <script>
       const pages = window.CHINA_CATALOG_DATA;
       const params = new URLSearchParams(window.location.search);
@@ -741,7 +741,7 @@
       const requestedItem = Number.parseInt(params.get("item") || "1", 10);
       const itemIndex = Number.isFinite(requestedItem) ? Math.min(Math.max(requestedItem, 1), page.products.length) : 1;
       const [description, priceText, code] = page.products[itemIndex - 1];
-      const imageSrc = `../../assets/china-product-items/${category}-${itemIndex}.jpg?v=product-detail-20260628`;
+      const imageSrc = `../../assets/china-product-items/${category}-${itemIndex}.jpg?v=detail-controls-v2-20260628`;
       const cleanPrice = priceText.replace(/[^\d.]/g, "");
       const featureParts = description.split("|").map((part) => part.trim()).filter(Boolean);
       const featureIconSvg = [
@@ -752,9 +752,9 @@
       ];
       const featureSub = ["细腻面料", "轻盈不闷热", "精致设计", "日常不束缚"];
       const intro = `精选${featureParts.join("、")}设计，细腻纹理若隐若现，柔软面料贴合肌肤，带来轻盈透气的穿着体验。`;
-      const backUrl = `../catalog/?category=${category}&v=product-detail-20260628`;
+      const backUrl = `../catalog/?category=${category}&v=detail-controls-v2-20260628`;
       const heroIndexes = [itemIndex, (itemIndex % page.products.length) + 1, ((itemIndex + 1) % page.products.length) + 1];
-      const heroImages = heroIndexes.map((index) => `../../assets/china-product-items/${category}-${index}.jpg?v=product-detail-20260628`);
+      const heroImages = heroIndexes.map((index) => `../../assets/china-product-items/${category}-${index}.jpg?v=detail-controls-v2-20260628`);
 
       document.body.dataset.category = category;
       document.title = `${code} | ${page.title} | Secret Language Trade`;
