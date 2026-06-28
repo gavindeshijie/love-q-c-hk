@@ -658,7 +658,7 @@
           <span class="support-icon faq-icon">FAQ</span>
           <span class="support-copy"><strong>常见问题</strong><span>查看常见问题解答，快速解决您的疑问</span></span>
         </a>
-        <a class="support-item online-item" href="?chat=1&v=member-settings-v1-20260628" data-chat-open>
+        <a class="support-item online-item" href="#online-consultation" data-chat-open>
           <span class="support-icon">
             <svg viewBox="0 0 64 64" aria-hidden="true">
               <path d="M13 30c0-9.3 8.5-16.7 19-16.7S51 20.7 51 30 42.5 46.7 32 46.7c-2.7 0-5.3-.5-7.6-1.4L15 50l3.1-8.1C14.9 38.9 13 34.7 13 30Z"></path>
@@ -747,19 +747,19 @@
       </section>
 
       <nav class="bottom-actions" aria-label="客服底部操作">
-        <a class="footer-link" href="../catalog/?category=panty&v=member-settings-v1-20260628">
+        <a class="footer-link" href="../catalog/?category=panty&v=support-chat-v1-20260629">
           <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M39 16 21 32l18 16"></path><path d="M22 32h28"></path><path d="M20 32c0 10 6 17 19 20"></path></svg>
           <span>返回上一页</span>
         </a>
-        <a class="footer-link" href="../cart/?v=member-settings-v1-20260628">
+        <a class="footer-link" href="../cart/?v=support-chat-v1-20260629">
           <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M15 16h7l6 25h21"></path><path d="M25 24h27l-4 15H29Z"></path><circle cx="31" cy="49" r="3"></circle><circle cx="46" cy="49" r="3"></circle></svg>
           <span>购物车</span>
         </a>
-        <a class="footer-link" href="../member/?view=profile&v=member-settings-v1-20260628">
+        <a class="footer-link" href="../member/?view=profile&v=support-chat-v1-20260629">
           <svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="22" r="9"></circle><path d="M15 53c3-10 9-15 17-15s14 5 17 15"></path></svg>
           <span>会员中心</span>
         </a>
-        <a class="footer-link" href="../catalog/?category=panty&v=member-settings-v1-20260628">
+        <a class="footer-link" href="../catalog/?category=panty&v=support-chat-v1-20260629">
           <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M18 14h24c3 0 5 2 5 5v26c0 3-2 5-5 5H18"></path><path d="M32 24 44 32 32 40"></path><path d="M44 32H14"></path></svg>
           <span>退出客服中心</span>
         </a>
@@ -767,18 +767,28 @@
     </main>
 
     <script>
-      const VERSION = "member-settings-v1-20260628";
+      const VERSION = "support-chat-v1-20260629";
       const params = new URLSearchParams(window.location.search);
       const chatWindow = document.getElementById("chatWindow");
       const onlineItem = document.querySelector(".online-item");
       const closeChat = document.getElementById("closeChat");
       const chatForm = document.getElementById("chatForm");
       const chatText = document.getElementById("chatText");
+      let chatOpenedByClick = false;
 
       function syncVersion() {
-        if (params.get("v") !== VERSION) {
-          params.set("v", VERSION);
-          window.history.replaceState(null, "", `${window.location.pathname}?${params.toString()}`);
+        const next = new URL(window.location.href);
+        let changed = false;
+        if (next.searchParams.get("v") !== VERSION) {
+          next.searchParams.set("v", VERSION);
+          changed = true;
+        }
+        if (next.searchParams.has("chat")) {
+          next.searchParams.delete("chat");
+          changed = true;
+        }
+        if (changed) {
+          window.history.replaceState(null, "", next);
         }
       }
 
@@ -793,17 +803,21 @@
       }
 
       syncVersion();
-      setChat(params.get("chat") === "1", false);
+      setChat(false, false);
 
       document.addEventListener("click", (event) => {
         const chatOpen = event.target.closest("[data-chat-open]");
         if (chatOpen) {
           event.preventDefault();
+          chatOpenedByClick = true;
           setChat(true);
         }
       });
 
-      closeChat.addEventListener("click", () => setChat(false));
+      closeChat.addEventListener("click", () => {
+        chatOpenedByClick = false;
+        setChat(false);
+      });
 
       chatForm.addEventListener("submit", (event) => {
         event.preventDefault();
@@ -813,7 +827,7 @@
 
       window.addEventListener("popstate", () => {
         const next = new URLSearchParams(window.location.search);
-        setChat(next.get("chat") === "1", false);
+        setChat(chatOpenedByClick && next.get("chat") === "1", false);
       });
     </script>
   </body>
