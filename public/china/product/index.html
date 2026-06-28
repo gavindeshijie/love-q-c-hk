@@ -10,7 +10,7 @@
         --violet: #ff45ff;
         --line: rgba(224, 210, 255, 0.54);
         --soft: rgba(255, 255, 255, 0.72);
-        --octagon-frame: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M6 1H94L99 6V94L94 99H6L1 94V6Z' fill='none' stroke='%23edf4ff' stroke-opacity='.78' stroke-width='1.1'/%3E%3Cpath d='M12 4H88M96 12V88M88 96H12M4 88V12' fill='none' stroke='%2374eaff' stroke-opacity='.26' stroke-width='.55'/%3E%3Cpath d='M6 1L1 6M94 1L99 6M99 94L94 99M1 94L6 99' fill='none' stroke='%23ff62ff' stroke-opacity='.72' stroke-width='1.2'/%3E%3C/svg%3E");
+        --octagon-frame: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M6 1H94L99 6V94L94 99H6L1 94V6Z' fill='none' stroke='%23edf4ff' stroke-opacity='.68' stroke-width='.72'/%3E%3Cpath d='M12 4H88M96 12V88M88 96H12M4 88V12' fill='none' stroke='%2374eaff' stroke-opacity='.2' stroke-width='.34'/%3E%3Cpath d='M6 1L1 6M94 1L99 6M99 94L94 99M1 94L6 99' fill='none' stroke='%23ff62ff' stroke-opacity='.58' stroke-width='.82'/%3E%3C/svg%3E");
       }
 
       * {
@@ -74,17 +74,17 @@
 
       .summary-card::before {
         inset: 0;
-        border: 0.14cqw solid rgba(210, 137, 255, 0.55);
+        border: 0.1cqw solid rgba(210, 137, 255, 0.42);
         border-radius: inherit;
         box-shadow:
-          inset 0 0 0 0.08cqw rgba(255, 255, 255, 0.1),
-          0 0 0.95cqw rgba(177, 48, 255, 0.28);
+          inset 0 0 0 0.055cqw rgba(255, 255, 255, 0.08),
+          0 0 0.68cqw rgba(177, 48, 255, 0.2);
       }
 
       .summary-card::after {
         inset: 0.55cqw;
         border-radius: 1.1cqw;
-        border: 0.08cqw solid rgba(255, 255, 255, 0.07);
+        border: 0.055cqw solid rgba(255, 255, 255, 0.055);
       }
 
       .top-actions {
@@ -155,14 +155,14 @@
         z-index: 3;
         background: var(--octagon-frame) center / 100% 100% no-repeat;
         filter:
-          drop-shadow(0 0 0.4cqw rgba(255, 104, 255, 0.46))
-          drop-shadow(0 0 0.75cqw rgba(96, 52, 255, 0.24));
+          drop-shadow(0 0 0.25cqw rgba(255, 104, 255, 0.34))
+          drop-shadow(0 0 0.45cqw rgba(96, 52, 255, 0.16));
       }
 
       .thumb-frame::after {
-        inset: 0.82cqw;
+        inset: 0.98cqw;
         z-index: 3;
-        opacity: 0.42;
+        opacity: 0.2;
         background: var(--octagon-frame) center / 100% 100% no-repeat;
       }
 
@@ -295,16 +295,17 @@
       .feature-row {
         display: grid;
         grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 1.35cqw;
+        gap: 1.05cqw;
         margin-top: 2.25cqw;
       }
 
       .feature {
+        --feature-icon-size: clamp(23px, 4.05cqw, 30px);
         position: relative;
         min-width: 0;
         display: grid;
-        grid-template-columns: 5cqw 1fr;
-        gap: 0.7cqw;
+        grid-template-columns: var(--feature-icon-size) minmax(0, 1fr);
+        gap: clamp(5px, 0.85cqw, 7px);
         align-items: center;
       }
 
@@ -319,29 +320,42 @@
       }
 
       .feature-icon {
-        width: 4.95cqw;
-        height: 4.95cqw;
-        min-width: 32px;
-        min-height: 32px;
+        width: var(--feature-icon-size);
+        height: var(--feature-icon-size);
+        min-width: 0;
+        min-height: 0;
         display: grid;
         place-items: center;
-        border: 0.12cqw solid rgba(255, 255, 255, 0.68);
+        border: max(0.8px, 0.095cqw) solid rgba(255, 255, 255, 0.62);
         border-radius: 50%;
         color: rgba(255, 255, 255, 0.9);
-        font-size: clamp(18px, 3.3cqw, 26px);
-        box-shadow: inset 0 0 0.55cqw rgba(255, 255, 255, 0.08);
+        font-size: clamp(15px, 2.85cqw, 21px);
+        box-shadow: inset 0 0 0.42cqw rgba(255, 255, 255, 0.06);
+      }
+
+      .feature-copy {
+        min-width: 0;
+        display: block;
       }
 
       .feature-title {
-        font-size: clamp(12px, 2.55cqw, 19px);
+        display: block;
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: clamp(11px, 2.32cqw, 17px);
         line-height: 1.05;
         color: rgba(255, 255, 255, 0.86);
         white-space: nowrap;
       }
 
       .feature-sub {
+        display: block;
+        min-width: 0;
         margin-top: 0.45cqw;
-        font-size: clamp(10px, 1.9cqw, 14px);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: clamp(8.5px, 1.62cqw, 12px);
         line-height: 1.1;
         color: rgba(255, 255, 255, 0.38);
         white-space: nowrap;
@@ -567,7 +581,7 @@
         item.className = "feature";
         item.innerHTML = `
           <span class="feature-icon">${featureIcons[index]}</span>
-          <span>
+          <span class="feature-copy">
             <span class="feature-title">${label}</span>
             <span class="feature-sub">${featureSub[index]}</span>
           </span>
