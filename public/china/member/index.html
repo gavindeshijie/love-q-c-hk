@@ -836,6 +836,10 @@
         box-shadow: 0 0 1cqw rgba(112, 54, 255, 0.82);
       }
 
+      .clickable {
+        cursor: pointer;
+      }
+
       .reminder-toast {
         position: absolute;
         left: 8.1cqw;
@@ -923,6 +927,111 @@
         text-shadow: 0 0 1cqw rgba(219, 84, 255, 0.74);
       }
 
+      .action-panel {
+        position: absolute;
+        left: 23.2cqw;
+        top: 35.4cqw;
+        z-index: 9;
+        width: 66.8cqw;
+        min-height: 19cqw;
+        padding: 3cqw 3.2cqw 2.8cqw;
+        color: #fff;
+        border: 0.14cqw solid rgba(220, 190, 255, 0.75);
+        clip-path: var(--frame-cut);
+        background:
+          linear-gradient(135deg, rgba(35, 38, 104, 0.9), rgba(9, 8, 24, 0.97) 54%, rgba(42, 12, 79, 0.94)),
+          rgba(4, 4, 14, 0.96);
+        box-shadow:
+          0 0 2.4cqw rgba(123, 58, 255, 0.72),
+          inset 0 0 3.2cqw rgba(119, 47, 255, 0.35),
+          inset 0 0 0 0.28cqw rgba(21, 24, 58, 0.92);
+      }
+
+      .action-panel::before {
+        content: "";
+        position: absolute;
+        inset: 0.55cqw;
+        pointer-events: none;
+        border: 0.1cqw solid rgba(255, 255, 255, 0.35);
+        clip-path: var(--frame-cut);
+      }
+
+      .action-panel h2 {
+        position: relative;
+        margin: 0 0 1.4cqw;
+        color: #ffb7ff;
+        font-size: clamp(18px, 3.2cqw, 27px);
+        line-height: 1.05;
+        text-shadow: 0 0 1cqw rgba(224, 83, 255, 0.92);
+      }
+
+      .action-panel p,
+      .action-panel li {
+        position: relative;
+        margin: 0.7cqw 0;
+        color: rgba(255, 255, 255, 0.76);
+        font-size: clamp(12px, 2.1cqw, 18px);
+        line-height: 1.35;
+      }
+
+      .action-panel ul {
+        position: relative;
+        margin: 1cqw 0 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .action-panel strong {
+        color: #fff;
+      }
+
+      .notice-close {
+        position: absolute;
+        top: 1.4cqw;
+        right: 1.5cqw;
+        z-index: 2;
+        width: 4.6cqw;
+        height: 4.6cqw;
+        border: 0.1cqw solid rgba(229, 208, 255, 0.68);
+        border-radius: 50%;
+        background: rgba(7, 8, 20, 0.7);
+        color: #fff;
+        display: grid;
+        place-items: center;
+        box-shadow: 0 0 0.9cqw rgba(122, 69, 255, 0.72);
+      }
+
+      .notice-close svg {
+        width: 2.5cqw;
+        height: 2.5cqw;
+      }
+
+      .profile-flash {
+        position: absolute;
+        left: 27.4cqw;
+        bottom: 9.5cqw;
+        z-index: 9;
+        min-width: 40cqw;
+        min-height: 6.4cqw;
+        display: grid;
+        grid-template-columns: 4.2cqw 1fr;
+        align-items: center;
+        gap: 1.1cqw;
+        padding: 1.15cqw 2.1cqw;
+        border: 0.12cqw solid rgba(224, 190, 255, 0.8);
+        clip-path: var(--small-cut);
+        background: rgba(9, 10, 27, 0.94);
+        box-shadow: 0 0 1.55cqw rgba(158, 68, 255, 0.72), inset 0 0 1.35cqw rgba(74, 67, 255, 0.26);
+        color: rgba(255, 255, 255, 0.9);
+        font-size: clamp(12px, 2cqw, 17px);
+      }
+
+      .profile-flash svg {
+        width: 3.4cqw;
+        height: 3.4cqw;
+        color: #d898ff;
+      }
+
       .message-card,
       .setting-card {
         position: relative;
@@ -939,6 +1048,14 @@
           linear-gradient(90deg, rgba(38, 54, 255, 0.12), transparent 46%, rgba(255, 70, 255, 0.09)),
           rgba(11, 14, 30, 0.86);
         box-shadow: inset 0 0 1.15cqw rgba(52, 51, 157, 0.14);
+      }
+
+      .message-card.is-open,
+      .setting-card.is-open {
+        border-color: rgba(231, 107, 255, 0.72);
+        box-shadow:
+          0 0 1.3cqw rgba(121, 66, 255, 0.5),
+          inset 0 0 1.8cqw rgba(155, 69, 255, 0.2);
       }
 
       .message-title,
@@ -1025,7 +1142,7 @@
   </head>
   <body>
     <main class="member-page" aria-label="会员中心">
-      <a class="back-button" href="../catalog/?category=panty&v=member-frame-v1-20260628" aria-label="返回上一页">
+      <a class="back-button" href="../catalog/?category=panty&v=member-actions-v1-20260628" aria-label="返回上一页">
         <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M38 15 20 32l18 17"></path><path d="M21 32h31"></path></svg>
       </a>
 
@@ -1059,7 +1176,7 @@
     </main>
 
     <script>
-      const VERSION = "member-frame-v1-20260628";
+      const VERSION = "member-actions-v1-20260628";
       const params = new URLSearchParams(window.location.search);
       const initialView = params.get("view") || "profile";
       const initialStatus = params.get("status") || "all";
@@ -1114,7 +1231,7 @@
         ["cancel", "已取消"]
       ];
 
-      const allOrders = [
+      let allOrders = [
         { id: "2024052012345678", date: "2024-05-20 12:34:56", status: "pay", name: "七折会员年卡", price: "¥699.00", icon: "vip" },
         { id: "2024051811223344", date: "2024-05-18 11:22:33", status: "ship", name: "会员专属礼包", price: "¥99.00", icon: "gift" },
         { id: "2024051509087654", date: "2024-05-15 09:08:07", status: "receive", name: "三折会员月卡", price: "¥199.00", icon: "vip" },
@@ -1154,6 +1271,44 @@
         query: "",
         notice: true
       };
+
+      const profileStoreKey = "slt-member-profile";
+      let profileDraft = readProfileDraft();
+      let activeMessageId = "";
+      let activeSetting = "";
+      let flashTimer = null;
+
+      function readProfileDraft() {
+        try {
+          return JSON.parse(localStorage.getItem(profileStoreKey) || "{}");
+        } catch (error) {
+          return {};
+        }
+      }
+
+      function writeProfileDraft(nextProfile) {
+        profileDraft = nextProfile;
+        try {
+          localStorage.setItem(profileStoreKey, JSON.stringify(profileDraft));
+        } catch (error) {
+          // Storage can be unavailable in private browsers. The form still stays editable.
+        }
+      }
+
+      function escapeHtml(value = "") {
+        return String(value)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;");
+      }
+
+      function escapeAttr(value = "") {
+        return escapeHtml(value).replace(/"/g, "&quot;");
+      }
+
+      function profileValue(name, fallback = "") {
+        return profileDraft[name] || fallback;
+      }
 
       function setRoute(nextView, nextStatus = state.status, options = {}) {
         state.view = nextView;
@@ -1203,32 +1358,35 @@
       }
 
       function renderProfile() {
+        const selectedGender = profileValue("gender", "女");
+        const country = profileValue("country", "请选择国家/地区");
+        const level = profileValue("level", "七折会员");
         content.innerHTML = `
           <form class="field-grid" id="profileForm">
             <div class="avatar-block">
               <div class="avatar-orb">${icons.user}</div>
-              <button class="upload-button" type="button">上传头像</button>
+              <button class="upload-button" type="button" data-action="upload-avatar">上传头像</button>
             </div>
-            ${field("会员编号", input("", ""), "")}
-            ${field("会员等级", `<div class="select-face"><span>七折会员</span><svg viewBox="0 0 64 64"><path d="m20 25 12 13 12-13"></path></svg></div>`)}
-            ${field(`客户昵称 <span class="required">(必填)</span>`, input("", ""), "")}
-            ${field("性别", `<div class="gender"><button type="button" class="choice is-active">女</button><button type="button" class="choice">男</button><button type="button" class="choice">第三性别</button></div>`)}
-            ${field(`联系方式 <span class="required">(必填)</span>`, input("请输入联系方式", icons.phone), "two")}
-            ${field(`电子邮箱 <span class="required">(必填)</span>`, input("请输入电子邮箱", icons.mail))}
-            ${field("LINE号", input("请输入LINE号", icons.line))}
-            ${field("微信号", input("请输入微信号", icons.wechat))}
+            ${field("会员编号", input("", "", "memberNo"), "")}
+            ${field("会员等级", `<button class="select-face clickable" type="button" data-action="select-level"><span>${escapeHtml(level)}</span><svg viewBox="0 0 64 64"><path d="m20 25 12 13 12-13"></path></svg></button>`)}
+            ${field(`客户昵称 <span class="required">(必填)</span>`, input("", "", "nickname"), "")}
+            ${field("性别", `<div class="gender"><button type="button" class="choice ${selectedGender === "女" ? "is-active" : ""}" data-gender="女">女</button><button type="button" class="choice ${selectedGender === "男" ? "is-active" : ""}" data-gender="男">男</button><button type="button" class="choice ${selectedGender === "第三性别" ? "is-active" : ""}" data-gender="第三性别">第三性别</button></div>`)}
+            ${field(`联系方式 <span class="required">(必填)</span>`, input("请输入联系方式", icons.phone, "phone"), "two")}
+            ${field(`电子邮箱 <span class="required">(必填)</span>`, input("请输入电子邮箱", icons.mail, "email"))}
+            ${field("LINE号", input("请输入LINE号", icons.line, "line"))}
+            ${field("微信号", input("请输入微信号", icons.wechat, "wechat"))}
             <div class="field full">
               <div class="social-grid">
-                ${field("Zalo", input("请输入Zalo号", `<span>Zalo</span>`))}
-                ${field("Telegram", input("请输入Telegram号", icons.send))}
-                ${field("Messenger", input("请输入Messenger号", icons.chat))}
-                ${field("WhatsApp", input("请输入WhatsApp号", icons.whatsapp))}
-                ${field("Instagram", input("请输入Instagram号", icons.instagram))}
+                ${field("Zalo", input("请输入Zalo号", `<span>Zalo</span>`, "zalo"))}
+                ${field("Telegram", input("请输入Telegram号", icons.send, "telegram"))}
+                ${field("Messenger", input("请输入Messenger号", icons.chat, "messenger"))}
+                ${field("WhatsApp", input("请输入WhatsApp号", icons.whatsapp, "whatsapp"))}
+                ${field("Instagram", input("请输入Instagram号", icons.instagram, "instagram"))}
               </div>
             </div>
-            ${field(`国家/地区 <span class="required">(必填)</span>`, `<div class="select-face">${icons.location}<span>请选择国家/地区</span><svg viewBox="0 0 64 64"><path d="m20 25 12 13 12-13"></path></svg></div>`, "full")}
-            ${field(`收货地址 <span class="required">(必填)</span>`, input("请输入详细的收货地址", icons.location), "full")}
-            ${field("备注信息", `<div class="textarea"><svg viewBox="0 0 64 64"><path d="M17 47h30"></path><path d="m20 39 5 5 23-23-5-5Z"></path></svg><textarea maxlength="500" placeholder="请输入备注信息"></textarea><span class="counter">0/500</span></div>`, "full")}
+            ${field(`国家/地区 <span class="required">(必填)</span>`, `<button class="select-face clickable" type="button" data-action="select-country">${icons.location}<span>${escapeHtml(country)}</span><svg viewBox="0 0 64 64"><path d="m20 25 12 13 12-13"></path></svg></button>`, "full")}
+            ${field(`收货地址 <span class="required">(必填)</span>`, input("请输入详细的收货地址", icons.location, "address"), "full")}
+            ${field("备注信息", `<div class="textarea"><svg viewBox="0 0 64 64"><path d="M17 47h30"></path><path d="m20 39 5 5 23-23-5-5Z"></path></svg><textarea name="notes" maxlength="500" placeholder="请输入备注信息">${escapeHtml(profileValue("notes"))}</textarea><span class="counter">${profileValue("notes").length}/500</span></div>`, "full")}
           </form>
         `;
       }
@@ -1237,8 +1395,9 @@
         return `<div class="field ${extra}"><label>${label}</label>${body}</div>`;
       }
 
-      function input(placeholder, icon) {
-        return `<label class="input">${icon || ""}<input placeholder="${placeholder}" autocomplete="off"></label>`;
+      function input(placeholder, icon, name = "") {
+        const value = name ? profileValue(name) : "";
+        return `<label class="input">${icon || ""}<input name="${escapeAttr(name)}" value="${escapeAttr(value)}" placeholder="${escapeAttr(placeholder)}" autocomplete="off"></label>`;
       }
 
       function renderOrders() {
@@ -1263,16 +1422,16 @@
       function orderCard(order) {
         const status = statusLabels[order.status];
         const buttons = order.status === "pay"
-          ? `<button class="small-button" type="button">取消订单</button><button class="small-button primary" type="button">去付款</button>`
+          ? `<button class="small-button" type="button" data-action="cancel-order" data-order-id="${order.id}">取消订单</button><button class="small-button primary" type="button" data-action="pay-now" data-order-id="${order.id}">去付款</button>`
           : order.status === "ship"
-            ? `<button class="small-button" type="button">查看详情</button><button class="small-button primary" type="button" data-action="remind-ship">提醒发货</button>`
+            ? `<button class="small-button" type="button" data-action="view-detail" data-order-id="${order.id}">查看详情</button><button class="small-button primary" type="button" data-action="remind-ship" data-order-id="${order.id}">提醒发货</button>`
             : order.status === "receive"
-              ? `<button class="small-button" type="button">查看物流</button><button class="small-button primary" type="button">确认收货</button>`
+              ? `<button class="small-button" type="button" data-action="view-logistics" data-order-id="${order.id}">查看物流</button><button class="small-button primary" type="button" data-action="confirm-receive" data-order-id="${order.id}">确认收货</button>`
               : order.status === "done"
-                ? `<button class="small-button" type="button">查看详情</button><button class="small-button primary" type="button">再次购买</button>`
-                : `<button class="small-button" type="button">删除订单</button>`;
+                ? `<button class="small-button" type="button" data-action="view-detail" data-order-id="${order.id}">查看详情</button><button class="small-button primary" type="button" data-action="buy-again" data-order-id="${order.id}">再次购买</button>`
+                : `<button class="small-button" type="button" data-action="delete-order" data-order-id="${order.id}">删除订单</button>`;
         return `
-          <article class="order-card">
+          <article class="order-card" data-order-card="${order.id}">
             <div class="order-meta">
               <span>订单号：${order.id}</span>
               <span>${order.date}</span>
@@ -1292,8 +1451,8 @@
       function searchRow(placeholder) {
         return `
           <div class="search-row">
-            <label class="search-box">${icons.search}<input id="searchInput" value="${state.query}" placeholder="${placeholder}" autocomplete="off"></label>
-            <button class="filter-button" type="button"><span>筛选</span><svg viewBox="0 0 64 64"><path d="m20 25 12 13 12-13"></path></svg></button>
+            <label class="search-box">${icons.search}<input id="searchInput" value="${escapeAttr(state.query)}" placeholder="${escapeAttr(placeholder)}" autocomplete="off"></label>
+            <button class="filter-button" type="button" data-action="filter"><span>筛选</span><svg viewBox="0 0 64 64"><path d="m20 25 12 13 12-13"></path></svg></button>
           </div>
         `;
       }
@@ -1307,7 +1466,7 @@
           ${searchRow("请输入订单号/商品名称/聊天关键词")}
           <div class="message-list">
             ${visible.map((message) => `
-              <article class="message-card">
+              <article class="message-card clickable ${activeMessageId === message.id ? "is-open" : ""}" data-message-id="${message.id}">
                 <div class="product-icon">${icons[message.icon]}</div>
                 <div>
                   <div class="message-meta"><strong class="message-title">${message.type}</strong><span>订单号：${message.id}</span></div>
@@ -1331,7 +1490,7 @@
         content.innerHTML = `
           <div class="settings-list">
             ${settings.map(([icon, title, copy, type]) => `
-              <article class="setting-card">
+              <article class="setting-card clickable ${activeSetting === title ? "is-open" : ""}" data-setting="${title}">
                 <div class="product-icon">${icons[icon]}</div>
                 <div><p class="setting-title">${title}</p><p class="setting-copy">${copy}</p></div>
                 ${type === "toggle" ? `<button class="toggle" type="button" aria-pressed="${state.notice ? "true" : "false"}"><span></span></button>` : `<svg class="chevron" viewBox="0 0 64 64"><path d="m24 14 18 18-18 18"></path></svg>`}
@@ -1367,10 +1526,180 @@
         ` : "";
       }
 
+      function closeNotice() {
+        state.reminder = false;
+        noticeLayer.innerHTML = "";
+      }
+
+      function showFlash(copy, icon = icons.check) {
+        clearTimeout(flashTimer);
+        noticeLayer.innerHTML = `
+          <div class="profile-flash" role="status" aria-live="polite">
+            ${icon}<span>${escapeHtml(copy)}</span>
+          </div>
+        `;
+        flashTimer = window.setTimeout(() => {
+          noticeLayer.innerHTML = "";
+        }, 2200);
+      }
+
+      function showActionPanel(title, bodyHtml) {
+        clearTimeout(flashTimer);
+        state.reminder = false;
+        noticeLayer.innerHTML = `
+          <section class="action-panel" role="dialog" aria-modal="false" aria-label="${escapeAttr(title)}">
+            <button class="notice-close" type="button" data-action="close-notice" aria-label="关闭">
+              <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M20 20l24 24M44 20 20 44"></path></svg>
+            </button>
+            <h2>${escapeHtml(title)}</h2>
+            ${bodyHtml}
+          </section>
+        `;
+      }
+
+      function findOrder(id) {
+        return allOrders.find((order) => order.id === id);
+      }
+
+      function orderInfoHtml(order, extra = "") {
+        return `
+          <p><strong>${escapeHtml(order.name)}</strong>　${escapeHtml(statusLabels[order.status])}</p>
+          <ul>
+            <li>订单号：${escapeHtml(order.id)}</li>
+            <li>下单时间：${escapeHtml(order.date)}</li>
+            <li>订单金额：${escapeHtml(order.price)}</li>
+            ${extra}
+          </ul>
+        `;
+      }
+
+      function updateOrderStatus(orderId, nextStatus, nextTab, title, copy) {
+        allOrders = allOrders.map((order) => (
+          order.id === orderId ? { ...order, status: nextStatus } : order
+        ));
+        state.query = "";
+        setRoute("orders", nextTab);
+        const order = findOrder(orderId);
+        if (order) {
+          showActionPanel(title, orderInfoHtml(order, `<li>${escapeHtml(copy)}</li>`));
+        }
+      }
+
+      function handleOrderAction(actionName, orderId) {
+        const order = findOrder(orderId);
+        if (!order && actionName !== "delete-order") return;
+
+        if (actionName === "pay-now") {
+          showActionPanel("付款提示", `
+            ${orderInfoHtml(order, `<li>请进入结算中心完成付款，付款完成后订单会转入待发货。</li>`)}
+            <p><a class="small-button primary" href="../checkout/?v=${VERSION}">前往结算中心</a></p>
+          `);
+          return;
+        }
+
+        if (actionName === "cancel-order") {
+          updateOrderStatus(orderId, "cancel", "cancel", "订单已取消", "该订单已移动到已取消分类。");
+          return;
+        }
+
+        if (actionName === "view-detail") {
+          showActionPanel("订单详情", orderInfoHtml(order, `<li>商品数量：x1</li><li>当前处理状态：${statusLabels[order.status]}</li>`));
+          return;
+        }
+
+        if (actionName === "view-logistics") {
+          showActionPanel("物流记录", orderInfoHtml(order, `
+            <li>物流状态：运输中</li>
+            <li>最新记录：包裹已到达目的地分拨中心。</li>
+            <li>预计送达：24小时内完成派送。</li>
+          `));
+          return;
+        }
+
+        if (actionName === "confirm-receive") {
+          updateOrderStatus(orderId, "done", "done", "确认收货成功", "该订单已移动到已完成分类。");
+          return;
+        }
+
+        if (actionName === "buy-again") {
+          showActionPanel("再次购买", `
+            ${orderInfoHtml(order, `<li>该商品已准备重新加入购物车。</li>`)}
+            <p><a class="small-button primary" href="../cart/?v=${VERSION}">进入购物车</a></p>
+          `);
+          return;
+        }
+
+        if (actionName === "delete-order") {
+          allOrders = allOrders.filter((item) => item.id !== orderId);
+          render();
+          showFlash("已删除取消订单记录", icons.cross);
+        }
+      }
+
+      function collectProfileForm() {
+        const form = document.getElementById("profileForm");
+        const nextProfile = { ...profileDraft };
+        if (!form) return nextProfile;
+        form.querySelectorAll("input[name], textarea[name]").forEach((fieldEl) => {
+          nextProfile[fieldEl.name] = fieldEl.value.trim();
+        });
+        const selectedGender = form.querySelector(".choice.is-active");
+        if (selectedGender) nextProfile.gender = selectedGender.dataset.gender || selectedGender.textContent.trim();
+        return nextProfile;
+      }
+
+      function saveProfile() {
+        const nextProfile = collectProfileForm();
+        writeProfileDraft(nextProfile);
+        showFlash("会员信息已保存，可继续编辑");
+      }
+
+      function resetProfile() {
+        writeProfileDraft({});
+        renderProfile();
+        showFlash("会员信息已重置", icons.reset);
+      }
+
+      function cycleProfileValue(key, values, copy) {
+        const current = collectProfileForm();
+        const active = current[key] || values[0];
+        const index = values.indexOf(active);
+        current[key] = values[(index + 1) % values.length];
+        writeProfileDraft(current);
+        renderProfile();
+        showFlash(`${copy}：${current[key]}`);
+      }
+
+      function showMessagePanel(messageId) {
+        const message = messages.find((item) => item.id === messageId);
+        if (!message) return;
+        activeMessageId = messageId;
+        renderMessages();
+        showActionPanel(message.type, `
+          <p><strong>订单号：</strong>${escapeHtml(message.id)}</p>
+          <p>${escapeHtml(message.copy)}</p>
+          <p>客服记录已打开，后续可以继续扩展为完整聊天窗口。</p>
+        `);
+      }
+
+      function showSettingPanel(title) {
+        activeSetting = title;
+        renderSettings();
+        const copy = {
+          "账户与安全": "这里可以扩展修改密码、绑定手机、账号安全验证。",
+          "帮助与反馈": "这里可以扩展常见问题、意见反馈和客服工单。",
+          "关于我们": "这里可以扩展平台介绍、服务条款和联系方式。",
+          "退出登录": "当前演示状态已退出，可返回首页或继续浏览。"
+        }[title] || "该设置已打开。";
+        showActionPanel(title, `<p>${copy}</p>`);
+      }
+
       document.addEventListener("click", (event) => {
         const viewButton = event.target.closest("[data-view]");
         if (viewButton) {
           state.query = "";
+          activeMessageId = "";
+          activeSetting = "";
           setRoute(viewButton.dataset.view, viewButton.dataset.view === "orders" ? "all" : state.status);
           return;
         }
@@ -1390,23 +1719,58 @@
         if (toggle) {
           state.notice = toggle.getAttribute("aria-pressed") !== "true";
           toggle.setAttribute("aria-pressed", state.notice ? "true" : "false");
+          showFlash(state.notice ? "消息通知已开启" : "消息通知已关闭", icons.bell);
+          return;
+        }
+        const messageCard = event.target.closest("[data-message-id]");
+        if (messageCard) {
+          showMessagePanel(messageCard.dataset.messageId);
+          return;
+        }
+        const settingCard = event.target.closest("[data-setting]");
+        if (settingCard && !event.target.closest(".toggle")) {
+          showSettingPanel(settingCard.dataset.setting);
           return;
         }
         const action = event.target.closest("[data-action]");
         if (action) {
+          const actionName = action.dataset.action;
+          if (actionName === "close-notice") {
+            closeNotice();
+            return;
+          }
           if (action.dataset.action === "remind-ship") {
             setRoute("orders", "ship", { reminder: true });
             return;
           }
-          if (action.dataset.action === "reset") {
-            document.querySelectorAll("#profileForm input, #profileForm textarea").forEach((inputEl) => {
-              inputEl.value = "";
-            });
-            const counter = document.querySelector(".counter");
-            if (counter) counter.textContent = "0/500";
+          if (["pay-now", "cancel-order", "view-detail", "view-logistics", "confirm-receive", "buy-again", "delete-order"].includes(actionName)) {
+            handleOrderAction(actionName, action.dataset.orderId);
+            return;
           }
-          if (action.dataset.action === "save") {
-            action.querySelector("span").textContent = "已保存";
+          if (actionName === "reset") {
+            resetProfile();
+            return;
+          }
+          if (actionName === "save") {
+            saveProfile();
+            const label = action.querySelector("span");
+            if (label) label.textContent = "已保存";
+            return;
+          }
+          if (actionName === "select-level") {
+            cycleProfileValue("level", ["七折会员", "三折会员", "VIP会员"], "会员等级");
+            return;
+          }
+          if (actionName === "select-country") {
+            cycleProfileValue("country", ["中国大陆", "新加坡", "泰国", "越南", "马来西亚", "老挝"], "国家/地区");
+            return;
+          }
+          if (actionName === "upload-avatar") {
+            showFlash("头像入口已打开，后续可接入真实上传");
+            return;
+          }
+          if (actionName === "filter") {
+            showActionPanel("筛选", `<p>当前列表已支持顶部分类和搜索框筛选。后续可以在这里接入更多筛选条件。</p>`);
           }
         }
       });
