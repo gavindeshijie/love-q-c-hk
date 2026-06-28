@@ -469,16 +469,19 @@
       }
 
       .play-button .ui-icon {
-        width: 54%;
-        height: 54%;
-        margin-left: 0.55cqw;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 50%;
+        height: 50%;
+        margin: 0;
         fill: currentColor;
         stroke: none;
+        transform: translate(-50%, -50%);
       }
 
       .play-button .pause-icon {
         display: none;
-        margin-left: 0;
         fill: none;
         stroke: currentColor;
         stroke-width: 7;
@@ -736,8 +739,12 @@
           <img id="heroImage" src="../../assets/china-product-items/panty-1.jpg" alt="">
         </div>
         <button class="play-button" id="playButton" type="button" aria-label="播放商品展示" aria-pressed="false">
-          <svg class="ui-icon play-icon" aria-hidden="true"><use href="#icon-play" xlink:href="#icon-play"></use></svg>
-          <svg class="ui-icon pause-icon" aria-hidden="true"><use href="#icon-pause" xlink:href="#icon-pause"></use></svg>
+          <svg class="ui-icon play-icon" aria-hidden="true" viewBox="0 0 64 64">
+            <path d="M24 18 48 32 24 46Z"></path>
+          </svg>
+          <svg class="ui-icon pause-icon" aria-hidden="true" viewBox="0 0 64 64">
+            <path d="M24 18v28M40 18v28"></path>
+          </svg>
         </button>
         <nav class="side-nav" aria-label="快捷操作">
           <a class="side-link" id="returnLink" href="../catalog/"><span class="side-icon"><svg class="ui-icon" aria-hidden="true"><use href="#icon-back" xlink:href="#icon-back"></use></svg></span><span>返回上一页</span></a>
@@ -755,10 +762,10 @@
       </section>
     </main>
 
-    <script src="../../assets/china-catalog-data.js?v=detail-controls-v4-20260628"></script>
+    <script src="../../assets/china-catalog-data.js?v=detail-controls-v5-20260628"></script>
     <script>
       const pages = window.CHINA_CATALOG_DATA;
-      const currentVersion = "detail-controls-v4-20260628";
+      const currentVersion = "detail-controls-v5-20260628";
       const params = new URLSearchParams(window.location.search);
       if (params.get("v") !== currentVersion) {
         params.set("v", currentVersion);
