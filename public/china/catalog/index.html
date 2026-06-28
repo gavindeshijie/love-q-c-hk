@@ -352,7 +352,7 @@
         line-height: 1;
       }
 
-      .catalog.panty-reference {
+      .catalog.catalog-reference {
         container-type: inline-size;
         width: 100%;
         max-width: 738px;
@@ -365,8 +365,8 @@
         overflow: visible;
       }
 
-      .catalog.panty-reference::before,
-      .catalog.panty-reference::after {
+      .catalog.catalog-reference::before,
+      .catalog.catalog-reference::after {
         top: 4.4cqw;
         width: 27cqw;
         height: 4.6cqw;
@@ -379,15 +379,15 @@
         filter: drop-shadow(0 0 0.9cqw rgba(255, 38, 255, 0.85));
       }
 
-      .catalog.panty-reference::before {
+      .catalog.catalog-reference::before {
         left: 8.1cqw;
       }
 
-      .catalog.panty-reference::after {
+      .catalog.catalog-reference::after {
         right: 8.1cqw;
       }
 
-      .panty-reference .title {
+      .catalog-reference .title {
         min-height: 10.4cqw;
         margin: 0 0 0.75cqw;
         padding-top: 1.6cqw;
@@ -402,13 +402,12 @@
           0 0 3.4cqw rgba(255, 28, 255, 0.8);
       }
 
-      .panty-reference .filters {
-        grid-template-columns: repeat(5, minmax(0, 1fr));
+      .catalog-reference .filters {
         gap: 1.48cqw 1.45cqw;
         margin: 0 0 1.45cqw;
       }
 
-      .panty-reference .filter-button {
+      .catalog-reference .filter-button {
         position: relative;
         display: grid;
         place-items: center;
@@ -426,47 +425,47 @@
         box-shadow: none;
       }
 
-      .panty-reference .filter-button::before,
-      .panty-reference .filter-button::after {
+      .catalog-reference .filter-button::before,
+      .catalog-reference .filter-button::after {
         content: "";
         position: absolute;
         pointer-events: none;
       }
 
-      .panty-reference .filter-button::before {
+      .catalog-reference .filter-button::before {
         inset: 1.25cqw 1.45cqw;
         z-index: 0;
         background: rgba(0, 0, 0, 0.58);
         border-radius: 0.65cqw;
       }
 
-      .panty-reference .filter-button::after {
+      .catalog-reference .filter-button::after {
         inset: -0.12cqw;
         z-index: 1;
         background: url("../../assets/china-catalog-ui/filter-frame-generated.png?v=frame-generated-20260628") center / 100% 100% no-repeat;
       }
 
-      .panty-reference .filter-button.is-active {
+      .catalog-reference .filter-button.is-active {
         color: #fff;
         text-shadow:
           0 0 0.5cqw #fff,
           0 0 1.2cqw rgba(255, 73, 255, 0.95);
       }
 
-      .panty-reference .filter-button.is-active::before {
+      .catalog-reference .filter-button.is-active::before {
         background: rgba(5, 0, 9, 0.62);
       }
 
-      .panty-reference .filter-button.is-active::after {
+      .catalog-reference .filter-button.is-active::after {
         background-image: url("../../assets/china-catalog-ui/filter-frame-active-generated.png?v=frame-generated-20260628");
       }
 
-      .panty-reference .filter-label {
+      .catalog-reference .filter-label {
         position: relative;
         z-index: 2;
       }
 
-      .panty-reference .search {
+      .catalog-reference .search {
         height: 8.8cqw;
         margin: 0 0 1.9cqw;
         padding: 0 1.9cqw 0 2.65cqw;
@@ -477,28 +476,28 @@
         box-shadow: inset 0 0 0 0.16cqw rgba(255, 255, 255, 0.08);
       }
 
-      .panty-reference .search-field {
+      .catalog-reference .search-field {
         grid-template-columns: 5.9cqw 1fr;
       }
 
-      .panty-reference .search-icon {
+      .catalog-reference .search-icon {
         width: 3.8cqw;
         height: 3.8cqw;
         border-width: 0.28cqw;
       }
 
-      .panty-reference .search-icon::after {
+      .catalog-reference .search-icon::after {
         width: 1.75cqw;
         height: 0.28cqw;
         right: -1.25cqw;
         bottom: 0.15cqw;
       }
 
-      .panty-reference .search input {
+      .catalog-reference .search input {
         font-size: clamp(15px, 3.05cqw, 22.5px);
       }
 
-      .panty-reference .search button {
+      .catalog-reference .search button {
         min-width: 13.8cqw;
         height: 6.05cqw;
         border-radius: 1.65cqw;
@@ -509,13 +508,13 @@
           inset 0 0 0.4cqw rgba(255, 255, 255, 0.17);
       }
 
-      .panty-reference .products {
+      .catalog-reference .products {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 1.15cqw 1.55cqw;
         margin: 0 0.15cqw;
       }
 
-      .panty-reference .product {
+      .catalog-reference .product {
         aspect-ratio: 1 / 1.01;
         grid-template-rows: 72% 28%;
         padding: 0.65cqw;
@@ -529,7 +528,7 @@
         box-shadow: none;
       }
 
-      .panty-reference .product::after {
+      .catalog-reference .product::after {
         content: "";
         position: absolute;
         inset: 0;
@@ -538,52 +537,52 @@
         background: url("../../assets/china-catalog-ui/product-card-frame-slim.png?v=product-frame-slim-20260628") center / 100% 100% no-repeat;
       }
 
-      .panty-reference .product-media {
+      .catalog-reference .product-media {
         z-index: 1;
         background:
           radial-gradient(circle at 50% 50%, rgba(93, 0, 158, 0.2), transparent 58%),
           #030204;
       }
 
-      .panty-reference .product-media::before {
+      .catalog-reference .product-media::before {
         opacity: 0.48;
         background:
           linear-gradient(25deg, transparent 41%, rgba(122, 28, 255, 0.58) 42%, transparent 46%),
           linear-gradient(-24deg, transparent 52%, rgba(55, 0, 145, 0.58) 53%, transparent 57%);
       }
 
-      .panty-reference .product-media img {
+      .catalog-reference .product-media img {
         object-fit: cover;
       }
 
-      .panty-reference .product-info {
+      .catalog-reference .product-info {
         z-index: 1;
         gap: 1.05cqw;
         padding: 0.95cqw 2.45cqw 1.35cqw;
         background: rgba(0, 0, 0, 0.9);
       }
 
-      .panty-reference .product-desc {
+      .catalog-reference .product-desc {
         font-size: clamp(12px, 2.78cqw, 20.5px);
         line-height: 1.08;
         color: rgba(255, 255, 255, 0.78);
       }
 
-      .panty-reference .product-meta {
+      .catalog-reference .product-meta {
         gap: 1.35cqw;
       }
 
-      .panty-reference .price {
+      .catalog-reference .price {
         font-size: clamp(17px, 3.72cqw, 27.5px);
         font-weight: 400;
       }
 
-      .panty-reference .code {
+      .catalog-reference .code {
         font-size: clamp(15px, 3.15cqw, 23.2px);
         letter-spacing: 0.12cqw;
       }
 
-      body[data-category="panty"] .bottom-nav {
+      .catalog-reference ~ .bottom-nav {
         width: min(100%, 738px);
         min-height: 13.4cqw;
         grid-template-columns: repeat(4, 10.2cqw);
@@ -593,12 +592,12 @@
         background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.84) 26%, rgba(0, 0, 0, 0.97));
       }
 
-      body[data-category="panty"] .nav-link {
+      .catalog-reference ~ .bottom-nav .nav-link {
         font-size: clamp(10px, 2cqw, 14.8px);
         line-height: 1.1;
       }
 
-      body[data-category="panty"] .nav-icon {
+      .catalog-reference ~ .bottom-nav .nav-icon {
         width: 5.65cqw;
         height: 5.65cqw;
         margin-bottom: 0.75cqw;
@@ -835,8 +834,9 @@
       };
 
       const params = new URLSearchParams(window.location.search);
-      const category = params.get("category") || "panty";
-      const page = pages[category] || pages.panty;
+      const requestedCategory = params.get("category") || "panty";
+      const category = pages[requestedCategory] ? requestedCategory : "panty";
+      const page = pages[category];
       document.body.dataset.category = category;
       const title = document.getElementById("pageTitle");
       const catalog = document.querySelector(".catalog");
@@ -849,9 +849,7 @@
       document.title = `${page.title} | Secret Language Trade`;
       title.textContent = page.title;
       catalog.dataset.category = category;
-      if (category === "panty") {
-        catalog.classList.add("panty-reference");
-      }
+      catalog.classList.add("catalog-reference");
       filters.className = `filters cols-${page.columns}`;
 
       function updateFilter(filter) {
