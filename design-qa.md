@@ -32,6 +32,7 @@
 - China full-frame source/current comparison: `/private/tmp/china-card-fullframe-source-current.png`
 - China full-frame first-screen screenshot: `/private/tmp/china-fullframe-first-393x852.png`
 - China full-frame scrolled screenshot: `/private/tmp/china-fullframe-bottom-393x852.png`
+- China panty/bra frame focused comparison: `/private/tmp/panty-bra-frame-final-compare.png`
 - China full-frame pixel crop verification: all 12 current card assets are `154x184` crops from the Chinese source image at x columns `44/218/393` and y rows `504/704/899/1094`; average pixel deltas are `0.25071-0.43659`, consistent with JPEG/PNG decode differences.
 - Card-zone comparison: `/private/tmp/card-zone-compare-v28.png`
 - Focused top comparison: `/private/tmp/love-focus-top-v17.png`
@@ -80,6 +81,7 @@
 - Recut all 12 China category card assets as full-frame `154x184` source crops and updated the clickable card boxes to the same `154x184` coordinate ratio. This keeps the top, middle, and bottom rows in the same visual proportion.
 - Removed the temporary side-bleed display treatment. Verified all 12 versioned full-frame card images load with no failed images, no detected page-edge clipping, matching card ratios (`0.836945436` on `393x852`), and click behavior updates the active card/hash.
 - Rechecked the source crop positions with CoreGraphics: `内裤` maps to `(44,504,154,184)`, the lower rows map to y rows `704/899/1094`, and every current card asset matches its corresponding source crop within a sub-1 average pixel delta.
+- Rebuilt `card-panty.png` with the same outer frame treatment as `card-bra.png` while preserving the inner panty artwork and label. This fixes the client-visible right-edge frame loss on the left-top `内裤` card without changing the `154x184` card size or link area.
 - Removed the obsolete `public/assets/china-categories/` reconstruction assets so the China page only uses `public/assets/china-slices/` full-card source crops.
 - Added 12 clickable China category links: 内裤, 胸罩, 上衣, 裙子 / 短裤, 连衣裙, 丝袜, 贴身连体衣, 角色扮演, 长裤, 帽子, 女士凉鞋, and 女士包包.
 
