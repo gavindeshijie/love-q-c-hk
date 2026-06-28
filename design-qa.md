@@ -29,6 +29,10 @@
 - China wide card-edge contact sheet: `/private/tmp/china-card-edge-wide-contact.png`
 - China wide card-edge first-screen screenshot: `/private/tmp/china-wide-edge-first-393x852.png`
 - China wide card-edge scrolled screenshot: `/private/tmp/china-wide-edge-bottom-393x852.png`
+- China full-frame source/current comparison: `/private/tmp/china-card-fullframe-source-current.png`
+- China full-frame first-screen screenshot: `/private/tmp/china-fullframe-first-393x852.png`
+- China full-frame scrolled screenshot: `/private/tmp/china-fullframe-bottom-393x852.png`
+- China full-frame pixel crop verification: all 12 current card assets are `154x184` crops from the Chinese source image at x columns `44/218/393` and y rows `504/704/899/1094`; average pixel deltas are `0.25071-0.43659`, consistent with JPEG/PNG decode differences.
 - Card-zone comparison: `/private/tmp/card-zone-compare-v28.png`
 - Focused top comparison: `/private/tmp/love-focus-top-v17.png`
 - Focused card comparison: `/private/tmp/love-focus-cards-v17.png`
@@ -42,7 +46,7 @@
 - Spacing and layout rhythm: six language cards, header block, and bottom feature strip align to the reference mobile composition. No visible text overflow or card overlap remains. The China page preserves the supplied source aspect ratio (`590x1280`, `0.4609375`) instead of stretching the layout to a different phone shape.
 - Tall mobile height behavior: high browser viewports expand the card stack and floor treatment so the feature strip sits near the mobile browser toolbar instead of leaving a large lower blank section.
 - Colors and visual tokens: dark violet/black neon palette, purple glows, white text, red flags, and floor lighting are consistent with the reference.
-- Image quality and asset fidelity: the six flags are individual image assets cropped from the supplied visual instead of CSS approximations. The card border now uses a separate transparent single-card frame asset, not the full reference image as a page background. The China page uses exact source slices from the supplied Chinese reference, including full card crops sized at `146x184` so each card keeps the source ratio (`0.793478261`) and complete frame sides.
+- Image quality and asset fidelity: the six flags are individual image assets cropped from the supplied visual instead of CSS approximations. The card border now uses a separate transparent single-card frame asset, not the full reference image as a page background. The China page uses exact source slices from the supplied Chinese reference, including full card crops sized at `154x184` so each card keeps the source ratio (`0.836956522`) and complete frame sides.
 - Flag artifact cleanup: the Malaysia and Laos flag assets no longer include the white text remnants that were visible below the flags.
 - Copy and content: all visible language labels, pricing labels, and service benefit text match the reference.
 - Entry behavior: all six homepage cards are real links to language/region pages. The China destination renders the Chinese product-category UI with 12 clickable category links; Singapore, Thailand, Vietnam, Malaysia, and Laos remain blank dark pages for future editing.
@@ -73,8 +77,9 @@
 - Removed the top three-line rules band entirely and moved the clean hero/title plus all 12 China category cards upward, without changing the source card ratio.
 - Same-size phone check at `589x1280`: the top rules band is absent, the final card row bottoms at `1075.17px`, all 12 category cards load, no failed images, no detected page-edge clipping, and the right rail reaches the viewport edge within sub-pixel rounding.
 - Restored vertical drag room for mobile browser toolbars. On `393x852`, the page has `scrollHeight 949` and can scroll about `97px`; after scrolling, the product grid moves up without changing the card coordinates.
-- Recut all 12 China category card assets as `154x184` source crops with 4px extra source area on both side edges. The clickable card frame remains the original `146x184` coordinate ratio, while each image bleeds slightly left/right so the neon side rails are not tight against the crop edge.
-- Removed card-link clipping on the China page so CSS no longer masks card corners or side rails. Verified all 12 versioned card images load with no failed images, no detected page-edge clipping, and click behavior updates the active card/hash.
+- Recut all 12 China category card assets as full-frame `154x184` source crops and updated the clickable card boxes to the same `154x184` coordinate ratio. This keeps the top, middle, and bottom rows in the same visual proportion.
+- Removed the temporary side-bleed display treatment. Verified all 12 versioned full-frame card images load with no failed images, no detected page-edge clipping, matching card ratios (`0.836945436` on `393x852`), and click behavior updates the active card/hash.
+- Rechecked the source crop positions with CoreGraphics: `内裤` maps to `(44,504,154,184)`, the lower rows map to y rows `704/899/1094`, and every current card asset matches its corresponding source crop within a sub-1 average pixel delta.
 - Removed the obsolete `public/assets/china-categories/` reconstruction assets so the China page only uses `public/assets/china-slices/` full-card source crops.
 - Added 12 clickable China category links: 内裤, 胸罩, 上衣, 裙子 / 短裤, 连衣裙, 丝袜, 贴身连体衣, 角色扮演, 长裤, 帽子, 女士凉鞋, and 女士包包.
 
