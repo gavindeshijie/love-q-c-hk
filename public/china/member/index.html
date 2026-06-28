@@ -698,6 +698,93 @@
         box-shadow: 0 0 1cqw rgba(112, 54, 255, 0.82);
       }
 
+      .reminder-toast {
+        position: absolute;
+        left: 8.1cqw;
+        top: 47.4cqw;
+        z-index: 8;
+        width: 84.4cqw;
+        min-height: 14.4cqw;
+        display: grid;
+        grid-template-columns: 12.5cqw 1fr;
+        align-items: center;
+        gap: 1.2cqw;
+        padding: 2.1cqw 4.3cqw 2.1cqw 4.9cqw;
+        color: #fff;
+        background:
+          linear-gradient(135deg, transparent 0 2.1cqw, rgba(11, 12, 31, 0.94) 2.1cqw calc(100% - 2.1cqw), transparent calc(100% - 2.1cqw)),
+          linear-gradient(180deg, rgba(41, 26, 86, 0.94), rgba(7, 9, 23, 0.96));
+        border: 1px solid rgba(197, 90, 255, 0.74);
+        border-radius: 0.6cqw;
+        box-shadow:
+          0 0 2.8cqw rgba(120, 43, 255, 0.72),
+          inset 0 0 4.2cqw rgba(110, 43, 255, 0.46),
+          inset 0 0 1px rgba(255, 255, 255, 0.5);
+        clip-path: polygon(3.2cqw 0, calc(100% - 3.2cqw) 0, 100% 3.2cqw, 100% calc(100% - 3.2cqw), calc(100% - 3.2cqw) 100%, 3.2cqw 100%, 0 calc(100% - 3.2cqw), 0 3.2cqw);
+      }
+
+      .reminder-toast::before,
+      .reminder-toast::after {
+        content: "";
+        position: absolute;
+        pointer-events: none;
+      }
+
+      .reminder-toast::before {
+        inset: 0;
+        background:
+          radial-gradient(circle at 11% 51%, rgba(138, 71, 255, 0.26), transparent 13cqw),
+          linear-gradient(90deg, rgba(118, 43, 255, 0.12), transparent 36%, rgba(255, 52, 244, 0.12));
+      }
+
+      .reminder-toast::after {
+        inset: 1px;
+        border: 1px solid rgba(82, 53, 255, 0.48);
+        clip-path: inherit;
+      }
+
+      .reminder-icon {
+        position: relative;
+        z-index: 1;
+        width: 9.4cqw;
+        height: 9.4cqw;
+        display: grid;
+        place-items: center;
+        border: 0.55cqw solid rgba(197, 133, 255, 0.96);
+        border-radius: 50%;
+        color: #d5a5ff;
+        box-shadow: 0 0 1.4cqw rgba(178, 70, 255, 0.72), inset 0 0 1.2cqw rgba(123, 68, 255, 0.18);
+      }
+
+      .reminder-icon svg {
+        width: 5.2cqw;
+        height: 4.2cqw;
+        stroke-width: 6.5;
+      }
+
+      .reminder-copy {
+        position: relative;
+        z-index: 1;
+      }
+
+      .reminder-copy strong {
+        display: block;
+        margin-bottom: 1.1cqw;
+        font-size: clamp(17px, 3.4cqw, 29px);
+        font-weight: 500;
+        line-height: 1.05;
+        letter-spacing: 0;
+        color: rgba(255, 255, 255, 0.94);
+      }
+
+      .reminder-copy span {
+        display: block;
+        font-size: clamp(13px, 2.45cqw, 21px);
+        line-height: 1.2;
+        color: #df71ff;
+        text-shadow: 0 0 1cqw rgba(219, 84, 255, 0.74);
+      }
+
       .message-card,
       .setting-card {
         display: grid;
@@ -795,7 +882,7 @@
   </head>
   <body>
     <main class="member-page" aria-label="会员中心">
-      <a class="back-button" href="../catalog/?category=panty&v=member-center-v1-20260628" aria-label="返回上一页">
+      <a class="back-button" href="../catalog/?category=panty&v=ship-reminder-v1-20260628" aria-label="返回上一页">
         <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M38 15 20 32l18 17"></path><path d="M21 32h31"></path></svg>
       </a>
 
@@ -825,16 +912,18 @@
       </section>
 
       <footer class="footer-actions" id="footerActions"></footer>
+      <div id="noticeLayer"></div>
     </main>
 
     <script>
-      const VERSION = "member-center-v1-20260628";
+      const VERSION = "ship-reminder-v1-20260628";
       const params = new URLSearchParams(window.location.search);
       const initialView = params.get("view") || "profile";
       const initialStatus = params.get("status") || "all";
       const content = document.getElementById("content");
       const sideNav = document.getElementById("sideNav");
       const footerActions = document.getElementById("footerActions");
+      const noticeLayer = document.getElementById("noticeLayer");
 
       const icons = {
         user: `<svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="21" r="9"></circle><path d="M14 53c3.2-10.5 9.4-16 18-16s14.8 5.5 18 16"></path></svg>`,
@@ -918,13 +1007,15 @@
       let state = {
         view: ["profile", "orders", "messages", "settings"].includes(initialView) ? initialView : "profile",
         status: orderTabs.some(([id]) => id === initialStatus) ? initialStatus : "all",
+        reminder: params.get("remind") === "1",
         query: "",
         notice: true
       };
 
-      function setRoute(nextView, nextStatus = state.status) {
+      function setRoute(nextView, nextStatus = state.status, options = {}) {
         state.view = nextView;
         state.status = nextStatus;
+        state.reminder = Boolean(options.reminder);
         const next = new URL(window.location.href);
         next.searchParams.set("view", state.view);
         next.searchParams.set("v", VERSION);
@@ -932,6 +1023,11 @@
           next.searchParams.set("status", state.status);
         } else {
           next.searchParams.delete("status");
+        }
+        if (state.reminder && state.view === "orders" && state.status === "ship") {
+          next.searchParams.set("remind", "1");
+        } else {
+          next.searchParams.delete("remind");
         }
         history.pushState(null, "", next);
         render();
@@ -1026,7 +1122,7 @@
         const buttons = order.status === "pay"
           ? `<button class="small-button" type="button">取消订单</button><button class="small-button primary" type="button">去付款</button>`
           : order.status === "ship"
-            ? `<button class="small-button" type="button">查看详情</button><button class="small-button primary" type="button">提醒发货</button>`
+            ? `<button class="small-button" type="button">查看详情</button><button class="small-button primary" type="button" data-action="remind-ship">提醒发货</button>`
             : order.status === "receive"
               ? `<button class="small-button" type="button">查看物流</button><button class="small-button primary" type="button">确认收货</button>`
               : order.status === "done"
@@ -1105,11 +1201,27 @@
       function render() {
         renderNav();
         renderFooter();
+        renderNotice();
         document.body.dataset.view = state.view;
         if (state.view === "profile") renderProfile();
         if (state.view === "orders") renderOrders();
         if (state.view === "messages") renderMessages();
         if (state.view === "settings") renderSettings();
+      }
+
+      function renderNotice() {
+        const shouldShow = state.view === "orders" && state.status === "ship" && state.reminder;
+        noticeLayer.innerHTML = shouldShow ? `
+          <div class="reminder-toast" role="status" aria-live="polite">
+            <div class="reminder-icon">
+              <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M17 33.5 27.6 44 48 21"></path></svg>
+            </div>
+            <div class="reminder-copy">
+              <strong>您的提醒已收到，我们的工作人员会马上处理</strong>
+              <span>我们会通过邮箱联系您，请记得开启邮箱来邮提醒。</span>
+            </div>
+          </div>
+        ` : "";
       }
 
       document.addEventListener("click", (event) => {
@@ -1139,6 +1251,10 @@
         }
         const action = event.target.closest("[data-action]");
         if (action) {
+          if (action.dataset.action === "remind-ship") {
+            setRoute("orders", "ship", { reminder: true });
+            return;
+          }
           if (action.dataset.action === "reset") {
             document.querySelectorAll("#profileForm input, #profileForm textarea").forEach((inputEl) => {
               inputEl.value = "";
@@ -1168,6 +1284,7 @@
         const next = new URLSearchParams(window.location.search);
         state.view = next.get("view") || "profile";
         state.status = next.get("status") || "all";
+        state.reminder = next.get("remind") === "1";
         state.query = "";
         render();
       });
@@ -1176,6 +1293,7 @@
         params.set("v", VERSION);
         params.set("view", state.view);
         if (state.view === "orders") params.set("status", state.status);
+        if (state.reminder && state.view === "orders" && state.status === "ship") params.set("remind", "1");
         window.history.replaceState(null, "", `${window.location.pathname}?${params.toString()}`);
       }
 
