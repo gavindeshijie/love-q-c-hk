@@ -482,18 +482,26 @@
       .panty-reference .product {
         aspect-ratio: 1 / 1.01;
         grid-template-rows: 72% 28%;
-        padding: 0.16cqw;
-        border: 0.14cqw solid rgba(233, 239, 255, 0.78);
-        clip-path: polygon(0 1.55cqw, 1.55cqw 0, calc(100% - 1.55cqw) 0, 100% 1.55cqw, 100% calc(100% - 1.55cqw), calc(100% - 1.55cqw) 100%, 1.55cqw 100%, 0 calc(100% - 1.55cqw));
+        padding: 0.65cqw;
+        border: 0;
+        clip-path: none;
         background:
           radial-gradient(circle at 50% 42%, rgba(92, 0, 168, 0.2), transparent 57%),
           #010101;
-        box-shadow:
-          inset 0 0 0 0.17cqw rgba(255, 255, 255, 0.1),
-          0 0 0.45cqw rgba(185, 210, 255, 0.16);
+        box-shadow: none;
+      }
+
+      .panty-reference .product::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 4;
+        pointer-events: none;
+        background: url("../../assets/china-catalog-ui/product-card-frame.png?v=frame-20260628") center / 100% 100% no-repeat;
       }
 
       .panty-reference .product-media {
+        z-index: 1;
         background:
           radial-gradient(circle at 50% 50%, rgba(93, 0, 158, 0.2), transparent 58%),
           #030204;
@@ -511,6 +519,7 @@
       }
 
       .panty-reference .product-info {
+        z-index: 1;
         gap: 1.05cqw;
         padding: 0.95cqw 2.45cqw 1.35cqw;
         background: rgba(0, 0, 0, 0.9);
