@@ -3,6 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>华语商品列表 | Secret Language Trade</title>
     <style>
       :root {
@@ -661,7 +664,7 @@
       </a>
     </nav>
 
-    <script src="../../assets/china-catalog-data.js?v=detail-controls-v2-20260628"></script>
+    <script src="../../assets/china-catalog-data.js?v=detail-controls-v3-20260628"></script>
     <script>
       const pages = window.CHINA_CATALOG_DATA;
 
@@ -720,10 +723,10 @@
         const [desc, price, code] = product;
         const item = document.createElement("a");
         item.className = "product";
-        item.href = `../product/?category=${category}&item=${index + 1}&v=detail-controls-v2-20260628`;
+        item.href = `../product/?category=${category}&item=${index + 1}&v=detail-controls-v3-20260628`;
         item.innerHTML = `
           <div class="product-media">
-            <img src="../../assets/china-product-items/${category}-${index + 1}.jpg?v=detail-controls-v2-20260628" alt="${desc}">
+            <img src="../../assets/china-product-items/${category}-${index + 1}.jpg?v=detail-controls-v3-20260628" alt="${desc}">
           </div>
           <div class="product-info">
             <div class="product-desc">${desc}</div>
