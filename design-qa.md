@@ -34,6 +34,7 @@
 - China full-frame scrolled screenshot: `/private/tmp/china-fullframe-bottom-393x852.png`
 - China panty/bra frame focused comparison: `/private/tmp/panty-bra-frame-final-compare.png`
 - China all-card right-edge focused comparison after safe crop: `/private/tmp/china-card-right-edge-contact-safe-v2.png`
+- China catalog page reference assets: `public/assets/china-product-pages/{panty,bra,top,skirt,dress,stockings,bodysuit,roleplay,pants,hat,heels,bag}.jpg`
 - China full-frame pixel crop verification: all 12 current card assets are `154x184` crops from the Chinese source image at x columns `44/218/393` and y rows `504/704/899/1094`; average pixel deltas are `0.25071-0.43659`, consistent with JPEG/PNG decode differences.
 - Card-zone comparison: `/private/tmp/card-zone-compare-v28.png`
 - Focused top comparison: `/private/tmp/love-focus-top-v17.png`
@@ -41,7 +42,7 @@
 - Focused bottom comparison: `/private/tmp/love-focus-bottom-v17.png`
 - Viewport: `427x640`, `deviceScaleFactor: 2`, mobile viewport.
 - Original-ratio verification viewport: `393x852`, CSS-pixel screenshot.
-- State: default page load, China category page; click test selects `#stockings`.
+- State: default page load, China category page, plus 12 product-category catalog destinations.
 
 **Required Fidelity Surfaces**
 - Fonts and typography: heading, language labels, currencies, and price lines match the visual hierarchy and wrapping of the reference. The implementation uses browser-safe multilingual font fallbacks, so exact antialiasing can vary by device.
@@ -51,7 +52,7 @@
 - Image quality and asset fidelity: the six flags are individual image assets cropped from the supplied visual instead of CSS approximations. The card border now uses a separate transparent single-card frame asset, not the full reference image as a page background. The China page uses exact source slices from the supplied Chinese reference, including full card crops sized at `154x184` so each card keeps the source ratio (`0.836956522`) and complete frame sides.
 - Flag artifact cleanup: the Malaysia and Laos flag assets no longer include the white text remnants that were visible below the flags.
 - Copy and content: all visible language labels, pricing labels, and service benefit text match the reference.
-- Entry behavior: all six homepage cards are real links to language/region pages. The China destination renders the Chinese product-category UI with 12 clickable category links; Singapore, Thailand, Vietnam, Malaysia, and Laos remain blank dark pages for future editing.
+- Entry behavior: all six homepage cards are real links to language/region pages. The China destination renders the Chinese product-category UI with 12 clickable category links. Each China category link now opens the corresponding product-list screen supplied by the user; Singapore, Thailand, Vietnam, Malaysia, and Laos remain blank dark pages for future editing.
 
 **Patches Made Since Previous QA Pass**
 - Rebalanced the top header: smaller title text, higher text block, and restored spacing before the language grid.
@@ -84,6 +85,8 @@
 - Rechecked the source crop positions with CoreGraphics: `内裤` maps to `(44,504,154,184)`, the lower rows map to y rows `704/899/1094`, and every current card asset matches its corresponding source crop within a sub-1 average pixel delta.
 - Rebuilt `card-panty.png` with the same outer frame treatment as `card-bra.png` while preserving the inner panty artwork and label. This fixes the client-visible right-edge frame loss on the left-top `内裤` card without changing the `154x184` card size or link area.
 - Rebuilt all 12 China card assets with a wider horizontal source crop compressed back to `154x184`, so the right-side neon frame sits safely inside the bitmap instead of being flush against the image edge. This addresses client-side scaling that made the right border look cut off, including the bottom row cards.
+- Added `china/catalog/` as the shared product-list destination and mapped all 12 China category entries to the supplied product-list screenshots: 内裤, 胸罩, 上衣, 裙子 / 短裤, 连衣裙, 袜子, 贴身连体衣, 角色扮演制服, 长裤, 帽子, 女士凉鞋, and 女士包包.
+- Replaced the old hash-only China category click behavior with real links like `catalog/?category=panty`; the previous `preventDefault` hash-selection script was removed so tapping a category opens the new screen.
 - Removed the obsolete `public/assets/china-categories/` reconstruction assets so the China page only uses `public/assets/china-slices/` full-card source crops.
 - Added 12 clickable China category links: 内裤, 胸罩, 上衣, 裙子 / 短裤, 连衣裙, 丝袜, 贴身连体衣, 角色扮演, 长裤, 帽子, 女士凉鞋, and 女士包包.
 
@@ -93,6 +96,7 @@
 **Implementation Checklist**
 - Use the current `public/index.html`.
 - Include the China category page at `china/` and the five blank region directories: `singapore/`, `thailand/`, `vietnam/`, `malaysia/`, and `laos/`.
+- Include `public/china/catalog/index.html` and `public/assets/china-product-pages/` for the 12 linked China product-list screens.
 - Include `public/assets/china-slices/` with the exact source-slice PNG assets for the China page.
 - Include `public/assets/flag-china.png`, `flag-singapore.png`, `flag-thailand.png`, `flag-vietnam.png`, `flag-malaysia.png`, and `flag-laos.png`.
 - Keep `public/CNAME` as `love.q-c.hk`.
