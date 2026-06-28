@@ -104,6 +104,7 @@
 - Removed the panty subcategory frame image assets from the live UI entirely after client screenshots still showed apparent masking. The filter buttons now use CSS-only complete borders/glow with a separate translucent black interior and top-layer editable text, so there is no bitmap layer left that can cover the left/right/top/bottom edges.
 - Generated new transparent neon filter-frame assets instead of using the simplified CSS-only border: `filter-frame-generated.png` and `filter-frame-active-generated.png`. These are custom drawn transparent PNG overlays with segmented corner rails and glow, while the button interior remains CSS translucent black and labels remain top-layer editable HTML.
 - Generated `public/assets/china-catalog-ui/product-card-frame-generated.png` as a transparent neon product-card frame overlay. The panty product cards now keep their black/product content underneath while the frame renders on the top layer with `overflow: visible` and `isolation: isolate`, so the four sides and corners are not covered by the card background.
+- Replaced the heavier product-card overlay with `public/assets/china-catalog-ui/product-card-frame-slim.png`, a lighter transparent frame with thinner rails and reduced glow so the product cards no longer compete visually with the brighter subcategory buttons.
 
 **Follow-up Polish**
 - P3: the China page uses modular source slices rather than one full-page background. The slice boundaries are intentionally separate so each category card remains an independent clickable link.
