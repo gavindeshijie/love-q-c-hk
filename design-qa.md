@@ -24,6 +24,8 @@
 - China real-phone comparison: `/private/tmp/china-real-vs-balanced-589x1280.png`
 - China no-rules same-size screenshot: `/private/tmp/china-no-rules-clean-589x1280.png`
 - China no-rules real-phone comparison: `/private/tmp/china-real-vs-no-rules-clean-589x1280.png`
+- China fixed card-edge contact sheet: `/private/tmp/china-card-edge-fixed-contact.png`
+- China fixed card-edge full-page screenshot: `/private/tmp/china-card-edge-fixed-589x1280.png`
 - Card-zone comparison: `/private/tmp/card-zone-compare-v28.png`
 - Focused top comparison: `/private/tmp/love-focus-top-v17.png`
 - Focused card comparison: `/private/tmp/love-focus-cards-v17.png`
@@ -68,6 +70,8 @@
 - Removed the top three-line rules band entirely and moved the clean hero/title plus all 12 China category cards upward, without changing the source card ratio.
 - Same-size phone check at `589x1280`: the top rules band is absent, the final card row bottoms at `1075.17px`, all 12 category cards load, no failed images, no detected horizontal card side clipping, and the right rail reaches the viewport edge within sub-pixel rounding.
 - Verified `360x780`, `393x852`, `430x932`, and `589x1280` mobile viewports: normal page load has no meaningful scroll (`maxScrollY` 0-1px), every category card keeps its source ratio, and click behavior updates the active card/hash.
+- Recut all 12 China category card assets with extra source pixels on the left and right edges, then resized back to the same `146x184` display asset size so the side neon rails sit inside the image instead of being tight against the crop edge.
+- Removed card-link clipping on the China page so CSS no longer masks card corners or side rails.
 - Removed the obsolete `public/assets/china-categories/` reconstruction assets so the China page only uses `public/assets/china-slices/` full-card source crops.
 - Added 12 clickable China category links: 内裤, 胸罩, 上衣, 裙子 / 短裤, 连衣裙, 丝袜, 贴身连体衣, 角色扮演, 长裤, 帽子, 女士凉鞋, and 女士包包.
 
