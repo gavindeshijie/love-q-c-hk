@@ -3,82 +3,355 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-
     <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>确认订单 | Secret Language Trade</title>
-    <meta name="description" content="COD 货到付款结算页，填写收货信息并提交订单。">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="../../assets/neon-theme.css?v=neon-future-store-v1-20260704">
+    <title>结算中心 | Secret Language Trade</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans SC", system-ui, sans-serif;
+      }
 
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+        background: #000;
+        overscroll-behavior: none;
+      }
+
+      body {
+        height: 100svh;
+        display: grid;
+        place-items: center;
+        color: #fff;
+        -webkit-overflow-scrolling: auto;
+      }
+
+      @supports (height: 100dvh) {
+        body {
+          height: 100dvh;
+        }
+      }
+
+      a,
+      button {
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .checkout-page {
+        container-type: inline-size;
+        position: relative;
+        width: min(100vw, calc(100svh * 720 / 1280));
+        height: min(100svh, calc(100vw * 1280 / 720));
+        max-width: 720px;
+        max-height: 1280px;
+        overflow: hidden;
+        background: #000;
+        isolation: isolate;
+      }
+
+      @supports (height: 100dvh) {
+        .checkout-page {
+          width: min(100vw, calc(100dvh * 720 / 1280));
+          height: min(100dvh, calc(100vw * 1280 / 720));
+        }
+      }
+
+      .checkout-page.is-success {
+        width: min(100vw, calc(100svh * 590 / 1280));
+        height: min(100svh, calc(100vw * 1280 / 590));
+        max-width: 590px;
+      }
+
+      @supports (height: 100dvh) {
+        .checkout-page.is-success {
+          width: min(100vw, calc(100dvh * 590 / 1280));
+          height: min(100dvh, calc(100vw * 1280 / 590));
+        }
+      }
+
+      .visual-state {
+        position: absolute;
+        inset: 0;
+        display: none;
+      }
+
+      .checkout-page:not(.is-success) .visual-state.checkout-state,
+      .checkout-page.is-success .visual-state.success-state {
+        display: block;
+      }
+
+      .visual-image {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: fill;
+        user-select: none;
+        -webkit-user-drag: none;
+      }
+
+      .hit {
+        position: absolute;
+        z-index: 2;
+        display: block;
+        border: 0;
+        padding: 0;
+        color: transparent;
+        background: transparent;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .hit:focus-visible {
+        outline: 2px solid rgba(255, 255, 255, 0.95);
+        outline-offset: 2px;
+        border-radius: 8px;
+        box-shadow: 0 0 18px rgba(220, 66, 255, 0.9);
+      }
+
+      .settle-hit {
+        left: 19.8%;
+        top: 17.2%;
+        width: 60.4%;
+        height: 33.2%;
+      }
+
+      .pay-hit {
+        width: 27.4%;
+        height: 5.8%;
+      }
+
+      .pay-row-1 { top: 58.1%; }
+      .pay-row-2 { top: 65.2%; }
+      .pay-row-3 { top: 72.2%; }
+      .pay-col-1 { left: 7.6%; }
+      .pay-col-2 { left: 36.2%; }
+      .pay-col-3 { left: 64.8%; }
+
+      .market-hit {
+        top: 87.6%;
+        width: 27.2%;
+        height: 7.2%;
+      }
+
+      .market-1 { left: 8.1%; }
+      .market-2 { left: 36.4%; }
+      .market-3 { left: 64.8%; }
+
+      .nav-hit {
+        top: 93.3%;
+        width: 19.6%;
+        height: 6.6%;
+      }
+
+      .nav-1 { left: 0.4%; }
+      .nav-2 { left: 20.2%; }
+      .nav-3 { left: 40.2%; }
+      .nav-4 { left: 60.2%; }
+      .nav-5 { left: 80.0%; }
+
+      .success-exit-hit {
+        left: 34.8%;
+        top: 83.6%;
+        width: 30.4%;
+        height: 14.2%;
+      }
+
+      .success-safe-exit {
+        position: absolute;
+        z-index: 4;
+        left: 50%;
+        bottom: max(7.8%, calc(env(safe-area-inset-bottom) + 86px));
+        width: min(48%, 230px);
+        min-height: 11.2%;
+        transform: translateX(-50%);
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto auto;
+        column-gap: 10px;
+        align-items: center;
+        padding: 10px 13px 9px;
+        color: #f4d8ff;
+        text-decoration: none;
+        border: 1px solid rgba(246, 92, 255, 0.76);
+        background:
+          linear-gradient(145deg, rgba(20, 0, 34, 0.84), rgba(5, 0, 12, 0.78)),
+          radial-gradient(circle at 50% 0%, rgba(180, 55, 255, 0.35), transparent 62%);
+        clip-path: polygon(12% 0, 88% 0, 100% 18%, 100% 82%, 88% 100%, 12% 100%, 0 82%, 0 18%);
+        box-shadow:
+          0 0 16px rgba(211, 48, 255, 0.74),
+          inset 0 0 18px rgba(117, 33, 255, 0.48);
+      }
+
+      .success-safe-exit::before,
+      .success-safe-exit::after {
+        content: "";
+        position: absolute;
+        inset: 5px;
+        pointer-events: none;
+        clip-path: inherit;
+      }
+
+      .success-safe-exit::before {
+        border: 1px solid rgba(116, 192, 255, 0.55);
+      }
+
+      .success-safe-exit::after {
+        inset: 9px 18px auto;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(255, 72, 255, 0.92), transparent);
+        box-shadow: 0 0 12px rgba(255, 72, 255, 0.86);
+      }
+
+      .success-safe-exit svg {
+        grid-row: 1 / 3;
+        width: clamp(31px, 7.6cqw, 45px);
+        height: clamp(31px, 7.6cqw, 45px);
+        filter: drop-shadow(0 0 9px rgba(255, 55, 255, 0.9));
+      }
+
+      .success-safe-exit .exit-label {
+        font-size: clamp(18px, 4.4cqw, 26px);
+        font-weight: 800;
+        letter-spacing: 0;
+        line-height: 1.05;
+        text-shadow: 0 0 10px rgba(243, 80, 255, 0.92);
+      }
+
+      .success-safe-exit .countdown-label {
+        margin-top: 4px;
+        color: rgba(246, 207, 255, 0.92);
+        font-size: clamp(10px, 2.45cqw, 14px);
+        line-height: 1.25;
+        white-space: nowrap;
+      }
+
+      .success-safe-exit .countdown-label strong {
+        color: #fff;
+        font-size: 1.26em;
+        padding: 0 2px;
+        text-shadow: 0 0 9px rgba(255, 255, 255, 0.95);
+      }
+    </style>
   </head>
   <body>
+    <main class="checkout-page" id="page" aria-label="结算中心">
+      <section class="visual-state checkout-state" aria-label="结算中心主页">
+        <img class="visual-image" src="../../assets/checkout-visuals/checkout-center.jpg?v=checkout-success-countdown-v1-20260629" alt="结算中心">
 
-    
-    <header class="mobile-header" data-header>
-      <a class="brand-lockup" href="../../?v=neon-future-store-v1-20260704" aria-label="返回语言入口">
-        <span class="brand-mark">SL</span>
-        <span>
-          <strong>私语贸易</strong>
-          <em>Private · COD · Secure</em>
-        </span>
-      </a>
-      <nav class="header-actions" aria-label="快捷操作">
-        <a class="icon-pill " href="../../china/cart/?v=neon-future-store-v1-20260704" aria-label="购物车">购物车</a>
-        <button class="icon-pill" type="button" data-menu-open aria-label="打开菜单">菜单</button>
-      </nav>
-    </header>
-    <div class="site-menu" data-menu hidden>
-      <div class="site-menu__panel">
-        <button class="site-menu__close" type="button" data-menu-close aria-label="关闭菜单">关闭</button>
-        <a href="../../?v=neon-future-store-v1-20260704">语言入口</a>
-        <a href="../../china/?v=neon-future-store-v1-20260704">首页</a>
-        <a href="../../china/catalog/?category=panty&v=neon-future-store-v1-20260704">商品分类</a>
-        <a href="../../china/catalog/?category=roleplay&v=neon-future-store-v1-20260704">热卖商品</a>
-        <a href="../../china/cart/?v=neon-future-store-v1-20260704">购物车</a>
-        <a href="../../china/checkout/?v=neon-future-store-v1-20260704">COD 结算</a>
-        <a href="../../china/support/?v=neon-future-store-v1-20260704">联系客服</a>
-      </div>
-    </div>
-    <main class="app-shell no-bottom-nav" id="checkoutApp" aria-label="确认订单">
-      <section class="section compact-top" data-checkout-form>
-        <p class="eyebrow">COD Checkout</p>
-        <h1>确认订单</h1>
-        <p class="muted">填写收货信息，支持货到付款与隐私包装。</p>
+        <button class="hit settle-hit" id="settleButton" type="button" aria-label="结账">结账</button>
+
+        <a class="hit pay-hit pay-row-1 pay-col-1" href="#wechat" aria-label="微信"></a>
+        <a class="hit pay-hit pay-row-1 pay-col-2" href="#alipay" aria-label="支付宝"></a>
+        <a class="hit pay-hit pay-row-1 pay-col-3" href="#china-bank" aria-label="中国银行"></a>
+        <a class="hit pay-hit pay-row-2 pay-col-1" href="#singapore-bank" aria-label="新加坡银行"></a>
+        <a class="hit pay-hit pay-row-2 pay-col-2" href="#thai-bank" aria-label="泰国银行"></a>
+        <a class="hit pay-hit pay-row-2 pay-col-3" href="#hongkong-bank" aria-label="香港银行"></a>
+        <a class="hit pay-hit pay-row-3 pay-col-1" href="#malaysia-bank" aria-label="马来西亚银行"></a>
+        <a class="hit pay-hit pay-row-3 pay-col-2" href="#cash-on-delivery" aria-label="货到付款"></a>
+        <a class="hit pay-hit pay-row-3 pay-col-3" href="#deposit" aria-label="预交30%定金"></a>
+
+        <a class="hit market-hit market-1" href="#tiktok" aria-label="TikTok 官方零售店"></a>
+        <a class="hit market-hit market-2" href="#shopee" aria-label="Shopee 官方零售店"></a>
+        <a class="hit market-hit market-3" href="#lazada" aria-label="Lazada 官方零售店"></a>
+
+        <a class="hit nav-hit nav-1" href="../cart/?v=checkout-success-countdown-v1-20260629" aria-label="退出结算中心"></a>
+        <a class="hit nav-hit nav-2" href="../member/?view=profile&v=checkout-success-countdown-v1-20260629" aria-label="会员中心"></a>
+        <a class="hit nav-hit nav-3" href="../support/?v=checkout-success-countdown-v1-20260629" aria-label="客服"></a>
+        <a class="hit nav-hit nav-4" href="../cart/?v=checkout-success-countdown-v1-20260629" aria-label="购物车"></a>
+        <a class="hit nav-hit nav-5" href="../cart/?v=checkout-success-countdown-v1-20260629" aria-label="返回上一页"></a>
       </section>
-      <section class="glass-card strong order-summary" id="orderSummary" data-checkout-form></section>
-      <form class="form-stack" id="checkoutForm" data-checkout-form novalidate>
-        <div class="field"><label for="name">姓名</label><input id="name" name="name" autocomplete="name"><div class="error-text" data-error="name"></div></div>
-        <div class="field"><label for="phone">手机号码</label><input id="phone" name="phone" inputmode="tel" autocomplete="tel"><div class="error-text" data-error="phone"></div></div>
-        <div class="field"><label for="country">国家/地区</label><select id="country" name="country"><option>中国</option><option>新加坡</option><option>泰国</option><option>越南</option><option>马来西亚</option><option>老挝</option></select></div>
-        <div class="field"><label for="city">城市/省份</label><input id="city" name="city" autocomplete="address-level1"><div class="error-text" data-error="city"></div></div>
-        <div class="field"><label for="address">详细地址</label><textarea id="address" name="address" autocomplete="street-address"></textarea><div class="error-text" data-error="address"></div></div>
-        <div class="field"><label for="note">备注，可选</label><textarea id="note" name="note" placeholder="例如配送时间、备用电话等"></textarea></div>
-        <button class="primary-button" type="submit">提交订单 · 货到付款</button>
-        <p class="muted">我们会尽快联系你确认订单，包裹采用隐私包装。</p>
-      </form>
-      <section class="section trust-grid" data-checkout-form>
-        <div class="trust-card glass-card"><b>外包装不显示敏感信息</b><span>更自然地完成收货。</span></div>
-        <div class="trust-card glass-card"><b>支持货到付款</b><span>收货时再付款。</span></div>
-        <div class="trust-card glass-card"><b>信息仅用于配送</b><span>用于订单确认与配送联系。</span></div>
-        <div class="trust-card glass-card"><b>客服确认发货</b><span>确认后尽快安排配送。</span></div>
-      </section>
-      <section class="success-screen" id="successScreen" hidden>
-        <div class="success-ring">✓</div>
-        <h1>订单已提交成功</h1>
-        <p>我们会尽快确认订单并安排发货。你的包裹将采用隐私包装，外部不会显示商品信息。</p>
-        <div class="glass-card strong success-info" id="successInfo"></div>
-        <div class="hero-actions">
-          <a class="primary-button" href="../catalog/?category=roleplay&v=neon-future-store-v1-20260704">继续浏览商品</a>
-          <a class="secondary-button" href="../?v=neon-future-store-v1-20260704">返回首页</a>
-        </div>
-        <p class="muted"><strong id="successCountdown">3</strong> 秒后进入会员信息页面</p>
+
+      <section class="visual-state success-state" aria-label="结算成功">
+        <img class="visual-image" src="../../assets/checkout-visuals/checkout-success.jpg?v=checkout-success-countdown-v1-20260629" alt="结算成功">
+        <a class="hit success-exit-hit" href="../member/?view=profile&source=checkout-success&v=checkout-success-countdown-v1-20260629" aria-label="退出"></a>
+        <a class="success-safe-exit" id="successExit" href="../member/?view=profile&source=checkout-success&v=checkout-success-countdown-v1-20260629" aria-label="退出并进入会员信息页面">
+          <svg viewBox="0 0 64 64" aria-hidden="true">
+            <path d="M25 15H13v34h12" fill="none" stroke="currentColor" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M29 32h24" fill="none" stroke="currentColor" stroke-width="4.2" stroke-linecap="round"/>
+            <path d="M43 21l11 11-11 11" fill="none" stroke="currentColor" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="exit-label">退出</span>
+          <span class="countdown-label"><strong id="successCountdown">3</strong>秒后进入会员信息</span>
+        </a>
       </section>
     </main>
-    <script src="../../assets/site-shell.js?v=neon-future-store-v1-20260704" defer></script>
 
-    <script src="../../assets/china-catalog-data.js?v=neon-future-store-v1-20260704"></script>
-    <script src="../../assets/neon-checkout.js?v=neon-future-store-v1-20260704" defer></script>
+    <script>
+      const VERSION = "checkout-success-countdown-v1-20260629";
+      const page = document.getElementById("page");
+      const settleButton = document.getElementById("settleButton");
+      const successCountdown = document.getElementById("successCountdown");
+      const successTarget = `../member/?view=profile&source=checkout-success&v=${VERSION}`;
+      let successCountdownTimer = 0;
+      let successRedirectTimer = 0;
+
+      function syncRoute() {
+        const current = new URL(window.location.href);
+        if (current.searchParams.get("v") !== VERSION) {
+          current.searchParams.set("v", VERSION);
+          window.history.replaceState(null, "", current);
+        }
+      }
+
+      function renderState() {
+        const current = new URLSearchParams(window.location.search);
+        const isSuccess = current.get("success") === "1";
+        page.classList.toggle("is-success", isSuccess);
+        if (isSuccess) {
+          startSuccessCountdown();
+        } else {
+          stopSuccessCountdown();
+        }
+      }
+
+      function stopSuccessCountdown() {
+        window.clearInterval(successCountdownTimer);
+        window.clearTimeout(successRedirectTimer);
+        successCountdownTimer = 0;
+        successRedirectTimer = 0;
+        if (successCountdown) {
+          successCountdown.textContent = "3";
+        }
+      }
+
+      function startSuccessCountdown() {
+        stopSuccessCountdown();
+        let remaining = 3;
+        successCountdown.textContent = String(remaining);
+        successCountdownTimer = window.setInterval(() => {
+          remaining -= 1;
+          if (remaining > 0) {
+            successCountdown.textContent = String(remaining);
+          }
+        }, 1000);
+        successRedirectTimer = window.setTimeout(() => {
+          window.location.href = successTarget;
+        }, 3000);
+      }
+
+      syncRoute();
+      renderState();
+
+      settleButton.addEventListener("click", () => {
+        const next = new URL(window.location.href);
+        next.searchParams.set("v", VERSION);
+        next.searchParams.set("success", "1");
+        history.pushState(null, "", next);
+        renderState();
+      });
+
+      window.addEventListener("popstate", renderState);
+    </script>
   </body>
 </html>

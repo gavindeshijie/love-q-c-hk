@@ -3,101 +3,145 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-
     <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>私语贸易 | Secret Language Trade</title>
-    <meta name="description" content="私语贸易多国家入口，支持隐私包装、多语言和 COD 货到付款。">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="assets/neon-theme.css?v=neon-future-store-v1-20260704">
+    <title>Secret Language Trade</title>
+    <meta
+      name="description"
+      content="Secret Language Trade multilingual mobile language selection page."
+    >
+    <style>
+      :root {
+        color-scheme: dark;
+        --poster-width: 853;
+        --poster-height: 1280;
+      }
 
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+        background: #030006;
+        font-family: "Noto Sans SC", "Noto Sans", Arial, sans-serif;
+      }
+
+      body {
+        display: grid;
+        justify-items: center;
+        color: #fff;
+        overflow-x: hidden;
+      }
+
+      .language-home {
+        position: relative;
+        width: min(100vw, 853px);
+        background: #030006;
+        line-height: 0;
+        isolation: isolate;
+      }
+
+      .language-home__art {
+        display: block;
+        width: 100%;
+        height: auto;
+        user-select: none;
+        -webkit-user-drag: none;
+        pointer-events: none;
+      }
+
+      .entry {
+        position: absolute;
+        z-index: 2;
+        display: block;
+        border-radius: 7%;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: rgba(198, 92, 255, 0.24);
+      }
+
+      .entry:focus-visible {
+        outline: 2px solid rgba(244, 211, 255, 0.98);
+        outline-offset: 2px;
+        box-shadow: 0 0 22px rgba(202, 80, 255, 0.9);
+      }
+
+      .entry--china {
+        left: 11.5%;
+        top: 18.1%;
+        width: 37.1%;
+        height: 23.1%;
+      }
+
+      .entry--singapore {
+        left: 51.4%;
+        top: 18.1%;
+        width: 37.1%;
+        height: 23.1%;
+      }
+
+      .entry--thailand {
+        left: 11.5%;
+        top: 42.3%;
+        width: 37.1%;
+        height: 23.1%;
+      }
+
+      .entry--vietnam {
+        left: 51.4%;
+        top: 42.3%;
+        width: 37.1%;
+        height: 23.1%;
+      }
+
+      .entry--malaysia {
+        left: 11.5%;
+        top: 66.4%;
+        width: 37.1%;
+        height: 21.7%;
+      }
+
+      .entry--laos {
+        left: 51.4%;
+        top: 66.4%;
+        width: 37.1%;
+        height: 21.7%;
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+    </style>
   </head>
   <body>
-
-    
-    <header class="mobile-header" data-header>
-      <a class="brand-lockup" href="?v=neon-future-store-v1-20260704" aria-label="返回语言入口">
-        <span class="brand-mark">SL</span>
-        <span>
-          <strong>私语贸易</strong>
-          <em>Private · COD · Secure</em>
-        </span>
-      </a>
-      <nav class="header-actions" aria-label="快捷操作">
-        <a class="icon-pill " href="china/cart/?v=neon-future-store-v1-20260704" aria-label="购物车">购物车</a>
-        <button class="icon-pill" type="button" data-menu-open aria-label="打开菜单">菜单</button>
-      </nav>
-    </header>
-    <div class="site-menu" data-menu hidden>
-      <div class="site-menu__panel">
-        <button class="site-menu__close" type="button" data-menu-close aria-label="关闭菜单">关闭</button>
-        <a href="?v=neon-future-store-v1-20260704">语言入口</a>
-        <a href="china/?v=neon-future-store-v1-20260704">首页</a>
-        <a href="china/catalog/?category=panty&v=neon-future-store-v1-20260704">商品分类</a>
-        <a href="china/catalog/?category=roleplay&v=neon-future-store-v1-20260704">热卖商品</a>
-        <a href="china/cart/?v=neon-future-store-v1-20260704">购物车</a>
-        <a href="china/checkout/?v=neon-future-store-v1-20260704">COD 结算</a>
-        <a href="china/support/?v=neon-future-store-v1-20260704">联系客服</a>
-      </div>
-    </div>
-    <main class="app-shell language-shell" aria-label="Secret Language Trade language entrance">
-      <section class="hero language-hero">
-        <p class="eyebrow">Secret Language Trade</p>
-        <h1>私语贸易欢迎您<br><span class="neon-text">Welcome to Secret Language Trade</span></h1>
-        <p>私密购物 · 多语言支持 · COD 货到付款。选择你的国家/语言后进入对应价格页面。</p>
-      </section>
-
-      <section class="section">
-        <div class="language-grid">
-          
-          <a class="language-card glass-card" href="china/?v=neon-future-store-v1-20260704" data-locale="zh-CN" data-market="CN" aria-label="进入 中文 中国地区价格">
-            <img src="assets/flag-china.png?v=neon-future-store-v1-20260704" alt="" width="140" height="84" loading="eager">
-            <strong>中文</strong>
-            <span>中国地区价格</span>
-            <em>CN</em>
-          </a>
-          <a class="language-card glass-card" href="singapore/?v=neon-future-store-v1-20260704" data-locale="en-SG" data-market="SG" aria-label="进入 English Price for Singapore">
-            <img src="assets/flag-singapore.png?v=neon-future-store-v1-20260704" alt="" width="140" height="84" loading="lazy">
-            <strong>English</strong>
-            <span>Price for Singapore</span>
-            <em>SG</em>
-          </a>
-          <a class="language-card glass-card" href="thailand/?v=neon-future-store-v1-20260704" data-locale="th-TH" data-market="TH" aria-label="进入 ภาษาไทย ราคาในประเทศไทย">
-            <img src="assets/flag-thailand.png?v=neon-future-store-v1-20260704" alt="" width="140" height="84" loading="lazy">
-            <strong>ภาษาไทย</strong>
-            <span>ราคาในประเทศไทย</span>
-            <em>TH</em>
-          </a>
-          <a class="language-card glass-card" href="vietnam/?v=neon-future-store-v1-20260704" data-locale="vi-VN" data-market="VN" aria-label="进入 Tiếng Việt Giá tại Việt Nam">
-            <img src="assets/flag-vietnam.png?v=neon-future-store-v1-20260704" alt="" width="140" height="84" loading="lazy">
-            <strong>Tiếng Việt</strong>
-            <span>Giá tại Việt Nam</span>
-            <em>VN</em>
-          </a>
-          <a class="language-card glass-card" href="malaysia/?v=neon-future-store-v1-20260704" data-locale="ms-MY" data-market="MY" aria-label="进入 Bahasa Melayu Harga di Malaysia">
-            <img src="assets/flag-malaysia.png?v=neon-future-store-v1-20260704" alt="" width="140" height="84" loading="lazy">
-            <strong>Bahasa Melayu</strong>
-            <span>Harga di Malaysia</span>
-            <em>MY</em>
-          </a>
-          <a class="language-card glass-card" href="laos/?v=neon-future-store-v1-20260704" data-locale="lo-LA" data-market="LA" aria-label="进入 ພາສາລາວ ລາຄາໃນລາວ">
-            <img src="assets/flag-laos.png?v=neon-future-store-v1-20260704" alt="" width="140" height="84" loading="lazy">
-            <strong>ພາສາລາວ</strong>
-            <span>ລາຄາໃນລາວ</span>
-            <em>LA</em>
-          </a>
-        </div>
-      </section>
-
-      <section class="section trust-strip glass-card">
-        <div><b>安全可靠</b><span>SAFE & SECURE</span></div>
-        <div><b>快速访问</b><span>FAST ACCESS</span></div>
-        <div><b>多语言支持</b><span>MULTI-LANGUAGE</span></div>
-        <div><b>优质服务</b><span>PREMIUM SERVICE</span></div>
-      </section>
+    <main class="language-home" aria-label="Secret Language Trade language entrance">
+      <h1 class="sr-only">私语贸易欢迎您</h1>
+      <img
+        class="language-home__art"
+        src="assets/language-home/original-home.jpg?v=checkout-success-countdown-v1-20260629"
+        alt="私语贸易欢迎您，多语言国家入口"
+        width="853"
+        height="1280"
+        decoding="async"
+        fetchpriority="high"
+      >
+      <a class="entry entry--china" href="china/?v=checkout-success-countdown-v1-20260629" aria-label="进入中文中国地区价格"></a>
+      <a class="entry entry--singapore" href="singapore/?v=checkout-success-countdown-v1-20260629" aria-label="进入新加坡英文价格"></a>
+      <a class="entry entry--thailand" href="thailand/?v=checkout-success-countdown-v1-20260629" aria-label="进入泰国价格"></a>
+      <a class="entry entry--vietnam" href="vietnam/?v=checkout-success-countdown-v1-20260629" aria-label="进入越南价格"></a>
+      <a class="entry entry--malaysia" href="malaysia/?v=checkout-success-countdown-v1-20260629" aria-label="进入马来西亚价格"></a>
+      <a class="entry entry--laos" href="laos/?v=checkout-success-countdown-v1-20260629" aria-label="进入老挝价格"></a>
     </main>
-    <script src="assets/site-shell.js?v=neon-future-store-v1-20260704" defer></script>
-
   </body>
 </html>

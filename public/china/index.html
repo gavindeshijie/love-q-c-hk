@@ -3,155 +3,303 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-
     <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>中国地区价格 | Secret Language Trade</title>
-    <meta name="description" content="高品质私密好物，隐私包装配送，支持 COD 货到付款。">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="../assets/neon-theme.css?v=neon-future-store-v1-20260704">
+    <title>华语专区 | Secret Language Trade</title>
+    <style>
+      :root {
+        color-scheme: dark;
+      }
 
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: #000;
+        overscroll-behavior: none;
+      }
+
+      body {
+        height: 100svh;
+        display: grid;
+        place-items: center;
+        overflow-x: hidden;
+        overflow-y: hidden;
+        padding: 0;
+        position: relative;
+        -webkit-overflow-scrolling: auto;
+      }
+
+      .poster {
+        container-type: inline-size;
+        position: relative;
+        width: min(100vw, calc(100svh * 590 / 1280));
+        height: min(100svh, calc(100vw * 1280 / 590));
+        max-width: 590px;
+        max-height: 1280px;
+        overflow: hidden;
+        background: #000;
+        isolation: isolate;
+      }
+
+      @supports (height: 100dvh) {
+        body {
+          height: 100dvh;
+        }
+
+        .poster {
+          width: min(100vw, calc(100dvh * 590 / 1280));
+          height: min(100dvh, calc(100vw * 1280 / 590));
+        }
+      }
+
+      .slice,
+      .card-link,
+      .card-link img {
+        position: absolute;
+        display: block;
+      }
+
+      .slice,
+      .card-link img {
+        width: 100%;
+        height: 100%;
+        object-fit: fill;
+        pointer-events: none;
+        user-select: none;
+        -webkit-user-drag: none;
+      }
+
+      .rail-left {
+        left: 0%;
+        top: 0%;
+        width: 6.1017%;
+        height: 100%;
+      }
+
+      .rail-right {
+        left: 93.8983%;
+        top: 0%;
+        width: 6.1017%;
+        height: 100%;
+      }
+
+      .hero {
+        left: 3.3898%;
+        top: 2.8906%;
+        width: 93.2203%;
+        height: 22.8125%;
+      }
+
+      .card-link {
+        width: 26.1017%;
+        height: 14.375%;
+        overflow: visible;
+        text-decoration: none;
+        -webkit-tap-highlight-color: transparent;
+        line-height: 1;
+      }
+
+      .card-link img {
+        width: 100%;
+      }
+
+      .card-link::before,
+      .card-link::after {
+        content: "";
+        position: absolute;
+        z-index: 2;
+        pointer-events: none;
+      }
+
+      .card-link::before {
+        left: 8.5%;
+        right: 8.5%;
+        top: 64.3%;
+        height: 23.1%;
+        background:
+          radial-gradient(ellipse at center, rgba(0, 0, 0, 0.99) 0 58%, rgba(0, 0, 0, 0.9) 72%, rgba(0, 0, 0, 0) 100%);
+      }
+
+      .card-link::after {
+        content: attr(data-title);
+        left: 0;
+        right: 0;
+        top: 71.2%;
+        color: #f0ecf4;
+        text-align: center;
+        font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+        font-size: 23px;
+        font-size: 3.9cqw;
+        font-weight: 500;
+        letter-spacing: 0;
+        line-height: 1.08;
+        text-shadow:
+          0 0 0.6cqw rgba(255, 255, 255, 0.42),
+          0 0 1.25cqw rgba(212, 93, 255, 0.38);
+        white-space: nowrap;
+      }
+
+      .card-link[data-title-length="long"]::after {
+        top: 72%;
+        font-size: 19px;
+        font-size: 3.25cqw;
+      }
+
+      .card-link:focus-visible {
+        outline: 2px solid #fff;
+        outline-offset: 3px;
+      }
+
+      .card-link.is-active {
+        filter: brightness(1.12) saturate(1.08);
+      }
+
+      .col-1 {
+        left: 7.4576%;
+      }
+
+      .col-2 {
+        left: 36.9492%;
+      }
+
+      .col-3 {
+        left: 66.6102%;
+      }
+
+      .row-1 {
+        top: 25.7031%;
+      }
+
+      .row-2 {
+        top: 40.3906%;
+      }
+
+      .row-3 {
+        top: 55.0781%;
+      }
+
+      .row-4 {
+        top: 69.7656%;
+      }
+
+      .home-link {
+        position: absolute;
+        right: 4.4%;
+        top: 2.65%;
+        z-index: 5;
+        width: 10.2%;
+        aspect-ratio: 1;
+        display: grid;
+        place-items: center;
+        color: #f4d7ff;
+        text-decoration: none;
+        border: 1px solid rgba(227, 191, 255, 0.82);
+        border-radius: 22%;
+        background:
+          linear-gradient(135deg, rgba(13, 5, 33, 0.86), rgba(52, 14, 112, 0.58)),
+          radial-gradient(circle at 48% 42%, rgba(169, 58, 255, 0.34), transparent 62%);
+        box-shadow:
+          0 0 1.6cqw rgba(153, 60, 255, 0.86),
+          inset 0 0 1.9cqw rgba(48, 73, 255, 0.46),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .home-link::before,
+      .home-link::after {
+        content: "";
+        position: absolute;
+        pointer-events: none;
+      }
+
+      .home-link::before {
+        inset: 12%;
+        border: 1px solid rgba(76, 85, 255, 0.5);
+        border-radius: 18%;
+        clip-path: polygon(0 0, 42% 0, 42% 10%, 58% 10%, 58% 0, 100% 0, 100% 100%, 0 100%);
+      }
+
+      .home-link::after {
+        inset: -8%;
+        border-radius: 26%;
+        box-shadow: 0 0 2.2cqw rgba(228, 59, 255, 0.38);
+      }
+
+      .home-link svg {
+        position: relative;
+        z-index: 1;
+        width: 61%;
+        height: 61%;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 4.6;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        filter: drop-shadow(0 0 0.9cqw rgba(231, 84, 255, 0.94));
+      }
+    </style>
   </head>
   <body>
-
-    
-    <header class="mobile-header" data-header>
-      <a class="brand-lockup" href="../?v=neon-future-store-v1-20260704" aria-label="返回语言入口">
-        <span class="brand-mark">SL</span>
-        <span>
-          <strong>私语贸易</strong>
-          <em>Private · COD · Secure</em>
-        </span>
+    <main class="poster" aria-label="华语商品分类">
+      <a class="home-link" href="../?v=checkout-success-countdown-v1-20260629" aria-label="返回首页">
+        <svg viewBox="0 0 64 64" aria-hidden="true">
+          <path d="M12 31.5 32 14l20 17.5"></path>
+          <path d="M18.5 29.5V52h27V29.5"></path>
+          <path d="M27 52V38h10v14"></path>
+        </svg>
       </a>
-      <nav class="header-actions" aria-label="快捷操作">
-        <a class="icon-pill " href="../china/cart/?v=neon-future-store-v1-20260704" aria-label="购物车">购物车</a>
-        <button class="icon-pill" type="button" data-menu-open aria-label="打开菜单">菜单</button>
-      </nav>
-    </header>
-    <div class="site-menu" data-menu hidden>
-      <div class="site-menu__panel">
-        <button class="site-menu__close" type="button" data-menu-close aria-label="关闭菜单">关闭</button>
-        <a href="../?v=neon-future-store-v1-20260704">语言入口</a>
-        <a href="../china/?v=neon-future-store-v1-20260704">首页</a>
-        <a href="../china/catalog/?category=panty&v=neon-future-store-v1-20260704">商品分类</a>
-        <a href="../china/catalog/?category=roleplay&v=neon-future-store-v1-20260704">热卖商品</a>
-        <a href="../china/cart/?v=neon-future-store-v1-20260704">购物车</a>
-        <a href="../china/checkout/?v=neon-future-store-v1-20260704">COD 结算</a>
-        <a href="../china/support/?v=neon-future-store-v1-20260704">联系客服</a>
-      </div>
-    </div>
-    <main class="app-shell" aria-label="中国地区首页">
-      <section class="hero">
-        <p class="eyebrow">Neon Future Pleasure Store</p>
-        <h1>探索未来感<br><span class="neon-text">私密愉悦体验</span></h1>
-        <p>精选高品质私密好物，隐私包装配送，支持货到付款，让每一次选择都更安心。</p>
-        <div class="chip-row">
-          <span class="chip hot">隐私包装</span>
-          <span class="chip">COD 货到付款</span>
-          <span class="chip">快速发货</span>
-        </div>
-        <div class="hero-actions">
-          <a class="primary-button" href="catalog/?category=panty&v=neon-future-store-v1-20260704">立即选购</a>
-          <a class="secondary-button" href="catalog/?category=roleplay&v=neon-future-store-v1-20260704">查看热卖商品</a>
-        </div>
-      </section>
+      <img class="slice rail-left" src="../assets/china-slices/rail-left.png" alt="">
+      <img class="slice rail-right" src="../assets/china-slices/rail-right.png" alt="">
+      <img class="slice hero" src="../assets/china-slices/hero-clean.png" alt="品质与价格是我们公开的武器">
 
-      <section class="section">
-        <div class="section-header"><h2>更私密、更安心</h2></div>
-        <div class="trust-grid">
-          <div class="trust-card glass-card"><b>隐私包装</b><span>外箱不显示敏感信息，收货更安心。</span></div>
-          <div class="trust-card glass-card"><b>COD 货到付款</b><span>收到商品后再付款，降低购买顾虑。</span></div>
-          <div class="trust-card glass-card"><b>快速发货</b><span>订单确认后尽快安排配送。</span></div>
-          <div class="trust-card glass-card"><b>精选品质</b><span>甄选实用热门款，体验更稳定。</span></div>
-        </div>
-      </section>
+      <a class="card-link col-1 row-1" href="catalog/?category=panty&v=checkout-success-countdown-v1-20260629" data-item="panty" data-title="内裤" aria-label="进入内裤分类">
+        <img src="../assets/china-slices/card-panty.png?v=checkout-success-countdown-v1-20260629" alt="">
+      </a>
+      <a class="card-link col-2 row-1" href="catalog/?category=bra&v=checkout-success-countdown-v1-20260629" data-item="bra" data-title="胸罩" aria-label="进入胸罩分类">
+        <img src="../assets/china-slices/card-bra.png?v=checkout-success-countdown-v1-20260629" alt="">
+      </a>
+      <a class="card-link col-3 row-1" href="catalog/?category=top&v=checkout-success-countdown-v1-20260629" data-item="top" data-title="上衣" aria-label="进入上衣分类">
+        <img src="../assets/china-slices/card-top.png?v=checkout-success-countdown-v1-20260629" alt="">
+      </a>
 
-      <section class="section">
-        <div class="section-header"><h2>商品分类</h2><a class="chip" href="catalog/?category=panty&v=neon-future-store-v1-20260704">全部</a></div>
-        <div class="horizontal-rail">
-          
-          <a class="category-card glass-card" href="catalog/?category=panty&v=neon-future-store-v1-20260704">
-            <img src="../assets/china-product-items/panty-1.jpg?v=neon-future-store-v1-20260704" alt="女用精选" loading="lazy">
-            <strong>女用精选</strong>
-            <span>柔和触感，新手友好</span>
-          </a>
-          <a class="category-card glass-card" href="catalog/?category=bra&v=neon-future-store-v1-20260704">
-            <img src="../assets/china-product-items/bra-1.jpg?v=neon-future-store-v1-20260704" alt="舒适内搭" loading="lazy">
-            <strong>舒适内搭</strong>
-            <span>亲肤面料，日常安心</span>
-          </a>
-          <a class="category-card glass-card" href="catalog/?category=roleplay&v=neon-future-store-v1-20260704">
-            <img src="../assets/china-product-items/roleplay-1.jpg?v=neon-future-store-v1-20260704" alt="亲密互动" loading="lazy">
-            <strong>亲密互动</strong>
-            <span>氛围感主题精选</span>
-          </a>
-          <a class="category-card glass-card" href="catalog/?category=dress&v=neon-future-store-v1-20260704">
-            <img src="../assets/china-product-items/dress-1.jpg?v=neon-future-store-v1-20260704" alt="新手推荐" loading="lazy">
-            <strong>新手推荐</strong>
-            <span>轻盈好穿，风格克制</span>
-          </a>
-          <a class="category-card glass-card" href="catalog/?category=bodysuit&v=neon-future-store-v1-20260704">
-            <img src="../assets/china-product-items/bodysuit-1.jpg?v=neon-future-store-v1-20260704" alt="高端系列" loading="lazy">
-            <strong>高端系列</strong>
-            <span>流线剪裁，贴合体验</span>
-          </a>
-          <a class="category-card glass-card" href="catalog/?category=bag&v=neon-future-store-v1-20260704">
-            <img src="../assets/china-product-items/bag-1.jpg?v=neon-future-store-v1-20260704" alt="隐私出行" loading="lazy">
-            <strong>隐私出行</strong>
-            <span>收纳搭配，轻便耐用</span>
-          </a>
-        </div>
-      </section>
+      <a class="card-link col-1 row-2" href="catalog/?category=skirt&v=checkout-success-countdown-v1-20260629" data-item="skirt" data-title="裙子 / 短裤" data-title-length="long" aria-label="进入裙子短裤分类">
+        <img src="../assets/china-slices/card-skirt.png?v=checkout-success-countdown-v1-20260629" alt="">
+      </a>
+      <a class="card-link col-2 row-2" href="catalog/?category=dress&v=checkout-success-countdown-v1-20260629" data-item="dress" data-title="连衣裙" aria-label="进入连衣裙分类">
+        <img src="../assets/china-slices/card-dress.png?v=checkout-success-countdown-v1-20260629" alt="">
+      </a>
+      <a class="card-link col-3 row-2" href="catalog/?category=stockings&v=checkout-success-countdown-v1-20260629" data-item="stockings" data-title="丝袜" aria-label="进入丝袜分类">
+        <img src="../assets/china-slices/card-stockings.png?v=checkout-success-countdown-v1-20260629" alt="">
+      </a>
 
-      <section class="section">
-        <div class="section-header"><div><h2>本周热卖</h2><p class="muted">更多用户选择的私密好物</p></div></div>
-        <div class="product-grid">
-          
-          <a class="product-card" href="product/?category=panty&item=1&v=neon-future-store-v1-20260704">
-            <div class="product-card__media"><img src="../assets/china-product-items/panty-1.jpg?v=neon-future-store-v1-20260704" alt="柔和触感，适合日常私密体验" loading="eager"><span class="badge">HOT</span></div>
-            <div class="product-card__body"><h3>柔和触感，适合日常私密体验</h3><p>隐私包装 · 支持货到付款</p><strong class="price">¥ 7.80</strong><span class="mini-button">立即购买</span></div>
-          </a>
-          <a class="product-card" href="product/?category=bra&item=2&v=neon-future-store-v1-20260704">
-            <div class="product-card__media"><img src="../assets/china-product-items/bra-2.jpg?v=neon-future-store-v1-20260704" alt="亲肤承托，低调舒适" loading="eager"><span class="badge">COD</span></div>
-            <div class="product-card__body"><h3>亲肤承托，低调舒适</h3><p>隐私包装 · 支持货到付款</p><strong class="price">¥ 29.80</strong><span class="mini-button">立即购买</span></div>
-          </a>
-          <a class="product-card" href="product/?category=dress&item=1&v=neon-future-store-v1-20260704">
-            <div class="product-card__media"><img src="../assets/china-product-items/dress-1.jpg?v=neon-future-store-v1-20260704" alt="轻盈风格，新手友好" loading="lazy"><span class="badge">COD</span></div>
-            <div class="product-card__body"><h3>轻盈风格，新手友好</h3><p>隐私包装 · 支持货到付款</p><strong class="price">¥ 39.90</strong><span class="mini-button">立即购买</span></div>
-          </a>
-          <a class="product-card" href="product/?category=bag&item=2&v=neon-future-store-v1-20260704">
-            <div class="product-card__media"><img src="../assets/china-product-items/bag-2.jpg?v=neon-future-store-v1-20260704" alt="轻便出行，经典耐用" loading="lazy"><span class="badge">COD</span></div>
-            <div class="product-card__body"><h3>轻便出行，经典耐用</h3><p>隐私包装 · 支持货到付款</p><strong class="price">¥ 179.90</strong><span class="mini-button">立即购买</span></div>
-          </a>
-        </div>
-      </section>
+      <a class="card-link col-1 row-3" href="catalog/?category=bodysuit&v=checkout-success-countdown-v1-20260629" data-item="bodysuit" data-title="贴身连体衣" data-title-length="long" aria-label="进入贴身连体衣分类">
+        <img src="../assets/china-slices/card-bodysuit.png?v=checkout-success-countdown-v1-20260629" alt="">
+      </a>
+      <a class="card-link col-2 row-3" href="catalog/?category=roleplay&v=checkout-success-countdown-v1-20260629" data-item="roleplay" data-title="角色扮演" data-title-length="long" aria-label="进入角色扮演分类">
+        <img src="../assets/china-slices/card-roleplay.png?v=checkout-success-countdown-v1-20260629" alt="">
+      </a>
+      <a class="card-link col-3 row-3" href="catalog/?category=pants&v=checkout-success-countdown-v1-20260629" data-item="pants" data-title="长裤" aria-label="进入长裤分类">
+        <img src="../assets/china-slices/card-pants.png?v=checkout-success-countdown-v1-20260629" alt="">
+      </a>
 
-      <section class="section">
-        <div class="section-header"><h2>简单 3 步，安心下单</h2></div>
-        <div class="flow-steps">
-          <div class="flow-step glass-card"><b>1</b><div><b>选择商品</b><p>浏览分类或热卖推荐，选择适合你的私密好物。</p></div></div>
-          <div class="flow-step glass-card"><b>2</b><div><b>填写收货信息</b><p>只填写配送需要的信息，表单简短清晰。</p></div></div>
-          <div class="flow-step glass-card"><b>3</b><div><b>收货后付款</b><p>支持 COD 货到付款，包裹采用隐私包装。</p></div></div>
-        </div>
-      </section>
-
-      <section class="section">
-        <h2>常见问题</h2>
-        <details class="faq-item"><summary>包装会显示商品内容吗？</summary><p>不会。我们采用隐私包装，外箱不显示敏感商品名称。</p></details>
-        <details class="faq-item"><summary>是否支持货到付款？</summary><p>支持。用户可在收货时完成付款。</p></details>
-        <details class="faq-item"><summary>多久发货？</summary><p>订单确认后会尽快安排发货，具体时间以所在地区配送情况为准。</p></details>
-      </section>
+      <a class="card-link col-1 row-4" href="catalog/?category=hat&v=checkout-success-countdown-v1-20260629" data-item="hat" data-title="帽子" aria-label="进入帽子分类">
+        <img src="../assets/china-slices/card-hat.png?v=checkout-success-countdown-v1-20260629" alt="">
+      </a>
+      <a class="card-link col-2 row-4" href="catalog/?category=heels&v=checkout-success-countdown-v1-20260629" data-item="heels" data-title="女士凉鞋" data-title-length="long" aria-label="进入女士凉鞋分类">
+        <img src="../assets/china-slices/card-heels.png?v=checkout-success-countdown-v1-20260629" alt="">
+      </a>
+      <a class="card-link col-3 row-4" href="catalog/?category=bag&v=checkout-success-countdown-v1-20260629" data-item="bag" data-title="女士包包" data-title-length="long" aria-label="进入女士包包分类">
+        <img src="../assets/china-slices/card-bag.png?v=checkout-success-countdown-v1-20260629" alt="">
+      </a>
     </main>
-    
-    <nav class="mobile-bottom-nav" aria-label="底部导航">
-      <a class="is-active" href="?v=neon-future-store-v1-20260704"><span>首页</span></a>
-      <a class="" href="catalog/?category=panty&v=neon-future-store-v1-20260704"><span>分类</span></a>
-      <a class="" href="catalog/?category=roleplay&v=neon-future-store-v1-20260704"><span>热卖</span></a>
-      <a class="" href="cart/?v=neon-future-store-v1-20260704"><span>购物车</span></a>
-      <a class="" href="support/?v=neon-future-store-v1-20260704"><span>客服</span></a>
-    </nav>
-    <script src="../assets/site-shell.js?v=neon-future-store-v1-20260704" defer></script>
 
   </body>
 </html>
