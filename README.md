@@ -1,15 +1,45 @@
-# Secret Language Trade Static Site
+# LOVE QC Private Select
 
-This repository is prepared as an independent static website for `love.q-c.hk`. It has no runtime dependency on any main website.
+Mobile-first 18+ private select storefront for `love.q-c.hk`.
 
-## Current State
+## Stack
 
-- The public website root is `public/`.
-- `public/index.html` renders the mobile Secret Language Trade language selector.
-- GitHub Pages deployment is prepared in `.github/workflows/deploy.yml`.
-- Search engines are allowed in `public/robots.txt`.
+- React 19
+- TypeScript
+- Vite
+- CSS variables / mobile-first component styles
+- GitHub Pages deployment from `dist/`
+
+## Local Development
+
+```bash
+npm install
+npm run dev
+npm run build
+```
+
+## Test Accounts
+
+- Frontend user: any phone number or email with mock verification.
+- Admin: `admin / loveqc2026`
 
 ## Deployment
 
-The custom domain is set in `public/CNAME`.
-Pushes to `main` deploy through GitHub Actions.
+`public/CNAME` keeps the custom domain `love.q-c.hk`.
+
+Pushes to `main` run GitHub Actions:
+
+1. `npm ci`
+2. `npm run build`
+3. deploy `dist/` to GitHub Pages
+
+## Notes Before Production
+
+Merchants still need to provide:
+
+- Real product images
+- Real inventory
+- Real payment channel configuration
+- Real delivery rules
+- Real customer-service contacts
+- Final privacy policy, terms, and return/legal policy
