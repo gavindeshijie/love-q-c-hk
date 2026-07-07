@@ -203,6 +203,7 @@ function Router({ path, toast }: { path: string; toast: (text: string, tone?: To
 function AgeGate() {
   const enter = () => {
     localStorage.setItem("loveqc_ageVerified", JSON.stringify({ value: true, at: Date.now(), days: getSettings().ageGateDays }));
+    window.dispatchEvent(new CustomEvent("loveqc-storage", { detail: { key: "ageVerified" } }));
     go("/");
   };
   return (
