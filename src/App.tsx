@@ -301,9 +301,10 @@ function ProductCard({ product, toast }: { product: Product; toast?: (text: stri
 }
 
 function ProductArt({ product, large = false }: { product: Product; large?: boolean }) {
+  const slug = getCategories().find((category) => category.id === product.categoryId)?.slug ?? "default";
   return (
-    <div className={large ? "detail-art" : "product-art"}>
-      <strong>{product.categoryName.slice(0, 1)}礼</strong>
+    <div className={`${large ? "detail-art" : "product-art"} art-${slug}`}>
+      <strong>{product.categoryName.slice(0, 1)}选</strong>
     </div>
   );
 }
