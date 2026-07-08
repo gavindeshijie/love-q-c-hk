@@ -287,7 +287,6 @@ const legacyProducts: Product[] = seeds.flatMap((seed) => {
     const price = seed.prices[index];
     const originalPrice = index % 3 === 0 ? Math.round(price * 1.22) : index % 4 === 0 ? Math.round(price * 1.15) : undefined;
     const id = `p_${seed.slug.replace(/-/g, "_")}_${String(index + 1).padStart(2, "0")}`;
-    const realMainImage = seed.slug === "scent" ? `/assets/ai-products/scent-featured-${String(index + 1).padStart(2, "0")}.jpg` : undefined;
     return {
       id,
       sku: `LQ-${seed.baseSku}-${String(index + 1).padStart(3, "0")}`,
@@ -306,7 +305,7 @@ const legacyProducts: Product[] = seeds.flatMap((seed) => {
       sales: 80 + ((index + 3) * (category.sort + 11) * 9) % 1280,
       rating: Number((4.5 + ((index + category.sort) % 5) * 0.1).toFixed(1)),
       reviewCount: 18 + ((index + 1) * category.sort * 3) % 260,
-      images: realProductImages(id) ?? productImages(id, realMainImage),
+      images: realProductImages(id) ?? catalogPhotoImages(id),
       variants: [
         { id: "standard", name: "标准款", priceDelta: 0, stock: 26 + index * 4 },
         { id: "gift", name: "礼盒升级", priceDelta: seed.slug.includes("gift") ? 68 : 38, stock: 12 + index * 2 },
@@ -371,13 +370,12 @@ function priceFor(categorySlug: string, index: number) {
   return min + step * ((index * 3) % 10);
 }
 
-function productImages(productId: string, realMainImage?: string) {
-  const generated = [
-    `/assets/generated-products/${productId}-main.svg`,
-    `/assets/generated-products/${productId}-detail.svg`,
-    `/assets/generated-products/${productId}-pack.svg`
+function catalogPhotoImages(productId: string) {
+  return [
+    `/assets/catalog-photos/${productId}-main.jpg`,
+    `/assets/catalog-photos/${productId}-detail.jpg`,
+    `/assets/catalog-photos/${productId}-pack.jpg`
   ];
-  return realMainImage ? [realMainImage, generated[1], generated[2]] : generated;
 }
 
 function realProductImages(productId: string) {
@@ -389,12 +387,6 @@ function realProductImages(productId: string) {
     ]
   };
   return overrides[productId];
-}
-
-function realImageFor(categorySlug: string, subSlug: string, index: number) {
-  const padded = String(index + 1).padStart(2, "0");
-  if (categorySlug === "apparel" && subSlug === "panties") return `/assets/ai-products/apparel-panties-${padded}.jpg`;
-  return undefined;
 }
 
 function productsForSubcategory(category: Category, subCategory: SubCategory): Product[] {
@@ -428,7 +420,7 @@ function productsForSubcategory(category: Category, subCategory: SubCategory): P
       sales: 60 + ((index + 4) * (category.sort + subCategory.sort + 7) * 8) % 1600,
       rating: Number((4.5 + ((index + subCategory.sort) % 5) * 0.1).toFixed(1)),
       reviewCount: 16 + ((index + 2) * (category.sort + subCategory.sort)) % 280,
-      images: productImages(id, realImageFor(category.slug, subCategory.slug, index)),
+      images: catalogPhotoImages(id),
       variants: [
         { id: "standard", name: "标准款", priceDelta: 0, stock: 18 + index * 3 },
         { id: "gift", name: "礼盒升级", priceDelta: category.slug.includes("gift") ? 88 : 38, stock: 10 + index * 2 },

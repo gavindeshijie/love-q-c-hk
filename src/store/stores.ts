@@ -5,9 +5,13 @@ import type { Address, Article, Banner, CartItem, Category, Coupon, Order, Order
 
 export function getProducts() {
   const products = storageGet<Product[]>("mockProducts", mockProducts);
-  const staleCatalog = products.some((product) => product.images.length < 3 || product.images.some((image) => image.startsWith("visual-")));
+  const staleCatalog = products.some((product) => product.images.length < 3 || product.images.some((image) => image.startsWith("visual-") || image.includes("/generated-products/") || image.endsWith(".svg")));
   const stalePhotoCatalog = products.find((product) => product.id === "p_scent_01")?.images[0] !== "/assets/ai-products/scent-gift-candle-01-main.png";
-  if (!products.length || !("subCategoryId" in products[0]) || staleCatalog || stalePhotoCatalog) {
+  const staleGeneratedCatalog = products.some((product) => {
+    if (product.id === "p_scent_01") return false;
+    return !product.images[0]?.startsWith("/assets/catalog-photos/");
+  });
+  if (!products.length || !("subCategoryId" in products[0]) || staleCatalog || stalePhotoCatalog || staleGeneratedCatalog) {
     storageSet("mockProducts", mockProducts);
     return mockProducts;
   }

@@ -50,6 +50,10 @@ for (const product of mockProducts) {
       continue;
     }
 
+    if (image.includes("/generated-products/") || image.endsWith(".svg")) {
+      problems.push({ type: "abstract_generated_asset", productId: product.id, image });
+    }
+
     if (localPaths.has(image)) {
       problems.push({ type: "duplicate_in_product", productId: product.id, image });
     }
@@ -76,9 +80,7 @@ for (const product of mockProducts) {
       if (image.endsWith(".svg")) {
         const svg = buffer.toString("utf8");
         const missingTerms = expectedTerms(product, index).filter((term) => !svg.includes(term));
-        if (missingTerms.length) {
-          problems.push({ type: "svg_metadata_mismatch", productId: product.id, image, missingTerms });
-        }
+        if (missingTerms.length) problems.push({ type: "svg_metadata_mismatch", productId: product.id, image, missingTerms });
       }
     } catch {
       problems.push({ type: "missing_file", productId: product.id, image });
