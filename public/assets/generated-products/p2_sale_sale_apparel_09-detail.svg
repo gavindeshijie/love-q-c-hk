@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1125" viewBox="0 0 900 1125" role="img" aria-label="低调服饰折扣组合款 细节材质">
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1125" viewBox="0 0 900 1125" role="img" aria-label="低调服饰折扣组合款 细节材质 服饰折扣">
+  <metadata>{&quot;productId&quot;:&quot;p2_sale_sale_apparel_09&quot;,&quot;sku&quot;:&quot;LQ-SALE-SALE-09&quot;,&quot;name&quot;:&quot;低调服饰折扣组合款&quot;,&quot;category&quot;:&quot;特价专区&quot;,&quot;subCategory&quot;:&quot;服饰折扣&quot;,&quot;mode&quot;:&quot;detail&quot;}</metadata>
   
   <defs>
     <radialGradient id="bg-p2-sale-sale-apparel-09-detail" cx="35%" cy="18%" r="82%">
@@ -41,6 +42,6 @@
   <path d="M190 518 L710 518" stroke="#d8b76f" stroke-opacity=".36" stroke-width="8"/>
   <path d="M270 350 C310 250 410 250 450 350 C490 250 590 250 630 350" fill="none" stroke="#ff6adf" stroke-width="10" opacity=".55"/>
   <rect x="92" y="900" width="716" height="110" rx="34" fill="#050008" opacity=".42" stroke="#fff" stroke-opacity=".08"/>
-  <text x="124" y="950" fill="#fff7ff" font-family="PingFang SC, Microsoft YaHei, Arial, sans-serif" font-size="32" font-weight="800">细节材质</text>
-  <text x="124" y="988" fill="#d8b76f" font-family="Inter, Arial, sans-serif" font-size="18" letter-spacing="4">PRIVATE SELECT · DISCREET PACKAGING</text>
+  <text x="124" y="948" fill="#fff7ff" font-family="PingFang SC, Microsoft YaHei, Arial, sans-serif" font-size="30" font-weight="800">服饰折扣细节</text>
+  <text x="124" y="988" fill="#d8b76f" font-family="PingFang SC, Microsoft YaHei, Arial, sans-serif" font-size="19">服饰折扣 · 特价专区 · 材质角度</text>
 </svg>

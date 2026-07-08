@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1125" viewBox="0 0 900 1125" role="img" aria-label="雾紫旅行入门热卖款 细节材质">
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1125" viewBox="0 0 900 1125" role="img" aria-label="雾紫旅行入门热卖款 细节材质 旅行入门">
+  <metadata>{&quot;productId&quot;:&quot;p2_starter_travel_starter_07&quot;,&quot;sku&quot;:&quot;LQ-STAR-TRAV-07&quot;,&quot;name&quot;:&quot;雾紫旅行入门热卖款&quot;,&quot;category&quot;:&quot;新手入门&quot;,&quot;subCategory&quot;:&quot;旅行入门&quot;,&quot;mode&quot;:&quot;detail&quot;}</metadata>
   
   <defs>
     <radialGradient id="bg-p2-starter-travel-starter-07-detail" cx="35%" cy="18%" r="82%">
@@ -36,6 +37,6 @@
   <rect x="74" y="76" width="752" height="958" rx="58" fill="#000" opacity=".18" stroke="#fff" stroke-opacity=".08"/>
   <rect x="180" y="320" width="540" height="380" rx="50" fill="#08020e" stroke="#8b5cff" stroke-opacity=".55" stroke-width="6"/><path d="M240 410 H660 M240 500 H660 M240 590 H540" stroke="#fff" stroke-opacity=".12" stroke-width="14"/>
   <rect x="92" y="900" width="716" height="110" rx="34" fill="#050008" opacity=".42" stroke="#fff" stroke-opacity=".08"/>
-  <text x="124" y="950" fill="#fff7ff" font-family="PingFang SC, Microsoft YaHei, Arial, sans-serif" font-size="32" font-weight="800">细节材质</text>
-  <text x="124" y="988" fill="#d8b76f" font-family="Inter, Arial, sans-serif" font-size="18" letter-spacing="4">PRIVATE SELECT · DISCREET PACKAGING</text>
+  <text x="124" y="948" fill="#fff7ff" font-family="PingFang SC, Microsoft YaHei, Arial, sans-serif" font-size="30" font-weight="800">旅行入门细节</text>
+  <text x="124" y="988" fill="#d8b76f" font-family="PingFang SC, Microsoft YaHei, Arial, sans-serif" font-size="19">旅行入门 · 新手入门 · 材质角度</text>
 </svg>

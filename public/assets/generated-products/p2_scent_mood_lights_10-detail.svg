@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1125" viewBox="0 0 900 1125" role="img" aria-label="礼盒装氛围灯限定款 细节材质">
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1125" viewBox="0 0 900 1125" role="img" aria-label="礼盒装氛围灯限定款 细节材质 氛围灯">
+  <metadata>{&quot;productId&quot;:&quot;p2_scent_mood_lights_10&quot;,&quot;sku&quot;:&quot;LQ-SCEN-MOOD-10&quot;,&quot;name&quot;:&quot;礼盒装氛围灯限定款&quot;,&quot;category&quot;:&quot;氛围香氛&quot;,&quot;subCategory&quot;:&quot;氛围灯&quot;,&quot;mode&quot;:&quot;detail&quot;}</metadata>
   
   <defs>
     <radialGradient id="bg-p2-scent-mood-lights-10-detail" cx="35%" cy="18%" r="82%">
@@ -40,6 +41,6 @@
     <path d="M530 720 L560 310 M574 720 L604 304 M618 720 L646 314" stroke="#d8b76f" stroke-width="9" stroke-linecap="round"/>
     <rect x="500" y="628" width="178" height="98" rx="24" fill="#08020e" stroke="#b66cff" stroke-opacity=".5" stroke-width="5"/>
   <rect x="92" y="900" width="716" height="110" rx="34" fill="#050008" opacity=".42" stroke="#fff" stroke-opacity=".08"/>
-  <text x="124" y="950" fill="#fff7ff" font-family="PingFang SC, Microsoft YaHei, Arial, sans-serif" font-size="32" font-weight="800">细节材质</text>
-  <text x="124" y="988" fill="#d8b76f" font-family="Inter, Arial, sans-serif" font-size="18" letter-spacing="4">PRIVATE SELECT · DISCREET PACKAGING</text>
+  <text x="124" y="948" fill="#fff7ff" font-family="PingFang SC, Microsoft YaHei, Arial, sans-serif" font-size="30" font-weight="800">氛围灯细节</text>
+  <text x="124" y="988" fill="#d8b76f" font-family="PingFang SC, Microsoft YaHei, Arial, sans-serif" font-size="19">氛围灯 · 氛围香氛 · 材质角度</text>
 </svg>

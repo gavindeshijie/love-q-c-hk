@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "vite --host 0.0.0.0",
     "build": "tsc -b && vite build",
+    "audit:images": "node scripts/audit-product-images.mjs",
+    "generate:images": "node scripts/generate-product-visual-assets.mjs",
     "preview": "vite preview --host 0.0.0.0"
   },
   "dependencies": {

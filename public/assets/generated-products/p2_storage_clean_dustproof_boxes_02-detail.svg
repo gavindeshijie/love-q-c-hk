@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1125" viewBox="0 0 900 1125" role="img" aria-label="丝绒防尘盒轻奢款 细节材质">
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1125" viewBox="0 0 900 1125" role="img" aria-label="丝绒防尘盒轻奢款 细节材质 防尘盒">
+  <metadata>{&quot;productId&quot;:&quot;p2_storage_clean_dustproof_boxes_02&quot;,&quot;sku&quot;:&quot;LQ-STOR-DUST-02&quot;,&quot;name&quot;:&quot;丝绒防尘盒轻奢款&quot;,&quot;category&quot;:&quot;收纳清洁&quot;,&quot;subCategory&quot;:&quot;防尘盒&quot;,&quot;mode&quot;:&quot;detail&quot;}</metadata>
   
   <defs>
     <radialGradient id="bg-p2-storage-clean-dustproof-boxes-02-detail" cx="35%" cy="18%" r="82%">
@@ -39,6 +40,6 @@
     <path d="M210 482 H396 M210 540 H396 M210 598 H356" stroke="#fff" stroke-opacity=".16" stroke-width="10"/>
     <rect x="502" y="262" width="160" height="520" rx="58" fill="url(#glass-p2-storage-clean-dustproof-boxes-02-detail)" stroke="url(#gold-p2-storage-clean-dustproof-boxes-02-detail)" stroke-width="5"/>
   <rect x="92" y="900" width="716" height="110" rx="34" fill="#050008" opacity=".42" stroke="#fff" stroke-opacity=".08"/>
-  <text x="124" y="950" fill="#fff7ff" font-family="PingFang SC, Microsoft YaHei, Arial, sans-serif" font-size="32" font-weight="800">细节材质</text>
-  <text x="124" y="988" fill="#d8b76f" font-family="Inter, Arial, sans-serif" font-size="18" letter-spacing="4">PRIVATE SELECT · DISCREET PACKAGING</text>
+  <text x="124" y="948" fill="#fff7ff" font-family="PingFang SC, Microsoft YaHei, Arial, sans-serif" font-size="30" font-weight="800">防尘盒细节</text>
+  <text x="124" y="988" fill="#d8b76f" font-family="PingFang SC, Microsoft YaHei, Arial, sans-serif" font-size="19">防尘盒 · 收纳清洁 · 材质角度</text>
 </svg>

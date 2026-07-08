@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1125" viewBox="0 0 900 1125" role="img" aria-label="礼盒装低敏入门限定款 细节材质">
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1125" viewBox="0 0 900 1125" role="img" aria-label="礼盒装低敏入门限定款 细节材质 低敏入门">
+  <metadata>{&quot;productId&quot;:&quot;p2_starter_sensitive_starter_10&quot;,&quot;sku&quot;:&quot;LQ-STAR-SENS-10&quot;,&quot;name&quot;:&quot;礼盒装低敏入门限定款&quot;,&quot;category&quot;:&quot;新手入门&quot;,&quot;subCategory&quot;:&quot;低敏入门&quot;,&quot;mode&quot;:&quot;detail&quot;}</metadata>
   
   <defs>
     <radialGradient id="bg-p2-starter-sensitive-starter-10-detail" cx="35%" cy="18%" r="82%">
@@ -37,6 +38,6 @@
   
     <rect x="180" y="282" width="230" height="210" rx="34" fill="url(#glass-p2-starter-sensitive-starter-10-detail)" stroke="#d6b56d" stroke-opacity=".62" stroke-width="5"/><rect x="470" y="282" width="230" height="210" rx="34" fill="url(#glass-p2-starter-sensitive-starter-10-detail)" stroke="#d8b76f" stroke-opacity=".62" stroke-width="5"/><rect x="180" y="552" width="230" height="210" rx="34" fill="url(#glass-p2-starter-sensitive-starter-10-detail)" stroke="#d6b56d" stroke-opacity=".62" stroke-width="5"/><rect x="470" y="552" width="230" height="210" rx="34" fill="url(#glass-p2-starter-sensitive-starter-10-detail)" stroke="#d8b76f" stroke-opacity=".62" stroke-width="5"/>
   <rect x="92" y="900" width="716" height="110" rx="34" fill="#050008" opacity=".42" stroke="#fff" stroke-opacity=".08"/>
-  <text x="124" y="950" fill="#fff7ff" font-family="PingFang SC, Microsoft YaHei, Arial, sans-serif" font-size="32" font-weight="800">细节材质</text>
-  <text x="124" y="988" fill="#d8b76f" font-family="Inter, Arial, sans-serif" font-size="18" letter-spacing="4">PRIVATE SELECT · DISCREET PACKAGING</text>
+  <text x="124" y="948" fill="#fff7ff" font-family="PingFang SC, Microsoft YaHei, Arial, sans-serif" font-size="30" font-weight="800">低敏入门细节</text>
+  <text x="124" y="988" fill="#d8b76f" font-family="PingFang SC, Microsoft YaHei, Arial, sans-serif" font-size="19">低敏入门 · 新手入门 · 材质角度</text>
 </svg>

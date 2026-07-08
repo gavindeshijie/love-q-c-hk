@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1125" viewBox="0 0 900 1125" role="img" aria-label="香槟肩颈按摩旅行款 细节材质">
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1125" viewBox="0 0 900 1125" role="img" aria-label="香槟肩颈按摩旅行款 细节材质 肩颈按摩">
+  <metadata>{&quot;productId&quot;:&quot;p2_wellness_neck_massage_06&quot;,&quot;sku&quot;:&quot;LQ-WELL-NECK-06&quot;,&quot;name&quot;:&quot;香槟肩颈按摩旅行款&quot;,&quot;category&quot;:&quot;放松按摩&quot;,&quot;subCategory&quot;:&quot;肩颈按摩&quot;,&quot;mode&quot;:&quot;detail&quot;}</metadata>
   
   <defs>
     <radialGradient id="bg-p2-wellness-neck-massage-06-detail" cx="35%" cy="18%" r="82%">
@@ -36,6 +37,6 @@
   <rect x="74" y="76" width="752" height="958" rx="58" fill="#000" opacity=".18" stroke="#fff" stroke-opacity=".08"/>
   <rect x="220" y="360" width="460" height="240" rx="120" fill="url(#glass-p2-wellness-neck-massage-06-detail)" stroke="url(#gold-p2-wellness-neck-massage-06-detail)" stroke-width="6"/><circle cx="320" cy="480" r="64" fill="#8b5cff" opacity=".22"/><circle cx="580" cy="480" r="64" fill="#ff4fd8" opacity=".2"/>
   <rect x="92" y="900" width="716" height="110" rx="34" fill="#050008" opacity=".42" stroke="#fff" stroke-opacity=".08"/>
-  <text x="124" y="950" fill="#fff7ff" font-family="PingFang SC, Microsoft YaHei, Arial, sans-serif" font-size="32" font-weight="800">细节材质</text>
-  <text x="124" y="988" fill="#d8b76f" font-family="Inter, Arial, sans-serif" font-size="18" letter-spacing="4">PRIVATE SELECT · DISCREET PACKAGING</text>
+  <text x="124" y="948" fill="#fff7ff" font-family="PingFang SC, Microsoft YaHei, Arial, sans-serif" font-size="30" font-weight="800">肩颈按摩细节</text>
+  <text x="124" y="988" fill="#d8b76f" font-family="PingFang SC, Microsoft YaHei, Arial, sans-serif" font-size="19">肩颈按摩 · 放松按摩 · 材质角度</text>
 </svg>

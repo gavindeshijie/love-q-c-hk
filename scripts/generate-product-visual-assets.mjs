@@ -102,6 +102,33 @@ function drawBox(id, x, y, w, h, colors, label = false) {
   ${label ? `<rect x="${x + w * .29}" y="${y + h * .42}" width="${w * .42}" height="${h * .16}" rx="12" fill="#12051f" stroke="${colors.gold}" stroke-opacity=".55"/>` : ""}`;
 }
 
+function shortLabel(value, max = 13) {
+  const text = String(value ?? "").trim();
+  return text.length > max ? `${text.slice(0, max - 1)}…` : text;
+}
+
+function imageMeta(product, mode) {
+  if (mode === "main") {
+    return {
+      label: shortLabel(product.name, 14),
+      subline: shortLabel(`${product.categoryName} · ${product.subCategoryName}`, 22),
+      audit: product.name
+    };
+  }
+  if (mode === "detail") {
+    return {
+      label: shortLabel(`${product.subCategoryName}细节`, 12),
+      subline: shortLabel(`${product.tags.slice(0, 2).join(" · ")} · 材质角度`, 22),
+      audit: `${product.name} 细节材质 ${product.subCategoryName}`
+    };
+  }
+  return {
+    label: shortLabel(`${product.discreetName}包装`, 12),
+    subline: shortLabel(`中性名称 · ${product.discreetName}`, 22),
+    audit: `${product.name} 隐私包装 ${product.discreetName}`
+  };
+}
+
 function drawApparel(mode, id, colors) {
   if (mode === "pack") return `${drawBox(id, 210, 270, 480, 520, colors, true)}${ribbon(id)}<path d="M280 265 C350 190 550 190 620 265" fill="none" stroke="${colors.neon}" stroke-opacity=".45" stroke-width="7"/>`;
   if (mode === "detail") return `
@@ -213,15 +240,23 @@ function productSvg(product, mode) {
   const seed = hash(`${product.id}-${mode}`);
   const colors = palette(seed);
   const id = `${product.id}-${mode}`.replaceAll("_", "-");
-  const label = mode === "main" ? product.subCategoryName : mode === "detail" ? "细节材质" : "隐私包装";
+  const meta = imageMeta(product, mode);
   return `<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1125" viewBox="0 0 900 1125" role="img" aria-label="${escapeXml(product.name)} ${escapeXml(label)}">
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1125" viewBox="0 0 900 1125" role="img" aria-label="${escapeXml(meta.audit)}">
+  <metadata>${escapeXml(JSON.stringify({
+    productId: product.id,
+    sku: product.sku,
+    name: product.name,
+    category: product.categoryName,
+    subCategory: product.subCategoryName,
+    mode
+  }))}</metadata>
   ${commonDefs(id, colors)}
   ${baseScene(id, colors)}
   ${shapeFor(product, mode, id, colors)}
   <rect x="92" y="900" width="716" height="110" rx="34" fill="#050008" opacity=".42" stroke="#fff" stroke-opacity=".08"/>
-  <text x="124" y="950" fill="#fff7ff" font-family="PingFang SC, Microsoft YaHei, Arial, sans-serif" font-size="32" font-weight="800">${escapeXml(label)}</text>
-  <text x="124" y="988" fill="#d8b76f" font-family="Inter, Arial, sans-serif" font-size="18" letter-spacing="4">PRIVATE SELECT · DISCREET PACKAGING</text>
+  <text x="124" y="948" fill="#fff7ff" font-family="PingFang SC, Microsoft YaHei, Arial, sans-serif" font-size="30" font-weight="800">${escapeXml(meta.label)}</text>
+  <text x="124" y="988" fill="#d8b76f" font-family="PingFang SC, Microsoft YaHei, Arial, sans-serif" font-size="19">${escapeXml(meta.subline)}</text>
 </svg>`;
 }
 

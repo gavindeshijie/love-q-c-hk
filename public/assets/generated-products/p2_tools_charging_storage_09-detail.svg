@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1125" viewBox="0 0 900 1125" role="img" aria-label="低调充电收纳组合款 细节材质">
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1125" viewBox="0 0 900 1125" role="img" aria-label="低调充电收纳组合款 细节材质 充电收纳">
+  <metadata>{&quot;productId&quot;:&quot;p2_tools_charging_storage_09&quot;,&quot;sku&quot;:&quot;LQ-TOOL-CHAR-09&quot;,&quot;name&quot;:&quot;低调充电收纳组合款&quot;,&quot;category&quot;:&quot;私密探索工具&quot;,&quot;subCategory&quot;:&quot;充电收纳&quot;,&quot;mode&quot;:&quot;detail&quot;}</metadata>
   
   <defs>
     <radialGradient id="bg-p2-tools-charging-storage-09-detail" cx="35%" cy="18%" r="82%">
@@ -41,6 +42,6 @@
   <path d="M190 518 L710 518" stroke="#d8b76f" stroke-opacity=".36" stroke-width="8"/>
   <path d="M270 350 C310 250 410 250 450 350 C490 250 590 250 630 350" fill="none" stroke="#ff4fd8" stroke-width="10" opacity=".55"/>
   <rect x="92" y="900" width="716" height="110" rx="34" fill="#050008" opacity=".42" stroke="#fff" stroke-opacity=".08"/>
-  <text x="124" y="950" fill="#fff7ff" font-family="PingFang SC, Microsoft YaHei, Arial, sans-serif" font-size="32" font-weight="800">细节材质</text>
-  <text x="124" y="988" fill="#d8b76f" font-family="Inter, Arial, sans-serif" font-size="18" letter-spacing="4">PRIVATE SELECT · DISCREET PACKAGING</text>
+  <text x="124" y="948" fill="#fff7ff" font-family="PingFang SC, Microsoft YaHei, Arial, sans-serif" font-size="30" font-weight="800">充电收纳细节</text>
+  <text x="124" y="988" fill="#d8b76f" font-family="PingFang SC, Microsoft YaHei, Arial, sans-serif" font-size="19">充电收纳 · 私密探索工具 · 材质角度</text>
 </svg>

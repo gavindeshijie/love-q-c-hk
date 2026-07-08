@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1125" viewBox="0 0 900 1125" role="img" aria-label="雾紫护理油热卖款 隐私包装">
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1125" viewBox="0 0 900 1125" role="img" aria-label="雾紫护理油热卖款 隐私包装 生活用品">
+  <metadata>{&quot;productId&quot;:&quot;p2_care_care_oil_07&quot;,&quot;sku&quot;:&quot;LQ-CARE-CARE-07&quot;,&quot;name&quot;:&quot;雾紫护理油热卖款&quot;,&quot;category&quot;:&quot;个人护理&quot;,&quot;subCategory&quot;:&quot;护理油&quot;,&quot;mode&quot;:&quot;pack&quot;}</metadata>
   
   <defs>
     <radialGradient id="bg-p2-care-care-oil-07-pack" cx="35%" cy="18%" r="82%">
@@ -43,6 +44,6 @@
   <path d="M174 832 C300 760 498 780 730 710" fill="none" stroke="url(#gold-p2-care-care-oil-07-pack)" stroke-width="22" opacity=".55"/>
   <path d="M145 858 C316 786 510 810 755 738" fill="none" stroke="#fff" stroke-opacity=".12" stroke-width="3"/><rect x="318" y="370" width="264" height="270" rx="34" fill="url(#glass-p2-care-care-oil-07-pack)" opacity=".36"/>
   <rect x="92" y="900" width="716" height="110" rx="34" fill="#050008" opacity=".42" stroke="#fff" stroke-opacity=".08"/>
-  <text x="124" y="950" fill="#fff7ff" font-family="PingFang SC, Microsoft YaHei, Arial, sans-serif" font-size="32" font-weight="800">隐私包装</text>
-  <text x="124" y="988" fill="#d8b76f" font-family="Inter, Arial, sans-serif" font-size="18" letter-spacing="4">PRIVATE SELECT · DISCREET PACKAGING</text>
+  <text x="124" y="948" fill="#fff7ff" font-family="PingFang SC, Microsoft YaHei, Arial, sans-serif" font-size="30" font-weight="800">生活用品包装</text>
+  <text x="124" y="988" fill="#d8b76f" font-family="PingFang SC, Microsoft YaHei, Arial, sans-serif" font-size="19">中性名称 · 生活用品</text>
 </svg>

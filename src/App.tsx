@@ -677,7 +677,7 @@ function TaobaoDetail({ product }: { product: Product }) {
           {product.images.map((image, index) => (
             <figure key={image}>
               <img src={image} alt={`${product.name} ${index + 1}`} loading="lazy" />
-              <figcaption>{["商品主图", "细节材质", "隐私包装"][index] ?? `角度 ${index + 1}`}</figcaption>
+              <figcaption>{productImageCaption(product, index)}</figcaption>
             </figure>
           ))}
         </div>
@@ -703,6 +703,13 @@ function TaobaoDetail({ product }: { product: Product }) {
       </section>
     </div>
   );
+}
+
+function productImageCaption(product: Product, index: number) {
+  if (index === 0) return `${product.name} · 商品主图`;
+  if (index === 1) return `${product.subCategoryName} · 细节材质`;
+  if (index === 2) return `${product.discreetName} · 隐私包装`;
+  return `${product.name} · 角度 ${index + 1}`;
 }
 
 function VariantSelector({ product, value, onChange, onClose }: { product: Product; value: string; onChange: (v: string) => void; onClose: () => void }) {
