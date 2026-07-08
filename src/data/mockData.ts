@@ -305,7 +305,7 @@ const legacyProducts: Product[] = seeds.flatMap((seed) => {
       sales: 80 + ((index + 3) * (category.sort + 11) * 9) % 1280,
       rating: Number((4.5 + ((index + category.sort) % 5) * 0.1).toFixed(1)),
       reviewCount: 18 + ((index + 1) * category.sort * 3) % 260,
-      images: [`visual-${seed.slug}-${String(index + 1).padStart(2, "0")}`],
+      images: [seed.slug === "scent" ? `/assets/ai-products/scent-featured-${String(index + 1).padStart(2, "0")}.jpg` : `visual-${seed.slug}-${String(index + 1).padStart(2, "0")}`],
       variants: [
         { id: "standard", name: "标准款", priceDelta: 0, stock: 26 + index * 4 },
         { id: "gift", name: "礼盒升级", priceDelta: seed.slug.includes("gift") ? 68 : 38, stock: 12 + index * 2 },

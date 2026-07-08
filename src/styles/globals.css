@@ -1014,6 +1014,115 @@ a {
   color: var(--text);
 }
 
+.taobao-detail {
+  display: grid;
+  gap: 14px;
+}
+
+.detail-poster {
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 18% 0%, rgba(255, 79, 216, 0.16), transparent 42%),
+    rgba(255, 255, 255, 0.035);
+}
+
+.detail-poster img,
+.detail-poster .product-art {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border-radius: 0;
+}
+
+.detail-poster img {
+  display: block;
+  object-fit: cover;
+}
+
+.detail-poster > div {
+  padding: 16px;
+}
+
+.detail-poster h2,
+.detail-board h3 {
+  margin: 10px 0 8px;
+}
+
+.detail-poster p,
+.detail-board p {
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.detail-board {
+  padding: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.025)),
+    radial-gradient(circle at 90% 10%, rgba(155, 77, 255, 0.16), transparent 36%);
+}
+
+.detail-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.detail-feature-grid div {
+  min-height: 94px;
+  padding: 12px;
+  border: 1px solid rgba(255, 79, 216, 0.16);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.detail-feature-grid b,
+.detail-feature-grid span {
+  display: block;
+}
+
+.detail-feature-grid span {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.spec-table {
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 18px;
+}
+
+.spec-table p {
+  margin: 0;
+  min-height: 46px;
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.spec-table p:last-child {
+  border-bottom: 0;
+}
+
+.spec-table b {
+  height: 100%;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.spec-table span {
+  padding: 12px;
+  color: var(--muted);
+}
+
 @media (max-width: 360px) {
   .main-content {
     padding-left: 12px;

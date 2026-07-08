@@ -647,10 +647,52 @@ function ProductDetailPage({ id, toast }: { id: string; toast: (text: string) =>
 }
 
 function detailTab(product: Product, tab: string) {
-  if (tab === "商品介绍") return <p className="policy">{product.description}</p>;
+  if (tab === "商品介绍") return <TaobaoDetail product={product} />;
   if (tab === "使用与护理") return <p className="policy">{product.careGuide}<br />内容仅供一般信息参考，不替代专业医疗建议。如有身体不适，请咨询专业人士。</p>;
   if (tab === "配送与售后") return <p className="policy">{product.shippingNote}<br />{product.returnPolicyNote}</p>;
   return <div>{getReviews().filter((r: Review) => r.productId === product.id).map((r: Review) => <GlassCard key={r.id} className="section"><RatingStars value={r.rating} /><b>{r.userName}</b><p>{r.content}</p></GlassCard>)}</div>;
+}
+
+function TaobaoDetail({ product }: { product: Product }) {
+  const isPhoto = product.images[0]?.startsWith("/assets/");
+  const rows = [
+    ["商品类别", `${product.categoryName} / ${product.subCategoryName}`],
+    ["隐私名称", product.discreetName],
+    ["包装方式", "中性外箱 + 不显示敏感商品名"],
+    ["适合场景", product.tags.includes("礼盒") ? "送礼、居家氛围、私密收纳" : "日常补充、居家使用、隐私配送"],
+    ["售后说明", "未拆封按政策处理，质量问题联系客服"]
+  ];
+  return (
+    <div className="taobao-detail">
+      <section className="detail-poster">
+        {isPhoto ? <img src={product.images[0]} alt={product.name} loading="lazy" /> : <ProductArt product={product} />}
+        <div>
+          <span className="tag">真实感商品图</span>
+          <h2>{product.name}</h2>
+          <p>{product.description}</p>
+        </div>
+      </section>
+      <section className="detail-board">
+        <h3>商品亮点</h3>
+        <div className="detail-feature-grid">
+          {[
+            ["私密包装", "外箱、面单和账单使用中性表达。"],
+            ["高级质感", "深紫黑金视觉，适合礼盒展示。"],
+            ["清楚说明", "详情页展示分类、规格与护理建议。"],
+            ["安心收货", "商品信息仅用于订单履约。"]
+          ].map(([title, text]) => <div key={title}><b>{title}</b><span>{text}</span></div>)}
+        </div>
+      </section>
+      <section className="detail-board">
+        <h3>规格参数</h3>
+        <div className="spec-table">{rows.map(([key, value]) => <p key={key}><b>{key}</b><span>{value}</span></p>)}</div>
+      </section>
+      <section className="detail-board">
+        <h3>下单与收货</h3>
+        <p>下单后会按当前选择的配送方式处理。包裹默认使用隐私包装，外部不会显示具体商品内容；如需指定配送时间，可在结算页备注。</p>
+      </section>
+    </div>
+  );
 }
 
 function VariantSelector({ product, value, onChange, onClose }: { product: Product; value: string; onChange: (v: string) => void; onClose: () => void }) {
