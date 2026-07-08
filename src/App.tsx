@@ -313,8 +313,8 @@ function ProductArt({ product, large = false }: { product: Product; large?: bool
   const hash = [...product.id].reduce((sum, char) => sum + char.charCodeAt(0), 0);
   return (
     <div
-      className={`${large ? "detail-art" : "product-art"} art-${slug} ${hasPhoto ? "has-photo" : "generated-visual"}`}
-      style={!hasPhoto ? { "--visual-shift": `${hash % 360}deg` } as CSSProperties : undefined}
+      className={`${large ? "detail-art" : "product-art"} art-${slug} ${hasPhoto ? "has-photo" : "product-fallback-art"}`}
+      style={!hasPhoto ? { "--art-shift": `${hash % 360}deg` } as CSSProperties : undefined}
     >
       {hasPhoto ? (
         <img className="product-photo" src={image} alt={product.name} loading={large ? "eager" : "lazy"} />

@@ -630,11 +630,11 @@ a {
   object-fit: cover;
 }
 
-.generated-visual {
-  filter: hue-rotate(var(--visual-shift, 0deg));
+.product-fallback-art {
+  filter: hue-rotate(var(--art-shift, 0deg));
 }
 
-.generated-visual i {
+.product-fallback-art i {
   position: absolute;
   z-index: 3;
   width: 48%;
@@ -648,7 +648,7 @@ a {
   box-shadow: 0 20px 44px rgba(0, 0, 0, 0.34), 0 0 24px rgba(255, 79, 216, 0.18);
 }
 
-.generated-visual em {
+.product-fallback-art em {
   position: absolute;
   z-index: 4;
   width: 64%;
