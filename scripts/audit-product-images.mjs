@@ -32,6 +32,13 @@ function expectedTerms(product, index) {
 }
 
 const { mockCategories, mockSubCategories, mockProducts } = await loadData();
+let catalogManifest = [];
+try {
+  catalogManifest = JSON.parse(await fs.readFile(path.join(root, "scripts/catalog-photo-manifest.json"), "utf8"));
+} catch {
+  catalogManifest = [];
+}
+const manifestByProduct = new Map(catalogManifest.map((entry) => [entry.productId, entry]));
 
 const problems = [];
 const imageUse = new Map();
@@ -39,6 +46,20 @@ const hashUse = new Map();
 let checkedImages = 0;
 
 for (const product of mockProducts) {
+  if (product.id !== "p_scent_01" && product.images?.some((image) => image.includes("/assets/catalog-photos/"))) {
+    const entry = manifestByProduct.get(product.id);
+    if (!entry) {
+      problems.push({ type: "missing_catalog_manifest", productId: product.id });
+    } else {
+      const cells = [entry.cells?.main, entry.cells?.detail, entry.cells?.pack];
+      if (cells.some((cell) => typeof cell !== "number")) {
+        problems.push({ type: "invalid_catalog_manifest_cells", productId: product.id, cells });
+      } else if (new Set(cells).size < 3) {
+        problems.push({ type: "same_source_cell_in_product_gallery", productId: product.id, cells });
+      }
+    }
+  }
+
   if (!Array.isArray(product.images) || product.images.length < 3) {
     problems.push({ type: "short_images", productId: product.id, count: product.images?.length ?? 0 });
   }

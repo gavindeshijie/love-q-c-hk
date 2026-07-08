@@ -99,6 +99,35 @@ const categoryById = new Map(mockCategories.map((category) => [category.id, cate
 const subById = new Map(mockSubCategories.map((subCategory) => [subCategory.id, subCategory]));
 const positionByGroup = new Map();
 const jobs = [];
+const manifest = [];
+
+function distinctCells(pool, start, productSalt) {
+  const source = pool.length >= 3 ? pool : allCells;
+  const step = Math.max(1, Math.floor(source.length / 3));
+  const candidates = [
+    start,
+    start + step + (productSalt % 2),
+    start + step * 2 + (productSalt % 3)
+  ];
+  const chosen = [];
+
+  for (const candidate of candidates) {
+    const cell = source[((candidate % source.length) + source.length) % source.length];
+    if (!chosen.includes(cell)) chosen.push(cell);
+  }
+
+  for (let index = 0; chosen.length < 3 && index < source.length; index += 1) {
+    const cell = source[((start + index) % source.length + source.length) % source.length];
+    if (!chosen.includes(cell)) chosen.push(cell);
+  }
+
+  for (const cell of allCells) {
+    if (chosen.length >= 3) break;
+    if (!chosen.includes(cell)) chosen.push(cell);
+  }
+
+  return chosen.slice(0, 3);
+}
 
 for (const product of mockProducts) {
   if (product.id === "p_scent_01") continue;
@@ -114,7 +143,9 @@ for (const product of mockProducts) {
   const pool = pools[category.slug]?.[subCategory?.slug] ?? allCells;
   const productSalt = stableHash(product.id);
   const groupSalt = stableHash(groupKey);
-  const cellIndex = pool[(productOffset + groupSalt) % pool.length];
+  const start = productOffset + groupSalt;
+  const [mainCell, detailCell, packCell] = distinctCells(pool, start, productSalt);
+  const cellByKind = { main: mainCell, detail: detailCell, pack: packCell };
   const input = path.join(generatedRoot, sheets[category.slug]);
   if (!sheets[category.slug]) throw new Error(`Missing sheet for ${category.slug}`);
 
@@ -122,11 +153,25 @@ for (const product of mockProducts) {
     jobs.push({
       input,
       output: outputPath(product.id, kind),
-      ...cellRect(cellIndex, productSalt, kind)
+      ...cellRect(cellByKind[kind], productSalt, kind)
     });
   }
+
+  manifest.push({
+    productId: product.id,
+    categorySlug: category.slug,
+    subCategorySlug: subCategory?.slug ?? "featured",
+    sourceSheet: sheets[category.slug],
+    cells: {
+      main: mainCell,
+      detail: detailCell,
+      pack: packCell
+    }
+  });
 }
 
 const destination = process.argv[2] ?? "/tmp/loveqc-crop-jobs.json";
 await fs.writeFile(destination, JSON.stringify(jobs, null, 2));
+await fs.writeFile(path.join(root, "scripts/catalog-photo-manifest.json"), `${JSON.stringify(manifest, null, 2)}\n`);
 console.log(`Wrote ${jobs.length} jobs to ${destination}`);
+console.log(`Wrote ${manifest.length} manifest entries to scripts/catalog-photo-manifest.json`);
