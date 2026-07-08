@@ -1,4 +1,4 @@
-import type { Article, Banner, Category, Coupon, Product, Review, StoreSettings } from "../types";
+import type { Article, Banner, Category, Coupon, Product, Review, StoreSettings, SubCategory } from "../types";
 
 const now = new Date().toISOString();
 
@@ -18,6 +18,123 @@ export const mockCategories: Category[] = [
   { id: "cat_games", name: "互动小物", slug: "games", icon: "牌", description: "轻松沟通与氛围互动", sort: 13, featured: true },
   { id: "cat_sale", name: "特价专区", slug: "sale", icon: "惠", description: "限时优惠与组合价", sort: 14, featured: true }
 ];
+
+const subCategoryGroups: Record<string, Omit<SubCategory, "id" | "categoryId" | "sort">[]> = {
+  starter: [
+    { name: "新手套装", slug: "starter-kits", icon: "初", description: "第一次购买更容易选择", featured: true },
+    { name: "低敏入门", slug: "sensitive-starter", icon: "柔", description: "温和材质与清楚说明", featured: true },
+    { name: "旅行入门", slug: "travel-starter", icon: "旅", description: "便携、隐私、易收纳", featured: true },
+    { name: "护理入门", slug: "care-starter", icon: "护", description: "清洁护理基础组合", featured: false },
+    { name: "礼盒入门", slug: "gift-starter", icon: "礼", description: "克制送礼与仪式感", featured: false }
+  ],
+  couple: [
+    { name: "双人礼盒", slug: "couple-boxes", icon: "双", description: "两个人的高级仪式感", featured: true },
+    { name: "沟通卡牌", slug: "conversation-cards", icon: "聊", description: "轻松表达边界与偏好", featured: true },
+    { name: "氛围任务", slug: "mood-games", icon: "夜", description: "约会夜晚的互动小物", featured: true },
+    { name: "远程互动", slug: "remote-couple", icon: "控", description: "适合异地的互动配置", featured: false },
+    { name: "纪念日套装", slug: "anniversary-sets", icon: "纪", description: "更完整的礼盒搭配", featured: false }
+  ],
+  care: [
+    { name: "清洁喷雾", slug: "cleansing-spray", icon: "喷", description: "日常温和清洁", featured: true },
+    { name: "护理凝露", slug: "care-gel", icon: "凝", description: "柔感护理与舒适体验", featured: true },
+    { name: "护理湿巾", slug: "care-wipes", icon: "巾", description: "便携清洁补充", featured: true },
+    { name: "护理油", slug: "care-oil", icon: "油", description: "香氛与轻柔护理", featured: false },
+    { name: "清洁器具", slug: "cleaning-tools", icon: "洁", description: "搭配用品的维护工具", featured: false },
+    { name: "敏感护理", slug: "sensitive-care", icon: "敏", description: "低刺激、清楚说明", featured: false }
+  ],
+  protection: [
+    { name: "安全防护组合", slug: "protection-sets", icon: "盾", description: "安心选择的基础组合", featured: true },
+    { name: "便携防护", slug: "travel-protection", icon: "携", description: "出行与随身收纳", featured: true },
+    { name: "低敏系列", slug: "sensitive-protection", icon: "敏", description: "重视舒适与低敏选择", featured: true },
+    { name: "日常补充", slug: "daily-protection", icon: "日", description: "家庭常备补充装", featured: false },
+    { name: "旅行防护", slug: "trip-protection", icon: "程", description: "短途旅行组合", featured: false }
+  ],
+  scent: [
+    { name: "氛围蜡烛", slug: "candles", icon: "烛", description: "柔光与香气", featured: true },
+    { name: "扩香", slug: "diffusers", icon: "香", description: "卧室与浴室香氛", featured: true },
+    { name: "氛围灯", slug: "mood-lights", icon: "灯", description: "低亮度柔光装置", featured: true },
+    { name: "房间喷雾", slug: "room-mists", icon: "雾", description: "快速建立空间情绪", featured: false },
+    { name: "浴室香氛", slug: "bath-scent", icon: "浴", description: "洗护后的放松氛围", featured: false }
+  ],
+  "gift-box": [
+    { name: "新手礼盒", slug: "starter-gifts", icon: "初", description: "克制不尴尬的第一份礼", featured: true },
+    { name: "黑金礼盒", slug: "noir-gifts", icon: "黑", description: "黑紫金属感包装", featured: true },
+    { name: "情侣礼盒", slug: "couple-gifts", icon: "双", description: "双人场景搭配", featured: true },
+    { name: "周末礼盒", slug: "weekend-gifts", icon: "末", description: "适合短途与度假", featured: false },
+    { name: "高端定制", slug: "premium-gifts", icon: "钻", description: "更完整的高价套装", featured: false }
+  ],
+  "storage-clean": [
+    { name: "旅行收纳", slug: "travel-storage", icon: "旅", description: "短途携带更低调", featured: true },
+    { name: "防尘盒", slug: "dustproof-boxes", icon: "盒", description: "独立防尘存放", featured: true },
+    { name: "隐私锁盒", slug: "lock-boxes", icon: "锁", description: "中性外观与锁扣", featured: true },
+    { name: "清洁收纳套", slug: "cleaning-storage", icon: "洁", description: "清洁工具组合收纳", featured: false },
+    { name: "抽屉收纳", slug: "drawer-storage", icon: "屉", description: "家庭抽屉分区整理", featured: false }
+  ],
+  apparel: [
+    { name: "内裤", slug: "panties", icon: "内", description: "蕾丝、丝缎、棉感与无痕", featured: true },
+    { name: "胸罩内搭", slug: "bras", icon: "胸", description: "内搭、吊带与轻支撑", featured: true },
+    { name: "睡衣睡裙", slug: "sleep-dresses", icon: "裙", description: "丝缎睡裙和家居感", featured: true },
+    { name: "连体衣", slug: "bodysuits", icon: "体", description: "克制轮廓与高级面料", featured: true },
+    { name: "丝袜袜类", slug: "stockings", icon: "袜", description: "长袜、短袜与搭配袜", featured: false },
+    { name: "短裙短裤", slug: "skirts-shorts", icon: "短", description: "短裙、短裤和层次搭配", featured: false },
+    { name: "角色氛围服", slug: "apparel-roleplay", icon: "角", description: "主题造型但不露骨", featured: false },
+    { name: "配饰腰封", slug: "accessories-belts", icon: "饰", description: "腰封、绑带与搭配件", featured: false }
+  ],
+  sleepwear: [
+    { name: "丝缎睡裙", slug: "satin-nightdress", icon: "缎", description: "柔光丝缎和裙装线条", featured: true },
+    { name: "睡袍", slug: "robes", icon: "袍", description: "披肩、长袍与浴袍", featured: true },
+    { name: "居家短套", slug: "home-sets", icon: "居", description: "短上衣与短裤组合", featured: true },
+    { name: "长袍套装", slug: "long-robe-sets", icon: "长", description: "更完整的居家礼盒", featured: false },
+    { name: "睡眠礼盒", slug: "sleep-gifts", icon: "眠", description: "香氛和睡衣搭配", featured: false }
+  ],
+  roleplay: [
+    { name: "学院风", slug: "academy-style", icon: "院", description: "领结、短裙与学院元素", featured: true },
+    { name: "护士风", slug: "nurse-style", icon: "护", description: "主题造型保持克制", featured: true },
+    { name: "和风", slug: "kimono-style", icon: "和", description: "浴衣感与腰带搭配", featured: true },
+    { name: "旗袍风", slug: "qipao-style", icon: "旗", description: "东方轮廓和丝缎材质", featured: false },
+    { name: "舞台风", slug: "stage-style", icon: "舞", description: "亮面材质和舞台氛围", featured: false },
+    { name: "礼宾主题", slug: "host-style", icon: "宾", description: "领结、手套与礼宾感", featured: false }
+  ],
+  tools: [
+    { name: "静音便携", slug: "quiet-portable", icon: "静", description: "低噪、轻量、易收纳", featured: true },
+    { name: "情侣遥控", slug: "couple-remote", icon: "遥", description: "远程和双人互动配置", featured: true },
+    { name: "温感放松", slug: "warming-tools", icon: "温", description: "温热舒缓体验", featured: true },
+    { name: "新手工具", slug: "starter-tools", icon: "初", description: "尺寸友好、说明清楚", featured: true },
+    { name: "高阶工具", slug: "premium-tools", icon: "阶", description: "多档、质感与收纳", featured: false },
+    { name: "清洁配件", slug: "tool-accessories", icon: "洁", description: "替换、清洁和维护配件", featured: false },
+    { name: "充电收纳", slug: "charging-storage", icon: "电", description: "充电盒与磁吸收纳", featured: false }
+  ],
+  wellness: [
+    { name: "肩颈按摩", slug: "neck-massage", icon: "颈", description: "肩颈放松和日常舒缓", featured: true },
+    { name: "手持放松", slug: "handheld-wellness", icon: "手", description: "手持舒压工具", featured: true },
+    { name: "温热舒缓", slug: "warming-wellness", icon: "热", description: "温热护理和休息", featured: true },
+    { name: "香氛按摩", slug: "massage-oils", icon: "油", description: "按摩油与香氛护理", featured: false },
+    { name: "睡前舒缓", slug: "sleep-relax", icon: "眠", description: "睡前放松组合", featured: false }
+  ],
+  games: [
+    { name: "沟通卡牌", slug: "talk-cards", icon: "牌", description: "边界、偏好与轻松沟通", featured: true },
+    { name: "约会任务", slug: "date-missions", icon: "约", description: "低压力互动任务", featured: true },
+    { name: "互动骰子", slug: "soft-dice", icon: "骰", description: "轻松破冰的桌面小物", featured: true },
+    { name: "默契挑战", slug: "chemistry-games", icon: "默", description: "适合情侣的问答挑战", featured: false },
+    { name: "氛围盲盒", slug: "mood-blind-boxes", icon: "盒", description: "主题夜晚随机组合", featured: false }
+  ],
+  sale: [
+    { name: "限时护理", slug: "sale-care", icon: "护", description: "护理类限时优惠", featured: true },
+    { name: "优惠礼盒", slug: "sale-gifts", icon: "礼", description: "礼盒折扣与组合价", featured: true },
+    { name: "热卖组合", slug: "sale-sets", icon: "热", description: "高销量组合优惠", featured: true },
+    { name: "服饰折扣", slug: "sale-apparel", icon: "衣", description: "衣橱类特惠", featured: false },
+    { name: "清洁补充", slug: "sale-refill", icon: "补", description: "清洁收纳补充装", featured: false }
+  ]
+};
+
+export const mockSubCategories: SubCategory[] = mockCategories.flatMap((category) =>
+  (subCategoryGroups[category.slug] ?? []).map((item, index) => ({
+    id: `sub_${category.slug.replace(/-/g, "_")}_${item.slug.replace(/-/g, "_")}`,
+    categoryId: category.id,
+    sort: index + 1,
+    ...item
+  }))
+);
 
 type Seed = {
   slug: string;
@@ -164,7 +281,7 @@ function categoryBySlug(slug: string) {
   return category;
 }
 
-export const mockProducts: Product[] = seeds.flatMap((seed) => {
+const legacyProducts: Product[] = seeds.flatMap((seed) => {
   const category = categoryBySlug(seed.slug);
   return seed.names.map((name, index) => {
     const price = seed.prices[index];
@@ -177,6 +294,8 @@ export const mockProducts: Product[] = seeds.flatMap((seed) => {
       discreetName: seed.discreetName,
       categoryId: category.id,
       categoryName: category.name,
+      subCategoryId: `legacy_${category.slug.replace(/-/g, "_")}_featured`,
+      subCategoryName: "精选推荐",
       tags: [...seed.tags, index % 2 === 0 ? "隐私配送" : "新款"].slice(0, 4),
       shortDescription: index % 2 === 0 ? "高级克制包装，适合安心下单与隐私收货。" : "清楚说明、便于收纳，适合成年人按需选择。",
       description: seed.description,
@@ -204,6 +323,114 @@ export const mockProducts: Product[] = seeds.flatMap((seed) => {
     };
   });
 });
+
+const priceBands: Record<string, [number, number]> = {
+  starter: [128, 438],
+  couple: [168, 799],
+  care: [68, 218],
+  protection: [58, 258],
+  scent: [98, 568],
+  "gift-box": [328, 1280],
+  "storage-clean": [78, 268],
+  apparel: [78, 568],
+  sleepwear: [138, 628],
+  roleplay: [168, 668],
+  tools: [128, 899],
+  wellness: [118, 688],
+  games: [68, 398],
+  sale: [58, 468]
+};
+
+const styleWords = ["午夜", "丝绒", "黑金", "月光", "玫瑰", "香槟", "雾紫", "星夜", "低调", "礼盒装"];
+const formatWords = ["基础款", "轻奢款", "便携款", "亲肤款", "低敏款", "旅行款", "热卖款", "升级款", "组合款", "限定款"];
+const subcategoryNotes = [
+  "强调隐私包装、清楚说明和成年人自愿选择。",
+  "适合重视质感、收纳和低调配送的用户。",
+  "采用中性包裹名称，降低收货时的尴尬感。",
+  "商品说明保持克制，重点呈现材质、场景与护理。",
+  "适合礼盒搭配或日常补充，页面不会使用露骨视觉。"
+];
+
+const pantyProducts = [
+  { name: "紫夜蕾丝高腰内裤", price: 88, desc: "高腰剪裁搭配紫色蕾丝边，适合礼盒搭配与私密衣橱补充。" },
+  { name: "香槟丝缎低腰内裤", price: 98, desc: "香槟色丝缎和细腻蕾丝拼接，质感柔和，适合日常收纳。" },
+  { name: "酒红无痕中腰内裤", price: 78, desc: "中腰无痕轮廓，颜色成熟克制，适合轻薄衣物下搭配。" },
+  { name: "黑纱平角安全内裤", price: 108, desc: "平角版型更稳妥，黑纱质感低调，适合偏好包覆感的用户。" },
+  { name: "薰衣草棉感内裤", price: 68, desc: "棉感亲肤材质与柔紫色调，适合新手和日常舒适穿着。" },
+  { name: "午夜蓝蕾丝半包内裤", price: 118, desc: "深蓝蕾丝与柔和光泽结合，适合想要更精致衣橱感的用户。" },
+  { name: "象牙白无缝亲肤内裤", price: 82, desc: "无缝边缘和浅色调，重视舒适与简洁穿搭。" },
+  { name: "深梅色丝缎细边内裤", price: 128, desc: "深梅色丝缎带来礼盒感，适合搭配睡衣或轻奢套装。" },
+  { name: "炭灰微纤比基尼内裤", price: 86, desc: "微纤面料触感轻柔，炭灰色更低调，适合日常补充。" },
+  { name: "玫瑰粉蕾丝低腰内裤", price: 96, desc: "玫瑰粉蕾丝和低腰线条，保持甜美但不过度夸张。" }
+];
+
+function priceFor(categorySlug: string, index: number) {
+  const [min, max] = priceBands[categorySlug] ?? [88, 388];
+  const step = Math.max(10, Math.round((max - min) / 11 / 10) * 10);
+  return min + step * ((index * 3) % 10);
+}
+
+function imageFor(categorySlug: string, subSlug: string, index: number) {
+  const padded = String(index + 1).padStart(2, "0");
+  if (categorySlug === "apparel" && subSlug === "panties") return `/assets/ai-products/apparel-panties-${padded}.jpg`;
+  return `visual-${categorySlug}-${subSlug}-${padded}`;
+}
+
+function productsForSubcategory(category: Category, subCategory: SubCategory): Product[] {
+  const isPanties = category.slug === "apparel" && subCategory.slug === "panties";
+  return Array.from({ length: 10 }).map((_, index) => {
+    const padded = String(index + 1).padStart(2, "0");
+    const base = isPanties ? pantyProducts[index] : undefined;
+    const price = base?.price ?? priceFor(category.slug, index);
+    const name = base?.name ?? `${styleWords[index]}${subCategory.name}${formatWords[index]}`;
+    const tags = [subCategory.name, category.name, index % 2 === 0 ? "隐私包装" : "新款", index % 3 === 0 ? "热卖" : "精选"];
+    const skuCategory = category.slug.replace(/-/g, "").slice(0, 4).toUpperCase();
+    const skuSub = subCategory.slug.replace(/-/g, "").slice(0, 4).toUpperCase();
+    return {
+      id: `p2_${category.slug.replace(/-/g, "_")}_${subCategory.slug.replace(/-/g, "_")}_${padded}`,
+      sku: `LQ-${skuCategory}-${skuSub}-${padded}`,
+      name,
+      discreetName: category.slug === "apparel" || category.slug === "sleepwear" || category.slug === "roleplay" ? "服饰用品" : category.slug === "tools" ? "生活工具" : "生活用品",
+      categoryId: category.id,
+      categoryName: category.name,
+      subCategoryId: subCategory.id,
+      subCategoryName: subCategory.name,
+      tags,
+      shortDescription: base?.desc ?? `${subCategory.description}，适合成年人按需选择，默认隐私包装。`,
+      description: base?.desc
+        ? `${base.desc} 该商品属于「${category.name} / ${subCategory.name}」，页面采用非露骨展示，重点说明材质、收纳、配送与护理方式。`
+        : `${name} 属于「${category.name} / ${subCategory.name}」小类。${subcategoryNotes[index % subcategoryNotes.length]} 我们以中性包裹名称发出，商品详情会持续补充真实库存、材质和尺寸信息。`,
+      price,
+      originalPrice: index % 4 === 0 ? Math.round(price * 1.18) : index % 5 === 0 ? Math.round(price * 1.12) : undefined,
+      stock: 28 + ((index + 1) * (category.sort + subCategory.sort)) % 180,
+      sales: 60 + ((index + 4) * (category.sort + subCategory.sort + 7) * 8) % 1600,
+      rating: Number((4.5 + ((index + subCategory.sort) % 5) * 0.1).toFixed(1)),
+      reviewCount: 16 + ((index + 2) * (category.sort + subCategory.sort)) % 280,
+      images: [imageFor(category.slug, subCategory.slug, index)],
+      variants: [
+        { id: "standard", name: "标准款", priceDelta: 0, stock: 18 + index * 3 },
+        { id: "gift", name: "礼盒升级", priceDelta: category.slug.includes("gift") ? 88 : 38, stock: 10 + index * 2 },
+        { id: "travel", name: "便携组合", priceDelta: category.slug.includes("storage") ? 28 : 58, stock: 8 + index * 2 }
+      ],
+      isActive: true,
+      isFeatured: subCategory.featured && index < 2,
+      isAdultOnly: true,
+      privacyPackaging: true,
+      careGuide: "建议按商品材质温和清洁或护理，保持干燥并独立收纳。请仅限成年人按说明使用。",
+      shippingNote: "默认隐私包装，外箱与面单使用中性名称，不显示敏感商品信息。",
+      returnPolicyNote: "个人护理及贴身类商品因卫生原因，拆封后通常不支持无理由退换；质量问题请联系客服。",
+      createdAt: now,
+      updatedAt: now
+    };
+  });
+}
+
+const hierarchyProducts = mockSubCategories.flatMap((subCategory) => {
+  const category = mockCategories.find((item) => item.id === subCategory.categoryId);
+  return category ? productsForSubcategory(category, subCategory) : [];
+});
+
+export const mockProducts: Product[] = [...legacyProducts, ...hierarchyProducts];
 
 export const mockCoupons: Coupon[] = [
   { id: "c_new", name: "新人私密礼遇 HK$40", type: "amount", threshold: 299, value: 40, startAt: "2026-01-01", endAt: "2026-12-31", status: "available" },

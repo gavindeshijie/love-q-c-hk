@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import { mockCategories, mockProducts } from "./data/mockData";
 import { dateText, maskContact, money, slugTitle } from "./lib/format";
 import { paymentMethods, submitMockPayment } from "./lib/paymentAdapter";
@@ -16,6 +16,7 @@ import {
   getProducts,
   getReviews,
   getSettings,
+  getSubCategories,
   historyStore,
   orderStore,
   saveArticles,
@@ -122,7 +123,12 @@ function MobileHeader({ path }: { path: string }) {
 }
 
 function titleForPath(path: string) {
-  if (path.startsWith("/category/")) return getCategories().find((c) => c.slug === path.split("/")[2])?.name ?? "分类";
+  if (path.startsWith("/category/")) {
+    const [, , categorySlug, subSlug] = path.split("/");
+    const category = getCategories().find((c) => c.slug === categorySlug);
+    const subCategory = subSlug ? getSubCategories().find((s) => s.slug === subSlug && s.categoryId === category?.id) : undefined;
+    return subCategory ? subCategory.name : category?.name ?? "分类";
+  }
   if (path.startsWith("/product/")) return "商品详情";
   if (path.startsWith("/orders/")) return "订单详情";
   if (path.startsWith("/articles/")) return "私密指南";
@@ -175,7 +181,7 @@ function BottomNav({ path }: { path: string }) {
 function Router({ path, toast }: { path: string; toast: (text: string, tone?: ToastState["tone"]) => void }) {
   if (path === "/") return <HomePage toast={toast} />;
   if (path === "/categories") return <CategoriesPage />;
-  if (path.startsWith("/category/")) return <CategoryPage slug={path.split("/")[2]} toast={toast} />;
+  if (path.startsWith("/category/")) return <CategoryPage slug={path.split("/")[2]} subSlug={path.split("/")[3]} toast={toast} />;
   if (path === "/search") return <SearchPage toast={toast} />;
   if (path.startsWith("/product/")) return <ProductDetailPage id={path.split("/")[2]} toast={toast} />;
   if (path === "/cart") return <CartPage toast={toast} />;
@@ -302,9 +308,22 @@ function ProductCard({ product, toast }: { product: Product; toast?: (text: stri
 
 function ProductArt({ product, large = false }: { product: Product; large?: boolean }) {
   const slug = getCategories().find((category) => category.id === product.categoryId)?.slug ?? "default";
+  const image = product.images[0];
+  const hasPhoto = image?.startsWith("/assets/");
+  const hash = [...product.id].reduce((sum, char) => sum + char.charCodeAt(0), 0);
   return (
-    <div className={`${large ? "detail-art" : "product-art"} art-${slug}`}>
-      <strong>{product.categoryName.slice(0, 1)}选</strong>
+    <div
+      className={`${large ? "detail-art" : "product-art"} art-${slug} ${hasPhoto ? "has-photo" : "generated-visual"}`}
+      style={!hasPhoto ? { "--visual-shift": `${hash % 360}deg` } as CSSProperties : undefined}
+    >
+      {hasPhoto ? (
+        <img className="product-photo" src={image} alt={product.name} loading={large ? "eager" : "lazy"} />
+      ) : (
+        <>
+          <i />
+          <strong>{product.subCategoryName.slice(0, 1)}选</strong>
+        </>
+      )}
     </div>
   );
 }
@@ -438,28 +457,45 @@ function CountdownText() {
 }
 
 function CategoryPill({ category }: { category: Category }) {
+  const subCount = getSubCategories().filter((item) => item.categoryId === category.id).length;
   return (
     <button className="category-pill" onClick={() => go(`/category/${category.slug}`)}>
       <div className="orb" style={{ width: 44, height: 44, borderRadius: 16, fontSize: 18 }}>{category.icon}</div>
       <b>{category.name}</b>
-      <span>{category.description}</span>
+      <span>{category.description} · {subCount} 个小类</span>
     </button>
   );
 }
 
 function CategoriesPage() {
+  const categories = getCategories();
+  const subCategories = getSubCategories();
+  const products = getProducts();
   return (
     <>
       <SearchBar />
       <section className="section">
-        <SectionHeader title="分类" subtitle="按场景选择，减少犹豫" />
-        <div className="grid-2">
-          {getCategories().map((cat) => (
-            <GlassCard key={cat.id} onClick={() => go(`/category/${cat.slug}`)}>
-              <div className="orb" style={{ width: 54, height: 54, borderRadius: 18, fontSize: 20 }}>{cat.icon}</div>
-              <h3>{cat.name}</h3>
-              <p className="muted">{cat.description}</p>
-              <span className="tag">{getProducts().filter((p) => p.categoryId === cat.id || cat.slug === "sale").length} 件商品</span>
+        <SectionHeader title="完整分类" subtitle="大分类下面继续细分，适合衣服、用品、工具和情境类筛选" />
+        <div className="category-stack">
+          {categories.map((cat) => (
+            <GlassCard key={cat.id} className="category-group">
+              <div className="category-group-head" onClick={() => go(`/category/${cat.slug}`)}>
+                <div className="orb" style={{ width: 54, height: 54, borderRadius: 18, fontSize: 20 }}>{cat.icon}</div>
+                <div>
+                  <h3>{cat.name}</h3>
+                  <p className="muted">{cat.description}</p>
+                  <span className="tag">{products.filter((p) => p.categoryId === cat.id || cat.slug === "sale").length} 件商品</span>
+                </div>
+              </div>
+              <div className="subcat-grid">
+                {subCategories.filter((sub) => sub.categoryId === cat.id).map((sub) => (
+                  <button key={sub.id} className="subcat-tile" onClick={() => go(`/category/${cat.slug}/${sub.slug}`)}>
+                    <b>{sub.icon}</b>
+                    <span>{sub.name}</span>
+                    <small>{products.filter((p) => p.subCategoryId === sub.id).length} 件</small>
+                  </button>
+                ))}
+              </div>
             </GlassCard>
           ))}
         </div>
@@ -472,28 +508,45 @@ function CategoriesPage() {
   );
 }
 
-function CategoryPage({ slug, toast }: { slug: string; toast: (text: string) => void }) {
+function CategoryPage({ slug, subSlug, toast }: { slug: string; subSlug?: string; toast: (text: string) => void }) {
   const [sort, setSort] = useState("综合推荐");
   const [sheet, setSheet] = useState(false);
   const [tag, setTag] = useState("");
   const category = getCategories().find((c) => c.slug === slug);
+  const subCategories = getSubCategories().filter((item) => item.categoryId === category?.id);
+  const selectedSubCategory = subCategories.find((item) => item.slug === subSlug);
   const products = useMemo(() => {
     let list = getProducts().filter((p) => slug === "sale" ? Boolean(p.originalPrice) : p.categoryId === category?.id);
+    if (selectedSubCategory) list = list.filter((p) => p.subCategoryId === selectedSubCategory.id);
     if (tag) list = list.filter((p) => p.tags.includes(tag));
     if (sort === "价格从低到高") list.sort((a, b) => a.price - b.price);
     if (sort === "价格从高到低") list.sort((a, b) => b.price - a.price);
     if (sort === "销量优先") list.sort((a, b) => b.sales - a.sales);
     if (sort === "最新上架") list.sort((a, b) => b.createdAt.localeCompare(a.createdAt));
     return list;
-  }, [category?.id, slug, sort, tag]);
+  }, [category?.id, selectedSubCategory?.id, slug, sort, tag]);
   if (!category && slug !== "sale") return <NotFoundPage />;
   return (
     <>
       <SearchBar />
       <section className="section">
-        <SectionHeader title={category?.name ?? "特价专区"} subtitle={category?.description ?? "限时优惠与组合价"} action={<button className="ghost-btn" onClick={() => setSheet(true)}>筛选</button>} />
+        <SectionHeader
+          title={selectedSubCategory?.name ?? category?.name ?? "特价专区"}
+          subtitle={selectedSubCategory?.description ?? category?.description ?? "限时优惠与组合价"}
+          action={<button className="ghost-btn" onClick={() => setSheet(true)}>筛选</button>}
+        />
+        {subCategories.length > 0 && (
+          <div className="subcat-scroll">
+            <button className={`subcat-chip ${!selectedSubCategory ? "active" : ""}`} onClick={() => go(`/category/${category?.slug}`)}>全部</button>
+            {subCategories.map((sub) => (
+              <button key={sub.id} className={`subcat-chip ${selectedSubCategory?.id === sub.id ? "active" : ""}`} onClick={() => go(`/category/${category?.slug}/${sub.slug}`)}>
+                {sub.icon} {sub.name}
+              </button>
+            ))}
+          </div>
+        )}
         <div className="chips">{["综合推荐", "销量优先", "价格从低到高", "价格从高到低", "最新上架"].map((s) => <button key={s} className={`chip ${sort === s ? "active" : ""}`} onClick={() => setSort(s)}>{s}</button>)}</div>
-        <div className="chips">{["", "新手友好", "礼盒", "便携", "护理", "安全防护", "热卖"].map((s) => <button key={s || "all"} className={`chip ${tag === s ? "active" : ""}`} onClick={() => setTag(s)}>{s || "全部"}</button>)}</div>
+        <div className="chips">{["", selectedSubCategory?.name ?? "", "新手友好", "礼盒", "便携", "护理", "安全防护", "热卖"].filter((s, index, arr) => index === arr.indexOf(s)).map((s) => <button key={s || "all"} className={`chip ${tag === s ? "active" : ""}`} onClick={() => setTag(s)}>{s || "全部"}</button>)}</div>
       </section>
       <ProductGrid products={products} toast={toast} />
       {sheet && <BottomSheet title="筛选商品" onClose={() => setSheet(false)}>
@@ -509,7 +562,7 @@ function CategoryPage({ slug, toast }: { slug: string; toast: (text: string) => 
 function SearchPage({ toast }: { toast: (text: string) => void }) {
   const [keyword, setKeyword] = useState("");
   const [history, setHistory] = useState<string[]>(JSON.parse(localStorage.getItem("loveqc_searchHistory") ?? "[]"));
-  const products = getProducts().filter((p) => [p.name, p.categoryName, ...p.tags].join(" ").includes(keyword));
+  const products = getProducts().filter((p) => [p.name, p.categoryName, p.subCategoryName, ...p.tags].join(" ").includes(keyword));
   const update = (value: string) => {
     setKeyword(value);
     if (value.trim()) {
@@ -523,7 +576,7 @@ function SearchPage({ toast }: { toast: (text: string) => void }) {
       <SearchBar value={keyword} onChange={update} autoFocus />
       {!keyword && <section className="section">
         <SectionHeader title="热门搜索" />
-        <div className="tag-row">{["礼盒", "新手", "护理", "安全防护", "香氛", "收纳"].map((s) => <button className="chip" onClick={() => update(s)} key={s}>{s}</button>)}</div>
+        <div className="tag-row">{["内裤", "胸罩内搭", "睡衣", "工具", "礼盒", "护理", "安全防护", "香氛", "收纳"].map((s) => <button className="chip" onClick={() => update(s)} key={s}>{s}</button>)}</div>
         <SectionHeader title="搜索历史" action={<button className="ghost-btn" onClick={() => { setHistory([]); localStorage.removeItem("loveqc_searchHistory"); }}>清空</button>} />
         <div className="tag-row">{history.map((s) => <button className="chip" onClick={() => update(s)} key={s}>{s}</button>)}</div>
       </section>}
@@ -558,7 +611,7 @@ function ProductDetailPage({ id, toast }: { id: string; toast: (text: string) =>
       <GlassCard className="section">
         <div className="tag-row">{["18+", "隐私包装", ...product.tags.slice(0, 3)].map((t) => <span className="tag" key={t}>{t}</span>)}</div>
         <h1>{product.name}</h1>
-        <p className="muted">包裹/账单中性名称：{product.discreetName}</p>
+        <p className="muted">{product.categoryName} / {product.subCategoryName} · 包裹/账单中性名称：{product.discreetName}</p>
         <p>{product.shortDescription}</p>
         <RatingStars value={product.rating} /> <span className="muted">{product.reviewCount} 条评价 · 销量 {product.sales}</span>
         <div style={{ marginTop: 12 }}><PriceText product={product} variantId={variantId} /></div>
@@ -579,7 +632,7 @@ function ProductDetailPage({ id, toast }: { id: string; toast: (text: string) =>
       </section>
       <section className="section">
         <SectionHeader title="相关推荐" />
-        <ProductGrid products={getProducts().filter((p) => p.categoryId === product.categoryId && p.id !== product.id).slice(0, 4)} toast={toast} />
+        <ProductGrid products={getProducts().filter((p) => p.subCategoryId === product.subCategoryId && p.id !== product.id).slice(0, 4)} toast={toast} />
       </section>
       <div className="sticky-buy">
         <button className="icon-btn" onClick={() => go("/support")}>客</button>
@@ -637,7 +690,7 @@ function CartPage({ toast }: { toast: (text: string, tone?: ToastState["tone"]) 
         );
       })}
       <GlassCard className="section"><b>再买 {money(Math.max(0, getSettings().freeShippingThreshold - cartStore.getCartTotal()))} 可包邮</b><p className="muted">可用优惠券 {couponStore.getAvailableCoupons(cartStore.getCartTotal()).length} 张 · 包裹外部不显示敏感信息。</p></GlassCard>
-      <section className="section"><SectionHeader title="推荐加购" /><ProductGrid products={getProducts().filter((p) => ["cat_storage", "cat_safe"].includes(p.categoryId)).slice(0, 4)} toast={toast} /></section>
+      <section className="section"><SectionHeader title="推荐加购" /><ProductGrid products={getProducts().filter((p) => ["cat_storage", "cat_care", "cat_protection"].includes(p.categoryId)).slice(0, 4)} toast={toast} /></section>
       <div className="checkout-bar">
         <div><b>已选 {selectedCount} 件</b><br /><span className="price">{money(cartStore.getCartTotal())}</span></div>
         <GradientButton onClick={() => selectedCount ? go("/checkout") : toast("请先选择商品", "danger")}>去结算</GradientButton>

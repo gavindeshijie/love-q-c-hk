@@ -8,6 +8,17 @@ export type Category = {
   featured: boolean;
 };
 
+export type SubCategory = {
+  id: string;
+  categoryId: string;
+  name: string;
+  slug: string;
+  icon: string;
+  description: string;
+  sort: number;
+  featured: boolean;
+};
+
 export type ProductVariant = {
   id: string;
   name: string;
@@ -22,6 +33,8 @@ export type Product = {
   discreetName: string;
   categoryId: string;
   categoryName: string;
+  subCategoryId: string;
+  subCategoryName: string;
   tags: string[];
   shortDescription: string;
   description: string;

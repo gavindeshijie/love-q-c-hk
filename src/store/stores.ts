@@ -1,10 +1,15 @@
-import { defaultSettings, mockArticles, mockBanners, mockCategories, mockCoupons, mockProducts, mockReviews } from "../data/mockData";
+import { defaultSettings, mockArticles, mockBanners, mockCategories, mockCoupons, mockProducts, mockReviews, mockSubCategories } from "../data/mockData";
 import { money } from "../lib/format";
 import { makeId, storageGet, storageRemove, storageSet } from "../lib/storage";
-import type { Address, Article, Banner, CartItem, Category, Coupon, Order, OrderStatus, Product, StoreSettings, User } from "../types";
+import type { Address, Article, Banner, CartItem, Category, Coupon, Order, OrderStatus, Product, StoreSettings, SubCategory, User } from "../types";
 
 export function getProducts() {
-  return storageGet<Product[]>("mockProducts", mockProducts);
+  const products = storageGet<Product[]>("mockProducts", mockProducts);
+  if (!products.length || !("subCategoryId" in products[0])) {
+    storageSet("mockProducts", mockProducts);
+    return mockProducts;
+  }
+  return products;
 }
 
 export function saveProducts(products: Product[]) {
@@ -17,6 +22,19 @@ export function getCategories() {
 
 export function saveCategories(categories: Category[]) {
   storageSet("mockCategories", categories);
+}
+
+export function getSubCategories() {
+  const subCategories = storageGet<SubCategory[]>("mockSubCategories", mockSubCategories);
+  if (!subCategories.length) {
+    storageSet("mockSubCategories", mockSubCategories);
+    return mockSubCategories;
+  }
+  return subCategories;
+}
+
+export function saveSubCategories(subCategories: SubCategory[]) {
+  storageSet("mockSubCategories", subCategories);
 }
 
 export function getCoupons() {
