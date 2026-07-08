@@ -321,7 +321,7 @@ function ProductArt({ product, large = false }: { product: Product; large?: bool
       ) : (
         <>
           <i />
-          <strong>{product.subCategoryName.slice(0, 1)}选</strong>
+          <em />
         </>
       )}
     </div>
