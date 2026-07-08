@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1125" viewBox="0 0 900 1125" role="img" aria-label="丝绒和风轻奢款 和风">
+  
+  <defs>
+    <radialGradient id="bg-p2-roleplay-kimono-style-02-main" cx="35%" cy="18%" r="82%">
+      <stop offset="0%" stop-color="#8b5cff" stop-opacity=".42"/>
+      <stop offset="42%" stop-color="#1f174a" stop-opacity=".92"/>
+      <stop offset="100%" stop-color="#090012"/>
+    </radialGradient>
+    <linearGradient id="gold-p2-roleplay-kimono-style-02-main" x1="0%" x2="100%">
+      <stop offset="0%" stop-color="#ffe2a8"/>
+      <stop offset="46%" stop-color="#d8b76f"/>
+      <stop offset="100%" stop-color="#a56f30"/>
+    </linearGradient>
+    <linearGradient id="glass-p2-roleplay-kimono-style-02-main" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff7ff" stop-opacity=".34"/>
+      <stop offset="46%" stop-color="#8b5cff" stop-opacity=".18"/>
+      <stop offset="100%" stop-color="#090012" stop-opacity=".18"/>
+    </linearGradient>
+    <filter id="glow-p2-roleplay-kimono-style-02-main" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="9" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0.65 0 1 0 0 0.12 0 0 1 0 1 0 0 0 .75 0"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <pattern id="velvet-p2-roleplay-kimono-style-02-main" width="80" height="80" patternUnits="userSpaceOnUse">
+      <path d="M0 50 C18 16 42 88 80 34" fill="none" stroke="#fff" stroke-opacity=".035" stroke-width="10"/>
+      <path d="M0 18 C24 58 56 -10 80 44" fill="none" stroke="#8b5cff" stroke-opacity=".055" stroke-width="4"/>
+    </pattern>
+  </defs>
+  
+  <rect width="900" height="1125" fill="url(#bg-p2-roleplay-kimono-style-02-main)"/>
+  <rect width="900" height="1125" fill="url(#velvet-p2-roleplay-kimono-style-02-main)" opacity=".95"/>
+  <circle cx="745" cy="170" r="210" fill="#8b5cff" opacity=".11"/>
+  <circle cx="140" cy="860" r="260" fill="#ff4fd8" opacity=".09"/>
+  <path d="M-40 970 C210 760 472 1125 940 846 L940 1125 L-40 1125Z" fill="#000" opacity=".34"/>
+  <rect x="74" y="76" width="752" height="958" rx="58" fill="#000" opacity=".18" stroke="#fff" stroke-opacity=".08"/>
+  
+    <path d="M298 300 C348 245 555 245 606 300 C636 396 672 550 710 736 C574 802 325 802 190 736 C228 552 268 394 298 300Z" fill="url(#glass-p2-roleplay-kimono-style-02-main)" stroke="url(#gold-p2-roleplay-kimono-style-02-main)" stroke-width="6" filter="url(#glow-p2-roleplay-kimono-style-02-main)"/>
+    <path d="M310 318 C370 408 532 408 594 318" fill="none" stroke="#8b5cff" stroke-width="14" opacity=".55"/>
+    <path d="M244 720 C370 640 528 640 656 720" fill="none" stroke="#ff4fd8" stroke-width="12" opacity=".62"/>
+    
+  <path d="M174 832 C300 760 498 780 730 710" fill="none" stroke="url(#gold-p2-roleplay-kimono-style-02-main)" stroke-width="22" opacity=".55"/>
+  <path d="M145 858 C316 786 510 810 755 738" fill="none" stroke="#fff" stroke-opacity=".12" stroke-width="3"/>
+  <rect x="92" y="900" width="716" height="110" rx="34" fill="#050008" opacity=".42" stroke="#fff" stroke-opacity=".08"/>
+  <text x="124" y="950" fill="#fff7ff" font-family="PingFang SC, Microsoft YaHei, Arial, sans-serif" font-size="32" font-weight="800">和风</text>
+  <text x="124" y="988" fill="#d8b76f" font-family="Inter, Arial, sans-serif" font-size="18" letter-spacing="4">PRIVATE SELECT · DISCREET PACKAGING</text>
+</svg>

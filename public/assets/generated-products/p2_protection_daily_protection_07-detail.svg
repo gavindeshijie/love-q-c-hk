@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1125" viewBox="0 0 900 1125" role="img" aria-label="雾紫日常补充热卖款 细节材质">
+  
+  <defs>
+    <radialGradient id="bg-p2-protection-daily-protection-07-detail" cx="35%" cy="18%" r="82%">
+      <stop offset="0%" stop-color="#ff6adf" stop-opacity=".42"/>
+      <stop offset="42%" stop-color="#3a102f" stop-opacity=".92"/>
+      <stop offset="100%" stop-color="#090012"/>
+    </radialGradient>
+    <linearGradient id="gold-p2-protection-daily-protection-07-detail" x1="0%" x2="100%">
+      <stop offset="0%" stop-color="#ffe2a8"/>
+      <stop offset="46%" stop-color="#d8b76f"/>
+      <stop offset="100%" stop-color="#a56f30"/>
+    </linearGradient>
+    <linearGradient id="glass-p2-protection-daily-protection-07-detail" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff7ff" stop-opacity=".34"/>
+      <stop offset="46%" stop-color="#ff6adf" stop-opacity=".18"/>
+      <stop offset="100%" stop-color="#090012" stop-opacity=".18"/>
+    </linearGradient>
+    <filter id="glow-p2-protection-daily-protection-07-detail" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="9" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0.65 0 1 0 0 0.12 0 0 1 0 1 0 0 0 .75 0"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <pattern id="velvet-p2-protection-daily-protection-07-detail" width="80" height="80" patternUnits="userSpaceOnUse">
+      <path d="M0 50 C18 16 42 88 80 34" fill="none" stroke="#fff" stroke-opacity=".035" stroke-width="10"/>
+      <path d="M0 18 C24 58 56 -10 80 44" fill="none" stroke="#ff6adf" stroke-opacity=".055" stroke-width="4"/>
+    </pattern>
+  </defs>
+  
+  <rect width="900" height="1125" fill="url(#bg-p2-protection-daily-protection-07-detail)"/>
+  <rect width="900" height="1125" fill="url(#velvet-p2-protection-daily-protection-07-detail)" opacity=".95"/>
+  <circle cx="745" cy="170" r="210" fill="#ff6adf" opacity=".11"/>
+  <circle cx="140" cy="860" r="260" fill="#d6b56d" opacity=".09"/>
+  <path d="M-40 970 C210 760 472 1125 940 846 L940 1125 L-40 1125Z" fill="#000" opacity=".34"/>
+  <rect x="74" y="76" width="752" height="958" rx="58" fill="#000" opacity=".18" stroke="#fff" stroke-opacity=".08"/>
+  
+    <rect x="180" y="282" width="230" height="210" rx="34" fill="url(#glass-p2-protection-daily-protection-07-detail)" stroke="#ff6adf" stroke-opacity=".62" stroke-width="5"/><rect x="470" y="282" width="230" height="210" rx="34" fill="url(#glass-p2-protection-daily-protection-07-detail)" stroke="#d8b76f" stroke-opacity=".62" stroke-width="5"/><rect x="180" y="552" width="230" height="210" rx="34" fill="url(#glass-p2-protection-daily-protection-07-detail)" stroke="#ff6adf" stroke-opacity=".62" stroke-width="5"/><rect x="470" y="552" width="230" height="210" rx="34" fill="url(#glass-p2-protection-daily-protection-07-detail)" stroke="#d8b76f" stroke-opacity=".62" stroke-width="5"/>
+  <rect x="92" y="900" width="716" height="110" rx="34" fill="#050008" opacity=".42" stroke="#fff" stroke-opacity=".08"/>
+  <text x="124" y="950" fill="#fff7ff" font-family="PingFang SC, Microsoft YaHei, Arial, sans-serif" font-size="32" font-weight="800">细节材质</text>
+  <text x="124" y="988" fill="#d8b76f" font-family="Inter, Arial, sans-serif" font-size="18" letter-spacing="4">PRIVATE SELECT · DISCREET PACKAGING</text>
+</svg>

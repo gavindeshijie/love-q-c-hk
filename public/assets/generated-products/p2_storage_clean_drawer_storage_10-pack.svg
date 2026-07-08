@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1125" viewBox="0 0 900 1125" role="img" aria-label="礼盒装抽屉收纳限定款 隐私包装">
+  
+  <defs>
+    <radialGradient id="bg-p2-storage-clean-drawer-storage-10-pack" cx="35%" cy="18%" r="82%">
+      <stop offset="0%" stop-color="#ff4fd8" stop-opacity=".42"/>
+      <stop offset="42%" stop-color="#321047" stop-opacity=".92"/>
+      <stop offset="100%" stop-color="#090012"/>
+    </radialGradient>
+    <linearGradient id="gold-p2-storage-clean-drawer-storage-10-pack" x1="0%" x2="100%">
+      <stop offset="0%" stop-color="#ffe2a8"/>
+      <stop offset="46%" stop-color="#d8b76f"/>
+      <stop offset="100%" stop-color="#a56f30"/>
+    </linearGradient>
+    <linearGradient id="glass-p2-storage-clean-drawer-storage-10-pack" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff7ff" stop-opacity=".34"/>
+      <stop offset="46%" stop-color="#ff4fd8" stop-opacity=".18"/>
+      <stop offset="100%" stop-color="#090012" stop-opacity=".18"/>
+    </linearGradient>
+    <filter id="glow-p2-storage-clean-drawer-storage-10-pack" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="9" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0.65 0 1 0 0 0.12 0 0 1 0 1 0 0 0 .75 0"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <pattern id="velvet-p2-storage-clean-drawer-storage-10-pack" width="80" height="80" patternUnits="userSpaceOnUse">
+      <path d="M0 50 C18 16 42 88 80 34" fill="none" stroke="#fff" stroke-opacity=".035" stroke-width="10"/>
+      <path d="M0 18 C24 58 56 -10 80 44" fill="none" stroke="#ff4fd8" stroke-opacity=".055" stroke-width="4"/>
+    </pattern>
+  </defs>
+  
+  <rect width="900" height="1125" fill="url(#bg-p2-storage-clean-drawer-storage-10-pack)"/>
+  <rect width="900" height="1125" fill="url(#velvet-p2-storage-clean-drawer-storage-10-pack)" opacity=".95"/>
+  <circle cx="745" cy="170" r="210" fill="#ff4fd8" opacity=".11"/>
+  <circle cx="140" cy="860" r="260" fill="#9b4dff" opacity=".09"/>
+  <path d="M-40 970 C210 760 472 1125 940 846 L940 1125 L-40 1125Z" fill="#000" opacity=".34"/>
+  <rect x="74" y="76" width="752" height="958" rx="58" fill="#000" opacity=".18" stroke="#fff" stroke-opacity=".08"/>
+  
+  <rect x="190" y="248" width="520" height="590" rx="41.6" fill="#07020c" stroke="url(#gold-p2-storage-clean-drawer-storage-10-pack)" stroke-width="4"/>
+  <rect x="208" y="266" width="484" height="554" rx="22" fill="url(#glass-p2-storage-clean-drawer-storage-10-pack)" opacity=".42"/>
+  <path d="M450 268 L450 818" stroke="#d8b76f" stroke-opacity=".42" stroke-width="8"/>
+  <path d="M210 531.2 L690 531.2" stroke="#d8b76f" stroke-opacity=".36" stroke-width="8"/>
+  <rect x="340.79999999999995" y="495.79999999999995" width="218.4" height="94.4" rx="12" fill="#12051f" stroke="#d8b76f" stroke-opacity=".55"/>
+  <path d="M174 832 C300 760 498 780 730 710" fill="none" stroke="url(#gold-p2-storage-clean-drawer-storage-10-pack)" stroke-width="22" opacity=".55"/>
+  <path d="M145 858 C316 786 510 810 755 738" fill="none" stroke="#fff" stroke-opacity=".12" stroke-width="3"/><rect x="318" y="370" width="264" height="270" rx="34" fill="url(#glass-p2-storage-clean-drawer-storage-10-pack)" opacity=".36"/>
+  <rect x="92" y="900" width="716" height="110" rx="34" fill="#050008" opacity=".42" stroke="#fff" stroke-opacity=".08"/>
+  <text x="124" y="950" fill="#fff7ff" font-family="PingFang SC, Microsoft YaHei, Arial, sans-serif" font-size="32" font-weight="800">隐私包装</text>
+  <text x="124" y="988" fill="#d8b76f" font-family="Inter, Arial, sans-serif" font-size="18" letter-spacing="4">PRIVATE SELECT · DISCREET PACKAGING</text>
+</svg>

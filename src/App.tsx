@@ -606,7 +606,7 @@ function ProductDetailPage({ id, toast }: { id: string; toast: (text: string) =>
           <button className="icon-btn" onClick={() => { favoriteStore.toggleFavorite(product.id); toast(favorite ? "已取消收藏" : "已收藏"); }}>{favorite ? "♥" : "♡"}</button>
         </div>
         <ProductArt product={product} large />
-        <p className="muted" style={{ textAlign: "right" }}>1 / 1</p>
+        <p className="muted" style={{ textAlign: "right" }}>1 / {product.images.length}</p>
       </section>
       <GlassCard className="section">
         <div className="tag-row">{["18+", "隐私包装", ...product.tags.slice(0, 3)].map((t) => <span className="tag" key={t}>{t}</span>)}</div>
@@ -654,7 +654,6 @@ function detailTab(product: Product, tab: string) {
 }
 
 function TaobaoDetail({ product }: { product: Product }) {
-  const isPhoto = product.images[0]?.startsWith("/assets/");
   const rows = [
     ["商品类别", `${product.categoryName} / ${product.subCategoryName}`],
     ["隐私名称", product.discreetName],
@@ -665,11 +664,22 @@ function TaobaoDetail({ product }: { product: Product }) {
   return (
     <div className="taobao-detail">
       <section className="detail-poster">
-        {isPhoto ? <img src={product.images[0]} alt={product.name} loading="lazy" /> : <ProductArt product={product} />}
+        <img src={product.images[0]} alt={product.name} loading="lazy" />
         <div>
-          <span className="tag">真实感商品图</span>
+          <span className="tag">主题商品主图</span>
           <h2>{product.name}</h2>
           <p>{product.description}</p>
+        </div>
+      </section>
+      <section className="detail-board">
+        <h3>多角度展示</h3>
+        <div className="detail-gallery">
+          {product.images.map((image, index) => (
+            <figure key={image}>
+              <img src={image} alt={`${product.name} ${index + 1}`} loading="lazy" />
+              <figcaption>{["商品主图", "细节材质", "隐私包装"][index] ?? `角度 ${index + 1}`}</figcaption>
+            </figure>
+          ))}
         </div>
       </section>
       <section className="detail-board">

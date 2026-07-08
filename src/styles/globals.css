@@ -1075,6 +1075,32 @@ a {
     radial-gradient(circle at 90% 10%, rgba(155, 77, 255, 0.16), transparent 36%);
 }
 
+.detail-gallery {
+  display: grid;
+  gap: 12px;
+}
+
+.detail-gallery figure {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.detail-gallery img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  display: block;
+  object-fit: cover;
+}
+
+.detail-gallery figcaption {
+  padding: 10px 12px 12px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
 .detail-feature-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));

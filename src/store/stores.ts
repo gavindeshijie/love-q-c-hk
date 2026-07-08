@@ -5,7 +5,7 @@ import type { Address, Article, Banner, CartItem, Category, Coupon, Order, Order
 
 export function getProducts() {
   const products = storageGet<Product[]>("mockProducts", mockProducts);
-  const staleCatalog = products.some((product) => product.categoryId === "cat_scent" && product.images[0]?.startsWith("visual-scent"));
+  const staleCatalog = products.some((product) => product.images.length < 3 || product.images.some((image) => image.startsWith("visual-")));
   if (!products.length || !("subCategoryId" in products[0]) || staleCatalog) {
     storageSet("mockProducts", mockProducts);
     return mockProducts;
