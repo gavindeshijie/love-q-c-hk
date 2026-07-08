@@ -43,6 +43,7 @@ const manifestByProduct = new Map(catalogManifest.map((entry) => [entry.productI
 const problems = [];
 const imageUse = new Map();
 const hashUse = new Map();
+const sourceKeyUse = new Map();
 let checkedImages = 0;
 
 for (const product of mockProducts) {
@@ -56,6 +57,18 @@ for (const product of mockProducts) {
         problems.push({ type: "invalid_catalog_manifest_cells", productId: product.id, cells });
       } else if (new Set(cells).size < 3) {
         problems.push({ type: "same_source_cell_in_product_gallery", productId: product.id, cells });
+      }
+
+      for (const kind of ["main", "detail", "pack"]) {
+        const imageSource = entry.images?.[kind];
+        const sourceKey = imageSource?.sourceKey;
+        if (!sourceKey) {
+          problems.push({ type: "missing_catalog_source_key", productId: product.id, kind });
+          continue;
+        }
+        const users = sourceKeyUse.get(sourceKey) ?? [];
+        users.push(`${product.id}:${kind}`);
+        sourceKeyUse.set(sourceKey, users);
       }
     }
   }
@@ -117,6 +130,10 @@ for (const [fileHash, users] of hashUse.entries()) {
   if (users.length > 1) problems.push({ type: "identical_file_hash", hash: fileHash, users: users.slice(0, 8), total: users.length });
 }
 
+for (const [sourceKey, users] of sourceKeyUse.entries()) {
+  if (users.length > 1) problems.push({ type: "catalog_source_key_reused", sourceKey, users: users.slice(0, 8), total: users.length });
+}
+
 for (const category of mockCategories) {
   const categoryProducts = mockProducts.filter((product) => product.categoryId === category.id);
   if (categoryProducts.length < 10) problems.push({ type: "category_too_few_products", category: category.slug, count: categoryProducts.length });
@@ -145,6 +162,7 @@ const report = {
   checkedImages,
   uniqueImagePaths: imageUse.size,
   uniqueFileHashes: hashUse.size,
+  uniqueCatalogSourceKeys: sourceKeyUse.size,
   pageRoutesAudited: routes.length,
   problems: problems.length,
   problemSamples: problems.slice(0, 20)

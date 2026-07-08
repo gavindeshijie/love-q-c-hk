@@ -23,6 +23,14 @@ const sheets = {
 };
 
 const allCells = Array.from({ length: 25 }, (_, index) => index);
+const sourceItems = Object.entries(sheets).flatMap(([slug, file]) =>
+  allCells.map((cell) => ({
+    slug,
+    file,
+    cell,
+    input: path.join(generatedRoot, file)
+  }))
+);
 
 const pools = {
   apparel: {
@@ -78,6 +86,16 @@ function stableHash(value) {
   return [...value].reduce((sum, char) => (sum * 31 + char.charCodeAt(0)) % 1000003, 17);
 }
 
+function uniquePool(pool) {
+  return [...new Set(pool)];
+}
+
+function sheetInput(slug) {
+  const sheet = sheets[slug];
+  if (!sheet) throw new Error(`Missing sheet for ${slug}`);
+  return path.join(generatedRoot, sheet);
+}
+
 function cellRect(cellIndex, productSalt, kind) {
   const imageSize = 1254;
   const cellSize = imageSize / 5;
@@ -100,9 +118,10 @@ const subById = new Map(mockSubCategories.map((subCategory) => [subCategory.id, 
 const positionByGroup = new Map();
 const jobs = [];
 const manifest = [];
+const usedSourceKeys = new Set();
 
 function distinctCells(pool, start, productSalt) {
-  const source = pool.length >= 3 ? pool : allCells;
+  const source = pool.length >= 3 ? uniquePool(pool) : allCells;
   const step = Math.max(1, Math.floor(source.length / 3));
   const candidates = [
     start,
@@ -129,6 +148,25 @@ function distinctCells(pool, start, productSalt) {
   return chosen.slice(0, 3);
 }
 
+function reserveBackdrop(primary, product, kind, imageOrdinal) {
+  const seed = stableHash(`${product.id}:${kind}:${imageOrdinal}`);
+  for (let attempt = 0; attempt < sourceItems.length * 3; attempt += 1) {
+    const backdrop = sourceItems[(seed + attempt * 47 + imageOrdinal * 19) % sourceItems.length];
+    const toneSlot = (seed + attempt * 13) % 97;
+    const sourceKey = [
+      `primary=${primary.slug}:${primary.cell}`,
+      `backdrop=${backdrop.slug}:${backdrop.cell}`,
+      `kind=${kind}`,
+      `tone=${toneSlot}`
+    ].join("|");
+    if (!usedSourceKeys.has(sourceKey)) {
+      usedSourceKeys.add(sourceKey);
+      return { backdrop, sourceKey, tone: toneSlot / 97 };
+    }
+  }
+  throw new Error(`Cannot reserve unique source key for ${product.id} ${kind}`);
+}
+
 for (const product of mockProducts) {
   if (product.id === "p_scent_01") continue;
 
@@ -140,21 +178,47 @@ for (const product of mockProducts) {
   const productOffset = positionByGroup.get(groupKey) ?? 0;
   positionByGroup.set(groupKey, productOffset + 1);
 
-  const pool = pools[category.slug]?.[subCategory?.slug] ?? allCells;
+  const configuredPool = pools[category.slug]?.[subCategory?.slug];
+  const pool = uniquePool(configuredPool?.length ? configuredPool : allCells);
   const productSalt = stableHash(product.id);
   const groupSalt = stableHash(groupKey);
   const start = productOffset + groupSalt;
   const [mainCell, detailCell, packCell] = distinctCells(pool, start, productSalt);
   const cellByKind = { main: mainCell, detail: detailCell, pack: packCell };
-  const input = path.join(generatedRoot, sheets[category.slug]);
-  if (!sheets[category.slug]) throw new Error(`Missing sheet for ${category.slug}`);
+  const input = sheetInput(category.slug);
+  const imageSources = {};
 
-  for (const kind of ["main", "detail", "pack"]) {
+  for (const [kindIndex, kind] of ["main", "detail", "pack"].entries()) {
+    const primary = {
+      slug: category.slug,
+      file: sheets[category.slug],
+      cell: cellByKind[kind],
+      input
+    };
+    const imageOrdinal = jobs.length;
+    const backdrop = reserveBackdrop(primary, product, kind, imageOrdinal);
+    const primaryRect = cellRect(primary.cell, productSalt + kindIndex * 101, kind);
+    const backdropRect = cellRect(backdrop.backdrop.cell, productSalt + kindIndex * 211, "pack");
     jobs.push({
       input,
       output: outputPath(product.id, kind),
-      ...cellRect(cellByKind[kind], productSalt, kind)
+      ...primaryRect,
+      backdropInput: backdrop.backdrop.input,
+      backdropX: backdropRect.x,
+      backdropY: backdropRect.y,
+      backdropWidth: backdropRect.width,
+      backdropHeight: backdropRect.height,
+      tone: backdrop.tone
     });
+    imageSources[kind] = {
+      primarySheet: primary.file,
+      primaryCategorySlug: primary.slug,
+      primaryCell: primary.cell,
+      backdropSheet: backdrop.backdrop.file,
+      backdropCategorySlug: backdrop.backdrop.slug,
+      backdropCell: backdrop.backdrop.cell,
+      sourceKey: backdrop.sourceKey
+    };
   }
 
   manifest.push({
@@ -166,7 +230,8 @@ for (const product of mockProducts) {
       main: mainCell,
       detail: detailCell,
       pack: packCell
-    }
+    },
+    images: imageSources
   });
 }
 
