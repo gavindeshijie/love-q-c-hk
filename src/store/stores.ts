@@ -6,7 +6,8 @@ import type { Address, Article, Banner, CartItem, Category, Coupon, Order, Order
 export function getProducts() {
   const products = storageGet<Product[]>("mockProducts", mockProducts);
   const staleCatalog = products.some((product) => product.images.length < 3 || product.images.some((image) => image.startsWith("visual-")));
-  if (!products.length || !("subCategoryId" in products[0]) || staleCatalog) {
+  const stalePhotoCatalog = products.find((product) => product.id === "p_scent_01")?.images[0] !== "/assets/ai-products/scent-gift-candle-01-main.png";
+  if (!products.length || !("subCategoryId" in products[0]) || staleCatalog || stalePhotoCatalog) {
     storageSet("mockProducts", mockProducts);
     return mockProducts;
   }
